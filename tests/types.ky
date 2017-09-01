@@ -1,0 +1,39 @@
+// "new" isn't needed to test types, but it makes this a valid program
+new int
+new float
+new str
+new null
+
+// name statements
+name myIntType int
+name myFnType fn(int) : str
+name myObjType obj{
+    int a
+    str b
+}
+
+let myObj = {
+    a = 99
+    b = "beep"
+}
+
+myObj.a
+myObj.b
+
+typeof myObj
+
+let myCastedObj = myObj as myObjType
+typeof myCastedObj
+
+typeof myCastedObj == typeof myObj
+typeof myCastedObj == typeof (myObj as myObjType)
+
+// rigid object type use in function
+let mySpecificFn = fn(myObjType object): null {
+    object.a
+    object.b
+    return 10
+}
+
+mySpecificFn(myObj as myObjType)
+mySpecificFn(myCastedObj)

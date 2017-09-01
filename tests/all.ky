@@ -1,0 +1,199 @@
+// if statement
+if false {
+	a
+}
+
+if false {
+    a
+} else {
+    b
+}
+
+// if-if-else
+if false {
+    a
+} else if false {
+    23
+} else {
+    "yay"
+}
+
+// if-else
+if a == b {
+    a
+} else {
+    b
+}
+
+// while
+while a == b {
+    a = a + 2
+}
+
+let x = 0
+while x < 10 {
+    x = x + 1
+}
+
+x// anonymous function call
+fn(int a): int {
+    let q = 99
+    let r = q
+    return q
+}(10)
+
+// fibonacci
+let fibo = fn(int x): int {
+    if x == 1 {
+        return 1
+    }
+
+    if x == 0 {
+        return 0
+    }
+
+    return fibo(x-1) + fibo(x-2)
+}
+
+fibo(10)
+
+// fizzbuzz
+fn(int count): null {
+    let x = 0
+    while x < count {
+        if ((x % 3) == 0 && (x % 5) == 0) {
+            "fizzbuzz"
+        } else if (x % 5) == 0 {
+            "buzz"
+        } else if (x % 3) == 0 {
+            "fizz"
+        } else {
+            x
+        }
+
+        x = (x + 1)
+    }
+    return null
+}(20)// int
+10
+typeof 10
+
+// float
+3.14159
+typeof 3.14159
+
+// null
+null
+typeof null
+
+// string literal
+"hello"
+typeof "hello"
+
+// object base type
+{
+    a = new int
+}
+typeof {
+    a = new int
+}
+
+// arithmetic
+2 + 2
+3.14159 + 2.71828
+9 - 5
+6 / 3
+4 * 2
+
+// boolean operations
+!false
+!true
+
+true && true
+true && false
+
+true || true
+true || false// "new" isn't needed to test types, but it makes this a valid program
+new int
+new float
+new str
+new null
+
+// name statements
+name myIntType int
+name myFnType fn(int) : str
+name myObjType obj{
+    int a
+    str b
+}
+
+let myObj = {
+    a = 99
+    b = "beep"
+}
+
+myObj.a
+myObj.b
+
+typeof myObj
+
+let myCastedObj = myObj as myObjType
+typeof myCastedObj
+
+typeof myCastedObj == typeof myObj
+typeof myCastedObj == typeof (myObj as myObjType)
+
+// rigid object type use in function
+let mySpecificFn = fn(myObjType object): null {
+    object.a
+    object.b
+    return 10
+}
+
+mySpecificFn(myObj as myObjType)
+mySpecificFn(myCastedObj)// boolean variable
+let myBool = false
+myBool
+myBool = true
+myBool
+
+// integer variable
+let myInt = 99
+myInt
+myInt + 10
+myInt = 3
+
+// float variable
+let myFloat = 3.14159
+myFloat
+
+// string variable
+let myStr = "hello"
+myStr
+
+// null
+let myNull = null
+myNull
+
+// fn variable
+let myFn = fn(int a): str {
+    return "abc"
+}
+
+/* using "new" */
+let myNewInt = new int
+let myNewFloat = new float
+let myNewBool = new bool
+let myNewStr = new str
+
+// boolean expression
+let a = 0
+let b = 1
+a = 3
+a == b
+a == a
+a == 3
+
+// boolean negation
+myBool
+!myBool

@@ -1,0 +1,40 @@
+// int
+10;
+typeof 10;
+
+// float
+3.14159;
+typeof 3.14159;
+
+// null
+null;
+typeof null;
+
+// string literal
+"hello";
+typeof "hello";
+
+// object base type
+{
+    a = new int,
+};
+typeof {
+    a = new int,
+};
+
+// arithmetic
+2 + 2;
+3.14159 + 2.71828;
+9 - 5;
+6 / 3;
+4 * 2;
+
+// boolean operations
+!false;
+!true;
+
+true && true;
+true && false;
+
+true || true;
+(true || false);
