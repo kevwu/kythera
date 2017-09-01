@@ -31,7 +31,7 @@ class InputStream {
 	}
 
 	err(message) {
-		throw new Error(`${message} + at line ${this.line}, col ${this.col}`)
+		throw new Error(`${message} at line ${this.line}, col ${this.col}`)
 	}
 }
 

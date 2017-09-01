@@ -2,7 +2,7 @@ class Tokenizer {
 	constructor(inputStream) {
 		this.currentToken = null
 		this.inputStream = inputStream
-		Tokenizer.keywords = "let name if else while each return break continue typeof bool int float str fn obj list import export include this"
+		Tokenizer.keywords = "let new name if else while each return break continue typeof bool int float str fn obj list import export include	this true false null "
 
 		// read as long as we are not at eof and the condition given is true for the next character
 		this.readWhile = (condition) => {
