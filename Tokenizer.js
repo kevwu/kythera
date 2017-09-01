@@ -43,8 +43,6 @@ class Tokenizer {
 			this.inputStream.next()
 		}
 
-		this.checkForComment = false
-
 		// dispatch function for all token kinds
 		this.readNextToken = () => {
 			this.readWhile(Tokenizer.isWhitespace)

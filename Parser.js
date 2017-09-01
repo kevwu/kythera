@@ -28,6 +28,9 @@ class Parser {
 		this.parse = () => {
 			while(!this.tokenizer.eof()) {
 				this.program.push(this.parseExpression())
+				if(!this.confirmPunc(';')){
+					this.tokenizer.inputStream.err("Missing semicolon")
+				}
 				this.consumePunc(';')
 				console.log(JSON.stringify(this.program, null, 2))
 			}
@@ -95,9 +98,11 @@ class Parser {
 					}
 				}
 
-				// literals
+				// from this point forward, nodes are generated directly, not dispatched
+				this.tokenizer.next()
 
-				this.tokenizer.next() // consume the token, we won't be dispatching from here
+
+				// literals
 				if (nextToken.type === "num") {
 					if (nextToken.type.value % 1 !== 0) { // float
 						return {
@@ -121,7 +126,7 @@ class Parser {
 					}
 				}
 
-				// variable
+				// variable identifier
 				if (nextToken.type === "var") {
 					return {
 						kind: "identifier",
@@ -142,7 +147,7 @@ class Parser {
 						let right = makeBinary(this.parseExpression(), nextPrecedence)
 
 						let binary = {
-							type: token.value === "=" ? "assign" : "binary",
+							kind: token.value === "=" ? "assign" : "binary",
 							operator: token.value,
 							left: left,
 							right: right,
@@ -158,15 +163,11 @@ class Parser {
 
 			// make a function call if needed
 			let makeCall = (expression) => {
-				let expr = expression()
-
 				// it's a call if there's an open-paren after the expression.
-				return this.confirmPunc("(") ? this.parseFnCall() : expr
+				return this.confirmPunc("(") ? this.parseFnCall() : expression
 			}
 
-			return makeCall(() => {
-				return makeBinary(parseExpressionAtom(), 0)
-			})
+			return makeCall(makeBinary(parseExpressionAtom(), 0))
 		}
 
 		// parse a block of statements
@@ -256,16 +257,19 @@ class Parser {
 	// confirm a token without consuming it
 
 	confirmPunc(char) {
+		if(this.tokenizer.eof()) return false
 		let token = this.tokenizer.peek()
 		return token && token.type === "punc" && (!char || token.value === char) && token
 	}
 
 	confirmOp(op) {
+		if(this.tokenizer.eof()) return false
 		let token = this.tokenizer.peek()
 		return token && token.type === "op" && (!op || token.value === op) && token
 	}
 
 	confirmKeyword(word) {
+		if(this.tokenizer.eof()) return false
 		let token = this.tokenizer.peek()
 		return token && token.type === "kw" && (!word|| token.value === word) && token
 	}
