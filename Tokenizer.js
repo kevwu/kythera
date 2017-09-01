@@ -149,7 +149,7 @@ class Tokenizer {
 	}
 
 	static isOp(char) {
-		return "+-*/%=&|<>!".indexOf(char) >= 0
+		return "+-*/%=&|<>!~".indexOf(char) >= 0
 	}
 
 	static isPunc(char) {

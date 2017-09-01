@@ -64,17 +64,29 @@ class Parser {
 					return this.parseList()
 				}
 
+				if(this.confirmOp('!')) {
+					this.consumeOp('!')
+					return {
+						kind: "unary",
+						operator: "!",
+						target: this.parseExpression(),
+					}
+				}
+
 				if (this.confirmKeyword()) {
+					this.consumeKeyword(nextToken.value)
 					switch (nextToken.value) {
+						case "true":
+							return Parser.TRUE
+						case "false":
+							return Parser.FALSE
 						case "typeof":
-							this.consumeKeyword("typeof")
 							return {
 								kind: "typeof",
 								target: this.parseExpression(),
 							}
 							break
 						case "null":
-							this.consumeKeyword("null")
 							return {
 								kind: "literal",
 								type: "null",
@@ -82,8 +94,6 @@ class Parser {
 							}
 							break
 						case "new":
-							this.consumeKeyword("new")
-
 							let typeToken = this.tokenizer.next()
 							if (typeToken.type !== "var" && typeToken.type !== "kw") {
 								this.tokenizer.inputStream.err("Expected type or type identifier but got " + typeToken.value)
@@ -95,16 +105,16 @@ class Parser {
 								kind: "new",
 								target: typeToken.value
 							}
+							break
 					}
 				}
 
 				// from this point forward, nodes are generated directly, not dispatched
 				this.tokenizer.next()
 
-
 				// literals
 				if (nextToken.type === "num") {
-					if (nextToken.type.value % 1 !== 0) { // float
+					if (nextToken.value % 1 !== 0) { // float
 						return {
 							kind: "literal",
 							type: "float",
