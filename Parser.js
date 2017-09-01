@@ -35,97 +35,138 @@ class Parser {
 
 		// all parse functions return the AST subtree for what they encountered.
 
+
 		this.parseExpression = () => {
-			// unwrap parentheses first
-			if(this.confirmPunc('(')) {
-				this.consumePunc('(')
-				let contents = this.parseExpression()
-				this.consumePunc(')')
 
-				return contents;
-			}
+			// main dispatcher, parses expression parts that don't need lookahead
+			let parseExpressionAtom = () => {
+				// unwrap parentheses first
+				if (this.confirmPunc('(')) {
+					this.consumePunc('(')
+					let contents = this.parseExpression()
+					this.consumePunc(')')
 
-			let nextToken = this.tokenizer.peek()
-			console.log("About to handle:")
-			console.log(nextToken)
+					return contents;
+				}
 
-			if(this.confirmPunc('{')) {
-				return this.parseObjectLiteral()
-			}
+				let nextToken = this.tokenizer.peek()
+				console.log("About to handle:")
+				console.log(nextToken)
 
-			if(this.confirmPunc('[')) {
-				return this.parseList()
-			}
+				if (this.confirmPunc('{')) {
+					return this.parseObjectLiteral()
+				}
 
-			if(this.confirmKeyword()) {
-				switch(nextToken.value) {
-					case "typeof":
-						this.consumeKeyword("typeof")
-						return {
-							kind: "typeof",
-							target: this.parseExpression(),
-						}
-						break
-					case "null":
-						this.consumeKeyword("null")
+				if (this.confirmPunc('[')) {
+					return this.parseList()
+				}
+
+				if (this.confirmKeyword()) {
+					switch (nextToken.value) {
+						case "typeof":
+							this.consumeKeyword("typeof")
+							return {
+								kind: "typeof",
+								target: this.parseExpression(),
+							}
+							break
+						case "null":
+							this.consumeKeyword("null")
+							return {
+								kind: "literal",
+								type: "null",
+								value: null,
+							}
+							break
+						case "new":
+							this.consumeKeyword("new")
+
+							let typeToken = this.tokenizer.next()
+							if (typeToken.type !== "var" && typeToken.type !== "kw") {
+								this.tokenizer.inputStream.err("Expected type or type identifier but got " + typeToken.value)
+							}
+
+							// this cannot be type-checked yet, there may be user-defined types
+
+							return {
+								kind: "new",
+								target: typeToken.value
+							}
+					}
+				}
+
+				// literals
+
+				this.tokenizer.next() // consume the token, we won't be dispatching from here
+				if (nextToken.type === "num") {
+					if (nextToken.type.value % 1 !== 0) { // float
 						return {
 							kind: "literal",
-							type: "null",
-							value: null,
+							type: "float",
+							value: nextToken.value,
 						}
-						break
-					case "new":
-						this.consumeKeyword("new")
-
-						let typeToken = this.tokenizer.next()
-						if(typeToken.type !== "var" && typeToken.type !== "kw") {
-							this.tokenizer.inputStream.err("Expected type or type identifier but got " + typeToken.value)
-						}
-
-						// this cannot be type-checked yet, there may be user-defined types
-
+					} else { // int
 						return {
-							kind: "new",
-							target: typeToken.value
+							kind: "literal",
+							type: "int",
+							value: nextToken.value,
 						}
-				}
-			}
-
-			// literals
-
-			this.tokenizer.next() // consume the token, we won't be dispatching from here
-			if(nextToken.type === "num") {
-				if(nextToken.type.value % 1 !== 0) { // float
-					return {
-						kind: "literal",
-						type: "float",
-						value: nextToken.value,
 					}
-				} else { // int
+				}
+				if (nextToken.type === "str") {
 					return {
 						kind: "literal",
-						type: "int",
+						type: "str",
 						value: nextToken.value,
 					}
 				}
-			}
-			if(nextToken.type === "str") {
-				return {
-					kind: "literal",
-					type: "str",
-					value: nextToken.value,
+
+				// variable
+				if (nextToken.type === "var") {
+					return {
+						kind: "identifier",
+						name: nextToken.value,
+					}
 				}
+
+				this.tokenizer.inputStream.err("Unexpected token: " + JSON.stringify(nextToken))
 			}
 
-			// variable
-			if(nextToken.type === "var") {
-				return {
-					kind: "identifier",
-					name: nextToken.value,
+			// make a binary expression, with proper precedence, if needed
+			let makeBinary = (left, currentPrecedence) => {
+				let token = this.confirmOp()
+				if(token) {
+					let nextPrecedence = Parser.PRECEDENCE[token.value]
+					if(nextPrecedence > currentPrecedence) {
+						this.tokenizer.next()
+						let right = makeBinary(this.parseExpression(), nextPrecedence)
+
+						let binary = {
+							type: token.value === "=" ? "assign" : "binary",
+							operator: token.value,
+							left: left,
+							right: right,
+						}
+
+						return makeBinary(binary, currentPrecedence)
+					}
 				}
+
+				return left // no RHS
 			}
 
-			this.tokenizer.inputStream.err("Unexpected token: " + JSON.stringify(nextToken))
+
+			// make a function call if needed
+			let makeCall = (expression) => {
+				let expr = expression()
+
+				// it's a call if there's an open-paren after the expression.
+				return this.confirmPunc("(") ? this.parseFnCall() : expr
+			}
+
+			return makeCall(() => {
+				return makeBinary(parseExpressionAtom(), 0)
+			})
 		}
 
 		// parse a block of statements
@@ -152,14 +193,8 @@ class Parser {
 
 			this.consumePunc('{')
 
-			while(!this.confirmPunc('}')) {
+			while (!this.confirmPunc('}')) {
 				let nextToken = this.tokenizer.next()
-				let newEntry = {}
-
-				if(nextToken.type !== "var") {
-					this.tokenizer.inputStream.err("Expected identifier, got " + JSON.stringify(nextToken))
-					return
-				}
 
 				let entryKey = nextToken.value
 
@@ -170,6 +205,7 @@ class Parser {
 
 				contents[entryKey] = entryValue
 			}
+
 
 			this.consumePunc('}')
 
@@ -182,6 +218,14 @@ class Parser {
 
 		this.parseList = () => {
 
+		}
+
+		this.parseFnCall = (fn) => {
+			return {
+				kind: "call",
+				func: fn,
+				args: this.delimited('(', ')', ',', this.parseExpression())
+			}
 		}
 
 		// utility function, parses anything between start, stop, and delimiters using the given parser

@@ -43,6 +43,8 @@ class Tokenizer {
 			this.inputStream.next()
 		}
 
+		this.checkForComment = false
+
 		// dispatch function for all token kinds
 		this.readNextToken = () => {
 			this.readWhile(Tokenizer.isWhitespace)
@@ -50,7 +52,9 @@ class Tokenizer {
 			if(this.inputStream.eof()) return null
 
 			let char = this.inputStream.peek()
-			if(char === "/") {
+
+			// look ahead for comment string
+			if(char === "/" && this.inputStream.input.charAt(this.inputStream.pos + 1) === "/") {
 				this.readToNewline()
 				return this.readNextToken()
 			}

@@ -17,6 +17,7 @@ typeof "hello";
 // object base type
 {
     a = new int,
+    b = 10,
 };
 typeof {
     a = new int,
