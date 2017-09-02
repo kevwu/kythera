@@ -12,16 +12,56 @@ class Parser {
 			"*": 20, "/": 20, "%": 20,
 		}
 
-		Parser.FALSE = {
+		Parser.LITERALS = {}
+
+		Parser.LITERALS.false = {
 			kind: "literal",
 			type: "bool",
 			value: false
 		}
 
-		Parser.TRUE = {
+		Parser.LITERALS.true = {
 			kind: "literal",
 			type: "bool",
 			value: true
+		}
+
+		Parser.LITERALS.null = {
+			kind: "literal",
+			type: "null",
+			value: null,
+		}
+
+		Parser.TYPES = {}
+
+		Parser.TYPES.null = {
+			kind: "type",
+			type: "null",
+			origin: "builtin",
+		}
+
+		Parser.TYPES.int = {
+			kind: "type",
+			type: "int",
+			origin: "builtin",
+		}
+
+		Parser.TYPES.float = {
+			kind: "type",
+			type: "float",
+			origin: "builtin",
+		}
+
+		Parser.TYPES.str = {
+			kind: "type",
+			type: "str",
+			origin: "builtin",
+		}
+
+		Parser.TYPES.bool = {
+			kind: "type",
+			type: "bool",
+			origin: "builtin",
 		}
 
 		// entry point for all parsing operations
@@ -74,38 +114,43 @@ class Parser {
 				}
 
 				if (this.confirmKeyword()) {
+
 					this.consumeKeyword(nextToken.value)
+
 					switch (nextToken.value) {
 						case "true":
-							return Parser.TRUE
+							return Parser.LITERALS.true
 						case "false":
-							return Parser.FALSE
+							return Parser.LITERALS.false
 						case "typeof":
 							return {
 								kind: "typeof",
 								target: this.parseExpression(),
 							}
-							break
 						case "null":
-							return {
-								kind: "literal",
-								type: "null",
-								value: null,
-							}
-							break
+							return Parser.LITERALS.null
 						case "new":
-							let typeToken = this.tokenizer.next()
-							if (typeToken.type !== "var" && typeToken.type !== "kw") {
-								this.tokenizer.inputStream.err("Expected type or type identifier but got " + typeToken.value)
-							}
-
 							// this cannot be type-checked yet, there may be user-defined types
 
 							return {
 								kind: "new",
-								target: typeToken.value
+								target: this.parseType()
 							}
-							break
+						case "name":
+							let nameToken = this.tokenizer.next()
+							if(nameToken.type !== "var") {
+								this.tokenizer.inputStream.err(`Expected identifier but got ${nameToken.value} (${nameToken.type})`)
+							}
+
+							return {
+								kind: "name",
+								name: nameToken.value,
+								target: this.parseType(),
+							}
+
+
+						default:
+							this.tokenizer.inputStream.err("Unhandled keyword: " + nextToken.value)
 					}
 				}
 
@@ -236,6 +281,40 @@ class Parser {
 				kind: "call",
 				func: fn,
 				args: this.delimited('(', ')', ',', this.parseExpression())
+			}
+		}
+
+		// parse a type, whether built-in (int, str etc) or user-defined (fn, rigid obj)
+		this.parseType = () => {
+			let nextToken = this.tokenizer.next()
+
+			if(nextToken.type === "kw") {
+				switch(nextToken.value) {
+					case "int":
+						return Parser.TYPES.int
+					case "float":
+						return Parser.TYPES.float
+					case "bool":
+						return Parser.TYPES.bool
+					case "str":
+						return Parser.TYPES.str
+					case "null":
+						return Parser.TYPES.null
+					case "fn":
+						return
+					case "obj":
+						return
+					default:
+						this.tokenizer.inputStream.err("Expected type or type identifier but got keyword: " + nextToken.value)
+				}
+			} else if(nextToken.type === "var") {
+				return {
+					kind: "type",
+					origin: "named",
+					name: nextToken.value,
+				}
+			} else {
+				this.tokenizer.inputStream.err("Expected type or type identifier but got " + nextToken.value)
 			}
 		}
 
