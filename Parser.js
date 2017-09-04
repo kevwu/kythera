@@ -147,8 +147,6 @@ class Parser {
 								name: nameToken.value,
 								target: this.parseType(),
 							}
-
-
 						default:
 							this.tokenizer.inputStream.err("Unhandled keyword: " + nextToken.value)
 					}
@@ -288,7 +286,7 @@ class Parser {
 		this.parseType = () => {
 			let nextToken = this.tokenizer.next()
 
-			if(nextToken.type === "kw") {
+			if(nextToken.type === "kw") { // built-in types
 				switch(nextToken.value) {
 					case "int":
 						return Parser.TYPES.int
@@ -301,13 +299,31 @@ class Parser {
 					case "null":
 						return Parser.TYPES.null
 					case "fn":
-						return
+						let parameters = []
+
+						this.delimited('(', ')', ',', () => {
+							parameters.push(this.parseType())
+						})
+
+						console.log(parameters)
+
+						this.consumePunc(':')
+
+						let returnType = this.parseType()
+
+						return {
+							kind: "type",
+							origin: "builtin",
+							type: "fn",
+							parameters: parameters,
+							returns: returnType,
+						}
 					case "obj":
 						return
 					default:
 						this.tokenizer.inputStream.err("Expected type or type identifier but got keyword: " + nextToken.value)
 				}
-			} else if(nextToken.type === "var") {
+			} else if(nextToken.type === "var") { // user-named types
 				return {
 					kind: "type",
 					origin: "named",
