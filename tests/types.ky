@@ -28,7 +28,6 @@ typeof myObj;
 let myCastedObj = myObj as myObjType;
 typeof myCastedObj;
 
-// TODO this is processed as typeof (myCastedObj == typeof myObj)
 typeof myCastedObj == typeof myObj;
 typeof myCastedObj == typeof (myObj as myObjType);
 

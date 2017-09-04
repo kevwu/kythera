@@ -79,7 +79,7 @@ class Parser {
 		// all parse functions return the AST subtree for what they encountered.
 
 
-		this.parseExpression = () => {
+		this.parseExpression = (canStartBinary = true) => {
 
 			// main dispatcher, parses expression parts that don't need lookahead
 			let parseExpressionAtom = () => {
@@ -140,7 +140,7 @@ class Parser {
 					return {
 						kind: "unary",
 						operator: "!",
-						target: this.parseExpression(),
+						target: this.parseExpression(false),
 					}
 				}
 
@@ -156,7 +156,7 @@ class Parser {
 						case "typeof":
 							return {
 								kind: "typeof",
-								target: this.parseExpression(),
+								target: this.parseExpression(false),
 							}
 						case "null":
 							return Parser.LITERALS.null
@@ -310,7 +310,13 @@ class Parser {
 				} : expression
 			}
 
-			return makeCall(makeBinary(makeAs(parseExpressionAtom()), 0))
+			// return makeCall(makeBinary(makeAs(parseExpressionAtom()), 0))
+
+			if(canStartBinary) {
+				return makeCall(makeBinary(makeAs(parseExpressionAtom()), 0))
+			} else {
+				return makeCall((makeAs(parseExpressionAtom())))
+			}
 		}
 
 		// parse a block of statements
