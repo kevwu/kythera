@@ -8,16 +8,16 @@ new null;
 name myIntType int;
 name myFnType fn<int, str, myIntType> str;
 name myObjType obj{
-    int a
-    str b
+    int a,
+    str b,
 };
 
 let a = 10;
 let b = new int;
 
 let myObj = {
-    a = 99
-    b = "beep"
+    a = 99,
+    b = "beep",
 };
 
 myObj.a;
@@ -28,14 +28,15 @@ typeof myObj;
 let myCastedObj = myObj as myObjType;
 typeof myCastedObj;
 
+// TODO this is processed as typeof (myCastedObj == typeof myObj)
 typeof myCastedObj == typeof myObj;
 typeof myCastedObj == typeof (myObj as myObjType);
 
 // rigid object type use in function
-let mySpecificFn = (myObjType object): null {
-    object.a
-    object.b
-    return 10
+let mySpecificFn = <myObjType object> null {
+    object.a;
+    object.b;
+    return 10;
 };
 
 mySpecificFn(myObj as myObjType);

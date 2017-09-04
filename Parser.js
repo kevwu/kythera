@@ -184,6 +184,22 @@ class Parser {
 								name: nameToken.value,
 								target: this.parseType(),
 							}
+						case "let":
+							let identToken = this.tokenizer.next()
+							if(identToken.type !== "var") {
+								this.tokenizer.inputStream.err(`Expected identifier but got ${nameToken.value} (${nameToken.type})`)
+							}
+
+							this.consumeOp('=')
+
+							let value = this.parseExpression()
+
+							return {
+								kind: "let",
+								identifier: identToken,
+								value: value,
+							}
+
 						case "return":
 							return {
 								kind: "return",
@@ -223,9 +239,21 @@ class Parser {
 
 				// variable identifier
 				if (nextToken.type === "var") {
-					return {
-						kind: "identifier",
-						name: nextToken.value,
+					if(this.confirmPunc('.')) {
+						this.consumePunc('.')
+
+						let memberName = this.tokenizer.next()
+
+						return {
+							kind: "objAccess",
+							obj: nextToken.value,
+							member: memberName.value,
+						}
+					} else {
+						return {
+							kind: "identifier",
+							name: nextToken.value,
+						}
 					}
 				}
 
@@ -255,6 +283,20 @@ class Parser {
 				return left // no RHS
 			}
 
+			let makeAs = (expression) => {
+				if(this.confirmKeyword("as")) {
+					this.consumeKeyword("as")
+
+					return {
+						kind: "as",
+						from: expression,
+						to: this.parseType()
+					}
+				} else {
+					return expression
+				}
+			}
+
 
 			// make a function call if needed
 			let makeCall = (expression) => {
@@ -268,7 +310,7 @@ class Parser {
 				} : expression
 			}
 
-			return makeCall(makeBinary(parseExpressionAtom(), 0))
+			return makeCall(makeBinary(makeAs(parseExpressionAtom()), 0))
 		}
 
 		// parse a block of statements
@@ -333,8 +375,6 @@ class Parser {
 							parameters.push(this.parseType())
 						})
 
-						console.log(parameters)
-
 						let returnType = this.parseType()
 
 						return {
@@ -345,11 +385,35 @@ class Parser {
 							returns: returnType,
 						}
 					case "obj":
+						let entries = {}
+
+						this.delimited('{', '}', ',', () => {
+							let entryType = this.parseType()
+							let entryName = this.tokenizer.next()
+
+							if(entryName.type !== "var") {
+								this.tokenizer.inputStream.err("Expected identifier but got: " + entryName.value)
+							}
+
+							console.log(entryType)
+							console.log(entryName)
+
+							entries[entryName.value] = entryType
+						})
+
+						return {
+							kind: "type",
+							origin: "builtin",
+							type: "obj",
+							structure: entries,
+						}
+
 						return
 					default:
 						this.tokenizer.inputStream.err("Expected type or type identifier but got keyword: " + nextToken.value)
 				}
 			} else if(nextToken.type === "var") { // user-named types
+				// TODO types can come from expressions
 				return {
 					kind: "type",
 					origin: "named",
@@ -406,9 +470,13 @@ class Parser {
 		return token && token.type === "kw" && (!word|| token.value === word) && token
 	}
 
-	// generic confirm
-	confirmToken(value) {
-		if(this.tokenizer.eof()) return false
+	// TODO generic confirm supporting type checking
+	confirmToken(value, type = "") {
+		if(this.tokenizer.eof()) {
+			return false
+		}
+
+
 		let token = this.tokenizer.peek()
 		return (!value || token.value === value) && token
 	}
@@ -435,6 +503,8 @@ class Parser {
 		if(this.confirmToken(value)) this.tokenizer.next()
 		else this.tokenizer.inputStream.err("Expecting " + value + " but got + " + this.tokenizer.peek().value)
 	}
+
+	// TODO generic consume if match, return false if not
 }
 
 module.exports = Parser
