@@ -68,10 +68,10 @@ class Parser {
 		this.parse = () => {
 			while(!this.tokenizer.eof()) {
 				this.program.push(this.parseExpression())
-				if(!this.confirmPunc(';')){
+				if(!this.confirmToken(';', "punc")){
 					this.tokenizer.inputStream.err("Missing semicolon")
 				}
-				this.consumePunc(';')
+				this.consumeToken(';', "punc")
 				console.log(JSON.stringify(this.program, null, 2))
 			}
 		}
@@ -84,10 +84,10 @@ class Parser {
 			// main dispatcher, parses expression parts that don't need lookahead
 			let parseExpressionAtom = () => {
 				// unwrap parentheses first
-				if (this.confirmPunc('(')) {
-					this.consumePunc('(')
+				if (this.confirmToken('(', "punc")) {
+					this.consumeToken('(', "punc")
 					let contents = this.parseExpression()
-					this.consumePunc(')')
+					this.consumeToken(')', "punc")
 					return contents
 				}
 
@@ -95,11 +95,11 @@ class Parser {
 				console.log("About to handle:")
 				console.log(nextToken)
 
-				if (this.confirmPunc('{')) { // object literal
+				if (this.confirmToken('{', "punc")) { // object literal
 					return this.parseObjectLiteral()
 				}
 
-				if(this.confirmOp('<')) { // function literal
+				if(this.confirmToken('<', "op")) { // function literal
 					let parameters = this.delimited('<', '>', ',', () => {
 						let paramType = this.parseType()
 						let paramName = this.tokenizer.next()
@@ -135,8 +135,8 @@ class Parser {
 				}
 				*/
 
-				if(this.confirmOp('!')) {
-					this.consumeOp('!')
+				if(this.confirmToken('!', "op")) {
+					this.consumeToken('!', "op")
 					return {
 						kind: "unary",
 						operator: "!",
@@ -144,9 +144,9 @@ class Parser {
 					}
 				}
 
-				if (this.confirmKeyword()) {
+				if (this.confirmToken(undefined, "kw")) {
 
-					this.consumeKeyword(nextToken.value)
+					this.consumeToken(nextToken.value, "kw")
 
 					switch (nextToken.value) {
 						case "true":
@@ -190,7 +190,7 @@ class Parser {
 								this.tokenizer.inputStream.err(`Expected identifier but got ${nameToken.value} (${nameToken.type})`)
 							}
 
-							this.consumeOp('=')
+							this.consumeToken('=', "op")
 
 							let value = this.parseExpression()
 
@@ -239,8 +239,8 @@ class Parser {
 
 				// variable identifier
 				if (nextToken.type === "var") {
-					if(this.confirmPunc('.')) {
-						this.consumePunc('.')
+					if(this.confirmToken('.', "punc")) {
+						this.consumeToken('.', "punc")
 
 						let memberName = this.tokenizer.next()
 
@@ -262,7 +262,7 @@ class Parser {
 
 			// make a binary expression, with proper precedence, if needed
 			let makeBinary = (left, currentPrecedence) => {
-				let token = this.confirmOp()
+				let token = this.confirmToken(undefined, "op")
 				if(token) {
 					let nextPrecedence = Parser.PRECEDENCE[token.value]
 					if(nextPrecedence > currentPrecedence) {
@@ -284,8 +284,8 @@ class Parser {
 			}
 
 			let makeAs = (expression) => {
-				if(this.confirmKeyword("as")) {
-					this.consumeKeyword("as")
+				if(this.confirmToken("as", "kw")) {
+					this.consumeToken("as", "kw")
 
 					return {
 						kind: "as",
@@ -301,7 +301,7 @@ class Parser {
 			// make a function call if needed
 			let makeCall = (expression) => {
 				// it's a call if there's an open-paren after the expression.
-				return this.confirmPunc("(") ? {
+				return this.confirmToken("(", "punc") ? {
 					kind: "call",
 					arguments: this.delimited('(', ')', ',', () => {
 						return this.parseExpression()
@@ -322,23 +322,23 @@ class Parser {
 		this.parseObjectLiteral = () => {
 			let contents = {}
 
-			this.consumePunc('{')
+			this.consumeToken('{', "punc")
 
-			while (!this.confirmPunc('}')) {
+			while (!this.confirmToken('}', "punc")) {
 				let nextToken = this.tokenizer.next()
 
 				let entryKey = nextToken.value
 
-				this.consumeOp('=')
+				this.consumeToken('=', "op")
 
 				let entryValue = this.parseExpression()
-				this.consumePunc(',')
+				this.consumeToken(',', "punc")
 
 				contents[entryKey] = entryValue
 			}
 
 
-			this.consumePunc('}')
+			this.consumeToken('}', "punc")
 
 			return {
 				kind: "literal",
@@ -451,60 +451,40 @@ class Parser {
 	}
 
 	// confirm a token without consuming it
-
-	confirmPunc(char) {
-		if(this.tokenizer.eof()) return false
-		let token = this.tokenizer.peek()
-		return token && token.type === "punc" && (!char || token.value === char) && token
-	}
-
-	confirmOp(op) {
-		if(this.tokenizer.eof()) return false
-		let token = this.tokenizer.peek()
-		return token && token.type === "op" && (!op || token.value === op) && token
-	}
-
-	confirmKeyword(word) {
-		if(this.tokenizer.eof()) return false
-		let token = this.tokenizer.peek()
-		return token && token.type === "kw" && (!word|| token.value === word) && token
-	}
-
-	// TODO generic confirm supporting type checking
-	confirmToken(value, type = "") {
+	confirmToken(value = "", type = "") {
 		if(this.tokenizer.eof()) {
 			return false
 		}
 
-
 		let token = this.tokenizer.peek()
-		return (!value || token.value === value) && token
+
+		if(type !== "" && token.type !== type) {
+			return false
+		}
+
+		if(value !== "" && token.value !== value) {
+			return false
+		}
+
+		return token
 	}
 
 	// confirm and consume a token
+	consumeToken(value, type = "") {
+		if(this.confirmToken(value, type)) {
+			this.tokenizer.next()
+		} else {
+			const kindFullNames = {
+				kw: "keyword",
+				op: "operator",
+				num: "number",
+				str: "string",
+				punc: "symbol",
+			}
 
-	consumePunc(char) {
-		if(this.confirmPunc(char)) this.tokenizer.next()
-		else this.tokenizer.inputStream.err("Expecting punctuation: " + char + " but got " + this.tokenizer.peek().value)
+			this.tokenizer.inputStream.err(`Expecting ${(type !== "") ? kindFullNames[type] + ": " : ""}"${value}" but got ${kindFullNames[this.tokenizer.peek().type]}: "${this.tokenizer.peek().value}" instead`)
+		}
 	}
-
-	consumeKeyword(word) {
-		if(this.confirmKeyword(word)) this.tokenizer.next()
-		else this.tokenizer.inputStream.err("Expecting keyword: " + word + " but got " + this.tokenizer.peek().value)
-	}
-
-	consumeOp(op) {
-		if(this.confirmOp(op)) this.tokenizer.next()
-		else this.tokenizer.inputStream.err("Expecting operator: " + op + " but got " + this.tokenizer.peek().value)
-	}
-
-	// generic consume
-	consumeToken(value) {
-		if(this.confirmToken(value)) this.tokenizer.next()
-		else this.tokenizer.inputStream.err("Expecting " + value + " but got + " + this.tokenizer.peek().value)
-	}
-
-	// TODO generic consume if match, return false if not
 }
 
 module.exports = Parser
