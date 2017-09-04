@@ -310,8 +310,6 @@ class Parser {
 				} : expression
 			}
 
-			// return makeCall(makeBinary(makeAs(parseExpressionAtom()), 0))
-
 			if(canStartBinary) {
 				return makeCall(makeBinary(makeAs(parseExpressionAtom()), 0))
 			} else {

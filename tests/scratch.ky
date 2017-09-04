@@ -8,3 +8,7 @@ typeof myCastedObj == typeof (myObj as myObjType);
 true == !false;
 
 !true == !true;
+
+!true && !false;
+
+typeof (2 + 3) == typeof 10;

@@ -57,6 +57,18 @@ class Tokenizer {
 				return this.readNextToken()
 			}
 
+			// block comment
+			if(char === "/" && this.inputStream.input.charAt(this.inputStream.pos + 1) === "*") {
+				this.readWhile(() => {
+					return !(this.inputStream.peek() === "*" && this.inputStream.input.charAt(this.inputStream.pos + 1) === "/")
+				})
+
+				this.inputStream.next() // eat *
+				this.inputStream.next() // eat /
+
+				return this.readNextToken()
+			}
+
 			if(char === '"' || char === "'") return this.tokenFromString()
 			if(Tokenizer.isDigit(char)) return this.tokenFromNumber()
 			if(Tokenizer.isIdentStart(char)) return this.tokenFromIdent()
