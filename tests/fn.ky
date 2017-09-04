@@ -1,40 +1,40 @@
 // anonymous function call
 <int a> int {
-    let q = 99
-    let r = q
-    return q
-}(10)
+    let q = 99;
+    let r = q;
+    return q;
+}(10);
 
 // fibonacci
 let fibo = <int x> int {
     if x == 1 {
-        return 1
+        return 1;
     }
 
     if x == 0 {
-        return 0
+        return 0;
     }
 
-    return fibo(x-1) + fibo(x-2)
-}
+    return fibo(x-1) + fibo(x-2);
+};
 
-fibo(10)
+fibo(10);
 
 // fizzbuzz
 <int count> null {
-    let x = 0
+    let x = 0;
     while x < count {
         if ((x % 3) == 0 && (x % 5) == 0) {
-            "fizzbuzz"
+            "fizzbuzz";
         } else if (x % 5) == 0 {
-            "buzz"
+            "buzz";
         } else if (x % 3) == 0 {
-            "fizz"
+            "fizz";
         } else {
-            x
+            x;
         }
 
-        x = (x + 1)
+        x = x + 1;
     }
     return null
-}(20)
+}(20);

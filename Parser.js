@@ -100,40 +100,12 @@ class Parser {
 				}
 
 				if(this.confirmToken('<', "op")) { // function literal
-					let parameters = this.delimited('<', '>', ',', () => {
-						let paramType = this.parseType()
-						let paramName = this.tokenizer.next()
-
-						if(paramName.type !== "var") {
-							this.tokenizer.inputStream.err("Expected identifier but got " + paramName.value)
-						}
-
-						return {
-							name: paramName.value,
-							type: paramType,
-						}
-					})
-
-					console.log(parameters)
-
-					let returnType = this.parseType()
-
-					let body = this.parseBlock()
-
-					return {
-						kind: "literal",
-						type: "fn",
-						parameters: parameters,
-						body: body,
-						returns: returnType
-					}
+					return this.parseFunctionLiteral()
 				}
 
-				/*
-				if (this.confirmPunc('[')) {
+				if (this.confirmToken('[', "punc")) {
 					return this.parseList()
 				}
-				*/
 
 				if(this.confirmToken('!', "op")) {
 					this.consumeToken('!', "op")
@@ -153,16 +125,15 @@ class Parser {
 							return Parser.LITERALS.true
 						case "false":
 							return Parser.LITERALS.false
+						case "null":
+							return Parser.LITERALS.null
 						case "typeof":
 							return {
 								kind: "typeof",
 								target: this.parseExpression(false),
 							}
-						case "null":
-							return Parser.LITERALS.null
 						case "new":
 							// this cannot be type-checked yet, there may be user-defined types
-
 							let type = this.parseType()
 
 							if(type.type === "fn") {
@@ -199,7 +170,38 @@ class Parser {
 								identifier: identToken,
 								value: value,
 							}
+						case "if":
+							let ifCondition = this.parseExpression()
+							let ifBody = this.parseBlock()
 
+							let ifStatement = {
+								kind: "if",
+								condition: ifCondition,
+								body: ifBody,
+							}
+
+							if(this.confirmToken("else", "kw")) {
+								this.consumeToken("else", "kw")
+
+								// else only
+								if(this.confirmToken('{', "punc")) {
+									ifStatement.else = this.parseBlock()
+								} else {
+									// else-if
+									ifStatement.else = this.parseExpression(false)
+								}
+							}
+
+							return ifStatement
+						case "while":
+							let whileCondition = this.parseExpression()
+							let whileBody = this.parseBlock()
+
+							return {
+								kind: "while",
+								condition: whileCondition,
+								body: whileBody,
+							}
 						case "return":
 							return {
 								kind: "return",
@@ -267,7 +269,7 @@ class Parser {
 					let nextPrecedence = Parser.PRECEDENCE[token.value]
 					if(nextPrecedence > currentPrecedence) {
 						this.tokenizer.next()
-						let right = makeBinary(this.parseExpression(), nextPrecedence)
+						let right = makeBinary(this.parseExpression(false), nextPrecedence)
 
 						let binary = {
 							kind: token.value === "=" ? "assign" : "binary",
@@ -349,6 +351,34 @@ class Parser {
 				type: "obj",
 				value: contents,
 			};
+		}
+
+		this.parseFunctionLiteral = () => {
+			let parameters = this.delimited('<', '>', ',', () => {
+				let paramType = this.parseType()
+				let paramName = this.tokenizer.next()
+
+				if(paramName.type !== "var") {
+					this.tokenizer.inputStream.err("Expected identifier but got " + paramName.value)
+				}
+
+				return {
+					name: paramName.value,
+					type: paramType,
+				}
+			})
+
+			let returnType = this.parseType()
+
+			let body = this.parseBlock()
+
+			return {
+				kind: "literal",
+				type: "fn",
+				parameters: parameters,
+				body: body,
+				returns: returnType
+			}
 		}
 
 		this.parseList = () => {
