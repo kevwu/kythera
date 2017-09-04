@@ -6,7 +6,7 @@ new null;
 
 // name statements
 name myIntType int;
-name myFnType fn(int) : str;
+name myFnType fn<int, str, myIntType> str;
 name myObjType obj{
     int a
     str b
@@ -32,7 +32,7 @@ typeof myCastedObj == typeof myObj;
 typeof myCastedObj == typeof (myObj as myObjType);
 
 // rigid object type use in function
-let mySpecificFn = fn(myObjType object): null {
+let mySpecificFn = (myObjType object): null {
     object.a
     object.b
     return 10

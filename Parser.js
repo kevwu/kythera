@@ -88,21 +88,52 @@ class Parser {
 					this.consumePunc('(')
 					let contents = this.parseExpression()
 					this.consumePunc(')')
-
-					return contents;
+					return contents
 				}
 
 				let nextToken = this.tokenizer.peek()
 				console.log("About to handle:")
 				console.log(nextToken)
 
-				if (this.confirmPunc('{')) {
+				if (this.confirmPunc('{')) { // object literal
 					return this.parseObjectLiteral()
 				}
 
+				if(this.confirmOp('<')) { // function literal
+					let parameters = this.delimited('<', '>', ',', () => {
+						let paramType = this.parseType()
+						let paramName = this.tokenizer.next()
+
+						if(paramName.type !== "var") {
+							this.tokenizer.inputStream.err("Expected identifier but got " + paramName.value)
+						}
+
+						return {
+							name: paramName.value,
+							type: paramType,
+						}
+					})
+
+					console.log(parameters)
+
+					let returnType = this.parseType()
+
+					let body = this.parseBlock()
+
+					return {
+						kind: "literal",
+						type: "fn",
+						parameters: parameters,
+						body: body,
+						returns: returnType
+					}
+				}
+
+				/*
 				if (this.confirmPunc('[')) {
 					return this.parseList()
 				}
+				*/
 
 				if(this.confirmOp('!')) {
 					this.consumeOp('!')
@@ -132,9 +163,15 @@ class Parser {
 						case "new":
 							// this cannot be type-checked yet, there may be user-defined types
 
+							let type = this.parseType()
+
+							if(type.type === "fn") {
+								this.tokenizer.inputStream.err("fn types cannot be initialized from new.")
+							}
+
 							return {
 								kind: "new",
-								target: this.parseType()
+								target: type,
 							}
 						case "name":
 							let nameToken = this.tokenizer.next()
@@ -146,6 +183,11 @@ class Parser {
 								kind: "name",
 								name: nameToken.value,
 								target: this.parseType(),
+							}
+						case "return":
+							return {
+								kind: "return",
+								value: this.parseExpression()
 							}
 						default:
 							this.tokenizer.inputStream.err("Unhandled keyword: " + nextToken.value)
@@ -217,7 +259,13 @@ class Parser {
 			// make a function call if needed
 			let makeCall = (expression) => {
 				// it's a call if there's an open-paren after the expression.
-				return this.confirmPunc("(") ? this.parseFnCall() : expression
+				return this.confirmPunc("(") ? {
+					kind: "call",
+					arguments: this.delimited('(', ')', ',', () => {
+						return this.parseExpression()
+					}),
+					target: expression,
+				} : expression
 			}
 
 			return makeCall(makeBinary(parseExpressionAtom(), 0))
@@ -225,20 +273,7 @@ class Parser {
 
 		// parse a block of statements
 		this.parseBlock = () => {
-			// return this.delimited('{', '}', ';', this.parseExpression)
-
-			let statements = []
-
-			this.consumePunc('{')
-
-			while(!this.confirmPunc('}')) {
-				statements.push(this.parseExpression())
-				this.consumePunc(';')
-			}
-
-			this.consumePunc('}')
-
-			return statements
+			return this.delimited('{', '}', ';', this.parseExpression)
 		}
 
 		// parse an object literal
@@ -274,13 +309,6 @@ class Parser {
 
 		}
 
-		this.parseFnCall = (fn) => {
-			return {
-				kind: "call",
-				func: fn,
-				args: this.delimited('(', ')', ',', this.parseExpression())
-			}
-		}
 
 		// parse a type, whether built-in (int, str etc) or user-defined (fn, rigid obj)
 		this.parseType = () => {
@@ -301,13 +329,11 @@ class Parser {
 					case "fn":
 						let parameters = []
 
-						this.delimited('(', ')', ',', () => {
+						this.delimited('<', '>', ',', () => {
 							parameters.push(this.parseType())
 						})
 
 						console.log(parameters)
-
-						this.consumePunc(':')
 
 						let returnType = this.parseType()
 
@@ -337,23 +363,24 @@ class Parser {
 		// utility function, parses anything between start, stop, and delimiters using the given parser
 		this.delimited = (start, stop, delimiter, parser) => {
 			let resultList = [], first = true
-			this.consumePunc(start)
+			// this.consumePunc(start)
+			this.consumeToken(start)
 
 			while(!this.tokenizer.eof()) {
-				if(this.confirmPunc(stop)) break
+				if(this.confirmToken(stop)) break
 
 				if(first) {
 					first = false
 				} else {
-					this.consumePunc(delimiter)
+					this.consumeToken(delimiter)
 				}
 
-				if(this.confirmPunc(stop)) break
+				if(this.confirmToken(stop)) break
 
 				resultList.push(parser())
 
 			}
-			this.consumePunc(stop)
+			this.consumeToken(stop)
 
 			return resultList
 		}
@@ -379,6 +406,13 @@ class Parser {
 		return token && token.type === "kw" && (!word|| token.value === word) && token
 	}
 
+	// generic confirm
+	confirmToken(value) {
+		if(this.tokenizer.eof()) return false
+		let token = this.tokenizer.peek()
+		return (!value || token.value === value) && token
+	}
+
 	// confirm and consume a token
 
 	consumePunc(char) {
@@ -394,6 +428,12 @@ class Parser {
 	consumeOp(op) {
 		if(this.confirmOp(op)) this.tokenizer.next()
 		else this.tokenizer.inputStream.err("Expecting operator: " + op + " but got " + this.tokenizer.peek().value)
+	}
+
+	// generic consume
+	consumeToken(value) {
+		if(this.confirmToken(value)) this.tokenizer.next()
+		else this.tokenizer.inputStream.err("Expecting " + value + " but got + " + this.tokenizer.peek().value)
 	}
 }
 
