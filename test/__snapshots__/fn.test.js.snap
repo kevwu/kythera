@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Function examples Anonymous function and call 1`] = `
+Object {
+  "identifier": "myBool",
+  "kind": "let",
+  "value": Object {
+    "kind": "literal",
+    "type": "bool",
+    "value": false,
+  },
+}
+`;
+
+exports[`Function examples Fibonacci (call) 1`] = `
+Object {
+  "identifier": "myInt",
+  "kind": "let",
+  "value": Object {
+    "kind": "literal",
+    "type": "int",
+    "value": 99,
+  },
+}
+`;
+
+exports[`Function examples Fibonacci 1`] = `
+Object {
+  "kind": "assign",
+  "left": Object {
+    "kind": "identifier",
+    "name": "myBool",
+  },
+  "operator": "=",
+  "right": Object {
+    "kind": "literal",
+    "type": "bool",
+    "value": true,
+  },
+}
+`;
+
+exports[`Function examples Fizzbuzz and call 1`] = `
+Object {
+  "kind": "assign",
+  "left": Object {
+    "kind": "identifier",
+    "name": "myInt",
+  },
+  "operator": "=",
+  "right": Object {
+    "kind": "literal",
+    "type": "int",
+    "value": 3,
+  },
+}
+`;

@@ -318,7 +318,7 @@ class Parser {
 			let exp = parseExpressionAtom()
 
 			// continuously build any post- or in-fix operator until no longer possible
-			while(canStartBinary() || canStartCall()) {
+			while((canStartBinary() || canStartCall() || canMakeAs()) && !this.confirmToken(";", "punc")) {
 				if(canMakeAs()) {
 					exp = makeAs(exp)
 				}

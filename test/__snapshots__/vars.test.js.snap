@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Variables Boolean primitive assignment 1`] = `
+exports[`Variables Boolean primitive Assignment 1`] = `
 Object {
   "kind": "assign",
   "left": Object {
@@ -16,7 +16,7 @@ Object {
 }
 `;
 
-exports[`Variables Boolean primitive declaration 1`] = `
+exports[`Variables Boolean primitive Declaration 1`] = `
 Object {
   "identifier": "myBool",
   "kind": "let",
@@ -28,7 +28,7 @@ Object {
 }
 `;
 
-exports[`Variables Floating point primitive assignment 1`] = `
+exports[`Variables Floating point primitive Assignment 1`] = `
 Object {
   "kind": "assign",
   "left": Object {
@@ -44,7 +44,7 @@ Object {
 }
 `;
 
-exports[`Variables Floating point primitive declaration 1`] = `
+exports[`Variables Floating point primitive Declaration 1`] = `
 Object {
   "identifier": "myFloat",
   "kind": "let",
@@ -56,7 +56,7 @@ Object {
 }
 `;
 
-exports[`Variables Function declaration 1`] = `
+exports[`Variables Function Declaration 1`] = `
 Object {
   "identifier": "myFn",
   "kind": "let",
@@ -92,7 +92,7 @@ Object {
 }
 `;
 
-exports[`Variables Integer primitive assignment 1`] = `
+exports[`Variables Integer primitive Assignment 1`] = `
 Object {
   "kind": "assign",
   "left": Object {
@@ -108,7 +108,7 @@ Object {
 }
 `;
 
-exports[`Variables Integer primitive declaration 1`] = `
+exports[`Variables Integer primitive Declaration 1`] = `
 Object {
   "identifier": "myInt",
   "kind": "let",
@@ -120,7 +120,7 @@ Object {
 }
 `;
 
-exports[`Variables String assignment 1`] = `
+exports[`Variables String Assignment 1`] = `
 Object {
   "kind": "assign",
   "left": Object {
@@ -136,7 +136,7 @@ Object {
 }
 `;
 
-exports[`Variables String declaration 1`] = `
+exports[`Variables String Declaration 1`] = `
 Object {
   "identifier": "myStr",
   "kind": "let",
@@ -148,7 +148,7 @@ Object {
 }
 `;
 
-exports[`Variables null declaration 1`] = `
+exports[`Variables null Declaration 1`] = `
 Object {
   "identifier": "myNull",
   "kind": "let",
@@ -160,7 +160,7 @@ Object {
 }
 `;
 
-exports[`Variables null read 1`] = `
+exports[`Variables null Read 1`] = `
 Object {
   "kind": "identifier",
   "name": "myNull",

@@ -19,10 +19,9 @@ let myObj = {
     b = "beep",
 };
 
+
 myObj.a;
 myObj.b;
-
-typeof myObj;
 
 let myCastedObj = myObj as myObjType;
 typeof myCastedObj;

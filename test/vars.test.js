@@ -16,32 +16,32 @@ describe("Variables", () => {
 	}
 
 	describe("Boolean primitive", () => {
-		t("declaration")
-		t("assignment")
+		t("Declaration")
+		t("Assignment")
 	})
 
 	describe("Integer primitive", () => {
-		t("declaration")
-		t("assignment")
+		t("Declaration")
+		t("Assignment")
 	})
 
 	describe("Floating point primitive", () => {
-		t("declaration")
-		t("assignment")
+		t("Declaration")
+		t("Assignment")
 	})
 
 	describe("String", () => {
-		t("declaration")
-		t("assignment")
+		t("Declaration")
+		t("Assignment")
 	})
 
 	describe("null", () => {
-		t("declaration")
-		t("read")
+		t("Declaration")
+		t("Read")
 	})
 
 	describe("Function", () => {
-		t("declaration")
+		t("Declaration")
 	})
 
 	describe("using 'new'", () => {

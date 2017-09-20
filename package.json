@@ -4,7 +4,7 @@
 	"description": "Node.js implementation of a Kythera parser and code generator.",
 	"main": "main.js",
 	"scripts": {
-		"test": "jest"
+		"test": "jest --verbose --expand"
 	},
 	"author": "Kevin Wu",
 	"license": "ISC",
