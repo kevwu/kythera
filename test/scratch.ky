@@ -1,1 +1,5 @@
 return fibo(a + c) + fibo(b + c);
+
+a + c.mem;
+
+(myObj as myOtherType).a;

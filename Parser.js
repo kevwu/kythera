@@ -240,21 +240,9 @@ class Parser {
 
 				// variable identifier
 				if (nextToken.type === "var") {
-					if(this.confirmToken('.', "punc")) {
-						this.consumeToken('.', "punc")
-
-						let memberName = this.tokenizer.next()
-
-						return {
-							kind: "objAccess",
-							obj: nextToken.value,
-							member: memberName.value,
-						}
-					} else {
-						return {
-							kind: "identifier",
-							name: nextToken.value,
-						}
+					return {
+						kind: "identifier",
+						name: nextToken.value,
 					}
 				}
 
@@ -311,24 +299,46 @@ class Parser {
 				} : expression
 			}
 
+			let makeObjAccess = (exp) => {
+				if(this.confirmToken('.', "punc")) {
+					this.consumeToken('.', "punc")
+
+					let memberName = this.tokenizer.next()
+
+					return {
+						kind: "objAccess",
+						obj: exp,
+						member: memberName.value,
+					}
+				} else {
+					return exp
+				}
+			}
+
 			let canStartBinary = () => canSplit && this.confirmToken(undefined, "op")
 			let canStartCall = () => this.confirmToken("(", "punc")
 			let canMakeAs = () => this.confirmToken("as", "kw")
+			let canMakeObjAccess = () => this.confirmToken('.', "punc")
 
 			let exp = parseExpressionAtom()
 
 			// continuously build any post- or in-fix operator until no longer possible
-			while((canStartBinary() || canStartCall() || canMakeAs()) && !this.confirmToken(";", "punc")) {
-				if(canMakeAs()) {
-					exp = makeAs(exp)
-				}
-
+			while((canStartBinary() || canStartCall() || canMakeAs() || canMakeObjAccess()) && !this.confirmToken(";", "punc")) {
 				if(canStartBinary()) {
 					exp = makeBinary(exp,0)
 				}
 
+				if(canMakeAs()) {
+					exp = makeAs(exp)
+				}
+
+
 				if(canStartCall()) {
 					exp = makeCall(exp)
+				}
+
+				if(canMakeObjAccess()) {
+					exp = makeObjAccess(exp)
 				}
 			}
 
@@ -444,9 +454,6 @@ class Parser {
 							if(entryName.type !== "var") {
 								this.tokenizer.inputStream.err("Expected identifier but got: " + entryName.value)
 							}
-
-							console.log(entryType)
-							console.log(entryName)
 
 							entries[entryName.value] = entryType
 						})

@@ -36,7 +36,9 @@ describe("Types", () => {
 
 	describe("obj access", () => {
 		t("Access")
-		t("Access")
+		t("Access from nested cast")
+		t("Access use in binary")
+		t("Access function call result")
 	})
 
 	describe("Casting", () => {

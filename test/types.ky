@@ -21,7 +21,12 @@ let myObj = {
 
 
 myObj.a;
-myObj.b;
+
+(myObj as myObjType).a;
+
+myObj.a + 10;
+
+someFn().a;
 
 let myCastedObj = myObj as myObjType;
 typeof myCastedObj;

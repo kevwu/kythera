@@ -232,12 +232,18 @@ Object {
       Object {
         "kind": "objAccess",
         "member": "a",
-        "obj": "object",
+        "obj": Object {
+          "kind": "identifier",
+          "name": "object",
+        },
       },
       Object {
         "kind": "objAccess",
         "member": "b",
-        "obj": "object",
+        "obj": Object {
+          "kind": "identifier",
+          "name": "object",
+        },
       },
       Object {
         "kind": "return",
@@ -333,14 +339,63 @@ exports[`Types obj access Access 1`] = `
 Object {
   "kind": "objAccess",
   "member": "a",
-  "obj": "myObj",
+  "obj": Object {
+    "kind": "identifier",
+    "name": "myObj",
+  },
 }
 `;
 
-exports[`Types obj access Access 2`] = `
+exports[`Types obj access Access from nested cast 1`] = `
 Object {
   "kind": "objAccess",
-  "member": "b",
-  "obj": "myObj",
+  "member": "a",
+  "obj": Object {
+    "from": Object {
+      "kind": "identifier",
+      "name": "myObj",
+    },
+    "kind": "as",
+    "to": Object {
+      "kind": "type",
+      "name": "myObjType",
+      "origin": "named",
+    },
+  },
+}
+`;
+
+exports[`Types obj access Access function call result 1`] = `
+Object {
+  "kind": "objAccess",
+  "member": "a",
+  "obj": Object {
+    "arguments": Array [],
+    "kind": "call",
+    "target": Object {
+      "kind": "identifier",
+      "name": "someFn",
+    },
+  },
+}
+`;
+
+exports[`Types obj access Access use in binary 1`] = `
+Object {
+  "kind": "binary",
+  "left": Object {
+    "kind": "objAccess",
+    "member": "a",
+    "obj": Object {
+      "kind": "identifier",
+      "name": "myObj",
+    },
+  },
+  "operator": "+",
+  "right": Object {
+    "kind": "literal",
+    "type": "int",
+    "value": 10,
+  },
 }
 `;
