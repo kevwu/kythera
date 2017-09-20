@@ -72,14 +72,15 @@ class Parser {
 					this.tokenizer.inputStream.err("Missing semicolon")
 				}
 				this.consumeToken(';', "punc")
-				console.log(JSON.stringify(this.program, null, 2))
 			}
+
+			return this.program
 		}
 
 		// all parse functions return the AST subtree for what they encountered.
 
 
-		this.parseExpression = (canStartBinary = true) => {
+		this.parseExpression = (canSplit = true) => {
 
 			// main dispatcher, parses expression parts that don't need lookahead
 			let parseExpressionAtom = () => {
@@ -92,8 +93,6 @@ class Parser {
 				}
 
 				let nextToken = this.tokenizer.peek()
-				console.log("About to handle:")
-				console.log(nextToken)
 
 				if (this.confirmToken('{', "punc")) { // object literal
 					return this.parseObjectLiteral()
@@ -167,7 +166,7 @@ class Parser {
 
 							return {
 								kind: "let",
-								identifier: identToken,
+								identifier: identToken.value,
 								value: value,
 							}
 						case "if":
@@ -312,11 +311,28 @@ class Parser {
 				} : expression
 			}
 
-			if(canStartBinary) {
-				return makeCall(makeBinary(makeAs(parseExpressionAtom()), 0))
-			} else {
-				return makeCall((makeAs(parseExpressionAtom())))
+			let canStartBinary = () => canSplit && this.confirmToken(undefined, "op")
+			let canStartCall = () => this.confirmToken("(", "punc")
+			let canMakeAs = () => this.confirmToken("as", "kw")
+
+			let exp = parseExpressionAtom()
+
+			// continuously build any post- or in-fix operator until no longer possible
+			while(canStartBinary() || canStartCall()) {
+				if(canMakeAs()) {
+					exp = makeAs(exp)
+				}
+
+				if(canStartBinary()) {
+					exp = makeBinary(exp,0)
+				}
+
+				if(canStartCall()) {
+					exp = makeCall(exp)
+				}
 			}
+
+			return exp
 		}
 
 		// parse a block of statements
@@ -350,7 +366,7 @@ class Parser {
 				kind: "literal",
 				type: "obj",
 				value: contents,
-			};
+			}
 		}
 
 		this.parseFunctionLiteral = () => {
