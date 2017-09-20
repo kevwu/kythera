@@ -69,12 +69,33 @@ class Tokenizer {
 				return this.readNextToken()
 			}
 
-			if(char === '"' || char === "'") return this.tokenFromString()
-			if(Tokenizer.isDigit(char)) return this.tokenFromNumber()
-			if(Tokenizer.isIdentStart(char)) return this.tokenFromIdent()
-			if(Tokenizer.isPunc(char)) return {
-				type: 'punc',
-				value: this.inputStream.next()
+			if(char === '"' || char === "'") {
+				let tok = this.tokenFromString()
+				this.insertAutoSemi()
+				return tok
+			}
+			if(Tokenizer.isDigit(char)) {
+				let tok = this.tokenFromNumber()
+				this.insertAutoSemi()
+				return tok
+			}
+			if(Tokenizer.isIdentStart(char)) {
+				let tok = this.tokenFromIdent()
+
+				this.insertAutoSemi()
+				return tok
+			}
+			if(Tokenizer.isPunc(char)) {
+				let val = this.inputStream.next()
+
+				if(val === '}' || val === ')' || val === ']') {
+					this.insertAutoSemi()
+				}
+
+				return {
+					type: 'punc',
+					value: val,
+				}
 			}
 			if(Tokenizer.isOp(char)) return {
 				type: 'op',
@@ -120,6 +141,19 @@ class Tokenizer {
 			return {
 				type: Tokenizer.isKeyword(id) ? "kw" : "var",
 				value: id
+			}
+		}
+
+		this.insertAutoSemi = () => {
+			// consume non-newline whitespace until EOL
+			this.readWhile((char) => {
+				return char === " " || char === "\t"
+			})
+
+			// if newline, then the previous token was the last on the line and a semi can be placed
+			if(this.inputStream.eof() || this.inputStream.input[this.inputStream.pos] === "\n") {
+				// TODO optimize
+				this.inputStream.input = this.inputStream.input.substr(0, this.inputStream.pos) + ';' + this.inputStream.input.substr(this.inputStream.pos, this.inputStream.input.length)
 			}
 		}
 

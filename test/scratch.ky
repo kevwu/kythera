@@ -1,5 +1,5 @@
-return fibo(a + c) + fibo(b + c);
+return fibo(a + c) + fibo(b + c)
 
-a + c.mem;
+a + c.mem
 
-(myObj as myOtherType).a;
+(myObj as myOtherType).a
