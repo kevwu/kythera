@@ -1,45 +1,45 @@
-new int;
-new float;
-new str;
-new null;
+new int
+new float
+new str
+new null
 
 // name statements
-name myIntType int;
-name myFnType fn<int, str, myIntType> str;
+name myIntType int
+name myFnType fn<int, str, myIntType> str
 name myObjType obj{
     int a,
     str b,
-};
+}
 
-let a = 10;
-let b = new int;
+let a = 10
+let b = new int
 
 let myObj = {
     a = 99,
     b = "beep",
-};
+}
 
 
-myObj.a;
+myObj.a
 
-(myObj as myObjType).a;
+(myObj as myObjType).a
 
-myObj.a + 10;
+myObj.a + 10
 
-someFn().a;
+someFn().a
 
-let myCastedObj = myObj as myObjType;
-typeof myCastedObj;
+let myCastedObj = myObj as myObjType
+typeof myCastedObj
 
-typeof myCastedObj == typeof myObj;
-typeof myCastedObj == typeof (myObj as myObjType);
+typeof myCastedObj == typeof myObj
+typeof myCastedObj == typeof (myObj as myObjType)
 
 // rigid object type use in function
 let mySpecificFn = <myObjType object> null {
-    object.a;
-    object.b;
-    return 10;
-};
+    object.a
+    object.b
+    return 10
+}
 
-mySpecificFn(myObj as myObjType);
-mySpecificFn(myCastedObj);
+mySpecificFn(myObj as myObjType)
+mySpecificFn(myCastedObj)

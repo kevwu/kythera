@@ -1,47 +1,47 @@
 // if statement
 if false {
-	a;
-};
+	a
+}
 
 // if-else
 if false {
-    a;
+    a
 } else {
-    b;
-};
+    b
+}
 
 // if-else-if
 if false {
-    a;
+    a
 } else if false {
-    23;
+    23
 } else {
-    "yay";
-};
+    "yay"
+}
 
 // if-else
 if a == b {
-    a;
+    a
 } else {
-    b;
-};
+    b
+}
 
 if a == b {
-	a;
+	a
 } else if b == c {
-	23;
+	23
 } else {
-	"hello";
-};
+	"hello"
+}
 
 // while
 while a == b {
-    a = a + 2;
-};
+    a = a + 2
+}
 
-let x = 0;
+let x = 0
 while x < 10 {
-    x = x + 1;
-};
+    x = x + 1
+}
 
-x;
+x

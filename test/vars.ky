@@ -1,30 +1,30 @@
 // boolean variable
-let myBool = false;
-myBool = true;
+let myBool = false
+myBool = true
 
 // integer variable
-let myInt = 99;
-myInt = 3;
+let myInt = 99
+myInt = 3
 
 // float variable
-let myFloat = 3.14159;
-myFloat = 2.71828183;
+let myFloat = 3.14159
+myFloat = 2.71828183
 
 // string variable
-let myStr = "hello";
-myStr = "world";
+let myStr = "hello"
+myStr = "world"
 
 // null
-let myNull = null;
-myNull;
+let myNull = null
+myNull
 
 // fn variable
 let myFn = <int a> str {
     return "abc"
-};
+}
 
 /* using "new" */
-let myNewInt = new int;
-let myNewFloat = new float;
-let myNewBool = new bool;
-let myNewStr = new str;
+let myNewInt = new int
+let myNewFloat = new float
+let myNewBool = new bool
+let myNewStr = new str
