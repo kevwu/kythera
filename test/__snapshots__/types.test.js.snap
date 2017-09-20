@@ -2,212 +2,76 @@
 
 exports[`Types 'let' From 'new' 1`] = `
 Object {
-  "identifier": "myNull",
+  "identifier": "b",
   "kind": "let",
   "value": Object {
-    "kind": "literal",
-    "type": "null",
-    "value": null,
+    "kind": "new",
+    "target": Object {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
   },
 }
 `;
 
 exports[`Types 'let' From int literal 1`] = `
 Object {
-  "kind": "assign",
-  "left": Object {
-    "kind": "identifier",
-    "name": "myStr",
-  },
-  "operator": "=",
-  "right": Object {
+  "identifier": "a",
+  "kind": "let",
+  "value": Object {
     "kind": "literal",
-    "type": "str",
-    "value": "world",
+    "type": "int",
+    "value": 10,
   },
 }
 `;
 
 exports[`Types 'let' From obj literal 1`] = `
 Object {
-  "kind": "identifier",
-  "name": "myNull",
+  "identifier": "myObj",
+  "kind": "let",
+  "value": Object {
+    "kind": "literal",
+    "type": "obj",
+    "value": Object {
+      "a": Object {
+        "kind": "literal",
+        "type": "int",
+        "value": 99,
+      },
+      "b": Object {
+        "kind": "literal",
+        "type": "str",
+        "value": "beep",
+      },
+    },
+  },
 }
 `;
 
 exports[`Types 'name' fn type 1`] = `
 Object {
-  "kind": "assign",
-  "left": Object {
-    "kind": "identifier",
-    "name": "myFloat",
-  },
-  "operator": "=",
-  "right": Object {
-    "kind": "literal",
-    "type": "float",
-    "value": 2.71828183,
-  },
-}
-`;
-
-exports[`Types 'name' int primitive 1`] = `
-Object {
-  "identifier": "myFloat",
-  "kind": "let",
-  "value": Object {
-    "kind": "literal",
-    "type": "float",
-    "value": 3.14159,
-  },
-}
-`;
-
-exports[`Types 'name' obj type 1`] = `
-Object {
-  "identifier": "myStr",
-  "kind": "let",
-  "value": Object {
-    "kind": "literal",
-    "type": "str",
-    "value": "hello",
-  },
-}
-`;
-
-exports[`Types 'new' float 1`] = `
-Object {
-  "kind": "assign",
-  "left": Object {
-    "kind": "identifier",
-    "name": "myBool",
-  },
-  "operator": "=",
-  "right": Object {
-    "kind": "literal",
-    "type": "bool",
-    "value": true,
-  },
-}
-`;
-
-exports[`Types 'new' int 1`] = `
-Object {
-  "identifier": "myBool",
-  "kind": "let",
-  "value": Object {
-    "kind": "literal",
-    "type": "bool",
-    "value": false,
-  },
-}
-`;
-
-exports[`Types 'new' null 1`] = `
-Object {
-  "kind": "assign",
-  "left": Object {
-    "kind": "identifier",
-    "name": "myInt",
-  },
-  "operator": "=",
-  "right": Object {
-    "kind": "literal",
-    "type": "int",
-    "value": 3,
-  },
-}
-`;
-
-exports[`Types 'new' str 1`] = `
-Object {
-  "identifier": "myInt",
-  "kind": "let",
-  "value": Object {
-    "kind": "literal",
-    "type": "int",
-    "value": 99,
-  },
-}
-`;
-
-exports[`Types Casting Declaration from type cast 1`] = `
-Object {
-  "identifier": "myNewFloat",
-  "kind": "let",
-  "value": Object {
-    "kind": "new",
-    "target": Object {
-      "kind": "type",
-      "origin": "builtin",
-      "type": "float",
-    },
-  },
-}
-`;
-
-exports[`Types Casting Function call with type cast 1`] = `undefined`;
-
-exports[`Types Casting Function call without type cast 1`] = `undefined`;
-
-exports[`Types Casting Function using user-defined type 1`] = `undefined`;
-
-exports[`Types Casting Typeof 1`] = `
-Object {
-  "identifier": "myNewBool",
-  "kind": "let",
-  "value": Object {
-    "kind": "new",
-    "target": Object {
-      "kind": "type",
-      "origin": "builtin",
-      "type": "bool",
-    },
-  },
-}
-`;
-
-exports[`Types Casting Typeof comparison 1`] = `
-Object {
-  "identifier": "myNewStr",
-  "kind": "let",
-  "value": Object {
-    "kind": "new",
-    "target": Object {
-      "kind": "type",
-      "origin": "builtin",
-      "type": "str",
-    },
-  },
-}
-`;
-
-exports[`Types Casting Typeof comparison with nested type cast 1`] = `undefined`;
-
-exports[`Types obj access Access 1`] = `
-Object {
-  "identifier": "myFn",
-  "kind": "let",
-  "value": Object {
-    "body": Array [
-      Object {
-        "kind": "return",
-        "value": Object {
-          "kind": "literal",
-          "type": "str",
-          "value": "abc",
-        },
-      },
-    ],
-    "kind": "literal",
+  "kind": "name",
+  "name": "myFnType",
+  "target": Object {
+    "kind": "type",
+    "origin": "builtin",
     "parameters": Array [
       Object {
-        "name": "a",
-        "type": Object {
-          "kind": "type",
-          "origin": "builtin",
-          "type": "int",
-        },
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      Object {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "str",
+      },
+      Object {
+        "kind": "type",
+        "name": "myIntType",
+        "origin": "named",
       },
     ],
     "returns": Object {
@@ -220,17 +84,263 @@ Object {
 }
 `;
 
-exports[`Types obj access Access 2`] = `
+exports[`Types 'name' int primitive 1`] = `
 Object {
-  "identifier": "myNewInt",
+  "kind": "name",
+  "name": "myIntType",
+  "target": Object {
+    "kind": "type",
+    "origin": "builtin",
+    "type": "int",
+  },
+}
+`;
+
+exports[`Types 'name' obj type 1`] = `
+Object {
+  "kind": "name",
+  "name": "myObjType",
+  "target": Object {
+    "kind": "type",
+    "origin": "builtin",
+    "structure": Object {
+      "a": Object {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "b": Object {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "str",
+      },
+    },
+    "type": "obj",
+  },
+}
+`;
+
+exports[`Types 'new' float 1`] = `
+Object {
+  "kind": "new",
+  "target": Object {
+    "kind": "type",
+    "origin": "builtin",
+    "type": "float",
+  },
+}
+`;
+
+exports[`Types 'new' int 1`] = `
+Object {
+  "kind": "new",
+  "target": Object {
+    "kind": "type",
+    "origin": "builtin",
+    "type": "int",
+  },
+}
+`;
+
+exports[`Types 'new' null 1`] = `
+Object {
+  "kind": "new",
+  "target": Object {
+    "kind": "type",
+    "origin": "builtin",
+    "type": "null",
+  },
+}
+`;
+
+exports[`Types 'new' str 1`] = `
+Object {
+  "kind": "new",
+  "target": Object {
+    "kind": "type",
+    "origin": "builtin",
+    "type": "str",
+  },
+}
+`;
+
+exports[`Types Casting Declaration from type cast 1`] = `
+Object {
+  "identifier": "myCastedObj",
   "kind": "let",
   "value": Object {
-    "kind": "new",
-    "target": Object {
+    "from": Object {
+      "kind": "identifier",
+      "name": "myObj",
+    },
+    "kind": "as",
+    "to": Object {
       "kind": "type",
-      "origin": "builtin",
-      "type": "int",
+      "name": "myObjType",
+      "origin": "named",
     },
   },
+}
+`;
+
+exports[`Types Casting Function call with type cast 1`] = `
+Object {
+  "arguments": Array [
+    Object {
+      "from": Object {
+        "kind": "identifier",
+        "name": "myObj",
+      },
+      "kind": "as",
+      "to": Object {
+        "kind": "type",
+        "name": "myObjType",
+        "origin": "named",
+      },
+    },
+  ],
+  "kind": "call",
+  "target": Object {
+    "kind": "identifier",
+    "name": "mySpecificFn",
+  },
+}
+`;
+
+exports[`Types Casting Function call without type cast 1`] = `
+Object {
+  "arguments": Array [
+    Object {
+      "kind": "identifier",
+      "name": "myCastedObj",
+    },
+  ],
+  "kind": "call",
+  "target": Object {
+    "kind": "identifier",
+    "name": "mySpecificFn",
+  },
+}
+`;
+
+exports[`Types Casting Function using user-defined type 1`] = `
+Object {
+  "identifier": "mySpecificFn",
+  "kind": "let",
+  "value": Object {
+    "body": Array [
+      Object {
+        "kind": "objAccess",
+        "member": "a",
+        "obj": "object",
+      },
+      Object {
+        "kind": "objAccess",
+        "member": "b",
+        "obj": "object",
+      },
+      Object {
+        "kind": "return",
+        "value": Object {
+          "kind": "literal",
+          "type": "int",
+          "value": 10,
+        },
+      },
+    ],
+    "kind": "literal",
+    "parameters": Array [
+      Object {
+        "name": "object",
+        "type": Object {
+          "kind": "type",
+          "name": "myObjType",
+          "origin": "named",
+        },
+      },
+    ],
+    "returns": Object {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "null",
+    },
+    "type": "fn",
+  },
+}
+`;
+
+exports[`Types Casting Typeof 1`] = `
+Object {
+  "kind": "typeof",
+  "target": Object {
+    "kind": "identifier",
+    "name": "myCastedObj",
+  },
+}
+`;
+
+exports[`Types Casting Typeof comparison 1`] = `
+Object {
+  "kind": "binary",
+  "left": Object {
+    "kind": "typeof",
+    "target": Object {
+      "kind": "identifier",
+      "name": "myCastedObj",
+    },
+  },
+  "operator": "==",
+  "right": Object {
+    "kind": "typeof",
+    "target": Object {
+      "kind": "identifier",
+      "name": "myObj",
+    },
+  },
+}
+`;
+
+exports[`Types Casting Typeof comparison with nested type cast 1`] = `
+Object {
+  "kind": "binary",
+  "left": Object {
+    "kind": "typeof",
+    "target": Object {
+      "kind": "identifier",
+      "name": "myCastedObj",
+    },
+  },
+  "operator": "==",
+  "right": Object {
+    "kind": "typeof",
+    "target": Object {
+      "from": Object {
+        "kind": "identifier",
+        "name": "myObj",
+      },
+      "kind": "as",
+      "to": Object {
+        "kind": "type",
+        "name": "myObjType",
+        "origin": "named",
+      },
+    },
+  },
+}
+`;
+
+exports[`Types obj access Access 1`] = `
+Object {
+  "kind": "objAccess",
+  "member": "a",
+  "obj": "myObj",
+}
+`;
+
+exports[`Types obj access Access 2`] = `
+Object {
+  "kind": "objAccess",
+  "member": "b",
+  "obj": "myObj",
 }
 `;

@@ -2,147 +2,111 @@
 
 exports[`Literals Arithmetic binary Adding floats 1`] = `
 Object {
-  "kind": "identifier",
-  "name": "myNull",
+  "kind": "typeof",
+  "target": Object {
+    "kind": "literal",
+    "type": "obj",
+    "value": Object {
+      "a": Object {
+        "kind": "new",
+        "target": Object {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "int",
+        },
+      },
+      "b": Object {
+        "kind": "literal",
+        "type": "int",
+        "value": 10,
+      },
+    },
+  },
 }
 `;
 
 exports[`Literals Arithmetic binary Adding ints 1`] = `
 Object {
-  "identifier": "myNull",
-  "kind": "let",
+  "kind": "literal",
+  "type": "obj",
   "value": Object {
-    "kind": "literal",
-    "type": "null",
-    "value": null,
+    "a": Object {
+      "kind": "new",
+      "target": Object {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+    },
+    "b": Object {
+      "kind": "literal",
+      "type": "int",
+      "value": 10,
+    },
   },
 }
 `;
 
 exports[`Literals Arithmetic binary Divide 1`] = `
 Object {
-  "identifier": "myNewInt",
-  "kind": "let",
-  "value": Object {
-    "kind": "new",
-    "target": Object {
-      "kind": "type",
-      "origin": "builtin",
-      "type": "int",
-    },
+  "kind": "binary",
+  "left": Object {
+    "kind": "literal",
+    "type": "float",
+    "value": 3.14159,
+  },
+  "operator": "+",
+  "right": Object {
+    "kind": "literal",
+    "type": "float",
+    "value": 2.71828,
   },
 }
 `;
 
 exports[`Literals Arithmetic binary Modulo 1`] = `
 Object {
-  "identifier": "myNewFloat",
-  "kind": "let",
-  "value": Object {
-    "kind": "new",
-    "target": Object {
-      "kind": "type",
-      "origin": "builtin",
-      "type": "float",
-    },
+  "kind": "binary",
+  "left": Object {
+    "kind": "literal",
+    "type": "int",
+    "value": 9,
+  },
+  "operator": "-",
+  "right": Object {
+    "kind": "literal",
+    "type": "int",
+    "value": 5,
   },
 }
 `;
 
 exports[`Literals Arithmetic binary Subtract 1`] = `
 Object {
-  "identifier": "myFn",
-  "kind": "let",
-  "value": Object {
-    "body": Array [
-      Object {
-        "kind": "return",
-        "value": Object {
-          "kind": "literal",
-          "type": "str",
-          "value": "abc",
-        },
-      },
-    ],
-    "kind": "literal",
-    "parameters": Array [
-      Object {
-        "name": "a",
-        "type": Object {
-          "kind": "type",
-          "origin": "builtin",
-          "type": "int",
-        },
-      },
-    ],
-    "returns": Object {
-      "kind": "type",
-      "origin": "builtin",
-      "type": "str",
-    },
-    "type": "fn",
-  },
-}
-`;
-
-exports[`Literals Boolean binary And 1`] = `undefined`;
-
-exports[`Literals Boolean binary And 2`] = `undefined`;
-
-exports[`Literals Boolean binary Or 1`] = `undefined`;
-
-exports[`Literals Boolean binary Or 2`] = `undefined`;
-
-exports[`Literals Boolean unary Negate false 1`] = `
-Object {
-  "identifier": "myNewBool",
-  "kind": "let",
-  "value": Object {
-    "kind": "new",
-    "target": Object {
-      "kind": "type",
-      "origin": "builtin",
-      "type": "bool",
-    },
-  },
-}
-`;
-
-exports[`Literals Boolean unary Negate true 1`] = `
-Object {
-  "identifier": "myNewStr",
-  "kind": "let",
-  "value": Object {
-    "kind": "new",
-    "target": Object {
-      "kind": "type",
-      "origin": "builtin",
-      "type": "str",
-    },
-  },
-}
-`;
-
-exports[`Literals float literal 1`] = `
-Object {
-  "identifier": "myInt",
-  "kind": "let",
-  "value": Object {
+  "kind": "binary",
+  "left": Object {
     "kind": "literal",
     "type": "int",
-    "value": 99,
+    "value": 2,
+  },
+  "operator": "+",
+  "right": Object {
+    "kind": "literal",
+    "type": "int",
+    "value": 2,
   },
 }
 `;
 
-exports[`Literals float typeof 1`] = `
+exports[`Literals Boolean binary And 1`] = `
 Object {
-  "kind": "assign",
+  "kind": "binary",
   "left": Object {
-    "kind": "identifier",
-    "name": "myInt",
+    "kind": "literal",
+    "type": "int",
+    "value": 18,
   },
-  "operator": "=",
+  "operator": "%",
   "right": Object {
     "kind": "literal",
     "type": "int",
@@ -151,11 +115,11 @@ Object {
 }
 `;
 
-exports[`Literals int literal 1`] = `
+exports[`Literals Boolean binary And 2`] = `
 Object {
-  "identifier": "myBool",
-  "kind": "let",
-  "value": Object {
+  "kind": "unary",
+  "operator": "!",
+  "target": Object {
     "kind": "literal",
     "type": "bool",
     "value": false,
@@ -163,14 +127,27 @@ Object {
 }
 `;
 
-exports[`Literals int typeof 1`] = `
+exports[`Literals Boolean binary Or 1`] = `
 Object {
-  "kind": "assign",
-  "left": Object {
-    "kind": "identifier",
-    "name": "myBool",
+  "kind": "unary",
+  "operator": "!",
+  "target": Object {
+    "kind": "literal",
+    "type": "bool",
+    "value": true,
   },
-  "operator": "=",
+}
+`;
+
+exports[`Literals Boolean binary Or 2`] = `
+Object {
+  "kind": "binary",
+  "left": Object {
+    "kind": "literal",
+    "type": "bool",
+    "value": true,
+  },
+  "operator": "&&",
   "right": Object {
     "kind": "literal",
     "type": "bool",
@@ -179,11 +156,52 @@ Object {
 }
 `;
 
-exports[`Literals null literal 1`] = `
+exports[`Literals Boolean unary Negate false 1`] = `
 Object {
-  "identifier": "myFloat",
-  "kind": "let",
-  "value": Object {
+  "kind": "binary",
+  "left": Object {
+    "kind": "literal",
+    "type": "int",
+    "value": 6,
+  },
+  "operator": "/",
+  "right": Object {
+    "kind": "literal",
+    "type": "int",
+    "value": 3,
+  },
+}
+`;
+
+exports[`Literals Boolean unary Negate true 1`] = `
+Object {
+  "kind": "binary",
+  "left": Object {
+    "kind": "literal",
+    "type": "int",
+    "value": 4,
+  },
+  "operator": "*",
+  "right": Object {
+    "kind": "literal",
+    "type": "int",
+    "value": 2,
+  },
+}
+`;
+
+exports[`Literals float literal 1`] = `
+Object {
+  "kind": "literal",
+  "type": "float",
+  "value": 3.14159,
+}
+`;
+
+exports[`Literals float typeof 1`] = `
+Object {
+  "kind": "typeof",
+  "target": Object {
     "kind": "literal",
     "type": "float",
     "value": 3.14159,
@@ -191,46 +209,59 @@ Object {
 }
 `;
 
+exports[`Literals int literal 1`] = `
+Object {
+  "kind": "literal",
+  "type": "int",
+  "value": 10,
+}
+`;
+
+exports[`Literals int typeof 1`] = `
+Object {
+  "kind": "typeof",
+  "target": Object {
+    "kind": "literal",
+    "type": "int",
+    "value": 10,
+  },
+}
+`;
+
+exports[`Literals null literal 1`] = `
+Object {
+  "kind": "literal",
+  "type": "null",
+  "value": null,
+}
+`;
+
 exports[`Literals null typeof 1`] = `
 Object {
-  "kind": "assign",
-  "left": Object {
-    "kind": "identifier",
-    "name": "myFloat",
-  },
-  "operator": "=",
-  "right": Object {
+  "kind": "typeof",
+  "target": Object {
     "kind": "literal",
-    "type": "float",
-    "value": 2.71828183,
+    "type": "null",
+    "value": null,
   },
 }
 `;
 
 exports[`Literals obj literal 1`] = `
 Object {
-  "identifier": "myStr",
-  "kind": "let",
-  "value": Object {
-    "kind": "literal",
-    "type": "str",
-    "value": "hello",
-  },
+  "kind": "literal",
+  "type": "str",
+  "value": "hello",
 }
 `;
 
 exports[`Literals obj typeof 1`] = `
 Object {
-  "kind": "assign",
-  "left": Object {
-    "kind": "identifier",
-    "name": "myStr",
-  },
-  "operator": "=",
-  "right": Object {
+  "kind": "typeof",
+  "target": Object {
     "kind": "literal",
     "type": "str",
-    "value": "world",
+    "value": "hello",
   },
 }
 `;

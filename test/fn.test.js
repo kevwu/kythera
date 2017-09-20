@@ -8,7 +8,7 @@ afterEach(() => {
 })
 
 describe("Function examples", () => {
-	let program = common.parseFile("test/vars.ky")
+	let program = common.parseFile("test/fn.ky")
 	i = 0
 
 	let t = (name) => {

@@ -1,0 +1,241 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Types if 1`] = `
+Object {
+  "body": Array [
+    Object {
+      "kind": "identifier",
+      "name": "a",
+    },
+  ],
+  "condition": Object {
+    "kind": "literal",
+    "type": "bool",
+    "value": false,
+  },
+  "else": Array [
+    Object {
+      "kind": "identifier",
+      "name": "b",
+    },
+  ],
+  "kind": "if",
+}
+`;
+
+exports[`Types if-else 1`] = `
+Object {
+  "body": Array [
+    Object {
+      "kind": "identifier",
+      "name": "a",
+    },
+  ],
+  "condition": Object {
+    "kind": "literal",
+    "type": "bool",
+    "value": false,
+  },
+  "else": Object {
+    "body": Array [
+      Object {
+        "kind": "literal",
+        "type": "int",
+        "value": 23,
+      },
+    ],
+    "condition": Object {
+      "kind": "literal",
+      "type": "bool",
+      "value": false,
+    },
+    "else": Array [
+      Object {
+        "kind": "literal",
+        "type": "str",
+        "value": "yay",
+      },
+    ],
+    "kind": "if",
+  },
+  "kind": "if",
+}
+`;
+
+exports[`Types if-else with boolean 1`] = `
+Object {
+  "body": Array [
+    Object {
+      "kind": "identifier",
+      "name": "a",
+    },
+  ],
+  "condition": Object {
+    "kind": "binary",
+    "left": Object {
+      "kind": "identifier",
+      "name": "a",
+    },
+    "operator": "==",
+    "right": Object {
+      "kind": "identifier",
+      "name": "b",
+    },
+  },
+  "else": Object {
+    "body": Array [
+      Object {
+        "kind": "literal",
+        "type": "int",
+        "value": 23,
+      },
+    ],
+    "condition": Object {
+      "kind": "binary",
+      "left": Object {
+        "kind": "identifier",
+        "name": "b",
+      },
+      "operator": "==",
+      "right": Object {
+        "kind": "identifier",
+        "name": "c",
+      },
+    },
+    "else": Array [
+      Object {
+        "kind": "literal",
+        "type": "str",
+        "value": "hello",
+      },
+    ],
+    "kind": "if",
+  },
+  "kind": "if",
+}
+`;
+
+exports[`Types if-else-if 1`] = `
+Object {
+  "body": Array [
+    Object {
+      "kind": "identifier",
+      "name": "a",
+    },
+  ],
+  "condition": Object {
+    "kind": "binary",
+    "left": Object {
+      "kind": "identifier",
+      "name": "a",
+    },
+    "operator": "==",
+    "right": Object {
+      "kind": "identifier",
+      "name": "b",
+    },
+  },
+  "else": Array [
+    Object {
+      "kind": "identifier",
+      "name": "b",
+    },
+  ],
+  "kind": "if",
+}
+`;
+
+exports[`Types if-else-if with boolean 1`] = `
+Object {
+  "body": Array [
+    Object {
+      "kind": "assign",
+      "left": Object {
+        "kind": "identifier",
+        "name": "a",
+      },
+      "operator": "=",
+      "right": Object {
+        "kind": "binary",
+        "left": Object {
+          "kind": "identifier",
+          "name": "a",
+        },
+        "operator": "+",
+        "right": Object {
+          "kind": "literal",
+          "type": "int",
+          "value": 2,
+        },
+      },
+    },
+  ],
+  "condition": Object {
+    "kind": "binary",
+    "left": Object {
+      "kind": "identifier",
+      "name": "a",
+    },
+    "operator": "==",
+    "right": Object {
+      "kind": "identifier",
+      "name": "b",
+    },
+  },
+  "kind": "while",
+}
+`;
+
+exports[`Types while 1`] = `
+Object {
+  "identifier": "x",
+  "kind": "let",
+  "value": Object {
+    "kind": "literal",
+    "type": "int",
+    "value": 0,
+  },
+}
+`;
+
+exports[`Types while 2`] = `
+Object {
+  "body": Array [
+    Object {
+      "kind": "assign",
+      "left": Object {
+        "kind": "identifier",
+        "name": "x",
+      },
+      "operator": "=",
+      "right": Object {
+        "kind": "binary",
+        "left": Object {
+          "kind": "identifier",
+          "name": "x",
+        },
+        "operator": "+",
+        "right": Object {
+          "kind": "literal",
+          "type": "int",
+          "value": 1,
+        },
+      },
+    },
+  ],
+  "condition": Object {
+    "kind": "binary",
+    "left": Object {
+      "kind": "identifier",
+      "name": "x",
+    },
+    "operator": "<",
+    "right": Object {
+      "kind": "literal",
+      "type": "int",
+      "value": 10,
+    },
+  },
+  "kind": "while",
+}
+`;
