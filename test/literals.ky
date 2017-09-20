@@ -32,6 +32,10 @@ typeof {
 4 * 2
 18 % 3
 
+// operator precedence
+2 + 3 * 4
+(2 + 3) * 4
+
 // boolean operations
 !false
 !true
