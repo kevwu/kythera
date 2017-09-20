@@ -4,8 +4,12 @@
 	"description": "Node.js implementation of a Kythera parser and code generator.",
 	"main": "main.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "jest"
 	},
 	"author": "Kevin Wu",
-	"license": "ISC"
+	"license": "ISC",
+	"dependencies": {},
+	"devDependencies": {
+		"jest": "^21.1.0"
+	}
 }

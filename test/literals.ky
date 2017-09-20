@@ -21,6 +21,7 @@ typeof "hello";
 };
 typeof {
     a = new int,
+    b = 10,
 };
 
 // arithmetic
@@ -29,6 +30,7 @@ typeof {
 9 - 5;
 6 / 3;
 4 * 2;
+18 % 3;
 
 // boolean operations
 !false;
@@ -38,4 +40,4 @@ true && true;
 true && false;
 
 true || true;
-(true || false);
+true || false;

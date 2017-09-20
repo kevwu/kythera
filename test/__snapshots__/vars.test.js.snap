@@ -1,0 +1,228 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Variables Boolean primitive assignment 1`] = `
+Object {
+  "kind": "assign",
+  "left": Object {
+    "kind": "identifier",
+    "name": "myBool",
+  },
+  "operator": "=",
+  "right": Object {
+    "kind": "literal",
+    "type": "bool",
+    "value": true,
+  },
+}
+`;
+
+exports[`Variables Boolean primitive declaration 1`] = `
+Object {
+  "identifier": "myBool",
+  "kind": "let",
+  "value": Object {
+    "kind": "literal",
+    "type": "bool",
+    "value": false,
+  },
+}
+`;
+
+exports[`Variables Floating point primitive assignment 1`] = `
+Object {
+  "kind": "assign",
+  "left": Object {
+    "kind": "identifier",
+    "name": "myFloat",
+  },
+  "operator": "=",
+  "right": Object {
+    "kind": "literal",
+    "type": "float",
+    "value": 2.71828183,
+  },
+}
+`;
+
+exports[`Variables Floating point primitive declaration 1`] = `
+Object {
+  "identifier": "myFloat",
+  "kind": "let",
+  "value": Object {
+    "kind": "literal",
+    "type": "float",
+    "value": 3.14159,
+  },
+}
+`;
+
+exports[`Variables Function declaration 1`] = `
+Object {
+  "identifier": "myFn",
+  "kind": "let",
+  "value": Object {
+    "body": Array [
+      Object {
+        "kind": "return",
+        "value": Object {
+          "kind": "literal",
+          "type": "str",
+          "value": "abc",
+        },
+      },
+    ],
+    "kind": "literal",
+    "parameters": Array [
+      Object {
+        "name": "a",
+        "type": Object {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "int",
+        },
+      },
+    ],
+    "returns": Object {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "str",
+    },
+    "type": "fn",
+  },
+}
+`;
+
+exports[`Variables Integer primitive assignment 1`] = `
+Object {
+  "kind": "assign",
+  "left": Object {
+    "kind": "identifier",
+    "name": "myInt",
+  },
+  "operator": "=",
+  "right": Object {
+    "kind": "literal",
+    "type": "int",
+    "value": 3,
+  },
+}
+`;
+
+exports[`Variables Integer primitive declaration 1`] = `
+Object {
+  "identifier": "myInt",
+  "kind": "let",
+  "value": Object {
+    "kind": "literal",
+    "type": "int",
+    "value": 99,
+  },
+}
+`;
+
+exports[`Variables String assignment 1`] = `
+Object {
+  "kind": "assign",
+  "left": Object {
+    "kind": "identifier",
+    "name": "myStr",
+  },
+  "operator": "=",
+  "right": Object {
+    "kind": "literal",
+    "type": "str",
+    "value": "world",
+  },
+}
+`;
+
+exports[`Variables String declaration 1`] = `
+Object {
+  "identifier": "myStr",
+  "kind": "let",
+  "value": Object {
+    "kind": "literal",
+    "type": "str",
+    "value": "hello",
+  },
+}
+`;
+
+exports[`Variables null declaration 1`] = `
+Object {
+  "identifier": "myNull",
+  "kind": "let",
+  "value": Object {
+    "kind": "literal",
+    "type": "null",
+    "value": null,
+  },
+}
+`;
+
+exports[`Variables null read 1`] = `
+Object {
+  "kind": "identifier",
+  "name": "myNull",
+}
+`;
+
+exports[`Variables using 'new' bool 1`] = `
+Object {
+  "identifier": "myNewBool",
+  "kind": "let",
+  "value": Object {
+    "kind": "new",
+    "target": Object {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "bool",
+    },
+  },
+}
+`;
+
+exports[`Variables using 'new' float 1`] = `
+Object {
+  "identifier": "myNewFloat",
+  "kind": "let",
+  "value": Object {
+    "kind": "new",
+    "target": Object {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "float",
+    },
+  },
+}
+`;
+
+exports[`Variables using 'new' int 1`] = `
+Object {
+  "identifier": "myNewInt",
+  "kind": "let",
+  "value": Object {
+    "kind": "new",
+    "target": Object {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+  },
+}
+`;
+
+exports[`Variables using 'new' str 1`] = `
+Object {
+  "identifier": "myNewStr",
+  "kind": "let",
+  "value": Object {
+    "kind": "new",
+    "target": Object {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "str",
+    },
+  },
+}
+`;

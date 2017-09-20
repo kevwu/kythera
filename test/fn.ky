@@ -9,11 +9,11 @@
 let fibo = <int x> int {
     if x == 1 {
         return 1;
-    }
+    };
 
     if x == 0 {
         return 0;
-    }
+    };
 
     return fibo(x-1) + fibo(x-2);
 };
@@ -32,9 +32,9 @@ fibo(10);
             "fizz";
         } else {
             x;
-        }
+        };
 
         x = x + 1;
-    }
-    return null
+    };
+    return null;
 }(20);

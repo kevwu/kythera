@@ -1,0 +1,236 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Literals Arithmetic binary Adding floats 1`] = `
+Object {
+  "kind": "identifier",
+  "name": "myNull",
+}
+`;
+
+exports[`Literals Arithmetic binary Adding ints 1`] = `
+Object {
+  "identifier": "myNull",
+  "kind": "let",
+  "value": Object {
+    "kind": "literal",
+    "type": "null",
+    "value": null,
+  },
+}
+`;
+
+exports[`Literals Arithmetic binary Divide 1`] = `
+Object {
+  "identifier": "myNewInt",
+  "kind": "let",
+  "value": Object {
+    "kind": "new",
+    "target": Object {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+  },
+}
+`;
+
+exports[`Literals Arithmetic binary Modulo 1`] = `
+Object {
+  "identifier": "myNewFloat",
+  "kind": "let",
+  "value": Object {
+    "kind": "new",
+    "target": Object {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "float",
+    },
+  },
+}
+`;
+
+exports[`Literals Arithmetic binary Subtract 1`] = `
+Object {
+  "identifier": "myFn",
+  "kind": "let",
+  "value": Object {
+    "body": Array [
+      Object {
+        "kind": "return",
+        "value": Object {
+          "kind": "literal",
+          "type": "str",
+          "value": "abc",
+        },
+      },
+    ],
+    "kind": "literal",
+    "parameters": Array [
+      Object {
+        "name": "a",
+        "type": Object {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "int",
+        },
+      },
+    ],
+    "returns": Object {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "str",
+    },
+    "type": "fn",
+  },
+}
+`;
+
+exports[`Literals Boolean binary And 1`] = `undefined`;
+
+exports[`Literals Boolean binary And 2`] = `undefined`;
+
+exports[`Literals Boolean binary Or 1`] = `undefined`;
+
+exports[`Literals Boolean binary Or 2`] = `undefined`;
+
+exports[`Literals Boolean unary Negate false 1`] = `
+Object {
+  "identifier": "myNewBool",
+  "kind": "let",
+  "value": Object {
+    "kind": "new",
+    "target": Object {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "bool",
+    },
+  },
+}
+`;
+
+exports[`Literals Boolean unary Negate true 1`] = `
+Object {
+  "identifier": "myNewStr",
+  "kind": "let",
+  "value": Object {
+    "kind": "new",
+    "target": Object {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "str",
+    },
+  },
+}
+`;
+
+exports[`Literals float literal 1`] = `
+Object {
+  "identifier": "myInt",
+  "kind": "let",
+  "value": Object {
+    "kind": "literal",
+    "type": "int",
+    "value": 99,
+  },
+}
+`;
+
+exports[`Literals float typeof 1`] = `
+Object {
+  "kind": "assign",
+  "left": Object {
+    "kind": "identifier",
+    "name": "myInt",
+  },
+  "operator": "=",
+  "right": Object {
+    "kind": "literal",
+    "type": "int",
+    "value": 3,
+  },
+}
+`;
+
+exports[`Literals int literal 1`] = `
+Object {
+  "identifier": "myBool",
+  "kind": "let",
+  "value": Object {
+    "kind": "literal",
+    "type": "bool",
+    "value": false,
+  },
+}
+`;
+
+exports[`Literals int typeof 1`] = `
+Object {
+  "kind": "assign",
+  "left": Object {
+    "kind": "identifier",
+    "name": "myBool",
+  },
+  "operator": "=",
+  "right": Object {
+    "kind": "literal",
+    "type": "bool",
+    "value": true,
+  },
+}
+`;
+
+exports[`Literals null literal 1`] = `
+Object {
+  "identifier": "myFloat",
+  "kind": "let",
+  "value": Object {
+    "kind": "literal",
+    "type": "float",
+    "value": 3.14159,
+  },
+}
+`;
+
+exports[`Literals null typeof 1`] = `
+Object {
+  "kind": "assign",
+  "left": Object {
+    "kind": "identifier",
+    "name": "myFloat",
+  },
+  "operator": "=",
+  "right": Object {
+    "kind": "literal",
+    "type": "float",
+    "value": 2.71828183,
+  },
+}
+`;
+
+exports[`Literals obj literal 1`] = `
+Object {
+  "identifier": "myStr",
+  "kind": "let",
+  "value": Object {
+    "kind": "literal",
+    "type": "str",
+    "value": "hello",
+  },
+}
+`;
+
+exports[`Literals obj typeof 1`] = `
+Object {
+  "kind": "assign",
+  "left": Object {
+    "kind": "identifier",
+    "name": "myStr",
+  },
+  "operator": "=",
+  "right": Object {
+    "kind": "literal",
+    "type": "str",
+    "value": "world",
+  },
+}
+`;

@@ -1,22 +1,18 @@
 // boolean variable
 let myBool = false;
-myBool;
 myBool = true;
-myBool;
 
 // integer variable
 let myInt = 99;
-myInt;
-myInt + 10;
 myInt = 3;
 
 // float variable
 let myFloat = 3.14159;
-myFloat;
+myFloat = 2.71828183;
 
 // string variable
 let myStr = "hello";
-myStr;
+myStr = "world";
 
 // null
 let myNull = null;
@@ -32,15 +28,3 @@ let myNewInt = new int;
 let myNewFloat = new float;
 let myNewBool = new bool;
 let myNewStr = new str;
-
-// boolean expression
-let a = 0;
-let b = 1;
-a = 3;
-a == b;
-a == a;
-a == 3;
-
-// boolean negation
-myBool;
-!myBool;

@@ -1,4 +1,3 @@
-// "new" isn't needed to test types, but it makes this a valid program
 new int;
 new float;
 new str;

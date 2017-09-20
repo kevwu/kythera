@@ -14,10 +14,9 @@ try {
 
 
 	parser = new Parser(tokenizer)
-	parser.parse()
-	// let ast = parser.parseProgram()
-	// console.log(JSON.stringify(ast))
+	program = parser.parse()
 
+	console.log(JSON.stringify(program, null, 2))
 } catch(e) {
 	console.log(e)
 	return
