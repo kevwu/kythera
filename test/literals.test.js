@@ -41,6 +41,9 @@ describe("Literals", () => {
 		t("Subtract")
 		t("Divide")
 		t("Modulo")
+
+		t("Operator precedence")
+		t("Operator precedence with parens")
 	})
 
 	describe("Boolean unary", () => {

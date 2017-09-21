@@ -81,6 +81,40 @@ Object {
 }
 `;
 
+exports[`Literals Arithmetic binary Operator precedence 1`] = `
+Object {
+  "kind": "binary",
+  "left": Object {
+    "kind": "literal",
+    "type": "int",
+    "value": 6,
+  },
+  "operator": "/",
+  "right": Object {
+    "kind": "literal",
+    "type": "int",
+    "value": 3,
+  },
+}
+`;
+
+exports[`Literals Arithmetic binary Operator precedence with parens 1`] = `
+Object {
+  "kind": "binary",
+  "left": Object {
+    "kind": "literal",
+    "type": "int",
+    "value": 4,
+  },
+  "operator": "*",
+  "right": Object {
+    "kind": "literal",
+    "type": "int",
+    "value": 2,
+  },
+}
+`;
+
 exports[`Literals Arithmetic binary Subtract 1`] = `
 Object {
   "kind": "binary",
@@ -99,49 +133,6 @@ Object {
 `;
 
 exports[`Literals Boolean binary And 1`] = `
-Object {
-  "kind": "binary",
-  "left": Object {
-    "kind": "literal",
-    "type": "int",
-    "value": 18,
-  },
-  "operator": "%",
-  "right": Object {
-    "kind": "literal",
-    "type": "int",
-    "value": 3,
-  },
-}
-`;
-
-exports[`Literals Boolean binary And 2`] = `
-Object {
-  "kind": "binary",
-  "left": Object {
-    "kind": "literal",
-    "type": "int",
-    "value": 2,
-  },
-  "operator": "+",
-  "right": Object {
-    "kind": "binary",
-    "left": Object {
-      "kind": "literal",
-      "type": "int",
-      "value": 3,
-    },
-    "operator": "*",
-    "right": Object {
-      "kind": "literal",
-      "type": "int",
-      "value": 4,
-    },
-  },
-}
-`;
-
-exports[`Literals Boolean binary Or 1`] = `
 Object {
   "kind": "binary",
   "left": Object {
@@ -167,7 +158,7 @@ Object {
 }
 `;
 
-exports[`Literals Boolean binary Or 2`] = `
+exports[`Literals Boolean binary And 2`] = `
 Object {
   "kind": "unary",
   "operator": "!",
@@ -179,15 +170,44 @@ Object {
 }
 `;
 
+exports[`Literals Boolean binary Or 1`] = `
+Object {
+  "kind": "unary",
+  "operator": "!",
+  "target": Object {
+    "kind": "literal",
+    "type": "bool",
+    "value": true,
+  },
+}
+`;
+
+exports[`Literals Boolean binary Or 2`] = `
+Object {
+  "kind": "binary",
+  "left": Object {
+    "kind": "literal",
+    "type": "bool",
+    "value": true,
+  },
+  "operator": "&&",
+  "right": Object {
+    "kind": "literal",
+    "type": "bool",
+    "value": true,
+  },
+}
+`;
+
 exports[`Literals Boolean unary Negate false 1`] = `
 Object {
   "kind": "binary",
   "left": Object {
     "kind": "literal",
     "type": "int",
-    "value": 6,
+    "value": 18,
   },
-  "operator": "/",
+  "operator": "%",
   "right": Object {
     "kind": "literal",
     "type": "int",
@@ -202,13 +222,22 @@ Object {
   "left": Object {
     "kind": "literal",
     "type": "int",
-    "value": 4,
-  },
-  "operator": "*",
-  "right": Object {
-    "kind": "literal",
-    "type": "int",
     "value": 2,
+  },
+  "operator": "+",
+  "right": Object {
+    "kind": "binary",
+    "left": Object {
+      "kind": "literal",
+      "type": "int",
+      "value": 3,
+    },
+    "operator": "*",
+    "right": Object {
+      "kind": "literal",
+      "type": "int",
+      "value": 4,
+    },
   },
 }
 `;
