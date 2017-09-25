@@ -50,76 +50,6 @@ Object {
 }
 `;
 
-exports[`Types 'name' fn type 1`] = `
-Object {
-  "kind": "name",
-  "name": "myFnType",
-  "target": Object {
-    "kind": "type",
-    "origin": "builtin",
-    "parameters": Array [
-      Object {
-        "kind": "type",
-        "origin": "builtin",
-        "type": "int",
-      },
-      Object {
-        "kind": "type",
-        "origin": "builtin",
-        "type": "str",
-      },
-      Object {
-        "kind": "type",
-        "name": "myIntType",
-        "origin": "named",
-      },
-    ],
-    "returns": Object {
-      "kind": "type",
-      "origin": "builtin",
-      "type": "str",
-    },
-    "type": "fn",
-  },
-}
-`;
-
-exports[`Types 'name' int primitive 1`] = `
-Object {
-  "kind": "name",
-  "name": "myIntType",
-  "target": Object {
-    "kind": "type",
-    "origin": "builtin",
-    "type": "int",
-  },
-}
-`;
-
-exports[`Types 'name' obj type 1`] = `
-Object {
-  "kind": "name",
-  "name": "myObjType",
-  "target": Object {
-    "kind": "type",
-    "origin": "builtin",
-    "structure": Object {
-      "a": Object {
-        "kind": "type",
-        "origin": "builtin",
-        "type": "int",
-      },
-      "b": Object {
-        "kind": "type",
-        "origin": "builtin",
-        "type": "str",
-      },
-    },
-    "type": "obj",
-  },
-}
-`;
-
 exports[`Types 'new' float 1`] = `
 Object {
   "kind": "new",
@@ -330,6 +260,88 @@ Object {
         "name": "myObjType",
         "origin": "named",
       },
+    },
+  },
+}
+`;
+
+exports[`Types Type assignments with let fn type 1`] = `
+Object {
+  "identifier": "myFnType",
+  "kind": "let",
+  "value": Object {
+    "kind": "literal",
+    "type": "type",
+    "value": Object {
+      "kind": "type",
+      "origin": "builtin",
+      "parameters": Array [
+        Object {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "int",
+        },
+        Object {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "str",
+        },
+        Object {
+          "kind": "type",
+          "name": "myIntType",
+          "origin": "named",
+        },
+      ],
+      "returns": Object {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "str",
+      },
+      "type": "fn",
+    },
+  },
+}
+`;
+
+exports[`Types Type assignments with let int primitive 1`] = `
+Object {
+  "identifier": "myIntType",
+  "kind": "let",
+  "value": Object {
+    "kind": "literal",
+    "type": "type",
+    "value": Object {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+  },
+}
+`;
+
+exports[`Types Type assignments with let obj type 1`] = `
+Object {
+  "identifier": "myObjType",
+  "kind": "let",
+  "value": Object {
+    "kind": "literal",
+    "type": "type",
+    "value": Object {
+      "kind": "type",
+      "origin": "builtin",
+      "structure": Object {
+        "a": Object {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "int",
+        },
+        "b": Object {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "str",
+        },
+      },
+      "type": "obj",
     },
   },
 }

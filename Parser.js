@@ -151,21 +151,10 @@ class Parser {
 								kind: "new",
 								target: type,
 							}
-						case "name":
-							let nameToken = this.tokenizer.next()
-							if(nameToken.type !== "var") {
-								this.tokenizer.inputStream.err(`Expected identifier but got ${nameToken.value} (${nameToken.type})`)
-							}
-
-							return {
-								kind: "name",
-								name: nameToken.value,
-								target: this.parseType(),
-							}
 						case "let":
 							let identToken = this.tokenizer.next()
 							if(identToken.type !== "var") {
-								this.tokenizer.inputStream.err(`Expected identifier but got ${nameToken.value} (${nameToken.type})`)
+								this.tokenizer.inputStream.err(`Expected identifier but got ${identToken.value} (${identToken.type})`)
 							}
 
 							this.consumeToken('=', "op")
