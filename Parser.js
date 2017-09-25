@@ -81,7 +81,6 @@ class Parser {
 
 
 		this.parseExpression = (canSplit = true) => {
-
 			// main dispatcher, parses expression parts that don't need lookahead
 			let parseExpressionAtom = () => {
 				// unwrap parentheses first
@@ -100,10 +99,6 @@ class Parser {
 
 				if(this.confirmToken('<', "op") || this.confirmToken("<>", "op")) { // function literal
 					return this.parseFunctionLiteral()
-				}
-
-				if (this.confirmToken('[', "punc")) {
-					return this.parseList()
 				}
 
 				if(this.confirmToken('!', "op")) {
@@ -312,15 +307,34 @@ class Parser {
 				}
 			}
 
+			// ambiguous access - could be list or object, impossible to tell until the index is evaluated
+			let makeAccess = (exp) => {
+				console.log("Making list")
+				this.consumeToken("[", "punc")
+
+				let indexExp = this.parseExpression()
+
+				this.consumeToken("]", "punc")
+
+				// list types like int[] are handled by parseType. This is guaranteed to be an access
+				return {
+					kind: "access",
+					target: exp,
+					index: indexExp,
+				}
+			}
+
+
 			let canStartBinary = () => canSplit && this.confirmToken(undefined, "op")
 			let canStartCall = () => this.confirmToken("(", "punc")
 			let canMakeAs = () => this.confirmToken("as", "kw")
 			let canMakeObjAccess = () => this.confirmToken('.', "punc")
+			let canMakeList = () => canSplit && this.confirmToken("[", "punc")
 
 			let exp = parseExpressionAtom()
 
 			// continuously build any post- or in-fix operator until no longer possible
-			while((canStartBinary() || canStartCall() || canMakeAs() || canMakeObjAccess()) && !this.confirmToken(";", "punc")) {
+			while((canStartBinary() || canStartCall() || canMakeAs() || canMakeObjAccess() || canMakeList()) && !this.confirmToken(";", "punc")) {
 				if(canStartBinary()) {
 					exp = makeBinary(exp,0)
 				}
@@ -336,6 +350,10 @@ class Parser {
 
 				if(canMakeObjAccess()) {
 					exp = makeObjAccess(exp)
+				}
+
+				if(canMakeList()) {
+					exp = makeAccess(exp)
 				}
 			}
 
@@ -410,81 +428,92 @@ class Parser {
 			}
 		}
 
-		this.parseList = () => {
-
-		}
-
-
 		// parse a type, whether built-in (int, str etc) or user-defined (fn, rigid obj)
 		this.parseType = () => {
 			let nextToken = this.tokenizer.next()
 
-			if(nextToken.type === "kw") { // built-in types
-				switch(nextToken.value) {
-					case "int":
-						return Parser.TYPES.int
-					case "float":
-						return Parser.TYPES.float
-					case "bool":
-						return Parser.TYPES.bool
-					case "str":
-						return Parser.TYPES.str
-					case "null":
-						return Parser.TYPES.null
-					case "fn":
-						let parameters = []
+			let parseTypeAtom = () => {
+				if (nextToken.type === "kw") { // built-in types
+					switch (nextToken.value) {
+						case "int":
+							return Parser.TYPES.int
+						case "float":
+							return Parser.TYPES.float
+						case "bool":
+							return Parser.TYPES.bool
+						case "str":
+							return Parser.TYPES.str
+						case "null":
+							return Parser.TYPES.null
+						case "fn":
+							let parameters = []
 
-						if(this.confirmToken("<>", "op")) {
-							this.consumeToken("<>", "op")
-						} else {
-							this.delimited('<', '>', ',', () => {
-								parameters.push(this.parseType())
-							})
-						}
-
-						let returnType = this.parseType()
-
-						return {
-							kind: "type",
-							origin: "builtin",
-							type: "fn",
-							parameters: parameters,
-							returns: returnType,
-						}
-					case "obj":
-						let entries = {}
-
-						this.delimited('{', '}', ',', () => {
-							let entryType = this.parseType()
-							let entryName = this.tokenizer.next()
-
-							if(entryName.type !== "var") {
-								this.tokenizer.inputStream.err("Expected identifier but got: " + entryName.value)
+							if (this.confirmToken("<>", "op")) {
+								this.consumeToken("<>", "op")
+							} else {
+								this.delimited('<', '>', ',', () => {
+									parameters.push(this.parseType())
+								})
 							}
 
-							entries[entryName.value] = entryType
-						})
+							let returnType = this.parseType()
 
-						return {
-							kind: "type",
-							origin: "builtin",
-							type: "obj",
-							structure: entries,
-						}
+							return {
+								kind: "type",
+								origin: "builtin",
+								type: "fn",
+								parameters: parameters,
+								returns: returnType,
+							}
+						case "obj":
+							let entries = {}
 
-						return
-					default:
-						this.tokenizer.inputStream.err("Expected type or type identifier but got keyword: " + nextToken.value)
+							this.delimited('{', '}', ',', () => {
+								let entryType = this.parseType()
+								let entryName = this.tokenizer.next()
+
+								if (entryName.type !== "var") {
+									this.tokenizer.inputStream.err("Expected identifier but got: " + entryName.value)
+								}
+
+								entries[entryName.value] = entryType
+							})
+
+							return {
+								kind: "type",
+								origin: "builtin",
+								type: "obj",
+								structure: entries,
+							}
+
+							return
+						default:
+							this.tokenizer.inputStream.err("Expected type or type identifier but got keyword: " + nextToken.value)
+					}
+				} else if (nextToken.type === "var") { // user-named types
+					// TODO types can come from expressions
+					return {
+						kind: "type",
+						origin: "named",
+						name: nextToken.value,
+					}
+				} else {
+					this.tokenizer.inputStream.err("Expected type or type identifier but got " + nextToken.value)
 				}
-			} else if(nextToken.type === "var") { // user-named types
-				// TODO types can come from expressions
+			}
+
+			// TODO this might not need to be written as a separate function and can be streamlined
+			let typeAtom = parseTypeAtom()
+
+			if(this.confirmToken("[", "punc")) { // list type
+				this.consumeToken("[", "punc")
+				this.consumeToken("]", "punc")
+
 				return {
 					kind: "type",
-					origin: "named",
-					name: nextToken.value,
+					type: "list",
+					listType: typeAtom,
 				}
-			} else {
-				this.tokenizer.inputStream.err("Expected type or type identifier but got " + nextToken.value)
 			}
 		}
 
