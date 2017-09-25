@@ -422,3 +422,49 @@ Object {
   },
 }
 `;
+
+exports[`Function examples Function with no parameters (with space) 1`] = `
+Object {
+  "body": Array [
+    Object {
+      "kind": "return",
+      "value": Object {
+        "kind": "literal",
+        "type": "null",
+        "value": null,
+      },
+    },
+  ],
+  "kind": "literal",
+  "parameters": Array [],
+  "returns": Object {
+    "kind": "type",
+    "origin": "builtin",
+    "type": "null",
+  },
+  "type": "fn",
+}
+`;
+
+exports[`Function examples Function with no parameters 1`] = `
+Object {
+  "body": Array [
+    Object {
+      "kind": "return",
+      "value": Object {
+        "kind": "literal",
+        "type": "null",
+        "value": null,
+      },
+    },
+  ],
+  "kind": "literal",
+  "parameters": Array [],
+  "returns": Object {
+    "kind": "type",
+    "origin": "builtin",
+    "type": "null",
+  },
+  "type": "fn",
+}
+`;

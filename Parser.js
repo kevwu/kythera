@@ -98,7 +98,7 @@ class Parser {
 					return this.parseObjectLiteral()
 				}
 
-				if(this.confirmToken('<', "op")) { // function literal
+				if(this.confirmToken('<', "op") || this.confirmToken("<>", "op")) { // function literal
 					return this.parseFunctionLiteral()
 				}
 
@@ -115,8 +115,16 @@ class Parser {
 					}
 				}
 
-				if (this.confirmToken(undefined, "kw")) {
+				// type literals. "null" is always handled as a null literal, not a type literal.
+				if(["int", "float", "str", "fn", "obj"].includes(nextToken.value)) {
+					return {
+						kind: "literal",
+						type: "type",
+						value: this.parseType()
+					}
+				}
 
+				if (this.confirmToken(undefined, "kw")) {
 					this.consumeToken(nextToken.value, "kw")
 
 					switch (nextToken.value) {
@@ -380,19 +388,25 @@ class Parser {
 		}
 
 		this.parseFunctionLiteral = () => {
-			let parameters = this.delimited('<', '>', ',', () => {
-				let paramType = this.parseType()
-				let paramName = this.tokenizer.next()
+			let parameters
+			if(this.confirmToken("<>", "op")) {
+				this.consumeToken("<>", "op")
+				parameters = []
+			} else {
+				parameters = this.delimited('<', '>', ',', () => {
+					let paramType = this.parseType()
+					let paramName = this.tokenizer.next()
 
-				if(paramName.type !== "var") {
-					this.tokenizer.inputStream.err("Expected identifier but got " + paramName.value)
-				}
+					if(paramName.type !== "var") {
+						this.tokenizer.inputStream.err("Expected identifier but got " + paramName.value)
+					}
 
-				return {
-					name: paramName.value,
-					type: paramType,
-				}
-			})
+					return {
+						name: paramName.value,
+						type: paramType,
+					}
+				})
+			}
 
 			let returnType = this.parseType()
 
@@ -431,9 +445,13 @@ class Parser {
 					case "fn":
 						let parameters = []
 
-						this.delimited('<', '>', ',', () => {
-							parameters.push(this.parseType())
-						})
+						if(this.confirmToken("<>", "op")) {
+							this.consumeToken("<>", "op")
+						} else {
+							this.delimited('<', '>', ',', () => {
+								parameters.push(this.parseType())
+							})
+						}
 
 						let returnType = this.parseType()
 
