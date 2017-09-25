@@ -3,10 +3,10 @@ new float
 new str
 new null
 
-// name statements
-name myIntType int
-name myFnType fn<int, str, myIntType> str
-name myObjType obj{
+// custom type assignment
+let myIntType = int
+let myFnType = fn<int, str, myIntType> str
+let myObjType = obj{
     int a,
     str b,
 }

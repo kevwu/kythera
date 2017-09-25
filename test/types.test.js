@@ -22,7 +22,7 @@ describe("Types", () => {
 		t("null")
 	})
 
-	describe("'name'", () => {
+	describe("Type assignments with let", () => {
 		t("int primitive")
 		t("fn type")
 		t("obj type")

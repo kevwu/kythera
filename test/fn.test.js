@@ -22,4 +22,7 @@ describe("Function examples", () => {
 	t("Fibonacci (call)")
 
 	t("Fizzbuzz and call")
+
+	t("Function with no parameters")
+	t("Function with no parameters (with space)")
 })

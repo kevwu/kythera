@@ -38,3 +38,12 @@ fibo(10)
     }
     return null
 }(20)
+
+// no parameters
+<> null {
+	return null
+}
+
+< > null {
+	return null
+}

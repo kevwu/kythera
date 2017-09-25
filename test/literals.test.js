@@ -58,4 +58,14 @@ describe("Literals", () => {
 		t("Or")
 		t("Or")
 	})
+
+	describe("Type literals", () => {
+		t("int")
+		t("float")
+		t("str")
+		t("fn (with params)")
+		t("fn (no params)")
+		t("obj (structured)")
+		t("obj (freeform)")
+	})
 })

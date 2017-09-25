@@ -45,3 +45,15 @@ true && false
 
 true || true
 true || false
+
+// type literal
+int
+float
+str
+fn<int, str> null
+fn<> null
+obj {
+	int a,
+	str b,
+}
+obj{}

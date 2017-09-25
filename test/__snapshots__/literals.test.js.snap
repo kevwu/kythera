@@ -242,6 +242,122 @@ Object {
 }
 `;
 
+exports[`Literals Type literals float 1`] = `
+Object {
+  "kind": "binary",
+  "left": Object {
+    "kind": "literal",
+    "type": "bool",
+    "value": true,
+  },
+  "operator": "||",
+  "right": Object {
+    "kind": "literal",
+    "type": "bool",
+    "value": true,
+  },
+}
+`;
+
+exports[`Literals Type literals fn (no params) 1`] = `
+Object {
+  "kind": "literal",
+  "type": "type",
+  "value": Object {
+    "kind": "type",
+    "origin": "builtin",
+    "type": "float",
+  },
+}
+`;
+
+exports[`Literals Type literals fn (with params) 1`] = `
+Object {
+  "kind": "literal",
+  "type": "type",
+  "value": Object {
+    "kind": "type",
+    "origin": "builtin",
+    "type": "int",
+  },
+}
+`;
+
+exports[`Literals Type literals int 1`] = `
+Object {
+  "kind": "binary",
+  "left": Object {
+    "kind": "literal",
+    "type": "bool",
+    "value": true,
+  },
+  "operator": "&&",
+  "right": Object {
+    "kind": "literal",
+    "type": "bool",
+    "value": false,
+  },
+}
+`;
+
+exports[`Literals Type literals obj (freeform) 1`] = `
+Object {
+  "kind": "literal",
+  "type": "type",
+  "value": Object {
+    "kind": "type",
+    "origin": "builtin",
+    "parameters": Array [
+      Object {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      Object {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "str",
+      },
+    ],
+    "returns": Object {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "null",
+    },
+    "type": "fn",
+  },
+}
+`;
+
+exports[`Literals Type literals obj (structured) 1`] = `
+Object {
+  "kind": "literal",
+  "type": "type",
+  "value": Object {
+    "kind": "type",
+    "origin": "builtin",
+    "type": "str",
+  },
+}
+`;
+
+exports[`Literals Type literals str 1`] = `
+Object {
+  "kind": "binary",
+  "left": Object {
+    "kind": "literal",
+    "type": "bool",
+    "value": true,
+  },
+  "operator": "||",
+  "right": Object {
+    "kind": "literal",
+    "type": "bool",
+    "value": false,
+  },
+}
+`;
+
 exports[`Literals float literal 1`] = `
 Object {
   "kind": "literal",
