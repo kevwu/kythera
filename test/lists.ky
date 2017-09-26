@@ -1,6 +1,6 @@
-let myArr = new int[]
+let myList = new int[]
 
-myArr[2]
+myList[2]
 
 // custom type
 let myType = obj{
@@ -8,4 +8,15 @@ let myType = obj{
 	str b,
 }
 
-let myTypeArr = new myType[]
+let myTypeList = new myType[]
+
+let myTypeList2 = obj{
+	int a,
+	str b,
+}[]
+
+let myListFn = <> int[] {
+	return new int[]
+}
+
+myListFn()[10]

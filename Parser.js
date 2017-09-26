@@ -514,6 +514,8 @@ class Parser {
 					type: "list",
 					listType: typeAtom,
 				}
+			} else {
+				return typeAtom
 			}
 		}
 
