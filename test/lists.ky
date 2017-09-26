@@ -1,0 +1,22 @@
+let myList = new int[]
+
+myList[2]
+
+// custom type
+let myType = obj{
+	int a,
+	str b,
+}
+
+let myTypeList = new myType[]
+
+let myTypeList2 = obj{
+	int a,
+	str b,
+}[]
+
+let myListFn = <> int[] {
+	return new int[]
+}
+
+myListFn()[10]
