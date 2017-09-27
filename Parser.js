@@ -76,166 +76,166 @@ class Parser {
 	// all parse functions return the AST subtree for what they encountered.
 
 	// main dispatcher, parses expression parts that don't need lookahead
-	parseExpressionAtom() {
-		// unwrap parentheses first
-		if (this.confirmToken('(', "punc")) {
-			this.consumeToken('(', "punc")
-			let contents = this.parseExpression()
-			this.consumeToken(')', "punc")
-			return contents
-		}
-
-		let nextToken = this.tokenizer.peek()
-
-		if (this.confirmToken('{', "punc")) { // object literal
-			return this.parseObjectLiteral()
-		}
-
-		if(this.confirmToken('<', "op") || this.confirmToken("<>", "op")) { // function literal
-			return this.parseFunctionLiteral()
-		}
-
-		if(this.confirmToken('!', "op")) {
-			this.consumeToken('!', "op")
-			return {
-				kind: "unary",
-				operator: "!",
-				target: this.parseExpression(false),
-			}
-		}
-
-		// type literals. "null" is always handled as a null literal, not a type literal.
-		if(["int", "float", "str", "fn", "obj"].includes(nextToken.value)) {
-			return {
-				kind: "literal",
-				type: "type",
-				value: this.parseType()
-			}
-		}
-
-		if (this.confirmToken(undefined, "kw")) {
-			this.consumeToken(nextToken.value, "kw")
-
-			switch (nextToken.value) {
-				case "true":
-					return ParserConstants.LITERALS.true
-				case "false":
-					return ParserConstants.LITERALS.false
-				case "null":
-					return ParserConstants.LITERALS.null
-				case "typeof":
-					return {
-						kind: "typeof",
-						target: this.parseExpression(false),
-					}
-				case "new":
-					// this cannot be type-checked yet, there may be user-defined types
-					let type = this.parseType()
-
-					if(type.type === "fn") {
-						this.tokenizer.inputStream.err("fn types cannot be initialized from new.")
-					}
-
-					return {
-						kind: "new",
-						target: type,
-					}
-				case "let":
-					let identToken = this.tokenizer.next()
-					if(identToken.type !== "var") {
-						this.tokenizer.inputStream.err(`Expected identifier but got ${identToken.value} (${identToken.type})`)
-					}
-
-					this.consumeToken('=', "op")
-
-					let value = this.parseExpression()
-
-					return {
-						kind: "let",
-						identifier: identToken.value,
-						value: value,
-					}
-				case "if":
-					let ifCondition = this.parseExpression()
-					let ifBody = this.parseBlock()
-
-					let ifStatement = {
-						kind: "if",
-						condition: ifCondition,
-						body: ifBody,
-					}
-
-					if(this.confirmToken("else", "kw")) {
-						this.consumeToken("else", "kw")
-
-						// else only
-						if(this.confirmToken('{', "punc")) {
-							ifStatement.else = this.parseBlock()
-						} else {
-							// else-if
-							ifStatement.else = this.parseExpression(false)
-						}
-					}
-
-					return ifStatement
-				case "while":
-					let whileCondition = this.parseExpression()
-					let whileBody = this.parseBlock()
-
-					return {
-						kind: "while",
-						condition: whileCondition,
-						body: whileBody,
-					}
-				case "return":
-					return {
-						kind: "return",
-						value: this.parseExpression()
-					}
-				default:
-					this.tokenizer.inputStream.err("Unhandled keyword: " + nextToken.value)
-			}
-		}
-
-		// from this point forward, nodes are generated directly, not dispatched
-		this.tokenizer.next()
-
-		// literals
-		if (nextToken.type === "num") {
-			if (nextToken.value % 1 !== 0) { // float
-				return {
-					kind: "literal",
-					type: "float",
-					value: nextToken.value,
-				}
-			} else { // int
-				return {
-					kind: "literal",
-					type: "int",
-					value: nextToken.value,
-				}
-			}
-		}
-		if (nextToken.type === "str") {
-			return {
-				kind: "literal",
-				type: "str",
-				value: nextToken.value,
-			}
-		}
-
-		// variable identifier
-		if (nextToken.type === "var") {
-			return {
-				kind: "identifier",
-				name: nextToken.value,
-			}
-		}
-
-		this.tokenizer.inputStream.err("Unexpected token: " + JSON.stringify(nextToken))
-	}
-
 	parseExpression(canSplit = true) {
+		let parseExpressionAtom = () => {
+			// unwrap parentheses first
+			if (this.confirmToken('(', "punc")) {
+				this.consumeToken('(', "punc")
+				let contents = this.parseExpression()
+				this.consumeToken(')', "punc")
+				return contents
+			}
+
+			let nextToken = this.tokenizer.peek()
+
+			if (this.confirmToken('{', "punc")) { // object literal
+				return this.parseObjectLiteral()
+			}
+
+			if(this.confirmToken('<', "op") || this.confirmToken("<>", "op")) { // function literal
+				return this.parseFunctionLiteral()
+			}
+
+			if(this.confirmToken('!', "op")) {
+				this.consumeToken('!', "op")
+				return {
+					kind: "unary",
+					operator: "!",
+					target: this.parseExpression(false),
+				}
+			}
+
+			// type literals. "null" is always handled as a null literal, not a type literal.
+			if(["int", "float", "str", "fn", "obj"].includes(nextToken.value)) {
+				return {
+					kind: "literal",
+					type: "type",
+					value: this.parseType()
+				}
+			}
+
+			if (this.confirmToken(undefined, "kw")) {
+				this.consumeToken(nextToken.value, "kw")
+
+				switch (nextToken.value) {
+					case "true":
+						return ParserConstants.LITERALS.true
+					case "false":
+						return ParserConstants.LITERALS.false
+					case "null":
+						return ParserConstants.LITERALS.null
+					case "typeof":
+						return {
+							kind: "typeof",
+							target: this.parseExpression(false),
+						}
+					case "new":
+						// this cannot be type-checked yet, there may be user-defined types
+						let type = this.parseType()
+
+						if(type.type === "fn") {
+							this.tokenizer.inputStream.err("fn types cannot be initialized from new.")
+						}
+
+						return {
+							kind: "new",
+							target: type,
+						}
+					case "let":
+						let identToken = this.tokenizer.next()
+						if(identToken.type !== "var") {
+							this.tokenizer.inputStream.err(`Expected identifier but got ${identToken.value} (${identToken.type})`)
+						}
+
+						this.consumeToken('=', "op")
+
+						let value = this.parseExpression()
+
+						return {
+							kind: "let",
+							identifier: identToken.value,
+							value: value,
+						}
+					case "if":
+						let ifCondition = this.parseExpression()
+						let ifBody = this.parseBlock()
+
+						let ifStatement = {
+							kind: "if",
+							condition: ifCondition,
+							body: ifBody,
+						}
+
+						if(this.confirmToken("else", "kw")) {
+							this.consumeToken("else", "kw")
+
+							// else only
+							if(this.confirmToken('{', "punc")) {
+								ifStatement.else = this.parseBlock()
+							} else {
+								// else-if
+								ifStatement.else = this.parseExpression(false)
+							}
+						}
+
+						return ifStatement
+					case "while":
+						let whileCondition = this.parseExpression()
+						let whileBody = this.parseBlock()
+
+						return {
+							kind: "while",
+							condition: whileCondition,
+							body: whileBody,
+						}
+					case "return":
+						return {
+							kind: "return",
+							value: this.parseExpression()
+						}
+					default:
+						this.tokenizer.inputStream.err("Unhandled keyword: " + nextToken.value)
+				}
+			}
+
+			// from this point forward, nodes are generated directly, not dispatched
+			this.tokenizer.next()
+
+			// literals
+			if (nextToken.type === "num") {
+				if (nextToken.value % 1 !== 0) { // float
+					return {
+						kind: "literal",
+						type: "float",
+						value: nextToken.value,
+					}
+				} else { // int
+					return {
+						kind: "literal",
+						type: "int",
+						value: nextToken.value,
+					}
+				}
+			}
+			if (nextToken.type === "str") {
+				return {
+					kind: "literal",
+					type: "str",
+					value: nextToken.value,
+				}
+			}
+
+			// variable identifier
+			if (nextToken.type === "var") {
+				return {
+					kind: "identifier",
+					name: nextToken.value,
+				}
+			}
+
+			this.tokenizer.inputStream.err("Unexpected token: " + JSON.stringify(nextToken))
+		}
+
 		// make a binary expression, with proper precedence, if needed
 		let makeBinary = (left, currentPrecedence) => {
 			let token = this.confirmToken(undefined, "op")
@@ -326,7 +326,7 @@ class Parser {
 		let canMakeObjAccess = () => this.confirmToken('.', "punc")
 		let canMakeList = () => canSplit && this.confirmToken("[", "punc")
 
-		let exp = this.parseExpressionAtom()
+		let exp = parseExpressionAtom()
 
 		// continuously build any post- or in-fix operator until no longer possible
 		while((canStartBinary() || canStartCall() || canMakeAs() || canMakeObjAccess() || canMakeList()) && !this.confirmToken(";", "punc")) {
