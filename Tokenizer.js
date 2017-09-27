@@ -6,9 +6,9 @@ class Tokenizer {
 
 		// read as long as we are not at eof and the condition given is true for the next character
 		this.readWhile = (condition) => {
-			let output = "";
+			let output = ""
 			while(!this.inputStream.eof() && condition(this.inputStream.peek())) {
-				output += this.inputStream.next();
+				output += this.inputStream.next()
 			}
 			return output
 		}
@@ -26,7 +26,7 @@ class Tokenizer {
 				} else if(char === "\\") {
 					escaped = true
 				} else if(char === end) {
-					break;
+					break
 				} else {
 					str += char
 				}
@@ -181,17 +181,17 @@ class Tokenizer {
 	}
 
 	static isDigit(char) {
-		return /[0-9]/i.test(char);
+		return /[0-9]/i.test(char)
 	}
 
 	// true if this could be the start of an identifier
 	static isIdentStart(char) {
-		return /[a-z_]/i.test(char);
+		return /[a-z_]/i.test(char)
 	}
 
 	// true if this could be in an identifier
 	static isIdent(char) {
-		return Tokenizer.isIdentStart(char) || "_0123456789".indexOf(char) >= 0;
+		return Tokenizer.isIdentStart(char) || "_0123456789".indexOf(char) >= 0
 	}
 
 	static isOp(char) {
