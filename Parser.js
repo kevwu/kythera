@@ -133,10 +133,6 @@ class Parser {
 						// this cannot be type-checked yet, there may be user-defined types
 						let type = this.parseType()
 
-						if(type.type === "fn") {
-							this.tokenizer.inputStream.err("fn types cannot be initialized from new.")
-						}
-
 						return {
 							kind: "new",
 							target: type,
