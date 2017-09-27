@@ -423,79 +423,83 @@ class Parser {
 	parseType() {
 		let nextToken = this.tokenizer.next()
 
-		let parseTypeAtom = () => {
-			if (nextToken.type === "kw") { // built-in types
-				switch (nextToken.value) {
-					case "int":
-						return ParserConstants.TYPES.int
-					case "float":
-						return ParserConstants.TYPES.float
-					case "bool":
-						return ParserConstants.TYPES.bool
-					case "str":
-						return ParserConstants.TYPES.str
-					case "null":
-						return ParserConstants.TYPES.null
-					case "fn":
-						let parameters = []
+		let parseTypeAtom
 
-						if (this.confirmToken("<>", "op")) {
-							this.consumeToken("<>", "op")
-						} else {
-							this.delimited('<', '>', ',', () => {
-								parameters.push(this.parseType())
-							})
-						}
+		if (nextToken.type === "kw") { // built-in types
+			switch (nextToken.value) {
+				case "int":
+					parseTypeAtom = ParserConstants.TYPES.int
+					break
+				case "float":
+					parseTypeAtom = ParserConstants.TYPES.float
+					break
+				case "bool":
+					parseTypeAtom = ParserConstants.TYPES.bool
+					break
+				case "str":
+					parseTypeAtom = ParserConstants.TYPES.str
+					break
+				case "null":
+					parseTypeAtom = ParserConstants.TYPES.null
+					break
+				case "fn":
+					let parameters = []
 
-						let returnType = this.parseType()
-
-						return {
-							kind: "type",
-							origin: "builtin",
-							type: "fn",
-							parameters: parameters,
-							returns: returnType,
-						}
-					case "obj":
-						let entries = {}
-
-						this.delimited('{', '}', ',', () => {
-							let entryType = this.parseType()
-							let entryName = this.tokenizer.next()
-
-							if (entryName.type !== "var") {
-								this.tokenizer.inputStream.err("Expected identifier but got: " + entryName.value)
-							}
-
-							entries[entryName.value] = entryType
+					if (this.confirmToken("<>", "op")) {
+						this.consumeToken("<>", "op")
+					} else {
+						this.delimited('<', '>', ',', () => {
+							parameters.push(this.parseType())
 						})
+					}
 
-						return {
-							kind: "type",
-							origin: "builtin",
-							type: "obj",
-							structure: entries,
+					let returnType = this.parseType()
+
+					parseTypeAtom = {
+						kind: "type",
+						origin: "builtin",
+						type: "fn",
+						parameters: parameters,
+						returns: returnType,
+					}
+					break
+				case "obj":
+					let entries = {}
+
+					this.delimited('{', '}', ',', () => {
+						let entryType = this.parseType()
+						let entryName = this.tokenizer.next()
+
+						if (entryName.type !== "var") {
+							this.tokenizer.inputStream.err("Expected identifier but got: " + entryName.value)
 						}
 
-						return
-					default:
-						this.tokenizer.inputStream.err("Expected type or type identifier but got keyword: " + nextToken.value)
-				}
-			} else if (nextToken.type === "var") { // user-named types
-				// TODO types can come from expressions
-				return {
-					kind: "type",
-					origin: "named",
-					name: nextToken.value,
-				}
-			} else {
-				this.tokenizer.inputStream.err("Expected type or type identifier but got " + nextToken.value)
+						entries[entryName.value] = entryType
+					})
+
+					parseTypeAtom = {
+						kind: "type",
+						origin: "builtin",
+						type: "obj",
+						structure: entries,
+					}
+
+					break
+				default:
+					this.tokenizer.inputStream.err("Expected type or type identifier but got keyword: " + nextToken.value)
 			}
+		} else if (nextToken.type === "var") { // user-named types
+			// TODO types can come from expressions
+			parseTypeAtom = {
+				kind: "type",
+				origin: "named",
+				name: nextToken.value,
+			}
+		} else {
+			this.tokenizer.inputStream.err("Expected type or type identifier but got " + nextToken.value)
 		}
 
 		// TODO this might not need to be written as a separate function and can be streamlined
-		let typeAtom = parseTypeAtom()
-
 		if(this.confirmToken("[", "punc")) { // list type
 			this.consumeToken("[", "punc")
 			this.consumeToken("]", "punc")
@@ -503,10 +507,10 @@ class Parser {
 			return {
 				kind: "type",
 				type: "list",
-				listType: typeAtom,
+				listType: parseTypeAtom,
 			}
 		} else {
-			return typeAtom
+			return parseTypeAtom
 		}
 	}
 
