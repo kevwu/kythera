@@ -49,5 +49,6 @@ describe("Variables", () => {
 		t("float")
 		t("bool")
 		t("str")
+		t("fn")
 	})
 })

@@ -197,6 +197,27 @@ Object {
 }
 `;
 
+exports[`Variables using 'new' fn 1`] = `
+Object {
+  "identifier": "myFn",
+  "kind": "let",
+  "value": Object {
+    "kind": "new",
+    "target": Object {
+      "kind": "type",
+      "origin": "builtin",
+      "parameters": Array [],
+      "returns": Object {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "null",
+      },
+      "type": "fn",
+    },
+  },
+}
+`;
+
 exports[`Variables using 'new' int 1`] = `
 Object {
   "identifier": "myNewInt",
