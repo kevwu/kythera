@@ -1,6 +1,6 @@
 # kythera ⚙️
 
-This repository contains a JavaScript parser for the Kythera programming language. The current plan is to build a source-to-source compiler to JavaScript. The old ANTLR implementation, which includes a partially working interpreter, can be found [here](https://github.com/kevwu/kythera). An in-progress overview of the language can be found [here](https://dejawu.nanote.co/n/kythera).
+This repository contains a JavaScript parser for the Kythera programming language. The current plan is to build a source-to-source compiler to JavaScript. The old ANTLR implementation, which includes a partially working interpreter, can be found [here](https://github.com/kevwu/kythera-antlr). An in-progress overview of the language can be found [here](https://dejawu.nanote.co/n/kythera).
 
 ## About Kythera
 
