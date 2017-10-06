@@ -65,7 +65,7 @@ class Parser {
 		while(!this.tokenizer.eof()) {
 			this.program.push(this.parseExpression())
 			if(!this.confirmToken(';', "punc")) {
-				this.tokenizer.inputStream.err("Missing semicolon")
+				this.err("Missing semicolon")
 			}
 			this.consumeToken(';', "punc")
 		}
@@ -140,7 +140,7 @@ class Parser {
 					case "let":
 						let identToken = this.tokenizer.next()
 						if(identToken.type !== "var") {
-							this.tokenizer.inputStream.err(`Expected identifier but got ${identToken.value} (${identToken.type})`)
+							this.err(`Expected identifier but got ${identToken.value} (${identToken.type})`)
 						}
 
 						this.consumeToken('=', "op")
@@ -190,7 +190,7 @@ class Parser {
 							value: this.parseExpression()
 						}
 					default:
-						this.tokenizer.inputStream.err("Unhandled keyword: " + nextToken.value)
+						this.err("Unhandled keyword: " + nextToken.value)
 				}
 			}
 
@@ -229,7 +229,7 @@ class Parser {
 				}
 			}
 
-			this.tokenizer.inputStream.err("Unexpected token: " + JSON.stringify(nextToken))
+			this.err("Unexpected token: " + JSON.stringify(nextToken))
 		}
 
 		// make a binary expression, with proper precedence, if needed
@@ -396,7 +396,7 @@ class Parser {
 				let paramName = this.tokenizer.next()
 
 				if(paramName.type !== "var") {
-					this.tokenizer.inputStream.err("Expected identifier but got " + paramName.value)
+					this.err("Expected identifier but got " + paramName.value)
 				}
 
 				return {
@@ -471,7 +471,7 @@ class Parser {
 						let entryName = this.tokenizer.next()
 
 						if (entryName.type !== "var") {
-							this.tokenizer.inputStream.err("Expected identifier but got: " + entryName.value)
+							this.err("Expected identifier but got: " + entryName.value)
 						}
 
 						entries[entryName.value] = entryType
@@ -486,7 +486,7 @@ class Parser {
 
 					break
 				default:
-					this.tokenizer.inputStream.err("Expected type or type identifier but got keyword: " + nextToken.value)
+					this.err("Expected type or type identifier but got keyword: " + nextToken.value)
 			}
 		} else if (nextToken.type === "var") { // user-named types
 			// TODO types can come from expressions
@@ -496,7 +496,7 @@ class Parser {
 				name: nextToken.value,
 			}
 		} else {
-			this.tokenizer.inputStream.err("Expected type or type identifier but got " + nextToken.value)
+			this.err("Expected type or type identifier but got " + nextToken.value)
 		}
 
 		// TODO this might not need to be written as a separate function and can be streamlined
@@ -571,8 +571,12 @@ class Parser {
 				punc: "symbol",
 			}
 
-			this.tokenizer.inputStream.err(`Expecting ${(type !== "") ? kindFullNames[type] + ": " : ""}"${value}" but got ${kindFullNames[this.tokenizer.peek().type]}: "${this.tokenizer.peek().value}" instead`)
+			this.err(`Expecting ${(type !== "") ? kindFullNames[type] + ": " : ""}"${value}" but got ${kindFullNames[this.tokenizer.peek().type]}: "${this.tokenizer.peek().value}" instead`)
 		}
+	}
+	
+	err(message) {
+		this.tokenizer.inputStream.err(message)
 	}
 }
 
