@@ -1,15 +1,18 @@
+Scope = require("./Scope")
+
 class Compiler {
 	constructor(program) {
 		this.program = program
 
 		// symbol table
-		this.symbols = []
+		this.rootScope = new Scope()
+		this.currentScope = this.rootScope
 	}
 
 	visitProgram() {
 		let out = ""
 		this.program.forEach((node) => {
-			out += this.visitNode(node)
+			out += this.visitNode(node) + '\n'
 			console.log(out)
 		})
 
@@ -23,6 +26,8 @@ class Compiler {
 				return this.visitLiteral(node)
 			case "let":
 				return this.visitLet(node)
+			case "assign":
+				return this.visitAssign(node)
 			default:
 				throw new Error("Unhandled node kind: " + node.kind)
 		}
@@ -56,7 +61,35 @@ class Compiler {
 	}
 
 	visitLet(node) {
+		this.currentScope.create(node.identifier, node.value.type, node.value)
 		return `let ${node.identifier} = ${this.visitNode(node.value)}`
+	}
+
+	visitAssign(node) {
+		if(node.left.kind === "identifier") {
+			let lhsType = this.getNodeType(node.left)
+			let rhsType = this.getNodeType(node.right)
+			if(this.currentScope.get(node.left.name) !== rhsType) {
+				throw new Error(`Cannot assign ${rhsType} to ${node.left.name}, which is of type ${lhsType}`)
+			} else {
+				return `${node.left.name} = ${this.visitNode(node.right)}`
+			}
+		} else if(node.left.kind === "objAccess" || node.left.kind === "access") {
+			throw new Error("Writing to object member not yet supported")
+		} else {
+			throw new Error(`${node.left.kind} is not valid as an assignment target`)
+		}
+	}
+
+	getNodeType(node) {
+		switch(node.kind) {
+			case "literal":
+				return node.type
+			case "identifier":
+				return this.currentScope.get(node.name)
+			default:
+				throw new Error(`Cannot find type for ${node.kind}`)
+		}
 	}
 }
 
