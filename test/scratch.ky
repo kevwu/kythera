@@ -5,7 +5,21 @@
 }
 */
 
-
+let z = <int a> null {
+	return null
+}
+fn<int> null
+obj{
+	int a,
+	str b,
+}
+{
+	a = new int,
+	str = new str,
+} as obj{
+	int a,
+	str b,
+}
 let a = 20
 a = 20
 let b = 3.14159

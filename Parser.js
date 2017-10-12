@@ -49,6 +49,11 @@ const ParserConstants = {
 			"kind": "type",
 			"type": "bool",
 			"origin": "builtin"
+		},
+		"type": {
+			"kind": "type",
+			"type": "type",
+			"origin": "builtin",
 		}
 	}
 }
@@ -485,6 +490,9 @@ class Parser {
 					}
 
 					break
+				case "type":
+					parseTypeAtom = ParserConstants.TYPES.type
+					break
 				default:
 					this.err("Expected type or type identifier but got keyword: " + nextToken.value)
 			}
@@ -574,7 +582,7 @@ class Parser {
 			this.err(`Expecting ${(type !== "") ? kindFullNames[type] + ": " : ""}"${value}" but got ${kindFullNames[this.tokenizer.peek().type]}: "${this.tokenizer.peek().value}" instead`)
 		}
 	}
-	
+
 	err(message) {
 		this.tokenizer.inputStream.err(message)
 	}
