@@ -1,1 +1,15 @@
-new fn<> null
+/*
+// this parses perfectly which is kind of awesome
+<int a, str b, fn<int, str> str c> null {
+	return 10
+}
+*/
+
+
+let a = 20
+a = 20
+let b = 3.14159
+"hello world"
+<int z> str {
+	return null
+}
