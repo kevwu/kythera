@@ -70,7 +70,6 @@ class Compiler {
 	// expression node dispatcher
 	visitExpressionNode(node) {
 		switch(node.kind) {
-			// expressions - TODO: handle expressions separately, don't allow them anywhere
 			case "identifier":
 				// TODO validate identifiers as ES6 idents
 				return node.name
@@ -164,7 +163,7 @@ class Compiler {
 					returns: this.getNodeType(node.returns)
 				}
 
-				return `new KYTHERA.value(${fn}, "fn", ${structure})`
+				return `new KYTHERA.value("fn", ${fn}, ${JSON.stringify(structure)})`
 			case "obj":
 
 			default:
@@ -204,13 +203,16 @@ class Compiler {
 
 	// returns type structure as would be stored/returned from Scope
 	getNodeType(node) {
+		let res
 		switch(node.kind) {
 			case "literal":
-				let res = {}
+				res = {}
 				res.type = node.type
 				if(res.type === "fn") {
 					res.structure = {
-						parameters: node.parameters,
+						parameters: node.parameters.map((param, i) => {
+							return this.getNodeType(param.type)
+						}),
 						returns: this.getNodeType(node.returns)
 					}
 				}
@@ -221,7 +223,22 @@ class Compiler {
 
 				return res
 			case "type":
-				throw new Error("Not yet implemented")
+				res = {}
+				res.type = node.type
+
+				if(res.type === "fn") {
+					res.structure = {
+						parameters: node.parameters.map((param, i) => {
+							return this.getNodeType(param)
+						}),
+						returns: this.getNodeType(node.returns)
+					}
+				}
+
+				if(res.type === "obj") {
+					throw new Error("Not yet implemented")
+				}
+				return res
 			case "identifier":
 				return this.currentScope.get(node.name)
 			default:
