@@ -1,3 +1,2 @@
-<type aType, int b> null {
-	return null
-}
+int
+type
