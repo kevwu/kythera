@@ -1,4 +1,5 @@
 Scope = require("./Scope")
+ParserResultError = require("./ParserResultError")
 
 // for comparison with scope types
 const TYPES = {
@@ -86,53 +87,50 @@ class Compiler {
 				if(typeof node.value === "number" && isFinite(node.value) && (node.value % 1 === 0)) {
 					return `new KYTHERA.value(${node.value}, "int");`
 				} else {
-					throw new Error("int literal used but value was not an integer")
+					throw new ParserResultError("int literal used but value was not an integer")
 				}
 				break
 			case "float":
 				if(typeof node.value === "number" && isFinite(node.value)) {
 					return `new KYTHERA.value(${node.value}, "float");`
 				} else {
-					throw new Error("float literal used but value was not a valid number")
+					throw new ParserResultError("float literal used but value was not a valid number")
 				}
 				break
 			case "bool":
 				if(typeof node.value === "boolean") {
 					return `new KYTHERA.value(${node.value}, "bool");`
 				} else {
-					throw new Error("bool literal used but value was not a boolean")
+					throw new ParserResultError("bool literal used but value was not a boolean")
 				}
 			case "str":
 				if(typeof node.value === "string") {
 					return `new KYTHERA.value(${node.value}, "str");`
 				} else {
-					throw new Error("str literal used but value was not a string")
+					throw new ParserResultError("str literal used but value was not a string")
 				}
 			case "null":
 				if(node.value === null) {
 					return `new KYTHERA.value(${node.value}, "null");`
 				} else {
-					throw new Error("null literal used but value was not null")
+					throw new ParserResultError("null literal used but value was not null")
 				}
 			case "fn":
 				if(!Array.isArray(node.parameters)) {
-					throw new Error("Parameter list must be an array.")
+					throw new ParserResultError("Parameter list must be an array.")
 				}
 				if(!Array.isArray(node.body)) {
-					throw new Error("Function body must be an array")
+					throw new ParserResultError("Function body must be an array")
 				}
 				if(!(typeof node.returns === "object" && node.returns.kind === "type")) {
-					throw new Error(`Expected return to be a type node, instead got ${node.returns.kind}`)
+					throw new ParserResultError(`Expected return to be a type node, instead got ${node.returns.kind}`)
 				}
 
 				// extend scope one level
 				this.currentScope = new Scope(this.currentScope, "function")
 
 				let fn = "("
-				// build parameter list
-
-
-				// bring parameters into scope
+				// build parameter list and bring parameters into scope
 				node.parameters.forEach((param, i) => {
 					if(param.type.kind !== "type") {
 						throw new Error(`Parameter type must be a type node.`)
