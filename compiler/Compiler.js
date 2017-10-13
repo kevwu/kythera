@@ -274,10 +274,7 @@ class Compiler {
 				return false
 			}
 
-			if(Object.keys(a.structure).every((key, i) => this.eqNodeType(a.structure[key], b.structure[key]))) {
-				return false
-			}
-			return true
+			return !Object.keys(a.structure).every((key, i) => this.eqNodeType(a.structure[key], b.structure[key]));
 		}
 
 		return true

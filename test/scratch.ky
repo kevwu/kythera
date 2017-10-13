@@ -1,29 +1,3 @@
-/*
-// this parses perfectly which is kind of awesome
-<int a, str b, fn<int, str> str c> null {
-	return 10
-}
-*/
-
-let z = <int a> null {
-	return null
-}
-fn<int> null
-obj{
-	int a,
-	str b,
-}
-{
-	a = new int,
-	str = new str,
-} as obj{
-	int a,
-	str b,
-}
-let a = 20
-a = 20
-let b = 3.14159
-"hello world"
-<int z> str {
+<type aType, int b> null {
 	return null
 }
