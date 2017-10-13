@@ -1,3 +1,6 @@
+const InputStream = require("./InputStream")
+const Tokenizer = require("./Tokenizer")
+
 const ParserConstants = {
 	"PRECEDENCE": {
 			"=": 1,
@@ -55,8 +58,9 @@ const ParserConstants = {
 
 
 class Parser {
-	constructor(tokenizer) {
-		this.tokenizer = tokenizer
+	constructor(input) {
+		this.inputStream = new InputStream(input)
+		this.tokenizer = new Tokenizer(this.inputStream)
 		this.program = []
 	}
 
@@ -300,7 +304,6 @@ class Parser {
 
 		// ambiguous access - could be list or object, impossible to tell until the index is evaluated
 		let makeAccess = (exp) => {
-			console.log("Making list")
 			this.consumeToken("[", "punc")
 
 			let indexExp = this.parseExpression()

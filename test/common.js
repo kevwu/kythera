@@ -1,16 +1,9 @@
 const fs = require("fs")
-
-const InputStream = require("../InputStream")
-const Tokenizer = require("../Tokenizer")
-const Parser = require("../Parser")
+const Parser = require("../parser/Parser")
 
 module.exports = {
 	parseFile: (file) => {
-		let inputFile = fs.readFileSync(file)
-		let inputStream = new InputStream(inputFile.toString())
-		let tokenizer = new Tokenizer(inputStream)
-
-		let parser = new Parser(tokenizer)
+		let parser = new Parser(fs.readFileSync(file).toString())
 		return parser.parse()
 	}
 }
