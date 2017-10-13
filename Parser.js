@@ -111,7 +111,7 @@ class Parser {
 			}
 
 			// type literals. "null" is always handled as a null literal, not a type literal.
-			if(["int", "float", "str", "fn", "obj"].includes(nextToken.value)) {
+			if(["int", "float", "str", "fn", "obj", "type"].includes(nextToken.value)) {
 				return {
 					kind: "literal",
 					type: "type",
