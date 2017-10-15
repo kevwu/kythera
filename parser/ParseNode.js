@@ -91,6 +91,13 @@ class ParseNode {
 						if(!Array.isArray(payload.parameters)) {
 							throw new Error("Parameters must be an array.")
 						}
+
+						if(!payload.parameters.every((param, i) => {
+							return param.type.kind === "type"
+							})) {
+							throw new Error("Every parameter must be a type node")
+						}
+
 						this.parameters = payload.parameters
 
 						if(!Array.isArray(payload.body)) {
