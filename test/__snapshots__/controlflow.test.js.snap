@@ -8,7 +8,7 @@ Object {
       "name": "a",
     },
   ],
-  "condition": Object {
+  "condition": ParseNode {
     "kind": "literal",
     "type": "bool",
     "value": false,
@@ -31,26 +31,26 @@ Object {
       "name": "a",
     },
   ],
-  "condition": Object {
+  "condition": ParseNode {
     "kind": "literal",
     "type": "bool",
     "value": false,
   },
   "else": Object {
     "body": Array [
-      Object {
+      ParseNode {
         "kind": "literal",
         "type": "int",
         "value": 23,
       },
     ],
-    "condition": Object {
+    "condition": ParseNode {
       "kind": "literal",
       "type": "bool",
       "value": false,
     },
     "else": Array [
-      Object {
+      ParseNode {
         "kind": "literal",
         "type": "str",
         "value": "yay",
@@ -70,7 +70,7 @@ Object {
       "name": "a",
     },
   ],
-  "condition": Object {
+  "condition": ParseNode {
     "kind": "binary",
     "left": Object {
       "kind": "identifier",
@@ -84,13 +84,13 @@ Object {
   },
   "else": Object {
     "body": Array [
-      Object {
+      ParseNode {
         "kind": "literal",
         "type": "int",
         "value": 23,
       },
     ],
-    "condition": Object {
+    "condition": ParseNode {
       "kind": "binary",
       "left": Object {
         "kind": "identifier",
@@ -103,7 +103,7 @@ Object {
       },
     },
     "else": Array [
-      Object {
+      ParseNode {
         "kind": "literal",
         "type": "str",
         "value": "hello",
@@ -123,7 +123,7 @@ Object {
       "name": "a",
     },
   ],
-  "condition": Object {
+  "condition": ParseNode {
     "kind": "binary",
     "left": Object {
       "kind": "identifier",
@@ -148,21 +148,21 @@ Object {
 exports[`Types if-else-if with boolean 1`] = `
 Object {
   "body": Array [
-    Object {
+    ParseNode {
       "kind": "assign",
       "left": Object {
         "kind": "identifier",
         "name": "a",
       },
       "operator": "=",
-      "right": Object {
+      "right": ParseNode {
         "kind": "binary",
         "left": Object {
           "kind": "identifier",
           "name": "a",
         },
         "operator": "+",
-        "right": Object {
+        "right": ParseNode {
           "kind": "literal",
           "type": "int",
           "value": 2,
@@ -170,7 +170,7 @@ Object {
       },
     },
   ],
-  "condition": Object {
+  "condition": ParseNode {
     "kind": "binary",
     "left": Object {
       "kind": "identifier",
@@ -190,7 +190,7 @@ exports[`Types while 1`] = `
 Object {
   "identifier": "x",
   "kind": "let",
-  "value": Object {
+  "value": ParseNode {
     "kind": "literal",
     "type": "int",
     "value": 0,
@@ -201,21 +201,21 @@ Object {
 exports[`Types while 2`] = `
 Object {
   "body": Array [
-    Object {
+    ParseNode {
       "kind": "assign",
       "left": Object {
         "kind": "identifier",
         "name": "x",
       },
       "operator": "=",
-      "right": Object {
+      "right": ParseNode {
         "kind": "binary",
         "left": Object {
           "kind": "identifier",
           "name": "x",
         },
         "operator": "+",
-        "right": Object {
+        "right": ParseNode {
           "kind": "literal",
           "type": "int",
           "value": 1,
@@ -223,14 +223,14 @@ Object {
       },
     },
   ],
-  "condition": Object {
+  "condition": ParseNode {
     "kind": "binary",
     "left": Object {
       "kind": "identifier",
       "name": "x",
     },
     "operator": "<",
-    "right": Object {
+    "right": ParseNode {
       "kind": "literal",
       "type": "int",
       "value": 10,

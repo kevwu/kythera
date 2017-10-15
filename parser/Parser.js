@@ -1,6 +1,8 @@
 const InputStream = require("./InputStream")
 const Tokenizer = require("./Tokenizer")
 
+const ParseNode = require("./ParseNode")
+
 const ParserConstants = {
 	"PRECEDENCE": {
 			"=": 1,
@@ -11,48 +13,40 @@ const ParserConstants = {
 			"*": 20, "/": 20, "%": 20
 	},
 	"LITERALS": {
-		"false": {
-			"kind": "literal",
+		"false": new ParseNode("literal", {
 			"type": "bool",
 			"value": false
-		},
-		"true": {
-			"kind": "literal",
+		}),
+		"true": new ParseNode("literal", {
 			"type": "bool",
 			"value": true
-		},
-		"null": {
-			"kind": "literal",
+		}),
+		"null": new ParseNode("literal", {
 			"type": "null",
 			"value": null
-		}
+		}),
 	},
 	"TYPES": {
-		"null": {
-			"kind": "type",
+		"null": new ParseNode("type", {
 			"type": "null",
 			"origin": "builtin"
-		},
-		"int": {
-			"kind": "type",
+		}),
+		"int": new ParseNode("type", {
 			"type": "int",
 			"origin": "builtin"
-		},
-		"float": {
-			"kind": "type",
+		}),
+		"float": new ParseNode("type", {
 			"type": "float",
 			"origin": "builtin"
-		},
-		"str": {
-			"kind": "type",
+		}),
+		"str": new ParseNode("type", {
 			"type": "str",
 			"origin": "builtin"
-		},
-		"bool": {
-			"kind": "type",
+		}),
+		"bool": new ParseNode("type", {
 			"type": "bool",
 			"origin": "builtin"
-		}
+		})
 	}
 }
 
@@ -102,20 +96,18 @@ class Parser {
 
 			if(this.confirmToken('!', "op")) {
 				this.consumeToken('!', "op")
-				return {
-					kind: "unary",
+				return new ParseNode("unary", {
 					operator: "!",
 					target: this.parseExpression(false),
-				}
+				})
 			}
 
-			// type literals. "null" is always handled as a null literal, not a type literal.
-			if(["int", "float", "str", "fn", "obj"].includes(nextToken.value)) {
-				return {
-					kind: "literal",
+			// type literals. "null" is always handled as a null literal, not a null type literal.
+			if(["int", "float", "str", "fn", "obj", "type"].includes(nextToken.value)) {
+				return new ParseNode("literal", {
 					type: "type",
 					value: this.parseType()
-				}
+				})
 			}
 
 			if (this.confirmToken(undefined, "kw")) {
@@ -204,25 +196,22 @@ class Parser {
 			// literals
 			if (nextToken.type === "num") {
 				if (nextToken.value % 1 !== 0) { // float
-					return {
-						kind: "literal",
+					return new ParseNode("literal", {
 						type: "float",
 						value: nextToken.value,
-					}
+					})
 				} else { // int
-					return {
-						kind: "literal",
+					return new ParseNode("literal", {
 						type: "int",
 						value: nextToken.value,
-					}
+					})
 				}
 			}
 			if (nextToken.type === "str") {
-				return {
-					kind: "literal",
+				return new ParseNode("literal", {
 					type: "str",
 					value: nextToken.value,
-				}
+				})
 			}
 
 			// variable identifier
@@ -245,12 +234,12 @@ class Parser {
 					this.tokenizer.next()
 					let right = makeBinary(this.parseExpression(false), nextPrecedence)
 
-					let binary = {
-						kind: token.value === "=" ? "assign" : "binary",
+					let binary = new ParseNode(
+						token.value === "=" ? "assign" : "binary", {
 						operator: token.value,
 						left: left,
 						right: right,
-					}
+					})
 
 					return makeBinary(binary, currentPrecedence)
 				}
@@ -310,7 +299,7 @@ class Parser {
 
 			this.consumeToken("]", "punc")
 
-			// list types like int[] are handled by parseType. This is guaranteed to be an access
+			// list types like int[] are handled by parseType. Seeing a [ in this context guarantees it's an access
 			return {
 				kind: "access",
 				target: exp,
@@ -381,11 +370,10 @@ class Parser {
 
 		this.consumeToken('}', "punc")
 
-		return {
-			kind: "literal",
+		return new ParseNode("literal", {
 			type: "obj",
 			value: contents,
-		}
+		})
 	}
 
 	parseFunctionLiteral() {
@@ -413,13 +401,12 @@ class Parser {
 
 		let body = this.parseBlock()
 
-		return {
-			kind: "literal",
+		return new ParseNode("literal", {
 			type: "fn",
 			parameters: parameters,
 			body: body,
 			returns: returnType
-		}
+		})
 	}
 
 	// parse a type, whether built-in (int, str etc) or user-defined (fn, rigid obj)
@@ -458,13 +445,12 @@ class Parser {
 
 					let returnType = this.parseType()
 
-					parseTypeAtom = {
-						kind: "type",
+					parseTypeAtom = new ParseNode("type", {
 						origin: "builtin",
 						type: "fn",
 						parameters: parameters,
 						returns: returnType,
-					}
+					})
 					break
 				case "obj":
 					let entries = {}
@@ -480,12 +466,11 @@ class Parser {
 						entries[entryName.value] = entryType
 					})
 
-					parseTypeAtom = {
-						kind: "type",
+					parseTypeAtom = new ParseNode("type", {
 						origin: "builtin",
 						type: "obj",
 						structure: entries,
-					}
+					})
 
 					break
 				default:
@@ -493,25 +478,22 @@ class Parser {
 			}
 		} else if (nextToken.type === "var") { // user-named types
 			// TODO types can come from expressions
-			parseTypeAtom = {
-				kind: "type",
+			parseTypeAtom = new ParseNode("type", {
 				origin: "named",
 				name: nextToken.value,
-			}
+			})
 		} else {
 			this.err("Expected type or type identifier but got " + nextToken.value)
 		}
 
-		// TODO this might not need to be written as a separate function and can be streamlined
 		if(this.confirmToken("[", "punc")) { // list type
 			this.consumeToken("[", "punc")
 			this.consumeToken("]", "punc")
 
-			return {
-				kind: "type",
+			return new ParseNode("list", {
 				type: "list",
 				listType: parseTypeAtom,
-			}
+			})
 		} else {
 			return parseTypeAtom
 		}
@@ -568,6 +550,7 @@ class Parser {
 		} else {
 			const kindFullNames = {
 				kw: "keyword",
+				"var": "identifier",
 				op: "operator",
 				num: "number",
 				str: "string",

@@ -3,19 +3,19 @@
 exports[`Literals Arithmetic binary Adding floats 1`] = `
 Object {
   "kind": "typeof",
-  "target": Object {
+  "target": ParseNode {
     "kind": "literal",
     "type": "obj",
     "value": Object {
       "a": Object {
         "kind": "new",
-        "target": Object {
+        "target": ParseNode {
           "kind": "type",
           "origin": "builtin",
           "type": "int",
         },
       },
-      "b": Object {
+      "b": ParseNode {
         "kind": "literal",
         "type": "int",
         "value": 10,
@@ -26,19 +26,19 @@ Object {
 `;
 
 exports[`Literals Arithmetic binary Adding ints 1`] = `
-Object {
+ParseNode {
   "kind": "literal",
   "type": "obj",
   "value": Object {
     "a": Object {
       "kind": "new",
-      "target": Object {
+      "target": ParseNode {
         "kind": "type",
         "origin": "builtin",
         "type": "int",
       },
     },
-    "b": Object {
+    "b": ParseNode {
       "kind": "literal",
       "type": "int",
       "value": 10,
@@ -48,15 +48,15 @@ Object {
 `;
 
 exports[`Literals Arithmetic binary Divide 1`] = `
-Object {
+ParseNode {
   "kind": "binary",
-  "left": Object {
+  "left": ParseNode {
     "kind": "literal",
     "type": "float",
     "value": 3.14159,
   },
   "operator": "+",
-  "right": Object {
+  "right": ParseNode {
     "kind": "literal",
     "type": "float",
     "value": 2.71828,
@@ -65,15 +65,15 @@ Object {
 `;
 
 exports[`Literals Arithmetic binary Modulo 1`] = `
-Object {
+ParseNode {
   "kind": "binary",
-  "left": Object {
+  "left": ParseNode {
     "kind": "literal",
     "type": "int",
     "value": 9,
   },
   "operator": "-",
-  "right": Object {
+  "right": ParseNode {
     "kind": "literal",
     "type": "int",
     "value": 5,
@@ -82,15 +82,15 @@ Object {
 `;
 
 exports[`Literals Arithmetic binary Operator precedence 1`] = `
-Object {
+ParseNode {
   "kind": "binary",
-  "left": Object {
+  "left": ParseNode {
     "kind": "literal",
     "type": "int",
     "value": 6,
   },
   "operator": "/",
-  "right": Object {
+  "right": ParseNode {
     "kind": "literal",
     "type": "int",
     "value": 3,
@@ -99,15 +99,15 @@ Object {
 `;
 
 exports[`Literals Arithmetic binary Operator precedence with parens 1`] = `
-Object {
+ParseNode {
   "kind": "binary",
-  "left": Object {
+  "left": ParseNode {
     "kind": "literal",
     "type": "int",
     "value": 4,
   },
   "operator": "*",
-  "right": Object {
+  "right": ParseNode {
     "kind": "literal",
     "type": "int",
     "value": 2,
@@ -116,15 +116,15 @@ Object {
 `;
 
 exports[`Literals Arithmetic binary Subtract 1`] = `
-Object {
+ParseNode {
   "kind": "binary",
-  "left": Object {
+  "left": ParseNode {
     "kind": "literal",
     "type": "int",
     "value": 2,
   },
   "operator": "+",
-  "right": Object {
+  "right": ParseNode {
     "kind": "literal",
     "type": "int",
     "value": 2,
@@ -133,24 +133,24 @@ Object {
 `;
 
 exports[`Literals Boolean binary And 1`] = `
-Object {
+ParseNode {
   "kind": "binary",
-  "left": Object {
+  "left": ParseNode {
     "kind": "binary",
-    "left": Object {
+    "left": ParseNode {
       "kind": "literal",
       "type": "int",
       "value": 2,
     },
     "operator": "+",
-    "right": Object {
+    "right": ParseNode {
       "kind": "literal",
       "type": "int",
       "value": 3,
     },
   },
   "operator": "*",
-  "right": Object {
+  "right": ParseNode {
     "kind": "literal",
     "type": "int",
     "value": 4,
@@ -159,10 +159,10 @@ Object {
 `;
 
 exports[`Literals Boolean binary And 2`] = `
-Object {
+ParseNode {
   "kind": "unary",
   "operator": "!",
-  "target": Object {
+  "target": ParseNode {
     "kind": "literal",
     "type": "bool",
     "value": false,
@@ -171,10 +171,10 @@ Object {
 `;
 
 exports[`Literals Boolean binary Or 1`] = `
-Object {
+ParseNode {
   "kind": "unary",
   "operator": "!",
-  "target": Object {
+  "target": ParseNode {
     "kind": "literal",
     "type": "bool",
     "value": true,
@@ -183,15 +183,15 @@ Object {
 `;
 
 exports[`Literals Boolean binary Or 2`] = `
-Object {
+ParseNode {
   "kind": "binary",
-  "left": Object {
+  "left": ParseNode {
     "kind": "literal",
     "type": "bool",
     "value": true,
   },
   "operator": "&&",
-  "right": Object {
+  "right": ParseNode {
     "kind": "literal",
     "type": "bool",
     "value": true,
@@ -200,15 +200,15 @@ Object {
 `;
 
 exports[`Literals Boolean unary Negate false 1`] = `
-Object {
+ParseNode {
   "kind": "binary",
-  "left": Object {
+  "left": ParseNode {
     "kind": "literal",
     "type": "int",
     "value": 18,
   },
   "operator": "%",
-  "right": Object {
+  "right": ParseNode {
     "kind": "literal",
     "type": "int",
     "value": 3,
@@ -217,23 +217,23 @@ Object {
 `;
 
 exports[`Literals Boolean unary Negate true 1`] = `
-Object {
+ParseNode {
   "kind": "binary",
-  "left": Object {
+  "left": ParseNode {
     "kind": "literal",
     "type": "int",
     "value": 2,
   },
   "operator": "+",
-  "right": Object {
+  "right": ParseNode {
     "kind": "binary",
-    "left": Object {
+    "left": ParseNode {
       "kind": "literal",
       "type": "int",
       "value": 3,
     },
     "operator": "*",
-    "right": Object {
+    "right": ParseNode {
       "kind": "literal",
       "type": "int",
       "value": 4,
@@ -243,15 +243,15 @@ Object {
 `;
 
 exports[`Literals Type literals float 1`] = `
-Object {
+ParseNode {
   "kind": "binary",
-  "left": Object {
+  "left": ParseNode {
     "kind": "literal",
     "type": "bool",
     "value": true,
   },
   "operator": "||",
-  "right": Object {
+  "right": ParseNode {
     "kind": "literal",
     "type": "bool",
     "value": true,
@@ -260,10 +260,10 @@ Object {
 `;
 
 exports[`Literals Type literals fn (no params) 1`] = `
-Object {
+ParseNode {
   "kind": "literal",
   "type": "type",
-  "value": Object {
+  "value": ParseNode {
     "kind": "type",
     "origin": "builtin",
     "type": "float",
@@ -272,10 +272,10 @@ Object {
 `;
 
 exports[`Literals Type literals fn (with params) 1`] = `
-Object {
+ParseNode {
   "kind": "literal",
   "type": "type",
-  "value": Object {
+  "value": ParseNode {
     "kind": "type",
     "origin": "builtin",
     "type": "int",
@@ -284,15 +284,15 @@ Object {
 `;
 
 exports[`Literals Type literals int 1`] = `
-Object {
+ParseNode {
   "kind": "binary",
-  "left": Object {
+  "left": ParseNode {
     "kind": "literal",
     "type": "bool",
     "value": true,
   },
   "operator": "&&",
-  "right": Object {
+  "right": ParseNode {
     "kind": "literal",
     "type": "bool",
     "value": false,
@@ -301,25 +301,25 @@ Object {
 `;
 
 exports[`Literals Type literals obj (freeform) 1`] = `
-Object {
+ParseNode {
   "kind": "literal",
   "type": "type",
-  "value": Object {
+  "value": ParseNode {
     "kind": "type",
     "origin": "builtin",
     "parameters": Array [
-      Object {
+      ParseNode {
         "kind": "type",
         "origin": "builtin",
         "type": "int",
       },
-      Object {
+      ParseNode {
         "kind": "type",
         "origin": "builtin",
         "type": "str",
       },
     ],
-    "returns": Object {
+    "returns": ParseNode {
       "kind": "type",
       "origin": "builtin",
       "type": "null",
@@ -330,10 +330,10 @@ Object {
 `;
 
 exports[`Literals Type literals obj (structured) 1`] = `
-Object {
+ParseNode {
   "kind": "literal",
   "type": "type",
-  "value": Object {
+  "value": ParseNode {
     "kind": "type",
     "origin": "builtin",
     "type": "str",
@@ -342,15 +342,15 @@ Object {
 `;
 
 exports[`Literals Type literals str 1`] = `
-Object {
+ParseNode {
   "kind": "binary",
-  "left": Object {
+  "left": ParseNode {
     "kind": "literal",
     "type": "bool",
     "value": true,
   },
   "operator": "||",
-  "right": Object {
+  "right": ParseNode {
     "kind": "literal",
     "type": "bool",
     "value": false,
@@ -359,7 +359,7 @@ Object {
 `;
 
 exports[`Literals float literal 1`] = `
-Object {
+ParseNode {
   "kind": "literal",
   "type": "float",
   "value": 3.14159,
@@ -369,7 +369,7 @@ Object {
 exports[`Literals float typeof 1`] = `
 Object {
   "kind": "typeof",
-  "target": Object {
+  "target": ParseNode {
     "kind": "literal",
     "type": "float",
     "value": 3.14159,
@@ -378,7 +378,7 @@ Object {
 `;
 
 exports[`Literals int literal 1`] = `
-Object {
+ParseNode {
   "kind": "literal",
   "type": "int",
   "value": 10,
@@ -388,7 +388,7 @@ Object {
 exports[`Literals int typeof 1`] = `
 Object {
   "kind": "typeof",
-  "target": Object {
+  "target": ParseNode {
     "kind": "literal",
     "type": "int",
     "value": 10,
@@ -397,7 +397,7 @@ Object {
 `;
 
 exports[`Literals null literal 1`] = `
-Object {
+ParseNode {
   "kind": "literal",
   "type": "null",
   "value": null,
@@ -407,7 +407,7 @@ Object {
 exports[`Literals null typeof 1`] = `
 Object {
   "kind": "typeof",
-  "target": Object {
+  "target": ParseNode {
     "kind": "literal",
     "type": "null",
     "value": null,
@@ -416,7 +416,7 @@ Object {
 `;
 
 exports[`Literals obj literal 1`] = `
-Object {
+ParseNode {
   "kind": "literal",
   "type": "str",
   "value": "hello",
@@ -426,7 +426,7 @@ Object {
 exports[`Literals obj typeof 1`] = `
 Object {
   "kind": "typeof",
-  "target": Object {
+  "target": ParseNode {
     "kind": "literal",
     "type": "str",
     "value": "hello",

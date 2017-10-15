@@ -1,14 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Variables Boolean primitive Assignment 1`] = `
-Object {
+ParseNode {
   "kind": "assign",
   "left": Object {
     "kind": "identifier",
     "name": "myBool",
   },
   "operator": "=",
-  "right": Object {
+  "right": ParseNode {
     "kind": "literal",
     "type": "bool",
     "value": true,
@@ -20,7 +20,7 @@ exports[`Variables Boolean primitive Declaration 1`] = `
 Object {
   "identifier": "myBool",
   "kind": "let",
-  "value": Object {
+  "value": ParseNode {
     "kind": "literal",
     "type": "bool",
     "value": false,
@@ -29,14 +29,14 @@ Object {
 `;
 
 exports[`Variables Floating point primitive Assignment 1`] = `
-Object {
+ParseNode {
   "kind": "assign",
   "left": Object {
     "kind": "identifier",
     "name": "myFloat",
   },
   "operator": "=",
-  "right": Object {
+  "right": ParseNode {
     "kind": "literal",
     "type": "float",
     "value": 2.71828183,
@@ -48,7 +48,7 @@ exports[`Variables Floating point primitive Declaration 1`] = `
 Object {
   "identifier": "myFloat",
   "kind": "let",
-  "value": Object {
+  "value": ParseNode {
     "kind": "literal",
     "type": "float",
     "value": 3.14159,
@@ -60,11 +60,11 @@ exports[`Variables Function Declaration 1`] = `
 Object {
   "identifier": "myFn",
   "kind": "let",
-  "value": Object {
+  "value": ParseNode {
     "body": Array [
       Object {
         "kind": "return",
-        "value": Object {
+        "value": ParseNode {
           "kind": "literal",
           "type": "str",
           "value": "abc",
@@ -75,14 +75,14 @@ Object {
     "parameters": Array [
       Object {
         "name": "a",
-        "type": Object {
+        "type": ParseNode {
           "kind": "type",
           "origin": "builtin",
           "type": "int",
         },
       },
     ],
-    "returns": Object {
+    "returns": ParseNode {
       "kind": "type",
       "origin": "builtin",
       "type": "str",
@@ -93,14 +93,14 @@ Object {
 `;
 
 exports[`Variables Integer primitive Assignment 1`] = `
-Object {
+ParseNode {
   "kind": "assign",
   "left": Object {
     "kind": "identifier",
     "name": "myInt",
   },
   "operator": "=",
-  "right": Object {
+  "right": ParseNode {
     "kind": "literal",
     "type": "int",
     "value": 3,
@@ -112,7 +112,7 @@ exports[`Variables Integer primitive Declaration 1`] = `
 Object {
   "identifier": "myInt",
   "kind": "let",
-  "value": Object {
+  "value": ParseNode {
     "kind": "literal",
     "type": "int",
     "value": 99,
@@ -121,14 +121,14 @@ Object {
 `;
 
 exports[`Variables String Assignment 1`] = `
-Object {
+ParseNode {
   "kind": "assign",
   "left": Object {
     "kind": "identifier",
     "name": "myStr",
   },
   "operator": "=",
-  "right": Object {
+  "right": ParseNode {
     "kind": "literal",
     "type": "str",
     "value": "world",
@@ -140,7 +140,7 @@ exports[`Variables String Declaration 1`] = `
 Object {
   "identifier": "myStr",
   "kind": "let",
-  "value": Object {
+  "value": ParseNode {
     "kind": "literal",
     "type": "str",
     "value": "hello",
@@ -152,7 +152,7 @@ exports[`Variables null Declaration 1`] = `
 Object {
   "identifier": "myNull",
   "kind": "let",
-  "value": Object {
+  "value": ParseNode {
     "kind": "literal",
     "type": "null",
     "value": null,
@@ -173,7 +173,7 @@ Object {
   "kind": "let",
   "value": Object {
     "kind": "new",
-    "target": Object {
+    "target": ParseNode {
       "kind": "type",
       "origin": "builtin",
       "type": "bool",
@@ -188,7 +188,7 @@ Object {
   "kind": "let",
   "value": Object {
     "kind": "new",
-    "target": Object {
+    "target": ParseNode {
       "kind": "type",
       "origin": "builtin",
       "type": "float",
@@ -203,11 +203,11 @@ Object {
   "kind": "let",
   "value": Object {
     "kind": "new",
-    "target": Object {
+    "target": ParseNode {
       "kind": "type",
       "origin": "builtin",
       "parameters": Array [],
-      "returns": Object {
+      "returns": ParseNode {
         "kind": "type",
         "origin": "builtin",
         "type": "null",
@@ -224,7 +224,7 @@ Object {
   "kind": "let",
   "value": Object {
     "kind": "new",
-    "target": Object {
+    "target": ParseNode {
       "kind": "type",
       "origin": "builtin",
       "type": "int",
@@ -239,7 +239,7 @@ Object {
   "kind": "let",
   "value": Object {
     "kind": "new",
-    "target": Object {
+    "target": ParseNode {
       "kind": "type",
       "origin": "builtin",
       "type": "str",

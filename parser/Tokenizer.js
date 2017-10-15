@@ -1,8 +1,9 @@
+const KEYWORDS =  [ "let", "new", "if", "else", "while", "each", "return", "break", "continue", "typeof", "as", "bool", "int", "float", "str", "fn", "obj", "list", "import", "export", "include", "this", "true", "false", "null"]
+
 class Tokenizer {
 	constructor(inputStream) {
 		this.currentToken = null
 		this.inputStream = inputStream
-		Tokenizer.keywords = " let new if else while each return break continue typeof as bool int float str fn obj list import export include this true false null "
 	}
 
 	// read as long as we are not at eof and the condition given is true for the next character
@@ -176,7 +177,7 @@ class Tokenizer {
 
 	// boolean utility functions for detecting token types
 	static isKeyword(word) {
-		return Tokenizer.keywords.indexOf(" " + word + " ") >= 0
+		return KEYWORDS.includes(word)
 	}
 
 	static isDigit(char) {

@@ -1,1 +1,8 @@
-new fn<> null
+fn<int, str> float
+
+obj{
+	int a,
+	str b,
+}
+
+let myList = new int[]

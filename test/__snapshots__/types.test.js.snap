@@ -6,7 +6,7 @@ Object {
   "kind": "let",
   "value": Object {
     "kind": "new",
-    "target": Object {
+    "target": ParseNode {
       "kind": "type",
       "origin": "builtin",
       "type": "int",
@@ -19,7 +19,7 @@ exports[`Types 'let' From int literal 1`] = `
 Object {
   "identifier": "a",
   "kind": "let",
-  "value": Object {
+  "value": ParseNode {
     "kind": "literal",
     "type": "int",
     "value": 10,
@@ -31,16 +31,16 @@ exports[`Types 'let' From obj literal 1`] = `
 Object {
   "identifier": "myObj",
   "kind": "let",
-  "value": Object {
+  "value": ParseNode {
     "kind": "literal",
     "type": "obj",
     "value": Object {
-      "a": Object {
+      "a": ParseNode {
         "kind": "literal",
         "type": "int",
         "value": 99,
       },
-      "b": Object {
+      "b": ParseNode {
         "kind": "literal",
         "type": "str",
         "value": "beep",
@@ -53,7 +53,7 @@ Object {
 exports[`Types 'new' float 1`] = `
 Object {
   "kind": "new",
-  "target": Object {
+  "target": ParseNode {
     "kind": "type",
     "origin": "builtin",
     "type": "float",
@@ -64,7 +64,7 @@ Object {
 exports[`Types 'new' int 1`] = `
 Object {
   "kind": "new",
-  "target": Object {
+  "target": ParseNode {
     "kind": "type",
     "origin": "builtin",
     "type": "int",
@@ -75,7 +75,7 @@ Object {
 exports[`Types 'new' null 1`] = `
 Object {
   "kind": "new",
-  "target": Object {
+  "target": ParseNode {
     "kind": "type",
     "origin": "builtin",
     "type": "null",
@@ -86,7 +86,7 @@ Object {
 exports[`Types 'new' str 1`] = `
 Object {
   "kind": "new",
-  "target": Object {
+  "target": ParseNode {
     "kind": "type",
     "origin": "builtin",
     "type": "str",
@@ -104,7 +104,7 @@ Object {
       "name": "myObj",
     },
     "kind": "as",
-    "to": Object {
+    "to": ParseNode {
       "kind": "type",
       "name": "myObjType",
       "origin": "named",
@@ -122,7 +122,7 @@ Object {
         "name": "myObj",
       },
       "kind": "as",
-      "to": Object {
+      "to": ParseNode {
         "kind": "type",
         "name": "myObjType",
         "origin": "named",
@@ -157,7 +157,7 @@ exports[`Types Casting Function using user-defined type 1`] = `
 Object {
   "identifier": "mySpecificFn",
   "kind": "let",
-  "value": Object {
+  "value": ParseNode {
     "body": Array [
       Object {
         "kind": "objAccess",
@@ -177,7 +177,7 @@ Object {
       },
       Object {
         "kind": "return",
-        "value": Object {
+        "value": ParseNode {
           "kind": "literal",
           "type": "int",
           "value": 10,
@@ -188,14 +188,14 @@ Object {
     "parameters": Array [
       Object {
         "name": "object",
-        "type": Object {
+        "type": ParseNode {
           "kind": "type",
           "name": "myObjType",
           "origin": "named",
         },
       },
     ],
-    "returns": Object {
+    "returns": ParseNode {
       "kind": "type",
       "origin": "builtin",
       "type": "null",
@@ -216,7 +216,7 @@ Object {
 `;
 
 exports[`Types Casting Typeof comparison 1`] = `
-Object {
+ParseNode {
   "kind": "binary",
   "left": Object {
     "kind": "typeof",
@@ -237,7 +237,7 @@ Object {
 `;
 
 exports[`Types Casting Typeof comparison with nested type cast 1`] = `
-Object {
+ParseNode {
   "kind": "binary",
   "left": Object {
     "kind": "typeof",
@@ -255,7 +255,7 @@ Object {
         "name": "myObj",
       },
       "kind": "as",
-      "to": Object {
+      "to": ParseNode {
         "kind": "type",
         "name": "myObjType",
         "origin": "named",
@@ -269,30 +269,30 @@ exports[`Types Type assignments with let fn type 1`] = `
 Object {
   "identifier": "myFnType",
   "kind": "let",
-  "value": Object {
+  "value": ParseNode {
     "kind": "literal",
     "type": "type",
-    "value": Object {
+    "value": ParseNode {
       "kind": "type",
       "origin": "builtin",
       "parameters": Array [
-        Object {
+        ParseNode {
           "kind": "type",
           "origin": "builtin",
           "type": "int",
         },
-        Object {
+        ParseNode {
           "kind": "type",
           "origin": "builtin",
           "type": "str",
         },
-        Object {
+        ParseNode {
           "kind": "type",
           "name": "myIntType",
           "origin": "named",
         },
       ],
-      "returns": Object {
+      "returns": ParseNode {
         "kind": "type",
         "origin": "builtin",
         "type": "str",
@@ -307,10 +307,10 @@ exports[`Types Type assignments with let int primitive 1`] = `
 Object {
   "identifier": "myIntType",
   "kind": "let",
-  "value": Object {
+  "value": ParseNode {
     "kind": "literal",
     "type": "type",
-    "value": Object {
+    "value": ParseNode {
       "kind": "type",
       "origin": "builtin",
       "type": "int",
@@ -323,19 +323,19 @@ exports[`Types Type assignments with let obj type 1`] = `
 Object {
   "identifier": "myObjType",
   "kind": "let",
-  "value": Object {
+  "value": ParseNode {
     "kind": "literal",
     "type": "type",
-    "value": Object {
+    "value": ParseNode {
       "kind": "type",
       "origin": "builtin",
       "structure": Object {
-        "a": Object {
+        "a": ParseNode {
           "kind": "type",
           "origin": "builtin",
           "type": "int",
         },
-        "b": Object {
+        "b": ParseNode {
           "kind": "type",
           "origin": "builtin",
           "type": "str",
@@ -368,7 +368,7 @@ Object {
       "name": "myObj",
     },
     "kind": "as",
-    "to": Object {
+    "to": ParseNode {
       "kind": "type",
       "name": "myObjType",
       "origin": "named",
@@ -393,7 +393,7 @@ Object {
 `;
 
 exports[`Types obj access Access use in binary 1`] = `
-Object {
+ParseNode {
   "kind": "binary",
   "left": Object {
     "kind": "objAccess",
@@ -404,7 +404,7 @@ Object {
     },
   },
   "operator": "+",
-  "right": Object {
+  "right": ParseNode {
     "kind": "literal",
     "type": "int",
     "value": 10,
