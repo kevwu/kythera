@@ -122,19 +122,19 @@ class ParseNode {
 				this.type = payload.type
 				break
 			case "type":
-				const validBuiltin = ["int", "float", "bool", "null", "str", "fn", "obj", "type", "list"].includes(payload.type)
+				let builtIns = ["int", "float", "bool", "null", "str", "fn", "obj", "type", "list"]
 
-				if(validBuiltin && payload.origin !== "builtin") {
-					throw new Error(`${payload.type} is a built-in type, not a named type.`)
-				}
+				if(payload.type) {
+					if(!builtIns.includes(payload.type) || payload.origin !== "builtin") {
+						throw new Error(`${payload.type} is not a built-in type.`)
+					}
 
-				if(!validBuiltin && payload.origin !== "named") {
-					throw new Error(`${payload.type} is not a built-in type.`)
-				}
-
-				if(validBuiltin) {
 					this.type = payload.type
 				} else {
+					if(builtIns.includes(payload.name) || payload.origin !== "named") {
+						throw new Error(`${payload.name} is a built-in type, not a named type.`)
+					}
+
 					this.name = payload.name
 				}
 

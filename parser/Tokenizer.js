@@ -1,4 +1,4 @@
-const KEYWORDS =  [ "let", "new", "if", "else", "while", "each", "return", "break", "continue", "typeof", "as", "bool", "int", "float", "str", "fn", "obj", "list", "import", "export", "include", "this", "true", "false", "null"]
+const KEYWORDS =  [ "let", "new", "if", "else", "while", "each", "return", "break", "continue", "typeof", "as", "bool", "int", "float", "str", "fn", "obj", "list", "type", "import", "export", "include", "this", "true", "false", "null"]
 
 class Tokenizer {
 	constructor(inputStream) {
