@@ -8,7 +8,7 @@ Object {
     "value": 2,
   },
   "kind": "access",
-  "target": Object {
+  "target": ParseNode {
     "kind": "identifier",
     "name": "myList",
   },
@@ -26,7 +26,7 @@ Object {
   "target": Object {
     "arguments": Array [],
     "kind": "call",
-    "target": Object {
+    "target": ParseNode {
       "kind": "identifier",
       "name": "myListFn",
     },
@@ -35,7 +35,7 @@ Object {
 `;
 
 exports[`Lists Creation of custom type (irrelvant) 1`] = `
-Object {
+ParseNode {
   "identifier": "myType",
   "kind": "let",
   "value": ParseNode {
@@ -63,14 +63,14 @@ Object {
 `;
 
 exports[`Lists Function returning list 1`] = `
-Object {
+ParseNode {
   "identifier": "myListFn",
   "kind": "let",
   "value": ParseNode {
     "body": Array [
-      Object {
+      ParseNode {
         "kind": "return",
-        "value": Object {
+        "value": ParseNode {
           "kind": "new",
           "target": ParseNode {
             "contains": ParseNode {
@@ -103,10 +103,10 @@ Object {
 `;
 
 exports[`Lists Initialization from object list literal 1`] = `
-Object {
+ParseNode {
   "identifier": "myTypeList2",
   "kind": "let",
-  "value": Object {
+  "value": ParseNode {
     "kind": "new",
     "target": ParseNode {
       "contains": ParseNode {
@@ -135,10 +135,10 @@ Object {
 `;
 
 exports[`Lists Initialization with 'let' 1`] = `
-Object {
+ParseNode {
   "identifier": "myList",
   "kind": "let",
-  "value": Object {
+  "value": ParseNode {
     "kind": "new",
     "target": ParseNode {
       "contains": ParseNode {
@@ -155,10 +155,10 @@ Object {
 `;
 
 exports[`Lists Initialization with custom type 1`] = `
-Object {
+ParseNode {
   "identifier": "myTypeList",
   "kind": "let",
-  "value": Object {
+  "value": ParseNode {
     "kind": "new",
     "target": ParseNode {
       "contains": ParseNode {

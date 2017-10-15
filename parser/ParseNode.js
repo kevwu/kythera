@@ -5,6 +5,7 @@ class ParseNode {
 		this.kind = kind
 
 		// Internal sanity check: validate node kind and structure
+		// This also serves as the de-facto listing of all node types and their expected structures
 		switch(kind) {
 			case "unary":
 				// only one unary operator right now
@@ -180,8 +181,89 @@ class ParseNode {
 					this.structure = payload.structure
 				}
 				break
-			case "list":
-				console.log(payload)
+			case "identifier":
+				// TODO validate against JS keywords
+				if(typeof payload.name !== "string") {
+					throw new Error("Identifier name must be a string.")
+				}
+				this.name = payload.name
+				break
+			case "typeof":
+				if(typeof payload.target !== "object") {
+					throw new Error("typeof target must be a Parse Node.")
+				}
+				this.target = payload.target
+				break
+			case "new":
+				if(payload.target.kind !== "type") {
+					throw new Error("new target must a type node.")
+				}
+				this.target = payload.target
+				break
+			case "let":
+				if(typeof payload.identifier !== "string") {
+					throw new Error("Identifier name must be a string.")
+				}
+				this.identifier = payload.identifier
+
+				if(typeof payload.value !== "object") {
+					throw new Error("let target value must be a Parse Node.")
+				}
+				this.value = payload.value
+				break
+			case "if":
+				if(typeof payload.condition !== "object") {
+					throw new Error("if condition must be a Parse Node.")
+				}
+				this.condition = payload.condition
+
+				if(!Array.isArray(payload.body)) {
+					throw new Error("if body must be an array.")
+				}
+
+				if(!payload.body.every((node, i) => {
+					return typeof node === "object"
+					})) {
+					throw new Error("Every member of the if body must be a Parse Node.")
+				}
+				this.body = payload.body
+
+				if(payload.else) {
+					if(!Array.isArray(payload.else)) {
+						throw new Error("else body must be an array.")
+					}
+
+					if(!payload.else.every((node, i) => {
+						return typeof node === "object"
+						})) {
+						throw new Error("Every member of the else body must be a Parse Node.")
+					}
+
+					this.else = payload.else
+				}
+				break
+			case "while":
+				if(typeof payload.condition !== "object") {
+					throw new Error("while condition must be a Parse Node.")
+				}
+				this.condition = payload.condition
+
+				if(!Array.isArray(payload.body)) {
+					throw new Error("while body must be an array.")
+				}
+
+				if(!payload.body.every((node, i) => {
+						return typeof node === "object"
+					})) {
+					throw new Error("Every member of the while body must be a Parse Node.")
+				}
+				this.body = payload.body
+				break
+			case "return":
+				if(typeof payload.value !== "object") {
+					throw new Error("return value must be a Parse Node.")
+				}
+				this.value = payload.value
 				break
 			default:
 				throw new Error("Invalid node kind: " + kind)

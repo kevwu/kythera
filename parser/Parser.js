@@ -122,18 +122,16 @@ class Parser {
 					case "null":
 						return LITERALS.null
 					case "typeof":
-						return {
-							kind: "typeof",
+						return new ParseNode("typeof", {
 							target: this.parseExpression(false),
-						}
+						})
 					case "new":
 						// this cannot be type-checked yet, there may be user-defined types
 						let type = this.parseType()
 
-						return {
-							kind: "new",
+						return new ParseNode("new", {
 							target: type,
-						}
+						})
 					case "let":
 						let identToken = this.tokenizer.next()
 						if(identToken.type !== "var") {
@@ -144,20 +142,18 @@ class Parser {
 
 						let value = this.parseExpression()
 
-						return {
-							kind: "let",
+						return new ParseNode("let", {
 							identifier: identToken.value,
 							value: value,
-						}
+						})
 					case "if":
 						let ifCondition = this.parseExpression()
 						let ifBody = this.parseBlock()
 
-						let ifStatement = {
-							kind: "if",
+						let ifStatement = new ParseNode("if", {
 							condition: ifCondition,
 							body: ifBody,
-						}
+						})
 
 						if(this.confirmToken("else", "kw")) {
 							this.consumeToken("else", "kw")
@@ -176,16 +172,14 @@ class Parser {
 						let whileCondition = this.parseExpression()
 						let whileBody = this.parseBlock()
 
-						return {
-							kind: "while",
+						return new ParseNode("while", {
 							condition: whileCondition,
 							body: whileBody,
-						}
+						})
 					case "return":
-						return {
-							kind: "return",
+						return new ParseNode("return", {
 							value: this.parseExpression()
-						}
+						})
 					default:
 						this.err("Unhandled keyword: " + nextToken.value)
 				}
@@ -217,10 +211,9 @@ class Parser {
 
 			// variable identifier
 			if (nextToken.type === "var") {
-				return {
-					kind: "identifier",
+				return new ParseNode("identifier", {
 					name: nextToken.value,
-				}
+				})
 			}
 
 			this.err("Unexpected token: " + JSON.stringify(nextToken))

@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Types 'let' From 'new' 1`] = `
-Object {
+ParseNode {
   "identifier": "b",
   "kind": "let",
-  "value": Object {
+  "value": ParseNode {
     "kind": "new",
     "target": ParseNode {
       "kind": "type",
@@ -16,7 +16,7 @@ Object {
 `;
 
 exports[`Types 'let' From int literal 1`] = `
-Object {
+ParseNode {
   "identifier": "a",
   "kind": "let",
   "value": ParseNode {
@@ -28,7 +28,7 @@ Object {
 `;
 
 exports[`Types 'let' From obj literal 1`] = `
-Object {
+ParseNode {
   "identifier": "myObj",
   "kind": "let",
   "value": ParseNode {
@@ -51,7 +51,7 @@ Object {
 `;
 
 exports[`Types 'new' float 1`] = `
-Object {
+ParseNode {
   "kind": "new",
   "target": ParseNode {
     "kind": "type",
@@ -62,7 +62,7 @@ Object {
 `;
 
 exports[`Types 'new' int 1`] = `
-Object {
+ParseNode {
   "kind": "new",
   "target": ParseNode {
     "kind": "type",
@@ -73,7 +73,7 @@ Object {
 `;
 
 exports[`Types 'new' null 1`] = `
-Object {
+ParseNode {
   "kind": "new",
   "target": ParseNode {
     "kind": "type",
@@ -84,7 +84,7 @@ Object {
 `;
 
 exports[`Types 'new' str 1`] = `
-Object {
+ParseNode {
   "kind": "new",
   "target": ParseNode {
     "kind": "type",
@@ -95,11 +95,11 @@ Object {
 `;
 
 exports[`Types Casting Declaration from type cast 1`] = `
-Object {
+ParseNode {
   "identifier": "myCastedObj",
   "kind": "let",
   "value": Object {
-    "from": Object {
+    "from": ParseNode {
       "kind": "identifier",
       "name": "myObj",
     },
@@ -117,7 +117,7 @@ exports[`Types Casting Function call with type cast 1`] = `
 Object {
   "arguments": Array [
     Object {
-      "from": Object {
+      "from": ParseNode {
         "kind": "identifier",
         "name": "myObj",
       },
@@ -130,7 +130,7 @@ Object {
     },
   ],
   "kind": "call",
-  "target": Object {
+  "target": ParseNode {
     "kind": "identifier",
     "name": "mySpecificFn",
   },
@@ -140,13 +140,13 @@ Object {
 exports[`Types Casting Function call without type cast 1`] = `
 Object {
   "arguments": Array [
-    Object {
+    ParseNode {
       "kind": "identifier",
       "name": "myCastedObj",
     },
   ],
   "kind": "call",
-  "target": Object {
+  "target": ParseNode {
     "kind": "identifier",
     "name": "mySpecificFn",
   },
@@ -154,7 +154,7 @@ Object {
 `;
 
 exports[`Types Casting Function using user-defined type 1`] = `
-Object {
+ParseNode {
   "identifier": "mySpecificFn",
   "kind": "let",
   "value": ParseNode {
@@ -162,7 +162,7 @@ Object {
       Object {
         "kind": "objAccess",
         "member": "a",
-        "obj": Object {
+        "obj": ParseNode {
           "kind": "identifier",
           "name": "object",
         },
@@ -170,12 +170,12 @@ Object {
       Object {
         "kind": "objAccess",
         "member": "b",
-        "obj": Object {
+        "obj": ParseNode {
           "kind": "identifier",
           "name": "object",
         },
       },
-      Object {
+      ParseNode {
         "kind": "return",
         "value": ParseNode {
           "kind": "literal",
@@ -206,9 +206,9 @@ Object {
 `;
 
 exports[`Types Casting Typeof 1`] = `
-Object {
+ParseNode {
   "kind": "typeof",
-  "target": Object {
+  "target": ParseNode {
     "kind": "identifier",
     "name": "myCastedObj",
   },
@@ -218,17 +218,17 @@ Object {
 exports[`Types Casting Typeof comparison 1`] = `
 ParseNode {
   "kind": "binary",
-  "left": Object {
+  "left": ParseNode {
     "kind": "typeof",
-    "target": Object {
+    "target": ParseNode {
       "kind": "identifier",
       "name": "myCastedObj",
     },
   },
   "operator": "==",
-  "right": Object {
+  "right": ParseNode {
     "kind": "typeof",
-    "target": Object {
+    "target": ParseNode {
       "kind": "identifier",
       "name": "myObj",
     },
@@ -239,18 +239,18 @@ ParseNode {
 exports[`Types Casting Typeof comparison with nested type cast 1`] = `
 ParseNode {
   "kind": "binary",
-  "left": Object {
+  "left": ParseNode {
     "kind": "typeof",
-    "target": Object {
+    "target": ParseNode {
       "kind": "identifier",
       "name": "myCastedObj",
     },
   },
   "operator": "==",
-  "right": Object {
+  "right": ParseNode {
     "kind": "typeof",
     "target": Object {
-      "from": Object {
+      "from": ParseNode {
         "kind": "identifier",
         "name": "myObj",
       },
@@ -266,7 +266,7 @@ ParseNode {
 `;
 
 exports[`Types Type assignments with let fn type 1`] = `
-Object {
+ParseNode {
   "identifier": "myFnType",
   "kind": "let",
   "value": ParseNode {
@@ -304,7 +304,7 @@ Object {
 `;
 
 exports[`Types Type assignments with let int primitive 1`] = `
-Object {
+ParseNode {
   "identifier": "myIntType",
   "kind": "let",
   "value": ParseNode {
@@ -320,7 +320,7 @@ Object {
 `;
 
 exports[`Types Type assignments with let obj type 1`] = `
-Object {
+ParseNode {
   "identifier": "myObjType",
   "kind": "let",
   "value": ParseNode {
@@ -351,7 +351,7 @@ exports[`Types obj access Access 1`] = `
 Object {
   "kind": "objAccess",
   "member": "a",
-  "obj": Object {
+  "obj": ParseNode {
     "kind": "identifier",
     "name": "myObj",
   },
@@ -363,7 +363,7 @@ Object {
   "kind": "objAccess",
   "member": "a",
   "obj": Object {
-    "from": Object {
+    "from": ParseNode {
       "kind": "identifier",
       "name": "myObj",
     },
@@ -384,7 +384,7 @@ Object {
   "obj": Object {
     "arguments": Array [],
     "kind": "call",
-    "target": Object {
+    "target": ParseNode {
       "kind": "identifier",
       "name": "someFn",
     },
@@ -398,7 +398,7 @@ ParseNode {
   "left": Object {
     "kind": "objAccess",
     "member": "a",
-    "obj": Object {
+    "obj": ParseNode {
       "kind": "identifier",
       "name": "myObj",
     },

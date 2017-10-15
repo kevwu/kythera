@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Types if 1`] = `
-Object {
+ParseNode {
   "body": Array [
-    Object {
+    ParseNode {
       "kind": "identifier",
       "name": "a",
     },
@@ -14,7 +14,7 @@ Object {
     "value": false,
   },
   "else": Array [
-    Object {
+    ParseNode {
       "kind": "identifier",
       "name": "b",
     },
@@ -24,9 +24,9 @@ Object {
 `;
 
 exports[`Types if-else 1`] = `
-Object {
+ParseNode {
   "body": Array [
-    Object {
+    ParseNode {
       "kind": "identifier",
       "name": "a",
     },
@@ -36,7 +36,7 @@ Object {
     "type": "bool",
     "value": false,
   },
-  "else": Object {
+  "else": ParseNode {
     "body": Array [
       ParseNode {
         "kind": "literal",
@@ -63,26 +63,26 @@ Object {
 `;
 
 exports[`Types if-else with boolean 1`] = `
-Object {
+ParseNode {
   "body": Array [
-    Object {
+    ParseNode {
       "kind": "identifier",
       "name": "a",
     },
   ],
   "condition": ParseNode {
     "kind": "binary",
-    "left": Object {
+    "left": ParseNode {
       "kind": "identifier",
       "name": "a",
     },
     "operator": "==",
-    "right": Object {
+    "right": ParseNode {
       "kind": "identifier",
       "name": "b",
     },
   },
-  "else": Object {
+  "else": ParseNode {
     "body": Array [
       ParseNode {
         "kind": "literal",
@@ -92,12 +92,12 @@ Object {
     ],
     "condition": ParseNode {
       "kind": "binary",
-      "left": Object {
+      "left": ParseNode {
         "kind": "identifier",
         "name": "b",
       },
       "operator": "==",
-      "right": Object {
+      "right": ParseNode {
         "kind": "identifier",
         "name": "c",
       },
@@ -116,27 +116,27 @@ Object {
 `;
 
 exports[`Types if-else-if 1`] = `
-Object {
+ParseNode {
   "body": Array [
-    Object {
+    ParseNode {
       "kind": "identifier",
       "name": "a",
     },
   ],
   "condition": ParseNode {
     "kind": "binary",
-    "left": Object {
+    "left": ParseNode {
       "kind": "identifier",
       "name": "a",
     },
     "operator": "==",
-    "right": Object {
+    "right": ParseNode {
       "kind": "identifier",
       "name": "b",
     },
   },
   "else": Array [
-    Object {
+    ParseNode {
       "kind": "identifier",
       "name": "b",
     },
@@ -146,18 +146,18 @@ Object {
 `;
 
 exports[`Types if-else-if with boolean 1`] = `
-Object {
+ParseNode {
   "body": Array [
     ParseNode {
       "kind": "assign",
-      "left": Object {
+      "left": ParseNode {
         "kind": "identifier",
         "name": "a",
       },
       "operator": "=",
       "right": ParseNode {
         "kind": "binary",
-        "left": Object {
+        "left": ParseNode {
           "kind": "identifier",
           "name": "a",
         },
@@ -172,12 +172,12 @@ Object {
   ],
   "condition": ParseNode {
     "kind": "binary",
-    "left": Object {
+    "left": ParseNode {
       "kind": "identifier",
       "name": "a",
     },
     "operator": "==",
-    "right": Object {
+    "right": ParseNode {
       "kind": "identifier",
       "name": "b",
     },
@@ -187,7 +187,7 @@ Object {
 `;
 
 exports[`Types while 1`] = `
-Object {
+ParseNode {
   "identifier": "x",
   "kind": "let",
   "value": ParseNode {
@@ -199,18 +199,18 @@ Object {
 `;
 
 exports[`Types while 2`] = `
-Object {
+ParseNode {
   "body": Array [
     ParseNode {
       "kind": "assign",
-      "left": Object {
+      "left": ParseNode {
         "kind": "identifier",
         "name": "x",
       },
       "operator": "=",
       "right": ParseNode {
         "kind": "binary",
-        "left": Object {
+        "left": ParseNode {
           "kind": "identifier",
           "name": "x",
         },
@@ -225,7 +225,7 @@ Object {
   ],
   "condition": ParseNode {
     "kind": "binary",
-    "left": Object {
+    "left": ParseNode {
       "kind": "identifier",
       "name": "x",
     },

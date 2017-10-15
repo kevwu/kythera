@@ -12,7 +12,7 @@ Object {
   "kind": "call",
   "target": ParseNode {
     "body": Array [
-      Object {
+      ParseNode {
         "identifier": "q",
         "kind": "let",
         "value": ParseNode {
@@ -21,17 +21,17 @@ Object {
           "value": 99,
         },
       },
-      Object {
+      ParseNode {
         "identifier": "r",
         "kind": "let",
-        "value": Object {
+        "value": ParseNode {
           "kind": "identifier",
           "name": "q",
         },
       },
-      Object {
+      ParseNode {
         "kind": "return",
-        "value": Object {
+        "value": ParseNode {
           "kind": "identifier",
           "name": "q",
         },
@@ -68,7 +68,7 @@ Object {
     },
   ],
   "kind": "call",
-  "target": Object {
+  "target": ParseNode {
     "kind": "identifier",
     "name": "fibo",
   },
@@ -76,14 +76,14 @@ Object {
 `;
 
 exports[`Function examples Fibonacci 1`] = `
-Object {
+ParseNode {
   "identifier": "fibo",
   "kind": "let",
   "value": ParseNode {
     "body": Array [
-      Object {
+      ParseNode {
         "body": Array [
-          Object {
+          ParseNode {
             "kind": "return",
             "value": ParseNode {
               "kind": "literal",
@@ -94,7 +94,7 @@ Object {
         ],
         "condition": ParseNode {
           "kind": "binary",
-          "left": Object {
+          "left": ParseNode {
             "kind": "identifier",
             "name": "x",
           },
@@ -107,9 +107,9 @@ Object {
         },
         "kind": "if",
       },
-      Object {
+      ParseNode {
         "body": Array [
-          Object {
+          ParseNode {
             "kind": "return",
             "value": ParseNode {
               "kind": "literal",
@@ -120,7 +120,7 @@ Object {
         ],
         "condition": ParseNode {
           "kind": "binary",
-          "left": Object {
+          "left": ParseNode {
             "kind": "identifier",
             "name": "x",
           },
@@ -133,7 +133,7 @@ Object {
         },
         "kind": "if",
       },
-      Object {
+      ParseNode {
         "kind": "return",
         "value": ParseNode {
           "kind": "binary",
@@ -141,7 +141,7 @@ Object {
             "arguments": Array [
               ParseNode {
                 "kind": "binary",
-                "left": Object {
+                "left": ParseNode {
                   "kind": "identifier",
                   "name": "x",
                 },
@@ -154,7 +154,7 @@ Object {
               },
             ],
             "kind": "call",
-            "target": Object {
+            "target": ParseNode {
               "kind": "identifier",
               "name": "fibo",
             },
@@ -164,7 +164,7 @@ Object {
             "arguments": Array [
               ParseNode {
                 "kind": "binary",
-                "left": Object {
+                "left": ParseNode {
                   "kind": "identifier",
                   "name": "x",
                 },
@@ -177,7 +177,7 @@ Object {
               },
             ],
             "kind": "call",
-            "target": Object {
+            "target": ParseNode {
               "kind": "identifier",
               "name": "fibo",
             },
@@ -218,7 +218,7 @@ Object {
   "kind": "call",
   "target": ParseNode {
     "body": Array [
-      Object {
+      ParseNode {
         "identifier": "x",
         "kind": "let",
         "value": ParseNode {
@@ -227,9 +227,9 @@ Object {
           "value": 0,
         },
       },
-      Object {
+      ParseNode {
         "body": Array [
-          Object {
+          ParseNode {
             "body": Array [
               ParseNode {
                 "kind": "literal",
@@ -243,7 +243,7 @@ Object {
                 "kind": "binary",
                 "left": ParseNode {
                   "kind": "binary",
-                  "left": Object {
+                  "left": ParseNode {
                     "kind": "identifier",
                     "name": "x",
                   },
@@ -266,7 +266,7 @@ Object {
                 "kind": "binary",
                 "left": ParseNode {
                   "kind": "binary",
-                  "left": Object {
+                  "left": ParseNode {
                     "kind": "identifier",
                     "name": "x",
                   },
@@ -285,7 +285,7 @@ Object {
                 },
               },
             },
-            "else": Object {
+            "else": ParseNode {
               "body": Array [
                 ParseNode {
                   "kind": "literal",
@@ -297,7 +297,7 @@ Object {
                 "kind": "binary",
                 "left": ParseNode {
                   "kind": "binary",
-                  "left": Object {
+                  "left": ParseNode {
                     "kind": "identifier",
                     "name": "x",
                   },
@@ -315,7 +315,7 @@ Object {
                   "value": 0,
                 },
               },
-              "else": Object {
+              "else": ParseNode {
                 "body": Array [
                   ParseNode {
                     "kind": "literal",
@@ -327,7 +327,7 @@ Object {
                   "kind": "binary",
                   "left": ParseNode {
                     "kind": "binary",
-                    "left": Object {
+                    "left": ParseNode {
                       "kind": "identifier",
                       "name": "x",
                     },
@@ -346,7 +346,7 @@ Object {
                   },
                 },
                 "else": Array [
-                  Object {
+                  ParseNode {
                     "kind": "identifier",
                     "name": "x",
                   },
@@ -359,14 +359,14 @@ Object {
           },
           ParseNode {
             "kind": "assign",
-            "left": Object {
+            "left": ParseNode {
               "kind": "identifier",
               "name": "x",
             },
             "operator": "=",
             "right": ParseNode {
               "kind": "binary",
-              "left": Object {
+              "left": ParseNode {
                 "kind": "identifier",
                 "name": "x",
               },
@@ -381,19 +381,19 @@ Object {
         ],
         "condition": ParseNode {
           "kind": "binary",
-          "left": Object {
+          "left": ParseNode {
             "kind": "identifier",
             "name": "x",
           },
           "operator": "<",
-          "right": Object {
+          "right": ParseNode {
             "kind": "identifier",
             "name": "count",
           },
         },
         "kind": "while",
       },
-      Object {
+      ParseNode {
         "kind": "return",
         "value": ParseNode {
           "kind": "literal",
@@ -426,7 +426,7 @@ Object {
 exports[`Function examples Function with no parameters (with space) 1`] = `
 ParseNode {
   "body": Array [
-    Object {
+    ParseNode {
       "kind": "return",
       "value": ParseNode {
         "kind": "literal",
@@ -449,7 +449,7 @@ ParseNode {
 exports[`Function examples Function with no parameters 1`] = `
 ParseNode {
   "body": Array [
-    Object {
+    ParseNode {
       "kind": "return",
       "value": ParseNode {
         "kind": "literal",

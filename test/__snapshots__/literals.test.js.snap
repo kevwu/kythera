@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Literals Arithmetic binary Adding floats 1`] = `
-Object {
+ParseNode {
   "kind": "typeof",
   "target": ParseNode {
     "kind": "literal",
     "type": "obj",
     "value": Object {
-      "a": Object {
+      "a": ParseNode {
         "kind": "new",
         "target": ParseNode {
           "kind": "type",
@@ -30,7 +30,7 @@ ParseNode {
   "kind": "literal",
   "type": "obj",
   "value": Object {
-    "a": Object {
+    "a": ParseNode {
       "kind": "new",
       "target": ParseNode {
         "kind": "type",
@@ -367,7 +367,7 @@ ParseNode {
 `;
 
 exports[`Literals float typeof 1`] = `
-Object {
+ParseNode {
   "kind": "typeof",
   "target": ParseNode {
     "kind": "literal",
@@ -386,7 +386,7 @@ ParseNode {
 `;
 
 exports[`Literals int typeof 1`] = `
-Object {
+ParseNode {
   "kind": "typeof",
   "target": ParseNode {
     "kind": "literal",
@@ -405,7 +405,7 @@ ParseNode {
 `;
 
 exports[`Literals null typeof 1`] = `
-Object {
+ParseNode {
   "kind": "typeof",
   "target": ParseNode {
     "kind": "literal",
@@ -424,7 +424,7 @@ ParseNode {
 `;
 
 exports[`Literals obj typeof 1`] = `
-Object {
+ParseNode {
   "kind": "typeof",
   "target": ParseNode {
     "kind": "literal",
