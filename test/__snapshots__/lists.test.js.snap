@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Lists Access 1`] = `
-Object {
+ParseNode {
   "index": ParseNode {
     "kind": "literal",
     "type": "int",
@@ -12,18 +12,19 @@ Object {
     "kind": "identifier",
     "name": "myList",
   },
+  "type": "unknown",
 }
 `;
 
 exports[`Lists Access from function call result 1`] = `
-Object {
+ParseNode {
   "index": ParseNode {
     "kind": "literal",
     "type": "int",
     "value": 10,
   },
   "kind": "access",
-  "target": Object {
+  "target": ParseNode {
     "arguments": Array [],
     "kind": "call",
     "target": ParseNode {
@@ -31,6 +32,7 @@ Object {
       "name": "myListFn",
     },
   },
+  "type": "unknown",
 }
 `;
 

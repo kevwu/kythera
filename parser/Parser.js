@@ -250,11 +250,10 @@ class Parser {
 			if (this.confirmToken("as", "kw")) {
 				this.consumeToken("as", "kw")
 
-				return {
-					kind: "as",
+				return new ParseNode("as", {
 					from: expression,
 					to: this.parseType()
-				}
+				})
 			} else {
 				return expression
 			}
@@ -264,13 +263,12 @@ class Parser {
 		// make a function call if needed
 		let makeCall = (expression) => {
 			// it's a call if there's an open-paren after the expression.
-			return this.confirmToken("(", "punc") ? {
-				kind: "call",
+			return this.confirmToken("(", "punc") ? new ParseNode("call", {
 				arguments: this.delimited('(', ')', ',', () => {
 					return this.parseExpression()
 				}),
 				target: expression,
-			} : expression
+			}) : expression
 		}
 
 		let makeObjAccess = (exp) => {
@@ -279,11 +277,11 @@ class Parser {
 
 				let memberName = this.tokenizer.next()
 
-				return {
-					kind: "objAccess",
-					obj: exp,
-					member: memberName.value,
-				}
+				return new ParseNode("access", {
+					type: "object",
+					target: exp,
+					index: memberName.value,
+				})
 			} else {
 				return exp
 			}
@@ -298,11 +296,11 @@ class Parser {
 			this.consumeToken("]", "punc")
 
 			// list types like int[] are handled by parseType. Seeing a [ in this context guarantees it's an access
-			return {
-				kind: "access",
+			return new ParseNode("access", {
+				type: "unknown",
 				target: exp,
 				index: indexExp,
-			}
+			})
 		}
 
 

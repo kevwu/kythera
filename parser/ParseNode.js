@@ -1,4 +1,4 @@
-const VALID_NODE_KINDS = " unary binary literal type identifier typeof new let if while return as call access objAccess "
+const VALID_NODE_KINDS = " unary binary literal type identifier typeof new let if while return as call access "
 
 class ParseNode {
 	constructor(kind, payload) {
@@ -190,13 +190,13 @@ class ParseNode {
 				break
 			case "typeof":
 				if(typeof payload.target !== "object") {
-					throw new Error("typeof target must be a Parse Node.")
+					throw new Error("'typeof' target must be a Parse Node.")
 				}
 				this.target = payload.target
 				break
 			case "new":
 				if(payload.target.kind !== "type") {
-					throw new Error("new target must a type node.")
+					throw new Error("'new' target must a type node.")
 				}
 				this.target = payload.target
 				break
@@ -207,36 +207,36 @@ class ParseNode {
 				this.identifier = payload.identifier
 
 				if(typeof payload.value !== "object") {
-					throw new Error("let target value must be a Parse Node.")
+					throw new Error("'let' target value must be a Parse Node.")
 				}
 				this.value = payload.value
 				break
 			case "if":
 				if(typeof payload.condition !== "object") {
-					throw new Error("if condition must be a Parse Node.")
+					throw new Error("'if' condition must be a Parse Node.")
 				}
 				this.condition = payload.condition
 
 				if(!Array.isArray(payload.body)) {
-					throw new Error("if body must be an array.")
+					throw new Error("'if' body must be an array.")
 				}
 
 				if(!payload.body.every((node, i) => {
 					return typeof node === "object"
 					})) {
-					throw new Error("Every member of the if body must be a Parse Node.")
+					throw new Error("Every member of the 'if' body must be a Parse Node.")
 				}
 				this.body = payload.body
 
 				if(payload.else) {
 					if(!Array.isArray(payload.else)) {
-						throw new Error("else body must be an array.")
+						throw new Error("'else' body must be an array.")
 					}
 
 					if(!payload.else.every((node, i) => {
 						return typeof node === "object"
 						})) {
-						throw new Error("Every member of the else body must be a Parse Node.")
+						throw new Error("Every member of the 'else' body must be a Parse Node.")
 					}
 
 					this.else = payload.else
@@ -244,18 +244,18 @@ class ParseNode {
 				break
 			case "while":
 				if(typeof payload.condition !== "object") {
-					throw new Error("while condition must be a Parse Node.")
+					throw new Error("'while' condition must be a Parse Node.")
 				}
 				this.condition = payload.condition
 
 				if(!Array.isArray(payload.body)) {
-					throw new Error("while body must be an array.")
+					throw new Error("'while' body must be an array.")
 				}
 
 				if(!payload.body.every((node, i) => {
 						return typeof node === "object"
 					})) {
-					throw new Error("Every member of the while body must be a Parse Node.")
+					throw new Error("Every member of the 'while' body must be a Parse Node.")
 				}
 				this.body = payload.body
 				break
@@ -264,6 +264,56 @@ class ParseNode {
 					throw new Error("return value must be a Parse Node.")
 				}
 				this.value = payload.value
+				break
+			case "as":
+				if(typeof payload.from !== "object") {
+					throw new Error("'as' left-hand side must be a Parse Node.")
+				}
+				this.from = payload.from
+
+				if(payload.to.kind !== "type") {
+					throw new Error("'as' right-hand side must be a type node.")
+				}
+				this.to = payload.to
+				break
+			case "call":
+				if(!Array.isArray(payload.arguments)) {
+					throw new Error("Function call arguments must be an array.")
+				}
+				this.arguments = payload.arguments
+
+				if(typeof payload.target !== "object") {
+					throw new Error("Function call target must be a Parse Node.")
+				}
+				this.target = payload.target
+
+				break
+			case "access":
+				if(!["object", "array", "unknown"].includes(payload.type)) {
+					throw new Error("Access type must be object, array, or unknown")
+				}
+
+				if(payload.type === "object" && (typeof payload.index !== "string")) {
+					throw new Error("Object access index must be a string.")
+				}
+
+				if(payload.type === "array" && (typeof payload.index !== "number")) {
+					throw new Error("Array access index must be a number.")
+				}
+
+				if(payload.type === "unknown" && (typeof payload.index !== "object")) {
+					throw new Error("Access index must be a parse node.")
+				}
+
+				this.type = payload.type
+
+				if(typeof payload.target !== "object") {
+					throw new Error("Access target must be a Parse Node.")
+				}
+				this.target = payload.target
+
+
+				this.index = payload.index
 				break
 			default:
 				throw new Error("Invalid node kind: " + kind)

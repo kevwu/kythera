@@ -1,1 +1,5 @@
-new type
+<int a> int {
+    let q = 99
+    let r = q
+    return q
+}(10)

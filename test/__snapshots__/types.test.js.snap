@@ -98,7 +98,7 @@ exports[`Types Casting Declaration from type cast 1`] = `
 ParseNode {
   "identifier": "myCastedObj",
   "kind": "let",
-  "value": Object {
+  "value": ParseNode {
     "from": ParseNode {
       "kind": "identifier",
       "name": "myObj",
@@ -114,9 +114,9 @@ ParseNode {
 `;
 
 exports[`Types Casting Function call with type cast 1`] = `
-Object {
+ParseNode {
   "arguments": Array [
-    Object {
+    ParseNode {
       "from": ParseNode {
         "kind": "identifier",
         "name": "myObj",
@@ -138,7 +138,7 @@ Object {
 `;
 
 exports[`Types Casting Function call without type cast 1`] = `
-Object {
+ParseNode {
   "arguments": Array [
     ParseNode {
       "kind": "identifier",
@@ -159,21 +159,23 @@ ParseNode {
   "kind": "let",
   "value": ParseNode {
     "body": Array [
-      Object {
-        "kind": "objAccess",
-        "member": "a",
-        "obj": ParseNode {
+      ParseNode {
+        "index": "a",
+        "kind": "access",
+        "target": ParseNode {
           "kind": "identifier",
           "name": "object",
         },
+        "type": "object",
       },
-      Object {
-        "kind": "objAccess",
-        "member": "b",
-        "obj": ParseNode {
+      ParseNode {
+        "index": "b",
+        "kind": "access",
+        "target": ParseNode {
           "kind": "identifier",
           "name": "object",
         },
+        "type": "object",
       },
       ParseNode {
         "kind": "return",
@@ -249,7 +251,7 @@ ParseNode {
   "operator": "==",
   "right": ParseNode {
     "kind": "typeof",
-    "target": Object {
+    "target": ParseNode {
       "from": ParseNode {
         "kind": "identifier",
         "name": "myObj",
@@ -348,21 +350,22 @@ ParseNode {
 `;
 
 exports[`Types obj access Access 1`] = `
-Object {
-  "kind": "objAccess",
-  "member": "a",
-  "obj": ParseNode {
+ParseNode {
+  "index": "a",
+  "kind": "access",
+  "target": ParseNode {
     "kind": "identifier",
     "name": "myObj",
   },
+  "type": "object",
 }
 `;
 
 exports[`Types obj access Access from nested cast 1`] = `
-Object {
-  "kind": "objAccess",
-  "member": "a",
-  "obj": Object {
+ParseNode {
+  "index": "a",
+  "kind": "access",
+  "target": ParseNode {
     "from": ParseNode {
       "kind": "identifier",
       "name": "myObj",
@@ -374,14 +377,15 @@ Object {
       "origin": "named",
     },
   },
+  "type": "object",
 }
 `;
 
 exports[`Types obj access Access function call result 1`] = `
-Object {
-  "kind": "objAccess",
-  "member": "a",
-  "obj": Object {
+ParseNode {
+  "index": "a",
+  "kind": "access",
+  "target": ParseNode {
     "arguments": Array [],
     "kind": "call",
     "target": ParseNode {
@@ -389,19 +393,21 @@ Object {
       "name": "someFn",
     },
   },
+  "type": "object",
 }
 `;
 
 exports[`Types obj access Access use in binary 1`] = `
 ParseNode {
   "kind": "binary",
-  "left": Object {
-    "kind": "objAccess",
-    "member": "a",
-    "obj": ParseNode {
+  "left": ParseNode {
+    "index": "a",
+    "kind": "access",
+    "target": ParseNode {
       "kind": "identifier",
       "name": "myObj",
     },
+    "type": "object",
   },
   "operator": "+",
   "right": ParseNode {

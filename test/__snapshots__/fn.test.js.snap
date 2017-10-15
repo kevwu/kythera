@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Function examples Anonymous function and call 1`] = `
-Object {
+ParseNode {
   "arguments": Array [
     ParseNode {
       "kind": "literal",
@@ -59,7 +59,7 @@ Object {
 `;
 
 exports[`Function examples Fibonacci (call) 1`] = `
-Object {
+ParseNode {
   "arguments": Array [
     ParseNode {
       "kind": "literal",
@@ -137,7 +137,7 @@ ParseNode {
         "kind": "return",
         "value": ParseNode {
           "kind": "binary",
-          "left": Object {
+          "left": ParseNode {
             "arguments": Array [
               ParseNode {
                 "kind": "binary",
@@ -160,7 +160,7 @@ ParseNode {
             },
           },
           "operator": "+",
-          "right": Object {
+          "right": ParseNode {
             "arguments": Array [
               ParseNode {
                 "kind": "binary",
@@ -207,7 +207,7 @@ ParseNode {
 `;
 
 exports[`Function examples Fizzbuzz and call 1`] = `
-Object {
+ParseNode {
   "arguments": Array [
     ParseNode {
       "kind": "literal",
