@@ -15,8 +15,8 @@ class ParseNode {
 				this.operator = payload.operator
 
 				// TODO can we do deeper validation on the value? Finding type, etc
-				if(!(typeof payload.target === "object")) {
-					throw new Error("Missing unary target.")
+				if(typeof payload.target.kind !== "string") {
+					throw new Error("Unary target must be a Parse Node.")
 				}
 
 				this.target = payload.target
@@ -27,12 +27,12 @@ class ParseNode {
 				}
 				this.operator = payload.operator
 
-				if(!(typeof payload.left === "object")) {
+				if(typeof payload.left.kind !== "string") {
 					throw new Error("Missing left-hand side value.")
 				}
 				this.left = payload.left
 
-				if(!(typeof payload.right === "object")) {
+				if(typeof payload.right.kind !== "string") {
 					throw new Error("Missing right-hand side value.")
 				}
 				this.right = payload.right
@@ -44,12 +44,12 @@ class ParseNode {
 				}
 				this.operator = payload.operator
 
-				if(!(typeof payload.left === "object")) {
+				if(typeof payload.left.kind !== "string") {
 					throw new Error("Missing left-hand side value.")
 				}
 				this.left = payload.left
 
-				if(!(typeof payload.right === "object")) {
+				if(typeof payload.right.kind !== "string") {
 					throw new Error("Missing right-hand side value.")
 				}
 				this.right = payload.right
@@ -189,7 +189,7 @@ class ParseNode {
 				this.name = payload.name
 				break
 			case "typeof":
-				if(typeof payload.target !== "object") {
+				if(typeof payload.target.kind !== "string") {
 					throw new Error("'typeof' target must be a Parse Node.")
 				}
 				this.target = payload.target
@@ -206,13 +206,13 @@ class ParseNode {
 				}
 				this.identifier = payload.identifier
 
-				if(typeof payload.value !== "object") {
+				if(typeof payload.value.kind !== "string") {
 					throw new Error("'let' target value must be a Parse Node.")
 				}
 				this.value = payload.value
 				break
 			case "if":
-				if(typeof payload.condition !== "object") {
+				if(typeof payload.condition.kind !== "string") {
 					throw new Error("'if' condition must be a Parse Node.")
 				}
 				this.condition = payload.condition
@@ -222,7 +222,7 @@ class ParseNode {
 				}
 
 				if(!payload.body.every((node, i) => {
-					return typeof node === "object"
+					return typeof node.kind === "string"
 					})) {
 					throw new Error("Every member of the 'if' body must be a Parse Node.")
 				}
@@ -234,7 +234,7 @@ class ParseNode {
 					}
 
 					if(!payload.else.every((node, i) => {
-						return typeof node === "object"
+						return typeof node.kind === "string"
 						})) {
 						throw new Error("Every member of the 'else' body must be a Parse Node.")
 					}
@@ -253,20 +253,20 @@ class ParseNode {
 				}
 
 				if(!payload.body.every((node, i) => {
-						return typeof node === "object"
+						return typeof node.kind === "string"
 					})) {
 					throw new Error("Every member of the 'while' body must be a Parse Node.")
 				}
 				this.body = payload.body
 				break
 			case "return":
-				if(typeof payload.value !== "object") {
+				if(typeof payload.value.kind !== "string") {
 					throw new Error("return value must be a Parse Node.")
 				}
 				this.value = payload.value
 				break
 			case "as":
-				if(typeof payload.from !== "object") {
+				if(typeof payload.from.kind !== "string") {
 					throw new Error("'as' left-hand side must be a Parse Node.")
 				}
 				this.from = payload.from
@@ -282,7 +282,7 @@ class ParseNode {
 				}
 				this.arguments = payload.arguments
 
-				if(typeof payload.target !== "object") {
+				if(typeof payload.target.kind !== "string") {
 					throw new Error("Function call target must be a Parse Node.")
 				}
 				this.target = payload.target
@@ -307,11 +307,10 @@ class ParseNode {
 
 				this.type = payload.type
 
-				if(typeof payload.target !== "object") {
+				if(typeof payload.target.kind !== "string") {
 					throw new Error("Access target must be a Parse Node.")
 				}
 				this.target = payload.target
-
 
 				this.index = payload.index
 				break

@@ -303,7 +303,6 @@ class Parser {
 			})
 		}
 
-
 		let canStartBinary = () => canSplit && this.confirmToken(undefined, "op")
 		let canStartCall = () => this.confirmToken("(", "punc")
 		let canMakeAs = () => this.confirmToken("as", "kw")
