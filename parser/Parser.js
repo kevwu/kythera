@@ -3,16 +3,16 @@ const Tokenizer = require("./Tokenizer")
 
 const ParseNode = require("./ParseNode")
 
-const ParserConstants = {
-	"PRECEDENCE": {
+const PRECEDENCE = {
 			"=": 1,
 			"||": 2,
 			"&&": 3,
 			"<": 7, ">": 7, "<=": 7, ">=": 7, "==": 7, "!=": 7,
 			"+": 10, "-": 10,
 			"*": 20, "/": 20, "%": 20
-	},
-	"LITERALS": {
+}
+
+const LITERALS = {
 		"false": new ParseNode("literal", {
 			"type": "bool",
 			"value": false
@@ -25,8 +25,10 @@ const ParserConstants = {
 			"type": "null",
 			"value": null
 		}),
-	},
-	"TYPES": {
+}
+
+// primitive types
+const TYPES = {
 		"null": new ParseNode("type", {
 			"type": "null",
 			"origin": "builtin"
@@ -47,7 +49,6 @@ const ParserConstants = {
 			"type": "bool",
 			"origin": "builtin"
 		})
-	}
 }
 
 
@@ -115,11 +116,11 @@ class Parser {
 
 				switch (nextToken.value) {
 					case "true":
-						return ParserConstants.LITERALS.true
+						return LITERALS.true
 					case "false":
-						return ParserConstants.LITERALS.false
+						return LITERALS.false
 					case "null":
-						return ParserConstants.LITERALS.null
+						return LITERALS.null
 					case "typeof":
 						return {
 							kind: "typeof",
@@ -229,7 +230,7 @@ class Parser {
 		let makeBinary = (left, currentPrecedence) => {
 			let token = this.confirmToken(undefined, "op")
 			if(token) {
-				let nextPrecedence = ParserConstants.PRECEDENCE[token.value]
+				let nextPrecedence = PRECEDENCE[token.value]
 				if(nextPrecedence > currentPrecedence) {
 					this.tokenizer.next()
 					let right = makeBinary(this.parseExpression(false), nextPrecedence)
@@ -418,19 +419,19 @@ class Parser {
 		if (nextToken.type === "kw") { // built-in types
 			switch (nextToken.value) {
 				case "int":
-					parseTypeAtom = ParserConstants.TYPES.int
+					parseTypeAtom = TYPES.int
 					break
 				case "float":
-					parseTypeAtom = ParserConstants.TYPES.float
+					parseTypeAtom = TYPES.float
 					break
 				case "bool":
-					parseTypeAtom = ParserConstants.TYPES.bool
+					parseTypeAtom = TYPES.bool
 					break
 				case "str":
-					parseTypeAtom = ParserConstants.TYPES.str
+					parseTypeAtom = TYPES.str
 					break
 				case "null":
-					parseTypeAtom = ParserConstants.TYPES.null
+					parseTypeAtom = TYPES.null
 					break
 				case "fn":
 					let parameters = []
@@ -490,9 +491,10 @@ class Parser {
 			this.consumeToken("[", "punc")
 			this.consumeToken("]", "punc")
 
-			return new ParseNode("list", {
+			return new ParseNode("type", {
 				type: "list",
-				listType: parseTypeAtom,
+				origin: "builtin",
+				contains: parseTypeAtom,
 			})
 		} else {
 			return parseTypeAtom
@@ -548,7 +550,7 @@ class Parser {
 		if(this.confirmToken(value, type)) {
 			this.tokenizer.next()
 		} else {
-			const kindFullNames = {
+			const tokenKindFullNames = {
 				kw: "keyword",
 				"var": "identifier",
 				op: "operator",
@@ -557,7 +559,7 @@ class Parser {
 				punc: "symbol",
 			}
 
-			this.err(`Expecting ${(type !== "") ? kindFullNames[type] + ": " : ""}"${value}" but got ${kindFullNames[this.tokenizer.peek().type]}: "${this.tokenizer.peek().value}" instead`)
+			this.err(`Expecting ${(type !== "") ? tokenKindFullNames[type] + ": " : ""}"${value}" but got ${tokenKindFullNames[this.tokenizer.peek().type]}: "${this.tokenizer.peek().value}" instead`)
 		}
 	}
 	

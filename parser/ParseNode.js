@@ -111,7 +111,7 @@ class ParseNode {
 						break
 					case "type": // type literal node - not a type node!
 						if(payload.value.kind !== "type") {
-							throw new Error("Type literal value must be a type node.")
+							throw new Error(`Type literal value must be a type node, not ${payload.value.kind}.`)
 						}
 						this.value = payload.value
 						break
@@ -138,6 +138,14 @@ class ParseNode {
 				}
 
 				this.origin = payload.origin
+
+				if(payload.type === "list") {
+					if(payload.contains.kind !== "type") {
+						throw new Error("List type must contain a type node.")
+					}
+
+					this.contains = payload.contains
+				}
 
 				if(payload.type === "fn") {
 					if(!Array.isArray(payload.parameters)) {

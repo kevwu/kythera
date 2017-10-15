@@ -1,8 +1,6 @@
-fn<int, str> float
-
 obj{
 	int a,
 	str b,
-}
+}[]
 
-let myList = new int[]
+asdf[]

@@ -1,0 +1,175 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Lists Access 1`] = `
+Object {
+  "index": ParseNode {
+    "kind": "literal",
+    "type": "int",
+    "value": 2,
+  },
+  "kind": "access",
+  "target": Object {
+    "kind": "identifier",
+    "name": "myList",
+  },
+}
+`;
+
+exports[`Lists Access from function call result 1`] = `
+Object {
+  "index": ParseNode {
+    "kind": "literal",
+    "type": "int",
+    "value": 10,
+  },
+  "kind": "access",
+  "target": Object {
+    "arguments": Array [],
+    "kind": "call",
+    "target": Object {
+      "kind": "identifier",
+      "name": "myListFn",
+    },
+  },
+}
+`;
+
+exports[`Lists Creation of custom type (irrelvant) 1`] = `
+Object {
+  "identifier": "myType",
+  "kind": "let",
+  "value": ParseNode {
+    "kind": "literal",
+    "type": "type",
+    "value": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "structure": Object {
+        "a": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "int",
+        },
+        "b": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "str",
+        },
+      },
+      "type": "obj",
+    },
+  },
+}
+`;
+
+exports[`Lists Function returning list 1`] = `
+Object {
+  "identifier": "myListFn",
+  "kind": "let",
+  "value": ParseNode {
+    "body": Array [
+      Object {
+        "kind": "return",
+        "value": Object {
+          "kind": "new",
+          "target": ParseNode {
+            "contains": ParseNode {
+              "kind": "type",
+              "origin": "builtin",
+              "type": "int",
+            },
+            "kind": "type",
+            "origin": "builtin",
+            "type": "list",
+          },
+        },
+      },
+    ],
+    "kind": "literal",
+    "parameters": Array [],
+    "returns": ParseNode {
+      "contains": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "kind": "type",
+      "origin": "builtin",
+      "type": "list",
+    },
+    "type": "fn",
+  },
+}
+`;
+
+exports[`Lists Initialization from object list literal 1`] = `
+Object {
+  "identifier": "myTypeList2",
+  "kind": "let",
+  "value": Object {
+    "kind": "new",
+    "target": ParseNode {
+      "contains": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "structure": Object {
+          "a": ParseNode {
+            "kind": "type",
+            "origin": "builtin",
+            "type": "int",
+          },
+          "b": ParseNode {
+            "kind": "type",
+            "origin": "builtin",
+            "type": "str",
+          },
+        },
+        "type": "obj",
+      },
+      "kind": "type",
+      "origin": "builtin",
+      "type": "list",
+    },
+  },
+}
+`;
+
+exports[`Lists Initialization with 'let' 1`] = `
+Object {
+  "identifier": "myList",
+  "kind": "let",
+  "value": Object {
+    "kind": "new",
+    "target": ParseNode {
+      "contains": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "kind": "type",
+      "origin": "builtin",
+      "type": "list",
+    },
+  },
+}
+`;
+
+exports[`Lists Initialization with custom type 1`] = `
+Object {
+  "identifier": "myTypeList",
+  "kind": "let",
+  "value": Object {
+    "kind": "new",
+    "target": ParseNode {
+      "contains": ParseNode {
+        "kind": "type",
+        "name": "myType",
+        "origin": "named",
+      },
+      "kind": "type",
+      "origin": "builtin",
+      "type": "list",
+    },
+  },
+}
+`;

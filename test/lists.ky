@@ -10,7 +10,7 @@ let myType = obj{
 
 let myTypeList = new myType[]
 
-let myTypeList2 = obj{
+let myTypeList2 = new obj{
 	int a,
 	str b,
 }[]
