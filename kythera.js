@@ -11,7 +11,7 @@ try {
 	let compiler = new Compiler(ast)
 	let output = compiler.visitProgram()
 	console.log(output)
-	output = `const KYTHERA = require("./compiler/include");` + output
+	output = `const KYTHERA = require("./compiler/runtime");` + output
 	eval(output)
 } catch(e) {
 	console.log(e)

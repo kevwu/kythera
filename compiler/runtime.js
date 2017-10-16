@@ -14,10 +14,16 @@ const KYTHERA = {
 	type: class {
 		constructor(type, structure = null, name = null) {
 			this.type = type
+
+			if(name !== null) {
+				this.name = name
+			}
+
 			if(type === "fn" || type === "obj") {
 				if(structure === null) {
 					throw new Error(`Cannot initialize ${type} without structure.`)
 				} else {
+					// TODO validate incoming structure
 					this.structure = structure
 				}
 			}
@@ -29,7 +35,7 @@ const KYTHERA = {
 			}
 
 			if (this.type === "fn") {
-				if (!this.eqNodeType(this.structure.returns, other.structure.returns)) {
+				if (!this.eq(this.structure.returns, other.structure.returns)) {
 					return false
 				}
 
@@ -38,7 +44,7 @@ const KYTHERA = {
 				}
 
 				for (let i = 0; i < this.structure.parameters.length; i += 1) {
-					if (!this.eqNodeType(this.structure.parameters[i], other.structure.parameters[i])) {
+					if (!this.eq(this.structure.parameters[i], other.structure.parameters[i])) {
 						return false
 					}
 				}
@@ -52,7 +58,6 @@ const KYTHERA = {
 
 				return !Object.keys(this.structure).every((key, i) => this.eqNodeType(this.structure[key], other.structure[key]));
 			}
-
 			return true
 		}
 	}

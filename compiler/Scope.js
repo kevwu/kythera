@@ -8,22 +8,13 @@ class Scope {
 	}
 
 	// initialize variable. Throws error if already declared.
-	create(name, type, structure = null) {
+	create(name, type) {
 		// as long as the name is free in the current scope it can be used.
 		if(name in this.symbols) {
 			throw new Error(`${name} is already defined.`)
 		}
 
-		if((type === "obj" || type === "fn") && structure === null) {
-			throw new Error(`Cannot create ${type} without structure.`)
-		}
-
-		this.symbols[name] = {
-			type: type,
-		}
-		if(structure !== null) {
-			this.symbols[name].structure = structure
-		}
+		this.symbols[name] = type
 	}
 
 	// get type

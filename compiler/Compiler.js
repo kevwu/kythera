@@ -1,38 +1,6 @@
 const Scope = require("./Scope")
-const NodeType = require("./include").type
+const NodeType = require("./runtime").type
 
-const TYPES = {
-	int: {
-		type: "int"
-	},
-	float: {
-		type: "float"
-	},
-	bool: {
-		type: "bool",
-	},
-	str: {
-		type: "str"
-	},
-	"null": {
-		type: "null",
-	},
-	fn: {
-		type: "fn",
-		structure: {
-			returns: { // returns a null
-				type: "null",
-			},
-			parameters: [],
-		}
-	},
-	obj: {
-		type: "fn",
-		structure: []
-	}
-}
-
-// TODO distinguish errors from bad parsing from errors during compilation
 class Compiler {
 	constructor(program) {
 		this.program = program
@@ -54,7 +22,7 @@ class Compiler {
 
 	// main statement dispatcher
 	visitNode(node) {
-		switch (node.kind) {
+		switch(node.kind) {
 			// statements
 			case "let":
 				return this.visitLet(node)
@@ -69,7 +37,7 @@ class Compiler {
 
 	// expression node dispatcher
 	visitExpressionNode(node) {
-		switch (node.kind) {
+		switch(node.kind) {
 			case "new":
 				return this.visitNew(node)
 			case "identifier":
@@ -83,50 +51,24 @@ class Compiler {
 	}
 
 	visitLiteral(node) {
-		switch (node.type) {
+		switch(node.type) {
 			case "int":
-				return `new KYTHERA.value(${node.value}, new KYTHERA.type("int"));`
 			case "float":
-				return `new KYTHERA.value(${node.value}, new KYTHERA.type("float"));`
 			case "bool":
-				return `new KYTHERA.value(${node.value}, new KYTHERA.type("bool"));`
 			case "str":
-				return `new KYTHERA.value(${node.value}, new KYTHERA.type("str"));`
 			case "null":
-				return `new KYTHERA.value(${node.value}, new KYTHERA.type("null"));`
+			case "type":
+				return this.makeValueConstructor(node.value, new NodeType(node.type))
 			case "fn":
-				// extend scope one level
-				this.currentScope = new Scope(this.currentScope, "function")
-
-				let fn = "("
-				// build parameter list and bring parameters into scope
-				node.parameters.forEach((param, i) => {
-					let paramStructure = null
-					this.currentScope.create(param.name, param.type.type, paramStructure)
-					fn += param.name
-					if (i !== node.parameters.length - 1) {
-						fn += ","
-					}
-				})
-
-				fn += ') => {\n'
-
-				// TODO verify that the function returns
-				// build body statements
-				node.body.forEach((statement, i) => {
-					fn += this.visitNode(statement) + '\n'
-				})
-
-				fn += '}'
-
-				let structure = {
-					parameters: node.parameters.map((param, i) => {
-						return this.getNodeType(param.type)
-					}),
-					returns: this.getNodeType(node.returns)
-				}
-
-				return `new KYTHERA.value("fn", ${fn}, ${JSON.stringify(structure)})`
+				return this.makeValueConstructor(
+					{parameters: node.parameters, body: node.body, returns: node.returns},
+					new NodeType("fn", {
+						parameters: node.parameters.map((param, i) => {
+							return this.getNodeType(param.type, param.structure)
+						}),
+						returns: this.getNodeType(node.returns)
+					})
+				)
 			case "obj":
 				throw new Error("Not yet implemented")
 			default:
@@ -136,25 +78,33 @@ class Compiler {
 
 	visitNew(node) {
 		let targetType = this.getNodeType(node.target)
+		console.log("Target type for new:")
+		console.log(JSON.stringify(targetType, null, 2))
+
+		switch(targetType.type) {
+			case "int":
+				return ``
+		}
+
 		return ""
 	}
 
 	visitLet(node) {
 		let targetType = this.getNodeType(node.value)
-		this.currentScope.create(node.identifier, targetType.type, targetType.structure)
+		this.currentScope.create(node.identifier, targetType)
 		return `let ${node.identifier} = ${this.visitExpressionNode(node.value)}`
 	}
 
 	visitAssign(node) {
-		if (node.left.kind === "identifier") {
+		if(node.left.kind === "identifier") {
 			let lhsType = this.getNodeType(node.left)
 			let rhsType = this.getNodeType(node.right)
-			if (!this.eqNodeType(this.currentScope.get(node.left.name), rhsType)) {
+			if(!this.currentScope.get(node.left.name).eq(rhsType)) {
 				throw new Error(`Cannot assign ${rhsType.type} value to ${node.left.name}, which has type ${lhsType.type}`)
 			} else {
 				return `${node.left.name} = ${this.visitExpressionNode(node.right)}`
 			}
-		} else if (node.left.kind === "objAccess" || node.left.kind === "access") {
+		} else if(node.left.kind === "objAccess" || node.left.kind === "access") {
 			throw new Error("Writing to object member not yet supported")
 		} else {
 			throw new Error(`${node.left.kind} is not valid as an assignment target`)
@@ -164,18 +114,19 @@ class Compiler {
 	// TODO check return type against what the function expects
 	// we can do that by storing function info with the scope
 	visitReturn(node) {
-		if (this.currentScope.isInFunction()) {
+		if(this.currentScope.isInFunction()) {
 			return `return ${this.visitExpressionNode(node.value)}`
 		}
 	}
 
-	// returns type structure as would be stored/returned from Scope
+	// returns NodeType structure as would be stored/returned from Scope
 	getNodeType(node) {
 		let res
-		switch (node.kind) {
+		switch(node.kind) {
+			// TODO i think literal and type can be combined
 			case "literal":
 				let structure = {}
-				if (node.type === "fn") {
+				if(node.type === "fn") {
 					structure = {
 						parameters: node.parameters.map((param, i) => {
 							return this.getNodeType(param.type)
@@ -184,7 +135,7 @@ class Compiler {
 					}
 				}
 
-				if (node.type === "obj") {
+				if(node.type === "obj") {
 					throw new Error("Not yet implemented")
 				}
 
@@ -193,7 +144,7 @@ class Compiler {
 				res = {}
 				res.type = node.type
 
-				if (res.type === "fn") {
+				if(res.type === "fn") {
 					res.structure = {
 						parameters: node.parameters.map((param, i) => {
 							return this.getNodeType(param)
@@ -202,7 +153,7 @@ class Compiler {
 					}
 				}
 
-				if (res.type === "obj") {
+				if(res.type === "obj") {
 					throw new Error("Not yet implemented")
 				}
 				return res
@@ -213,6 +164,74 @@ class Compiler {
 			default:
 				throw new Error(`Cannot find type for ${node.kind}`)
 		}
+	}
+
+	// returns the runtime-side constructor call string for a new KYTHERA.value
+	makeValueConstructor(value, nodeType = null) {
+		let out = `new KYTHERA.value(`
+		if(nodeType.type === "str") {
+			value = `"${value}"`
+		}
+		if(nodeType.type === "fn") {
+			/*
+			expects:
+			value.parameters to be an assoc. array: name (string) => NodeType
+			 */
+
+
+			// extend scope one level
+			this.currentScope = new Scope(this.currentScope, "function")
+
+			let fn = "("
+			// build parameter list and bring parameters into scope
+			value.parameters.forEach((param, i) => {
+				this.currentScope.create(param.name, this.getNodeType(param))
+				fn += param.name
+				if(i !== value.parameters.length - 1) {
+					fn += ","
+				}
+			})
+
+			fn += ') => {\n'
+
+			// TODO verify that the function returns
+			// build body statements
+			value.body.forEach((statement, i) => {
+				fn += this.visitNode(statement) + '\n'
+			})
+
+			fn += '}'
+
+			let structure = {
+				parameters: node.parameters.map((param, i) => {
+					return this.getNodeType(param.type)
+				}),
+				returns: this.getNodeType(node.returns)
+			}
+
+			return `new KYTHERA.value("fn", ${fn}, ${JSON.stringify(structure)})`
+		}
+
+		out += value
+
+		out += `, ${this.makeTypeConstructor(nodeType)})`
+
+		return out
+	}
+
+	// returns the runtime-side constructor call string for a KYTHERA.type
+	makeTypeConstructor(nodeType) {
+		let out = `new KYTHERA.type("${nodeType.type}"`
+
+		if(nodeType.type === "fn") {
+
+		} else if(nodeType.type === "obj") {
+
+		} else {
+			out += ")"
+		}
+
+		return out
 	}
 }
 
