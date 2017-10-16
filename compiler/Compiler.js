@@ -31,19 +31,22 @@ class Compiler {
 			case "return":
 				return this.visitReturn(node)
 			default:
-				return this.visitExpressionNode(node)
+				return this.visitExpressionNode(node).output
 		}
 	}
 
 	// expression node dispatcher
+	// every expression returns a tuple: the string output and the NodeType of the result.
 	visitExpressionNode(node) {
 		switch(node.kind) {
 			case "new":
 				return this.visitNew(node)
 			case "identifier":
-				// TODO validate identifiers as ES6 idents
 				if(this.currentScope.has(node.name)) {
-					return node.name
+					return {
+						output: node.name,
+						type: this.currentScope.get(node.name)
+					}
 				} else {
 					throw new Error("Undefined variable: " + node.name)
 				}
@@ -61,20 +64,30 @@ class Compiler {
 			case "bool":
 			case "str":
 			case "null":
-				return this.makeValueConstructor(node.value, NodeType.PRIMITIVES[node.type])
+				return {
+					output: this.makeValueConstructor(node.value, NodeType.PRIMITIVES[node.type]),
+					type: NodeType.PRIMITIVES[node.type]
+				}
 			case "type":
-				return this.makeValueConstructor(this.makeTypeConstructor(new NodeType(node.value)), new NodeType("type"))
+				return {
+					output: this.makeValueConstructor(this.makeTypeConstructor(new NodeType(node.value)), NodeType.PRIMITIVES.type),
+					type: NodeType.PRIMITIVES.type
+				}
 			case "fn":
 				// function type information is not included with the literal, it must be derived
-				return this.makeValueConstructor(
-					{parameters: node.parameters, body: node.body, returns: node.returns},
-					new NodeType("fn", {
-						parameters: node.parameters.map((param, i) => {
-							return this.makeNodeType(param.type)
-						}),
-						returns: this.makeNodeType(node.returns)
-					})
-				)
+				let fnType = new NodeType("fn", {
+					parameters: node.parameters.map((param, i) => {
+						return this.makeNodeType(param.type)
+					}),
+					returns: this.makeNodeType(node.returns)
+				})
+				return {
+					output: this.makeValueConstructor(
+						{parameters: node.parameters, body: node.body, returns: node.returns},
+						fnType
+					),
+					type: fnType
+				}
 			case "obj":
 				// object type information is not included with the literal, it must be derived
 				throw new Error("Not yet implemented")
@@ -95,8 +108,9 @@ class Compiler {
 	}
 
 	visitLet(node) {
-		// TODO make setting scope here work again
-		return `let ${node.identifier} = ${this.visitExpressionNode(node.value)}`
+		let result = this.visitExpressionNode(node.value)
+		this.currentScope.create(node.identifier, result.type)
+		return `let ${node.identifier} = ${result.output}`
 	}
 
 	visitAssign(node) {
@@ -119,7 +133,7 @@ class Compiler {
 	// we can do that by storing function info with the scope
 	visitReturn(node) {
 		if(this.currentScope.isInFunction()) {
-			return `return ${this.visitExpressionNode(node.value)}`
+			return `return ${this.visitExpressionNode(node.value).output}`
 		}
 	}
 

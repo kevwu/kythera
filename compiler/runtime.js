@@ -1,7 +1,7 @@
 // include in every compiled Kythera file
 const KYTHERA = {
 	value: class {
-		constructor(type, value) {
+		constructor(value, type) {
 			this.type = type
 			this.value = value
 		}
@@ -70,6 +70,7 @@ KYTHERA.type.PRIMITIVES = {
 	bool: new KYTHERA.type("bool"),
 	"null": new KYTHERA.type("null"),
 	str: new KYTHERA.type("str"),
+	type: new KYTHERA.type("type"),
 }
 
 module.exports = KYTHERA

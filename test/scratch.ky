@@ -19,3 +19,5 @@ let myFn = <int q> null {
 	q
 	return null
 }
+
+myFn
