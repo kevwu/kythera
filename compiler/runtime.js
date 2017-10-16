@@ -19,7 +19,7 @@ const KYTHERA = {
 				this.name = name
 			}
 
-			if(type === "fn" || type === "obj") {
+			if(type === "fn" || type === "obj" || type === "list") {
 				if(structure === null) {
 					throw new Error(`Cannot initialize ${type} without structure.`)
 				} else {
@@ -61,6 +61,15 @@ const KYTHERA = {
 			return true
 		}
 	}
+}
+
+// types with no need for structure
+KYTHERA.type.PRIMITIVES = {
+	int: new KYTHERA.type("int"),
+	float: new KYTHERA.type("float"),
+	bool: new KYTHERA.type("bool"),
+	"null": new KYTHERA.type("null"),
+	str: new KYTHERA.type("str"),
 }
 
 module.exports = KYTHERA

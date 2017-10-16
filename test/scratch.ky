@@ -1,2 +1,21 @@
+/*
 int
-fn<int, str> null
+float
+bool
+null
+str
+fn<int> null
+obj{int a, str b,}
+int[]
+type
+*/
+
+10
+3.1415926
+true
+null
+"hello"
+let myFn = <int q> null {
+	q
+	return null
+}

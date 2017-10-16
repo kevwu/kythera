@@ -13,7 +13,7 @@ class Compiler {
 	visitProgram() {
 		let out = ""
 		this.program.forEach((node) => {
-			out += this.visitNode(node) + '\n'
+			out += this.visitNode(node) + ';\n'
 			console.log(out)
 		})
 
@@ -42,7 +42,11 @@ class Compiler {
 				return this.visitNew(node)
 			case "identifier":
 				// TODO validate identifiers as ES6 idents
-				return node.name
+				if(this.currentScope.has(node.name)) {
+					return node.name
+				} else {
+					throw new Error("Undefined variable: " + node.name)
+				}
 			case "literal":
 				return this.visitLiteral(node)
 			default:
@@ -57,19 +61,22 @@ class Compiler {
 			case "bool":
 			case "str":
 			case "null":
+				return this.makeValueConstructor(node.value, NodeType.PRIMITIVES[node.type])
 			case "type":
-				return this.makeValueConstructor(node.value, new NodeType(node.type))
+				return this.makeValueConstructor(this.makeTypeConstructor(new NodeType(node.value)), new NodeType("type"))
 			case "fn":
+				// function type information is not included with the literal, it must be derived
 				return this.makeValueConstructor(
 					{parameters: node.parameters, body: node.body, returns: node.returns},
 					new NodeType("fn", {
 						parameters: node.parameters.map((param, i) => {
-							return this.getNodeType(param.type, param.structure)
+							return this.makeNodeType(param.type)
 						}),
-						returns: this.getNodeType(node.returns)
+						returns: this.makeNodeType(node.returns)
 					})
 				)
 			case "obj":
+				// object type information is not included with the literal, it must be derived
 				throw new Error("Not yet implemented")
 			default:
 				throw new Error("Unhandled type: " + node.type)
@@ -77,28 +84,25 @@ class Compiler {
 	}
 
 	visitNew(node) {
-		let targetType = this.getNodeType(node.target)
+		let targetType = this.makeNodeType(node.target)
 		console.log("Target type for new:")
 		console.log(JSON.stringify(targetType, null, 2))
 
 		switch(targetType.type) {
 			case "int":
-				return ``
+				return this.makeValueConstructor(0, new NodeType("int"))
 		}
-
-		return ""
 	}
 
 	visitLet(node) {
-		let targetType = this.getNodeType(node.value)
-		this.currentScope.create(node.identifier, targetType)
+		// TODO make setting scope here work again
 		return `let ${node.identifier} = ${this.visitExpressionNode(node.value)}`
 	}
 
 	visitAssign(node) {
 		if(node.left.kind === "identifier") {
-			let lhsType = this.getNodeType(node.left)
-			let rhsType = this.getNodeType(node.right)
+			let lhsType = this.makeNodeType(node.left)
+			let rhsType = this.makeNodeType(node.right)
 			if(!this.currentScope.get(node.left.name).eq(rhsType)) {
 				throw new Error(`Cannot assign ${rhsType.type} value to ${node.left.name}, which has type ${lhsType.type}`)
 			} else {
@@ -119,117 +123,102 @@ class Compiler {
 		}
 	}
 
-	// returns NodeType structure as would be stored/returned from Scope
-	getNodeType(node) {
-		let res
-		switch(node.kind) {
-			// TODO i think literal and type can be combined
-			case "literal":
+	// transform a type ParseNode into a NodeType
+	makeNodeType(node) {
+		if(node.kind !== "type") {
+			throw new Error("Expected a type ParseNode but got " + JSON.stringify(node, null, 2))
+		}
+
+		if(node.name) {
+			throw new Error("named types not yet supported")
+		}
+
+		switch(node.type) {
+			case "int":
+			case "float":
+			case "bool":
+			case "str":
+			case "null":
+				return NodeType.PRIMITIVES[node.type]
+			case "fn":
+				return new NodeType(node.type, {
+					parameters: node.parameters.map((param, i) => {
+						return this.makeNodeType(param.type)
+					}),
+					returns: this.makeNodeType(node.returns)
+				})
+			case "obj":
 				let structure = {}
-				if(node.type === "fn") {
-					structure = {
-						parameters: node.parameters.map((param, i) => {
-							return this.getNodeType(param.type)
-						}),
-						returns: this.getNodeType(node.returns)
-					}
-				}
-
-				if(node.type === "obj") {
-					throw new Error("Not yet implemented")
-				}
-
+				Object.entries(node.structure).forEach(([key, value], i) => {
+					structure[key] = this.makeNodeType(value)
+				})
 				return new NodeType(node.type, structure)
-			case "type":
-				res = {}
-				res.type = node.type
-
-				if(res.type === "fn") {
-					res.structure = {
-						parameters: node.parameters.map((param, i) => {
-							return this.getNodeType(param)
-						}),
-						returns: this.getNodeType(node.returns)
-					}
-				}
-
-				if(res.type === "obj") {
-					throw new Error("Not yet implemented")
-				}
-				return res
-			case "identifier":
-				return this.currentScope.get(node.name)
-			case "new":
-				return this.getNodeType(node.target)
 			default:
-				throw new Error(`Cannot find type for ${node.kind}`)
+				throw new Error("Invalid builtin type: " + node.type)
 		}
 	}
 
 	// returns the runtime-side constructor call string for a new KYTHERA.value
-	makeValueConstructor(value, nodeType = null) {
+	makeValueConstructor(value, nodeType) {
 		let out = `new KYTHERA.value(`
 		if(nodeType.type === "str") {
-			value = `"${value}"`
-		}
-		if(nodeType.type === "fn") {
-			/*
-			expects:
-			value.parameters to be an assoc. array: name (string) => NodeType
-			 */
-
-
+			out += `"${value}"`
+		} else if(nodeType.type === "fn") {
 			// extend scope one level
 			this.currentScope = new Scope(this.currentScope, "function")
 
-			let fn = "("
+			out += "("
 			// build parameter list and bring parameters into scope
 			value.parameters.forEach((param, i) => {
-				this.currentScope.create(param.name, this.getNodeType(param))
-				fn += param.name
+				this.currentScope.create(param.name, nodeType.structure.parameters[i])
+				out += param.name
 				if(i !== value.parameters.length - 1) {
-					fn += ","
+					out += ","
 				}
 			})
 
-			fn += ') => {\n'
+			out += ') => {\n'
 
 			// TODO verify that the function returns
 			// build body statements
 			value.body.forEach((statement, i) => {
-				fn += this.visitNode(statement) + '\n'
+				out += this.visitNode(statement) + ';\n'
 			})
 
-			fn += '}'
-
-			let structure = {
-				parameters: node.parameters.map((param, i) => {
-					return this.getNodeType(param.type)
-				}),
-				returns: this.getNodeType(node.returns)
-			}
-
-			return `new KYTHERA.value("fn", ${fn}, ${JSON.stringify(structure)})`
+			out += '}'
+		} else {
+			out += value
 		}
-
-		out += value
 
 		out += `, ${this.makeTypeConstructor(nodeType)})`
 
 		return out
 	}
 
-	// returns the runtime-side constructor call string for a KYTHERA.type
+	// runtime-side constructor call string for a KYTHERA.type, from a KYTHERA.type. This wrinkles my brain
 	makeTypeConstructor(nodeType) {
 		let out = `new KYTHERA.type("${nodeType.type}"`
 
 		if(nodeType.type === "fn") {
+			out += ", { parameters: ["
 
+			nodeType.structure.parameters.forEach((param, i) => {
+				out += this.makeTypeConstructor(param)
+
+				if(i < nodeType.structure.parameters.length - 1) {
+					out += ","
+				}
+			})
+
+			out += `], returns: ${JSON.stringify(nodeType.structure.returns)}}`
 		} else if(nodeType.type === "obj") {
 
+		} else if(nodeType.type === "list") {
+
 		} else {
-			out += ")"
+			return `KYTHERA.type.PRIMITIVES["${nodeType.type}"]`
 		}
+		out += ")"
 
 		return out
 	}

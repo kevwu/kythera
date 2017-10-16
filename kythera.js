@@ -10,7 +10,10 @@ try {
 
 	let compiler = new Compiler(ast)
 	let output = compiler.visitProgram()
+	console.log("Compilation complete:")
 	console.log(output)
+
+	console.log("Executing...")
 	output = `const KYTHERA = require("./compiler/runtime");` + output
 	eval(output)
 } catch(e) {
