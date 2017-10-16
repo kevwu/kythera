@@ -224,7 +224,7 @@ class Compiler {
 				}
 			})
 
-			out += `], returns: ${JSON.stringify(nodeType.structure.returns)}}`
+			out += `], returns: ${this.makeTypeConstructor(nodeType.structure.returns)}}`
 		} else if(nodeType.type === "obj") {
 
 		} else if(nodeType.type === "list") {

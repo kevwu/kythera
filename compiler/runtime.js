@@ -19,13 +19,35 @@ const KYTHERA = {
 				this.name = name
 			}
 
+			/*
+			We have to re-validate type object structure here because they could come
+			not just from the compiler but also from the FFI.
+			 */
 			if(type === "fn" || type === "obj" || type === "list") {
 				if(structure === null) {
 					throw new Error(`Cannot initialize ${type} without structure.`)
-				} else {
-					// TODO validate incoming structure
-					this.structure = structure
 				}
+
+				if(type === "fn") {
+					if(!Array.isArray(structure.parameters)) {
+						throw new Error("Function parameter list must be an array.")
+					}
+
+					// ideally, we'd like to do `instanceof KYTHERA.type` but that's not defined yet...
+					if(typeof structure.returns !== "object") {
+						throw new Error("Function return value must be a KYTHERA.value.")
+					}
+				}
+
+				if(type === "obj") {
+
+				}
+
+				if(type === "list") {
+
+				}
+
+				this.structure = structure
 			}
 		}
 
