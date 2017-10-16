@@ -1,6 +1,6 @@
-Scope = require("./Scope")
+const Scope = require("./Scope")
+const NodeType = require("./include").type
 
-// for comparison with scope types
 const TYPES = {
 	int: {
 		type: "int"
@@ -70,6 +70,8 @@ class Compiler {
 	// expression node dispatcher
 	visitExpressionNode(node) {
 		switch (node.kind) {
+			case "new":
+				return this.visitNew(node)
 			case "identifier":
 				// TODO validate identifiers as ES6 idents
 				return node.name
@@ -83,15 +85,15 @@ class Compiler {
 	visitLiteral(node) {
 		switch (node.type) {
 			case "int":
-				return `new KYTHERA.value(${node.value}, "int");`
+				return `new KYTHERA.value(${node.value}, new KYTHERA.type("int"));`
 			case "float":
-				return `new KYTHERA.value(${node.value}, "float");`
+				return `new KYTHERA.value(${node.value}, new KYTHERA.type("float"));`
 			case "bool":
-				return `new KYTHERA.value(${node.value}, "bool");`
+				return `new KYTHERA.value(${node.value}, new KYTHERA.type("bool"));`
 			case "str":
-				return `new KYTHERA.value(${node.value}, "str");`
+				return `new KYTHERA.value(${node.value}, new KYTHERA.type("str"));`
 			case "null":
-				return `new KYTHERA.value(${node.value}, "null");`
+				return `new KYTHERA.value(${node.value}, new KYTHERA.type("null"));`
 			case "fn":
 				// extend scope one level
 				this.currentScope = new Scope(this.currentScope, "function")
@@ -126,10 +128,15 @@ class Compiler {
 
 				return `new KYTHERA.value("fn", ${fn}, ${JSON.stringify(structure)})`
 			case "obj":
-
+				throw new Error("Not yet implemented")
 			default:
 				throw new Error("Unhandled type: " + node.type)
 		}
+	}
+
+	visitNew(node) {
+		let targetType = this.getNodeType(node.target)
+		return ""
 	}
 
 	visitLet(node) {
@@ -167,10 +174,9 @@ class Compiler {
 		let res
 		switch (node.kind) {
 			case "literal":
-				res = {}
-				res.type = node.type
-				if (res.type === "fn") {
-					res.structure = {
+				let structure = {}
+				if (node.type === "fn") {
+					structure = {
 						parameters: node.parameters.map((param, i) => {
 							return this.getNodeType(param.type)
 						}),
@@ -178,11 +184,11 @@ class Compiler {
 					}
 				}
 
-				if (res.type === "obj") {
+				if (node.type === "obj") {
 					throw new Error("Not yet implemented")
 				}
 
-				return res
+				return new NodeType(node.type, structure)
 			case "type":
 				res = {}
 				res.type = node.type
@@ -202,43 +208,11 @@ class Compiler {
 				return res
 			case "identifier":
 				return this.currentScope.get(node.name)
+			case "new":
+				return this.getNodeType(node.target)
 			default:
 				throw new Error(`Cannot find type for ${node.kind}`)
 		}
-	}
-
-	// compare two node types
-	eqNodeType(a, b) {
-		if (a.type !== b.type) {
-			return false
-		}
-
-		if (a.type === "fn") {
-			if (!this.eqNodeType(a.structure.returns, b.structure.returns)) {
-				return false
-			}
-
-			if (a.structure.parameters.length !== a.structure.parameters.length) {
-				return false
-			}
-
-			for (let i = 0; i < a.structure.parameters.length; i += 1) {
-				if (!this.eqNodeType(a.structure.parameters[i], b.structure.parameters[i])) {
-					return false
-				}
-			}
-			return true
-		}
-
-		if (a.type === "obj") {
-			if (Object.keys(a.structure).length !== Object.keys(b.structure).length) {
-				return false
-			}
-
-			return !Object.keys(a.structure).every((key, i) => this.eqNodeType(a.structure[key], b.structure[key]));
-		}
-
-		return true
 	}
 }
 

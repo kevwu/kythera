@@ -1,5 +1,3 @@
-const VALID_NODE_KINDS = " unary binary literal type identifier typeof new let if while return as call access "
-
 class ParseNode {
 	constructor(kind, payload) {
 		this.kind = kind

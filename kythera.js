@@ -4,12 +4,15 @@ const Compiler = require("./compiler/Compiler")
 
 try {
 	let parser = new Parser(fs.readFileSync(process.argv[2]).toString())
-	let program = parser.parse()
+	let ast = parser.parse()
 
-	console.log(JSON.stringify(program, null, 2))
+	console.log(JSON.stringify(ast, null, 2))
 
-	let compiler = new Compiler(program)
-	console.log(compiler.visitProgram())
+	let compiler = new Compiler(ast)
+	let output = compiler.visitProgram()
+	console.log(output)
+	output = `const KYTHERA = require("./compiler/include");` + output
+	eval(output)
 } catch(e) {
 	console.log(e)
 	return
