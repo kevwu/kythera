@@ -58,15 +58,15 @@ class Compiler {
 	}
 
 	visitLiteral(node) {
-		switch(node.type) {
+		switch(node.type.type) {
 			case "int":
 			case "float":
 			case "bool":
 			case "str":
 			case "null":
 				return {
-					output: this.makeValueConstructor(node.value, NodeType.PRIMITIVES[node.type]),
-					type: NodeType.PRIMITIVES[node.type]
+					output: this.makeValueConstructor(node.value, NodeType.PRIMITIVES[node.type.type]),
+					type: NodeType.PRIMITIVES[node.type.type]
 				}
 			case "type":
 				return {
@@ -74,13 +74,7 @@ class Compiler {
 					type: NodeType.PRIMITIVES.type
 				}
 			case "fn":
-				// function type information is not included with the literal, it must be derived
-				let fnType = new NodeType("fn", {
-					parameters: node.parameters.map((param, i) => {
-						return this.makeNodeType(param.type)
-					}),
-					returns: this.makeNodeType(node.returns)
-				})
+				let fnType = this.makeNodeType(node.type)
 				return {
 					output: this.makeValueConstructor(
 						{parameters: node.parameters, body: node.body, returns: node.returns},
@@ -89,8 +83,11 @@ class Compiler {
 					type: fnType
 				}
 			case "obj":
-				// object type information is not included with the literal, it must be derived
-				throw new Error("Not yet implemented")
+				let objType = this.makeNodeType(node.type)
+				return {
+					output: this.makeValueConstructor(node.value, objType),
+					type: objType
+				}
 			default:
 				throw new Error("Unhandled type: " + node.type)
 		}
@@ -157,7 +154,7 @@ class Compiler {
 			case "fn":
 				return new NodeType(node.type, {
 					parameters: node.parameters.map((param, i) => {
-						return this.makeNodeType(param.type)
+						return this.makeNodeType(param)
 					}),
 					returns: this.makeNodeType(node.returns)
 				})
@@ -200,6 +197,14 @@ class Compiler {
 			})
 
 			out += '}'
+		} else if(nodeType.type === "obj") {
+			out += "{"
+
+			Object.entries(value).forEach(([key, val], i) => {
+				out += `"${key}": ${this.visitExpressionNode(val).output},`
+			})
+
+			out += "}"
 		} else {
 			out += value
 		}
@@ -226,7 +231,13 @@ class Compiler {
 
 			out += `], returns: ${this.makeTypeConstructor(nodeType.structure.returns)}}`
 		} else if(nodeType.type === "obj") {
+			out += ", {"
 
+			Object.entries(nodeType.structure).forEach(([key, val], i) => {
+				out += `"${key}": ${val},`
+			})
+
+			out += "}"
 		} else if(nodeType.type === "list") {
 
 		} else {

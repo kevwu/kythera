@@ -40,7 +40,16 @@ const KYTHERA = {
 				}
 
 				if(type === "obj") {
+					if(typeof structure !== "object") {
+						throw new Error("Object structure must be an object.")
+					}
 
+					// TODO find a better way to type check this
+					if(!Object.values(structure).every((val, i) => {
+						return typeof val.type === "string"
+						})) {
+						throw new Error("Every object structure entry must be a type.")
+					}
 				}
 
 				if(type === "list") {
@@ -51,6 +60,7 @@ const KYTHERA = {
 			}
 		}
 
+		// TODO make static
 		eq(other) {
 			if (this.type !== other.type) {
 				return false

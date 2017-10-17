@@ -10,14 +10,16 @@ int[]
 type
 */
 
-10
-3.1415926
-true
-null
-"hello"
+// 10
+// 3.1415926
+// true
+// null
+// "hello"
 let myFn = <int q> null {
 	q
 	return null
 }
-
-myFn
+let myObj = {
+	a = 10,
+	b = "hello",
+}
