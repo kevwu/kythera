@@ -5,7 +5,12 @@ ParseNode {
   "kind": "typeof",
   "target": ParseNode {
     "kind": "literal",
-    "type": "obj",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "structure": Object {},
+      "type": "obj",
+    },
     "value": Object {
       "a": ParseNode {
         "kind": "new",
@@ -17,7 +22,11 @@ ParseNode {
       },
       "b": ParseNode {
         "kind": "literal",
-        "type": "int",
+        "type": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "int",
+        },
         "value": 10,
       },
     },
@@ -28,7 +37,12 @@ ParseNode {
 exports[`Literals Arithmetic binary Adding ints 1`] = `
 ParseNode {
   "kind": "literal",
-  "type": "obj",
+  "type": ParseNode {
+    "kind": "type",
+    "origin": "builtin",
+    "structure": Object {},
+    "type": "obj",
+  },
   "value": Object {
     "a": ParseNode {
       "kind": "new",
@@ -40,7 +54,11 @@ ParseNode {
     },
     "b": ParseNode {
       "kind": "literal",
-      "type": "int",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
       "value": 10,
     },
   },
@@ -52,13 +70,21 @@ ParseNode {
   "kind": "binary",
   "left": ParseNode {
     "kind": "literal",
-    "type": "float",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "float",
+    },
     "value": 3.14159,
   },
   "operator": "+",
   "right": ParseNode {
     "kind": "literal",
-    "type": "float",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "float",
+    },
     "value": 2.71828,
   },
 }
@@ -69,13 +95,21 @@ ParseNode {
   "kind": "binary",
   "left": ParseNode {
     "kind": "literal",
-    "type": "int",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
     "value": 9,
   },
   "operator": "-",
   "right": ParseNode {
     "kind": "literal",
-    "type": "int",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
     "value": 5,
   },
 }
@@ -86,13 +120,21 @@ ParseNode {
   "kind": "binary",
   "left": ParseNode {
     "kind": "literal",
-    "type": "int",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
     "value": 6,
   },
   "operator": "/",
   "right": ParseNode {
     "kind": "literal",
-    "type": "int",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
     "value": 3,
   },
 }
@@ -103,13 +145,21 @@ ParseNode {
   "kind": "binary",
   "left": ParseNode {
     "kind": "literal",
-    "type": "int",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
     "value": 4,
   },
   "operator": "*",
   "right": ParseNode {
     "kind": "literal",
-    "type": "int",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
     "value": 2,
   },
 }
@@ -120,13 +170,21 @@ ParseNode {
   "kind": "binary",
   "left": ParseNode {
     "kind": "literal",
-    "type": "int",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
     "value": 2,
   },
   "operator": "+",
   "right": ParseNode {
     "kind": "literal",
-    "type": "int",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
     "value": 2,
   },
 }
@@ -139,20 +197,32 @@ ParseNode {
     "kind": "binary",
     "left": ParseNode {
       "kind": "literal",
-      "type": "int",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
       "value": 2,
     },
     "operator": "+",
     "right": ParseNode {
       "kind": "literal",
-      "type": "int",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
       "value": 3,
     },
   },
   "operator": "*",
   "right": ParseNode {
     "kind": "literal",
-    "type": "int",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
     "value": 4,
   },
 }
@@ -164,7 +234,11 @@ ParseNode {
   "operator": "!",
   "target": ParseNode {
     "kind": "literal",
-    "type": "bool",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "bool",
+    },
     "value": false,
   },
 }
@@ -176,7 +250,11 @@ ParseNode {
   "operator": "!",
   "target": ParseNode {
     "kind": "literal",
-    "type": "bool",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "bool",
+    },
     "value": true,
   },
 }
@@ -187,13 +265,21 @@ ParseNode {
   "kind": "binary",
   "left": ParseNode {
     "kind": "literal",
-    "type": "bool",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "bool",
+    },
     "value": true,
   },
   "operator": "&&",
   "right": ParseNode {
     "kind": "literal",
-    "type": "bool",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "bool",
+    },
     "value": true,
   },
 }
@@ -204,13 +290,21 @@ ParseNode {
   "kind": "binary",
   "left": ParseNode {
     "kind": "literal",
-    "type": "int",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
     "value": 18,
   },
   "operator": "%",
   "right": ParseNode {
     "kind": "literal",
-    "type": "int",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
     "value": 3,
   },
 }
@@ -221,7 +315,11 @@ ParseNode {
   "kind": "binary",
   "left": ParseNode {
     "kind": "literal",
-    "type": "int",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
     "value": 2,
   },
   "operator": "+",
@@ -229,13 +327,21 @@ ParseNode {
     "kind": "binary",
     "left": ParseNode {
       "kind": "literal",
-      "type": "int",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
       "value": 3,
     },
     "operator": "*",
     "right": ParseNode {
       "kind": "literal",
-      "type": "int",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
       "value": 4,
     },
   },
@@ -247,13 +353,21 @@ ParseNode {
   "kind": "binary",
   "left": ParseNode {
     "kind": "literal",
-    "type": "bool",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "bool",
+    },
     "value": true,
   },
   "operator": "||",
   "right": ParseNode {
     "kind": "literal",
-    "type": "bool",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "bool",
+    },
     "value": true,
   },
 }
@@ -262,7 +376,11 @@ ParseNode {
 exports[`Literals Type literals fn (no params) 1`] = `
 ParseNode {
   "kind": "literal",
-  "type": "type",
+  "type": ParseNode {
+    "kind": "type",
+    "origin": "builtin",
+    "type": "type",
+  },
   "value": ParseNode {
     "kind": "type",
     "origin": "builtin",
@@ -274,7 +392,11 @@ ParseNode {
 exports[`Literals Type literals fn (with params) 1`] = `
 ParseNode {
   "kind": "literal",
-  "type": "type",
+  "type": ParseNode {
+    "kind": "type",
+    "origin": "builtin",
+    "type": "type",
+  },
   "value": ParseNode {
     "kind": "type",
     "origin": "builtin",
@@ -288,13 +410,21 @@ ParseNode {
   "kind": "binary",
   "left": ParseNode {
     "kind": "literal",
-    "type": "bool",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "bool",
+    },
     "value": true,
   },
   "operator": "&&",
   "right": ParseNode {
     "kind": "literal",
-    "type": "bool",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "bool",
+    },
     "value": false,
   },
 }
@@ -303,7 +433,11 @@ ParseNode {
 exports[`Literals Type literals obj (freeform) 1`] = `
 ParseNode {
   "kind": "literal",
-  "type": "type",
+  "type": ParseNode {
+    "kind": "type",
+    "origin": "builtin",
+    "type": "type",
+  },
   "value": ParseNode {
     "kind": "type",
     "origin": "builtin",
@@ -332,7 +466,11 @@ ParseNode {
 exports[`Literals Type literals obj (structured) 1`] = `
 ParseNode {
   "kind": "literal",
-  "type": "type",
+  "type": ParseNode {
+    "kind": "type",
+    "origin": "builtin",
+    "type": "type",
+  },
   "value": ParseNode {
     "kind": "type",
     "origin": "builtin",
@@ -346,13 +484,21 @@ ParseNode {
   "kind": "binary",
   "left": ParseNode {
     "kind": "literal",
-    "type": "bool",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "bool",
+    },
     "value": true,
   },
   "operator": "||",
   "right": ParseNode {
     "kind": "literal",
-    "type": "bool",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "bool",
+    },
     "value": false,
   },
 }
@@ -361,7 +507,11 @@ ParseNode {
 exports[`Literals float literal 1`] = `
 ParseNode {
   "kind": "literal",
-  "type": "float",
+  "type": ParseNode {
+    "kind": "type",
+    "origin": "builtin",
+    "type": "float",
+  },
   "value": 3.14159,
 }
 `;
@@ -371,7 +521,11 @@ ParseNode {
   "kind": "typeof",
   "target": ParseNode {
     "kind": "literal",
-    "type": "float",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "float",
+    },
     "value": 3.14159,
   },
 }
@@ -380,7 +534,11 @@ ParseNode {
 exports[`Literals int literal 1`] = `
 ParseNode {
   "kind": "literal",
-  "type": "int",
+  "type": ParseNode {
+    "kind": "type",
+    "origin": "builtin",
+    "type": "int",
+  },
   "value": 10,
 }
 `;
@@ -390,7 +548,11 @@ ParseNode {
   "kind": "typeof",
   "target": ParseNode {
     "kind": "literal",
-    "type": "int",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
     "value": 10,
   },
 }
@@ -399,7 +561,11 @@ ParseNode {
 exports[`Literals null literal 1`] = `
 ParseNode {
   "kind": "literal",
-  "type": "null",
+  "type": ParseNode {
+    "kind": "type",
+    "origin": "builtin",
+    "type": "null",
+  },
   "value": null,
 }
 `;
@@ -409,7 +575,11 @@ ParseNode {
   "kind": "typeof",
   "target": ParseNode {
     "kind": "literal",
-    "type": "null",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "null",
+    },
     "value": null,
   },
 }
@@ -418,7 +588,11 @@ ParseNode {
 exports[`Literals obj literal 1`] = `
 ParseNode {
   "kind": "literal",
-  "type": "str",
+  "type": ParseNode {
+    "kind": "type",
+    "origin": "builtin",
+    "type": "str",
+  },
   "value": "hello",
 }
 `;
@@ -428,7 +602,11 @@ ParseNode {
   "kind": "typeof",
   "target": ParseNode {
     "kind": "literal",
-    "type": "str",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "str",
+    },
     "value": "hello",
   },
 }

@@ -12,24 +12,9 @@ const PRECEDENCE = {
 	"*": 20, "/": 20, "%": 20
 }
 
-const LITERALS = {
-	"false": new ParseNode("literal", {
-		type: "bool",
-		value: false
-	}),
-	"true": new ParseNode("literal", {
-		type: "bool",
-		value: true
-	}),
-	"null": new ParseNode("literal", {
-		type: "null",
-		value: null
-	}),
-}
-
 // primitive types
 const TYPES = {
-	null: new ParseNode("type", {
+	"null": new ParseNode("type", {
 		type: "null",
 		origin: "builtin"
 	}),
@@ -55,6 +40,20 @@ const TYPES = {
 	})
 }
 
+const LITERALS = {
+	"false": new ParseNode("literal", {
+		type: TYPES.bool,
+		value: false
+	}),
+	"true": new ParseNode("literal", {
+		type: TYPES.bool,
+		value: true
+	}),
+	"null": new ParseNode("literal", {
+		type: TYPES.null,
+		value: null
+	}),
+}
 
 class Parser {
 	constructor(input) {
@@ -110,7 +109,7 @@ class Parser {
 			// type literals. "null" is always handled as a null literal, not a null type literal.
 			if (["int", "float", "str", "bool", "fn", "obj", "type"].includes(nextToken.value)) {
 				return new ParseNode("literal", {
-					type: "type",
+					type: TYPES.type,
 					value: this.parseType()
 				})
 			}
@@ -196,19 +195,19 @@ class Parser {
 			if (nextToken.type === "num") {
 				if (nextToken.value % 1 !== 0) { // float
 					return new ParseNode("literal", {
-						type: "float",
+						type: TYPES.float,
 						value: nextToken.value,
 					})
 				} else { // int
 					return new ParseNode("literal", {
-						type: "int",
+						type: TYPES.int,
 						value: nextToken.value,
 					})
 				}
 			}
 			if (nextToken.type === "str") {
 				return new ParseNode("literal", {
-					type: "str",
+					type: TYPES.str,
 					value: nextToken.value,
 				})
 			}
@@ -362,11 +361,14 @@ class Parser {
 			contents[entryKey] = entryValue
 		}
 
-
 		this.consumeToken('}', "punc")
 
 		return new ParseNode("literal", {
-			type: "obj",
+			type: new ParseNode("type", {
+				type: "obj",
+				origin: "builtin",
+				structure: {}, // freeform structure
+			}),
 			value: contents,
 		})
 	}
@@ -397,7 +399,14 @@ class Parser {
 		let body = this.parseBlock()
 
 		return new ParseNode("literal", {
-			type: "fn",
+			type: new ParseNode("type", {
+				type: "fn",
+				origin: "builtin",
+				parameters: parameters.map((param, i) => {
+					return param.type
+				}),
+				returns: returnType
+			}),
 			parameters: parameters,
 			body: body,
 			returns: returnType
