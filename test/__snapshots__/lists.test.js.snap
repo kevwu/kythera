@@ -4,7 +4,11 @@ exports[`Lists Access 1`] = `
 ParseNode {
   "index": ParseNode {
     "kind": "literal",
-    "type": "int",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
     "value": 2,
   },
   "kind": "access",
@@ -20,7 +24,11 @@ exports[`Lists Access from function call result 1`] = `
 ParseNode {
   "index": ParseNode {
     "kind": "literal",
-    "type": "int",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
     "value": 10,
   },
   "kind": "access",
@@ -42,7 +50,11 @@ ParseNode {
   "kind": "let",
   "value": ParseNode {
     "kind": "literal",
-    "type": "type",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "type",
+    },
     "value": ParseNode {
       "kind": "type",
       "origin": "builtin",
@@ -99,7 +111,22 @@ ParseNode {
       "origin": "builtin",
       "type": "list",
     },
-    "type": "fn",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "parameters": Array [],
+      "returns": ParseNode {
+        "contains": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "int",
+        },
+        "kind": "type",
+        "origin": "builtin",
+        "type": "list",
+      },
+      "type": "fn",
+    },
   },
 }
 `;

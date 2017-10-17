@@ -53,8 +53,12 @@ class ParseNode {
 				this.right = payload.right
 				break
 			case "literal":
+				if(payload.type.kind !== "type") {
+					throw new Error("Literal type must be a type node.")
+				}
+
 				// all literals are interpreted as primitive types. They can become named types by casting.
-				switch(payload.type) {
+				switch(payload.type.type) {
 					case "int":
 						if(!(typeof payload.value === "number" && isFinite(payload.value) && (payload.value % 1 === 0))) {
 							throw new Error("Value stored in int literal is not an integer.")
@@ -130,14 +134,21 @@ class ParseNode {
 				let builtIns = ["int", "float", "bool", "null", "str", "fn", "obj", "type", "list"]
 
 				if(payload.type) {
-					if(!builtIns.includes(payload.type) || payload.origin !== "builtin") {
+					if(!builtIns.includes(payload.type)) {
 						throw new Error(`${payload.type} is not a built-in type.`)
+					}
+
+					if(payload.origin !== "builtin") {
+						throw new Error(`${payload.type} is built-in but was not marked as built-in`)
 					}
 
 					this.type = payload.type
 				} else {
-					if(builtIns.includes(payload.name) || payload.origin !== "named") {
-						throw new Error(`${payload.name} is a built-in type, not a named type.`)
+					if(builtIns.includes(payload.name)) {
+						throw new Error(`${payload.name} is a built-in type and is not valid as a named type.`)
+					}
+					if(payload.origin !== "named") {
+						throw new Error(`${payload.name} is a named type but was not marked as named`)
 					}
 
 					this.name = payload.name
