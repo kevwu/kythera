@@ -91,7 +91,7 @@ class ParseNode {
 						}
 
 						if(!payload.parameters.every((param, i) => {
-							return param.type.kind === "type"
+								return param.type.kind === "type"
 							})) {
 							throw new Error("Every parameter must be a type node")
 						}
@@ -159,7 +159,7 @@ class ParseNode {
 					}
 
 					if(!payload.parameters.every((node, i) => {
-						return node.kind === "type"
+							return node.kind === "type"
 						})) {
 						throw new Error("Every parameter entry must be a type node.")
 					}
@@ -178,7 +178,7 @@ class ParseNode {
 					}
 
 					if(!Object.values(payload.structure).every((node, i) => {
-						return node.kind === "type"
+							return node.kind === "type"
 						})) {
 						throw new Error("Every object entry must be a type node.")
 					}
@@ -227,7 +227,7 @@ class ParseNode {
 				}
 
 				if(!payload.body.every((node, i) => {
-					return typeof node.kind === "string"
+						return typeof node.kind === "string"
 					})) {
 					throw new Error("Every member of the 'if' body must be a Parse Node.")
 				}
@@ -239,7 +239,7 @@ class ParseNode {
 					}
 
 					if(!payload.else.every((node, i) => {
-						return typeof node.kind === "string"
+							return typeof node.kind === "string"
 						})) {
 						throw new Error("Every member of the 'else' body must be a Parse Node.")
 					}
