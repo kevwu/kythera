@@ -11,13 +11,11 @@ class Compiler {
 	}
 
 	visitProgram() {
-		let out = ""
-		this.program.forEach((node) => {
-			out += this.visitNode(node) + ';\n'
-			console.log(out)
-		})
-
-		return out
+		return this.program.reduce((prev, node) => {
+			let stmt = prev + this.visitNode(node) + ';\n'
+			console.log(stmt)
+			return stmt
+		}, "")
 	}
 
 	// main statement dispatcher
@@ -180,29 +178,26 @@ class Compiler {
 
 			out += "("
 			// build parameter list and bring parameters into scope
-			value.parameters.forEach((param, i) => {
+			out += value.parameters.reduce((prev, param, i) => {
 				this.currentScope.create(param.name, nodeType.structure.parameters[i])
-				out += param.name
-				if(i !== value.parameters.length - 1) {
-					out += ","
-				}
-			})
+				return prev + param.name + ((i !== value.parameters.length - 1) ? "," : "")
+			}, "")
 
 			out += ') => {\n'
 
 			// TODO verify that the function returns
 			// build body statements
-			value.body.forEach((statement, i) => {
-				out += this.visitNode(statement) + ';\n'
-			})
+			out += value.body.reduce((prev, statement, i) => {
+				return prev + this.visitNode(statement) + ';\n'
+			}, "")
 
 			out += '}'
 		} else if(nodeType.type === "obj") {
 			out += "{"
 
-			Object.entries(value).forEach(([key, val], i) => {
-				out += `"${key}": ${this.visitExpressionNode(val).output},`
-			})
+			out += Object.entries(value).reduce((prev, [key, val], i) => {
+				return prev + `"${key}": ${this.visitExpressionNode(val).output},`
+			}, "")
 
 			out += "}"
 		} else {
@@ -221,21 +216,17 @@ class Compiler {
 		if(nodeType.type === "fn") {
 			out += ", { parameters: ["
 
-			nodeType.structure.parameters.forEach((param, i) => {
-				out += this.makeTypeConstructor(param)
-
-				if(i < nodeType.structure.parameters.length - 1) {
-					out += ","
-				}
-			})
+			out += nodeType.structure.parameters.reduce((prev, param, i) => {
+				return prev + this.makeTypeConstructor(param) + ((i < nodeType.structure.parameters.length - 1) ? "," : "")
+			}, "")
 
 			out += `], returns: ${this.makeTypeConstructor(nodeType.structure.returns)}}`
 		} else if(nodeType.type === "obj") {
 			out += ", {"
 
-			Object.entries(nodeType.structure).forEach(([key, val], i) => {
-				out += `"${key}": ${val},`
-			})
+			out += Object.entries(nodeType.structure).reduce((prev, [key, val], i) => {
+				return prev + `"${key}": ${val},`
+			}, "")
 
 			out += "}"
 		} else if(nodeType.type === "list") {
