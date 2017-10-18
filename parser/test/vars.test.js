@@ -8,7 +8,7 @@ afterEach(() => {
 })
 
 describe("Variables", () => {
-	let program = common.parseFile("test/vars.ky")
+	let program = common.parseFile("parser/test/vars.ky")
 	i = 0
 
 	let t = (name) => {
