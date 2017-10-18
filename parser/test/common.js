@@ -1,5 +1,5 @@
 const fs = require("fs")
-const Parser = require("../parser/Parser")
+const Parser = require("../Parser")
 
 module.exports = {
 	parseFile: (file) => {

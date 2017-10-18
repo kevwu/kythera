@@ -8,7 +8,7 @@ afterEach(() => {
 })
 
 describe("Literals", () => {
-	let program = common.parseFile("test/literals.ky")
+	let program = common.parseFile("parser/test/literals.ky")
 	i = 0
 
 	let t = (name) => {
