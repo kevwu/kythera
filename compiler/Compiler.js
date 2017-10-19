@@ -110,12 +110,13 @@ class Compiler {
 
 	visitAssign(node) {
 		if(node.left.kind === "identifier") {
-			let lhsType = this.makeNodeType(node.left)
-			let rhsType = this.makeNodeType(node.right)
-			if(!this.currentScope.get(node.left.name).eq(rhsType)) {
-				throw new Error(`Cannot assign ${rhsType.type} value to ${node.left.name}, which has type ${lhsType.type}`)
+			// let lhsType = this.makeNodeType(node.left)
+			let lhsType = this.currentScope.get(node.left.name)
+			let rhs = this.visitExpressionNode(node.right)
+			if(!this.currentScope.get(node.left.name).eq(rhs.type)) {
+				throw new Error(`Cannot assign ${rhs.type} value to ${node.left.name}, which has type ${lhsType.type}`)
 			} else {
-				return `${node.left.name} = ${this.visitExpressionNode(node.right)}`
+				return `${node.left.name} = ${rhs.output}`
 			}
 		} else if(node.left.kind === "objAccess" || node.left.kind === "access") {
 			throw new Error("Writing to object member not yet supported")
