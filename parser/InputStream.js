@@ -19,7 +19,6 @@ class InputStream {
 		}
 
 		return c
-
 	}
 
 	peek() {

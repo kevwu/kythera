@@ -1,5 +1,25 @@
-<int a> int {
-    let q = 99
-    let r = q
-    return q
-}(10)
+/*
+int
+float
+bool
+null
+str
+fn<int> null
+obj{int a, str b,}
+int[]
+type
+*/
+
+// 10
+// 3.1415926
+// true
+// null
+// "hello"
+let myFn = <int q> null {
+	q
+	return null
+}
+let myObj = {
+	a = 10,
+	b = "hello",
+}
