@@ -56,7 +56,14 @@ const LITERALS = {
 }
 
 class Parser {
-	constructor(input) {
+	constructor(input = null) {
+		this.program = []
+		if(input !== null) {
+			this.load(input)
+		}
+	}
+
+	load(input) {
 		this.inputStream = new InputStream(input)
 		this.tokenizer = new Tokenizer(this.inputStream)
 		this.program = []
@@ -64,6 +71,7 @@ class Parser {
 
 	// entry point for all parsing operations
 	parse() {
+		this.program = []
 		while (!this.tokenizer.eof()) {
 			this.program.push(this.parseExpression())
 			if (!this.confirmToken(';', "punc")) {

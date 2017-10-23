@@ -2,7 +2,13 @@ const Scope = require("./Scope")
 const NodeType = require("./runtime").type
 
 class Compiler {
-	constructor(program) {
+	constructor(program = null) {
+		if(program !== null) {
+			this.load(program)
+		}
+	}
+
+	load(program) {
 		this.program = program
 
 		// symbol table
@@ -10,11 +16,20 @@ class Compiler {
 		this.currentScope = this.rootScope
 	}
 
+	// compile
 	visitProgram() {
+		if(typeof this.program !== "object") {
+			throw new Error("No program is loaded.")
+		}
+
+		// clear symbol table
+		this.rootScope = new Scope()
+		this.currentScope = this.rootScope
+
 		return this.program.reduce((prev, node) => {
-			let stmt = prev + this.visitNode(node) + ';\n'
-			console.log(stmt)
-			return stmt
+			let prog = prev + this.visitNode(node) + ';\n'
+			console.log(prog)
+			return prog
 		}, "")
 	}
 
@@ -168,7 +183,7 @@ class Compiler {
 		}
 	}
 
-	// returns the runtime-side constructor call string for a new KYTHERA.value
+	// runtime-side constructor call string for a new KYTHERA.value
 	makeValueConstructor(value, nodeType) {
 		let out = `new KYTHERA.value(`
 		if(nodeType.type === "str") {

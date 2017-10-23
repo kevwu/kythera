@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Literals bool (false) 1`] = `"new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]);"`;
+
+exports[`Literals bool (true) 1`] = `"new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]);"`;
+
+exports[`Literals float 1`] = `"new KYTHERA.value(3.14159, KYTHERA.type.PRIMITIVES[\\"float\\"]);"`;
+
+exports[`Literals fn 1`] = `"new KYTHERA.value((a) => {a;return new KYTHERA.value(null, KYTHERA.type.PRIMITIVES[\\"null\\"]);}, new KYTHERA.type(\\"fn\\", { parameters: [KYTHERA.type.PRIMITIVES[\\"int\\"]], returns: KYTHERA.type.PRIMITIVES[\\"null\\"]}));"`;
+
+exports[`Literals int 1`] = `"new KYTHERA.value(10, KYTHERA.type.PRIMITIVES[\\"int\\"]);"`;
+
+exports[`Literals null 1`] = `"new KYTHERA.value(null, KYTHERA.type.PRIMITIVES[\\"null\\"]);"`;
+
+exports[`Literals obj 1`] = `"new KYTHERA.value({\\"a\\": new KYTHERA.value(10, KYTHERA.type.PRIMITIVES[\\"int\\"]),\\"b\\": new KYTHERA.value(\\"hello\\", KYTHERA.type.PRIMITIVES[\\"str\\"]),}, new KYTHERA.type(\\"obj\\", {}));"`;
+
+exports[`Literals str 1`] = `"new KYTHERA.value(\\"hello\\", KYTHERA.type.PRIMITIVES[\\"str\\"]);"`;
+
+exports[`Literals type (type) 1`] = `"new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"[object Object]\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]);"`;
+
+exports[`Literals type 1`] = `"new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"[object Object]\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]);"`;
