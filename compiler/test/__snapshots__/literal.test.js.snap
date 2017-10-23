@@ -16,6 +16,6 @@ exports[`Literals obj 1`] = `"new KYTHERA.value({\\"a\\": new KYTHERA.value(10, 
 
 exports[`Literals str 1`] = `"new KYTHERA.value(\\"hello\\", KYTHERA.type.PRIMITIVES[\\"str\\"]);"`;
 
-exports[`Literals type (type) 1`] = `"new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"[object Object]\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]);"`;
+exports[`Literals type (type) 1`] = `"new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"type\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]);"`;
 
-exports[`Literals type 1`] = `"new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"[object Object]\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]);"`;
+exports[`Literals type 1`] = `"new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"int\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]);"`;

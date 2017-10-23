@@ -83,7 +83,7 @@ class Compiler {
 				}
 			case "type":
 				return {
-					output: this.makeValueConstructor(this.makeTypeConstructor(new NodeType(node.value)), NodeType.PRIMITIVES.type),
+					output: this.makeValueConstructor(this.makeTypeConstructor(this.makeNodeType(node.value)), NodeType.PRIMITIVES.type),
 					type: NodeType.PRIMITIVES.type
 				}
 			case "fn":
@@ -164,6 +164,7 @@ class Compiler {
 			case "bool":
 			case "str":
 			case "null":
+			case "type":
 				return NodeType.PRIMITIVES[node.type]
 			case "fn":
 				return new NodeType(node.type, {
@@ -178,6 +179,8 @@ class Compiler {
 					structure[key] = this.makeNodeType(value)
 				})
 				return new NodeType(node.type, structure)
+			case "list":
+				throw new Error("Not yet implemented")
 			default:
 				throw new Error("Invalid builtin type: " + node.type)
 		}
@@ -241,7 +244,7 @@ class Compiler {
 			out += ", {"
 
 			out += Object.entries(nodeType.structure).reduce((prev, [key, val], i) => {
-				return prev + `"${key}": ${val},`
+				return prev + `"${key}": ${this.makeTypeConstructor(val)},`
 			}, "")
 
 			out += "}"
@@ -251,7 +254,6 @@ class Compiler {
 			return `KYTHERA.type.PRIMITIVES["${nodeType.type}"]`
 		}
 		out += ")"
-
 		return out
 	}
 }
