@@ -1,5 +1,5 @@
 require("jest")
-const t = require("./run")
+const t = require("./util").testOutput
 
 describe("Literals", () => {
 	t("int", "10")

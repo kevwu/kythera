@@ -66,6 +66,8 @@ KYTHERA.type = class {
 				return new KYTHERA.value("", this)
 			case "null":
 				return new KYTHERA.value(null, this)
+			case "type":
+				return new KYTHERA.value(KYTHERA.type.PRIMITIVES.type, this)
 			case "fn": // zero value for fn is a function with only a return statement for a new instance of the return type
 				return new KYTHERA.value(() => {
 					return this.structure.returns.makeNew()
@@ -76,7 +78,6 @@ KYTHERA.type = class {
 					return prev
 				}, {}), this)
 			case "list":
-			case "type":
 				throw new Error("Not yet implemented")
 			default:
 				throw new Error("Invalid type: " + this.type)

@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`new bool 1`] = `"KYTHERA.type.PRIMITIVES[\\"bool\\"].makeNew();"`;
+
+exports[`new float 1`] = `"KYTHERA.type.PRIMITIVES[\\"float\\"].makeNew();"`;
+
+exports[`new fn 1`] = `"new KYTHERA.type(\\"fn\\", { parameters: [KYTHERA.type.PRIMITIVES[\\"int\\"]], returns: KYTHERA.type.PRIMITIVES[\\"null\\"]}).makeNew();"`;
+
+exports[`new fn with fn as parameter 1`] = `"new KYTHERA.type(\\"fn\\", { parameters: [new KYTHERA.type(\\"fn\\", { parameters: [], returns: KYTHERA.type.PRIMITIVES[\\"null\\"]})], returns: KYTHERA.type.PRIMITIVES[\\"null\\"]}).makeNew();"`;
+
+exports[`new int 1`] = `"KYTHERA.type.PRIMITIVES[\\"int\\"].makeNew();"`;
+
+exports[`new null 1`] = `"KYTHERA.type.PRIMITIVES[\\"null\\"].makeNew();"`;
+
+exports[`new obj 1`] = `"new KYTHERA.type(\\"obj\\", {\\"a\\": KYTHERA.type.PRIMITIVES[\\"int\\"],\\"b\\": KYTHERA.type.PRIMITIVES[\\"str\\"],}).makeNew();"`;
+
+exports[`new str 1`] = `"KYTHERA.type.PRIMITIVES[\\"str\\"].makeNew();"`;
+
+exports[`new type 1`] = `"KYTHERA.type.PRIMITIVES[\\"type\\"].makeNew();"`;
