@@ -66,35 +66,34 @@ const KYTHERA = {
 			}
 		}
 
-		// TODO make static
-		eq(other) {
-			if (this.type !== other.type) {
+		static eq(a, b) {
+			if (a.type !== b.type) {
 				return false
 			}
 
-			if (this.type === "fn") {
-				if (!this.eq(this.structure.returns, other.structure.returns)) {
+			if (a.type === "fn") {
+				if(!this.eq(a.structure.returns, b.structure.returns)) {
 					return false
 				}
 
-				if (this.structure.parameters.length !== other.structure.parameters.length) {
+				if(a.structure.parameters.length !== b.structure.parameters.length) {
 					return false
 				}
 
-				for (let i = 0; i < this.structure.parameters.length; i += 1) {
-					if (!this.eq(this.structure.parameters[i], other.structure.parameters[i])) {
+				for(let i = 0; i < a.structure.parameters.length; i += 1) {
+					if (!this.eq(a.structure.parameters[i], b.structure.parameters[i])) {
 						return false
 					}
 				}
 				return true
 			}
 
-			if (this.type === "obj") {
-				if (Object.keys(this.structure).length !== Object.keys(other.structure).length) {
+			if (b.type === "obj") {
+				if (Object.keys(a.structure).length !== Object.keys(b.structure).length) {
 					return false
 				}
 
-				return !Object.keys(this.structure).every((key, i) => this.eqNodeType(this.structure[key], other.structure[key]));
+				return Object.keys(this.structure).every((key, i) => this.eq(a.structure[key], b.structure[key]));
 			}
 			return true
 		}
