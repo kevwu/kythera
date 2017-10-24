@@ -33,6 +33,12 @@ const KYTHERA = {
 						throw new Error("Function parameter list must be an array.")
 					}
 
+					if(!structure.parameters.every((param, i) => {
+						return typeof param.type === "string"
+						})) {
+						throw new Error("Every function parameter must be a type node.")
+					}
+
 					// ideally, we'd like to do `instanceof KYTHERA.type` but that's not defined yet...
 					if(typeof structure.returns !== "object") {
 						throw new Error("Function return value must be a KYTHERA.value.")

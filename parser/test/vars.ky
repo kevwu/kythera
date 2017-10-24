@@ -23,7 +23,7 @@ let myFn = <int a> str {
     return "abc"
 }
 
-// objects are tested elsewhere
+// TODO add object tests
 
 /* using "new" */
 let myNewInt = new int
