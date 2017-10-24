@@ -34,7 +34,7 @@ const KYTHERA = {
 					}
 
 					if(!structure.parameters.every((param, i) => {
-						return typeof param.type === "string"
+						return param.constructor === this.constructor
 						})) {
 						throw new Error("Every function parameter must be a type node.")
 					}
@@ -50,9 +50,8 @@ const KYTHERA = {
 						throw new Error("Object structure must be an object.")
 					}
 
-					// TODO find a better way to type check this
 					if(!Object.values(structure).every((val, i) => {
-						return typeof val.type === "string"
+						return val.constructor === this.constructor
 						})) {
 						throw new Error("Every object structure entry must be a type.")
 					}
