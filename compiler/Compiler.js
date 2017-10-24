@@ -111,39 +111,10 @@ class Compiler {
 		console.log("Target type for new:")
 		console.log(JSON.stringify(targetType, null, 2))
 
-		// "new" initializes a variable to its zero-value:
-		switch(targetType.type) {
-			case "int": // 0
-				return this.makeValueConstructor(0, new NodeType("int"))
-			case "float": // 0.0
-				return this.makeValueConstructor(0.0, new NodeType("float"))
-			case "bool": // false
-				return this.makeValueConstructor(false, new NodeType("bool"))
-			case "str": // "" (empty string)
-				return this.makeValueConstructor("", new NodeType("str"))
-			case "null": // null
-				return this.makeValueConstructor(null, new NodeType("null"))
-			case "type": // literal type
-				return this.makeValueConstructor(NodeType.PRIMITIVES.type, new NodeType("type"))
-			case "fn": // an empty function that contains only a "return new" of the return type
-				return this.makeValueConstructor({
-					parameters: targetType.structure.parameters.map((param, i) => {
-						return {
-							// TODO make parameter name generation robust (check against current scope for conflicts)
-							name: `fn_${i}`,
-							type: param
-						}
-					}),
-					// TODO this is a hard-coded value that will not update if the parser output does. Make this more resilient
-					body: [],
-				}, new NodeType("fn", {
-					parameters: targetType.structure.parameters,
-					returns: targetType.structure.returns,
-				}))
-			case "obj":
-				throw new Error("Not yet implemented.")
-			default:
-				throw new Error("Invalid type for new: " + targetType.type)
+		// TODO support for custom named types
+		return {
+			output: this.makeTypeConstructor(targetType) + ".makeNew()",
+			type: targetType
 		}
 	}
 
