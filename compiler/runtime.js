@@ -25,12 +25,11 @@ KYTHERA.type = class {
 				if(!structure.parameters.every((param, i) => {
 					return param.constructor === this.constructor
 					})) {
-					throw new Error("Every function parameter must be a type node.")
+					throw new Error("Every function parameter must be a type.")
 				}
 
-				// ideally, we'd like to do `instanceof KYTHERA.type` but that's not defined yet...
-				if(typeof structure.returns !== "object") {
-					throw new Error("Function return value must be a KYTHERA.value.")
+				if(structure.returns.constructor !== this.constructor) {
+					throw new Error("Function return value must be a type.")
 				}
 			}
 
@@ -67,8 +66,15 @@ KYTHERA.type = class {
 				return new KYTHERA.value("", this)
 			case "null":
 				return new KYTHERA.value(null, this)
-			case "fn":
+			case "fn": // zero value for fn is a function with only a return statement for a new instance of the return type
+				return new KYTHERA.value(() => {
+					return this.structure.returns.makeNew()
+				}, this)
 			case "obj":
+				return new KYTHERA.value(Object.entries(this.structure).reduce((prev, [name, type], i) => {
+					prev[name] = type.makeNew()
+					return prev
+				}, {}), this)
 			case "list":
 			case "type":
 				throw new Error("Not yet implemented")

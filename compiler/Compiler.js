@@ -53,7 +53,7 @@ class Compiler {
 	visitExpressionNode(node) {
 		switch(node.kind) {
 			case "new":
-				return { output:this.visitNew(node) }
+				return this.visitNew(node)
 			case "identifier":
 				if(this.currentScope.has(node.name)) {
 					return {
