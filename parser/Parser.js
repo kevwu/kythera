@@ -102,6 +102,10 @@ class Parser {
 				return this.parseObjectLiteral()
 			}
 
+			if(this.confirmToken('[', "punc")) {
+				return this.parseListLiteral()
+			}
+
 			if(this.confirmToken('<', "op") || this.confirmToken("<>", "op")) { // function literal
 				return this.parseFunctionLiteral()
 			}
@@ -418,6 +422,29 @@ class Parser {
 			parameters: parameters,
 			body: body,
 			returns: returnType
+		})
+	}
+
+	parseListLiteral() {
+		let elements = []
+		let listType = null
+		this.delimited('[', ']', ',', () => {
+			let val = this.parseExpression()
+
+			if(listType === null) {
+				listType = val.type
+			}
+
+			elements.push(val)
+		})
+
+		return new ParseNode("literal", {
+			type: new ParseNode("type", {
+				type: "list",
+				origin: "builtin",
+				contains: listType
+			}),
+			elements: elements
 		})
 	}
 

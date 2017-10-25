@@ -125,6 +125,12 @@ class ParseNode {
 						}
 						this.value = payload.value
 						break
+					case "list":
+						if(!Array.isArray(payload.elements)) {
+							throw new Error("List elements must be an array.")
+						}
+						this.elements = payload.elements
+						break
 					default:
 						throw new Error("Invalid payload type: " + payload.type)
 				}
@@ -144,9 +150,14 @@ class ParseNode {
 
 					this.type = payload.type
 				} else {
+					if(!(payload.name)) {
+						throw new Error("A type node must have either type or name set.")
+					}
+
 					if(builtIns.includes(payload.name)) {
 						throw new Error(`${payload.name} is a built-in type and is not valid as a named type.`)
 					}
+
 					if(payload.origin !== "named") {
 						throw new Error(`${payload.name} is a named type but was not marked as named`)
 					}

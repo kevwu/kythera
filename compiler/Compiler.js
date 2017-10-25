@@ -102,7 +102,7 @@ class Compiler {
 					type: objType
 				}
 			default:
-				throw new Error("Unhandled type: " + node.type)
+				throw new Error("Unhandled type: " + node.type.type)
 		}
 	}
 
