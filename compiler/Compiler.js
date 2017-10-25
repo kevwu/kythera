@@ -200,6 +200,7 @@ class Compiler {
 		if(!(kytheraValue instanceof KytheraValue)) {
 			throw new Error("Value must be a Kythera runtime value.")
 		}
+		// it is now safe to assume that the value corresponds to the type and type structure
 
 		let kytheraType = kytheraValue.type
 
@@ -237,12 +238,7 @@ class Compiler {
 			}, "")
 
 			out += "}"
-			// TODO kytheraType.type === "type"
 		} else if(kytheraType.type === "type") {
-			if(!(value instanceof KytheraType)) {
-				throw new Error("Value for a type must be a KytheraType")
-			}
-
 			out += this.makeTypeConstructor(value)
 		} else {
 			out += value
@@ -277,7 +273,7 @@ class Compiler {
 
 			out += "}"
 		} else if(type.type === "list") {
-
+			throw new Error("Not yet implemented")
 		} else {
 			return `KYTHERA.type.PRIMITIVES["${type.type}"]`
 		}

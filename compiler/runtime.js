@@ -134,9 +134,78 @@ KYTHERA.value = class {
 		}
 
 		this.type = type
-		this.value = value
 
-		// TODO check value against type structure
+		// this switch block is near-verbatim from ParseNode, but I believe it still needs to exist independently here.
+		// it may be executed in places where ParseNode does not.
+		// TODO clean ^that^ up, reduce redundancy, or verify that it's necessary.
+		switch(this.type.type) {
+			case "int":
+				if(!(typeof value === "number" && isFinite(value) && (value % 1 === 0))) {
+					throw new Error("int value must be an integer.")
+				}
+				this.value = value
+				break
+			case "float":
+				if(!(typeof value === "number" && isFinite(value))) {
+					throw new Error("float value must be a number.")
+				}
+				this.value = value
+				break
+			case "bool":
+				if(typeof value !== "boolean") {
+					throw new Error("bool value must be a boolean")
+				}
+				this.value = value
+				break
+			case "str":
+				if(typeof value !== "string") {
+					throw new Error("str value must be a string.")
+				}
+				this.value = value
+				break
+			case "null":
+				if(value !== null) {
+					throw new Error("null value must be null.")
+				}
+				this.value = value
+				break
+			case "fn":
+				if(typeof value !== "function") {
+					throw new Error("fn value must be a function.")
+				}
+
+				// TODO type check return value
+				// this requires deeper introspection that we are capable of right now
+				// might be checked at compile-time
+
+				this.value = value
+				break
+			case "obj":
+				if(typeof value !== "object") {
+					throw new Error("obj value must be an object.")
+				}
+				this.value = value
+
+				// TODO check object values against type structure
+				break
+			case "type": // type literal node - not a type node!
+				if(!(value instanceof KYTHERA.type)) {
+					throw new Error('type value must be a KYTHERA.type.')
+				}
+				this.value = value
+				break
+			case "list":
+				if(!Array.isArray(value)) {
+					throw new Error("list value must be an array.")
+				}
+				this.elements = value.elements
+
+				// TODO type check list elements
+
+				break
+			default:
+				throw new Error("Invalid payload type: " + type)
+		}
 	}
 
 	// TODO this definitely does not check functions and objects correctly

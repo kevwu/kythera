@@ -36,7 +36,7 @@ class ParseNode {
 				this.right = payload.right
 				break
 			case "assign":
-				// TODO remove this requirement?
+				// TODO remove this requirement? May be redudant
 				if(payload.operator !== "=") {
 					throw new Error("Assign must use the '=' operator.")
 				}
@@ -57,7 +57,7 @@ class ParseNode {
 					throw new Error("Literal type must be a type node.")
 				}
 
-				// all literals are interpreted as primitive types. They can become named types by casting.
+				// all literals are interpreted as builtin types. They can become named types by casting.
 				switch(payload.type.type) {
 					case "int":
 						if(!(typeof payload.value === "number" && isFinite(payload.value) && (payload.value % 1 === 0))) {
