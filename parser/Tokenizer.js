@@ -120,7 +120,7 @@ class Tokenizer {
 		let hasDot = false
 		let number = this.readWhile((char) => {
 			if(char === ".") {
-				if (hasDot) {
+				if(hasDot) {
 					return false // two dots encountered, abort
 				}
 

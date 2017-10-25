@@ -85,11 +85,11 @@ KYTHERA.type = class {
 	}
 
 	static eq(a, b) {
-		if (a.type !== b.type) {
+		if(a.type !== b.type) {
 			return false
 		}
 
-		if (a.type === "fn") {
+		if(a.type === "fn") {
 			if(!this.eq(a.structure.returns, b.structure.returns)) {
 				return false
 			}
@@ -99,15 +99,15 @@ KYTHERA.type = class {
 			}
 
 			for(let i = 0; i < a.structure.parameters.length; i += 1) {
-				if (!this.eq(a.structure.parameters[i], b.structure.parameters[i])) {
+				if(!this.eq(a.structure.parameters[i], b.structure.parameters[i])) {
 					return false
 				}
 			}
 			return true
 		}
 
-		if (b.type === "obj") {
-			if (Object.keys(a.structure).length !== Object.keys(b.structure).length) {
+		if(b.type === "obj") {
+			if(Object.keys(a.structure).length !== Object.keys(b.structure).length) {
 				return false
 			}
 

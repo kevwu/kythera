@@ -74,7 +74,7 @@ class Parser {
 		this.program = []
 		while (!this.tokenizer.eof()) {
 			this.program.push(this.parseExpression())
-			if (!this.confirmToken(';', "punc")) {
+			if(!this.confirmToken(';', "punc")) {
 				this.err("Missing semicolon")
 			}
 			this.consumeToken(';', "punc")
@@ -89,7 +89,7 @@ class Parser {
 	parseExpression(canSplit = true) {
 		let parseExpressionAtom = () => {
 			// unwrap parentheses first
-			if (this.confirmToken('(', "punc")) {
+			if(this.confirmToken('(', "punc")) {
 				this.consumeToken('(', "punc")
 				let contents = this.parseExpression()
 				this.consumeToken(')', "punc")
@@ -98,15 +98,15 @@ class Parser {
 
 			let nextToken = this.tokenizer.peek()
 
-			if (this.confirmToken('{', "punc")) { // object literal
+			if(this.confirmToken('{', "punc")) { // object literal
 				return this.parseObjectLiteral()
 			}
 
-			if (this.confirmToken('<', "op") || this.confirmToken("<>", "op")) { // function literal
+			if(this.confirmToken('<', "op") || this.confirmToken("<>", "op")) { // function literal
 				return this.parseFunctionLiteral()
 			}
 
-			if (this.confirmToken('!', "op")) {
+			if(this.confirmToken('!', "op")) {
 				this.consumeToken('!', "op")
 				return new ParseNode("unary", {
 					operator: "!",
@@ -115,14 +115,14 @@ class Parser {
 			}
 
 			// type literals. "null" is always handled as a null literal, not a null type literal.
-			if (["int", "float", "str", "bool", "fn", "obj", "type"].includes(nextToken.value)) {
+			if(["int", "float", "str", "bool", "fn", "obj", "type"].includes(nextToken.value)) {
 				return new ParseNode("literal", {
 					type: TYPES.type,
 					value: this.parseType()
 				})
 			}
 
-			if (this.confirmToken(undefined, "kw")) {
+			if(this.confirmToken(undefined, "kw")) {
 				this.consumeToken(nextToken.value, "kw")
 
 				switch (nextToken.value) {
@@ -145,7 +145,7 @@ class Parser {
 						})
 					case "let":
 						let identToken = this.tokenizer.next()
-						if (identToken.type !== "var") {
+						if(identToken.type !== "var") {
 							this.err(`Expected identifier but got ${identToken.value} (${identToken.type})`)
 						}
 
@@ -166,11 +166,11 @@ class Parser {
 							body: ifBody,
 						})
 
-						if (this.confirmToken("else", "kw")) {
+						if(this.confirmToken("else", "kw")) {
 							this.consumeToken("else", "kw")
 
 							// else only
-							if (this.confirmToken('{', "punc")) {
+							if(this.confirmToken('{', "punc")) {
 								ifStatement.else = this.parseBlock()
 							} else {
 								// else-if
@@ -200,8 +200,8 @@ class Parser {
 			this.tokenizer.next()
 
 			// literals
-			if (nextToken.type === "num") {
-				if (nextToken.value % 1 !== 0) { // float
+			if(nextToken.type === "num") {
+				if(nextToken.value % 1 !== 0) { // float
 					return new ParseNode("literal", {
 						type: TYPES.float,
 						value: nextToken.value,
@@ -213,7 +213,7 @@ class Parser {
 					})
 				}
 			}
-			if (nextToken.type === "str") {
+			if(nextToken.type === "str") {
 				return new ParseNode("literal", {
 					type: TYPES.str,
 					value: nextToken.value,
@@ -221,7 +221,7 @@ class Parser {
 			}
 
 			// variable identifier
-			if (nextToken.type === "var") {
+			if(nextToken.type === "var") {
 				return new ParseNode("identifier", {
 					name: nextToken.value,
 				})
@@ -233,9 +233,9 @@ class Parser {
 		// make a binary expression, with proper precedence, if needed
 		let makeBinary = (left, currentPrecedence) => {
 			let token = this.confirmToken(undefined, "op")
-			if (token) {
+			if(token) {
 				let nextPrecedence = PRECEDENCE[token.value]
-				if (nextPrecedence > currentPrecedence) {
+				if(nextPrecedence > currentPrecedence) {
 					this.tokenizer.next()
 					let right = makeBinary(this.parseExpression(false), nextPrecedence)
 
@@ -254,7 +254,7 @@ class Parser {
 		}
 
 		let makeAs = (expression) => {
-			if (this.confirmToken("as", "kw")) {
+			if(this.confirmToken("as", "kw")) {
 				this.consumeToken("as", "kw")
 
 				return new ParseNode("as", {
@@ -279,7 +279,7 @@ class Parser {
 		}
 
 		let makeObjAccess = (exp) => {
-			if (this.confirmToken('.', "punc")) {
+			if(this.confirmToken('.', "punc")) {
 				this.consumeToken('.', "punc")
 
 				let memberName = this.tokenizer.next()
@@ -320,24 +320,24 @@ class Parser {
 
 		// continuously build any post- or in-fix operator until no longer possible
 		while ((canStartBinary() || canStartCall() || canMakeAs() || canMakeObjAccess() || canMakeList()) && !this.confirmToken(";", "punc")) {
-			if (canStartBinary()) {
+			if(canStartBinary()) {
 				exp = makeBinary(exp, 0)
 			}
 
-			if (canMakeAs()) {
+			if(canMakeAs()) {
 				exp = makeAs(exp)
 			}
 
 
-			if (canStartCall()) {
+			if(canStartCall()) {
 				exp = makeCall(exp)
 			}
 
-			if (canMakeObjAccess()) {
+			if(canMakeObjAccess()) {
 				exp = makeObjAccess(exp)
 			}
 
-			if (canMakeList()) {
+			if(canMakeList()) {
 				exp = makeAccess(exp)
 			}
 		}
@@ -383,7 +383,7 @@ class Parser {
 
 	parseFunctionLiteral() {
 		let parameters
-		if (this.confirmToken("<>", "op")) {
+		if(this.confirmToken("<>", "op")) {
 			this.consumeToken("<>", "op")
 			parameters = []
 		} else {
@@ -391,7 +391,7 @@ class Parser {
 				let paramType = this.parseType()
 				let paramName = this.tokenizer.next()
 
-				if (paramName.type !== "var") {
+				if(paramName.type !== "var") {
 					this.err("Expected identifier but got " + paramName.value)
 				}
 
@@ -427,7 +427,7 @@ class Parser {
 
 		let parseTypeAtom
 
-		if (nextToken.type === "kw") { // built-in types
+		if(nextToken.type === "kw") { // built-in types
 			switch (nextToken.value) {
 				case "int":
 					parseTypeAtom = TYPES.int
@@ -450,7 +450,7 @@ class Parser {
 				case "fn":
 					let parameters = []
 
-					if (this.confirmToken("<>", "op")) {
+					if(this.confirmToken("<>", "op")) {
 						this.consumeToken("<>", "op")
 					} else {
 						this.delimited('<', '>', ',', () => {
@@ -474,7 +474,7 @@ class Parser {
 						let entryType = this.parseType()
 						let entryName = this.tokenizer.next()
 
-						if (entryName.type !== "var") {
+						if(entryName.type !== "var") {
 							this.err("Expected identifier but got: " + entryName.value)
 						}
 
@@ -491,7 +491,7 @@ class Parser {
 				default:
 					this.err("Expected type or type identifier but got keyword: " + nextToken.value)
 			}
-		} else if (nextToken.type === "var") { // user-named types
+		} else if(nextToken.type === "var") { // user-named types
 			// TODO types can come from expressions
 			parseTypeAtom = new ParseNode("type", {
 				origin: "named",
@@ -501,7 +501,7 @@ class Parser {
 			this.err("Expected type or type identifier but got " + nextToken.value)
 		}
 
-		if (this.confirmToken("[", "punc")) { // list type
+		if(this.confirmToken("[", "punc")) { // list type
 			this.consumeToken("[", "punc")
 			this.consumeToken("]", "punc")
 
@@ -522,15 +522,15 @@ class Parser {
 		this.consumeToken(start)
 
 		while (!this.tokenizer.eof()) {
-			if (this.confirmToken(stop)) break
+			if(this.confirmToken(stop)) break
 
-			if (first) {
+			if(first) {
 				first = false
 			} else {
 				this.consumeToken(delimiter)
 			}
 
-			if (this.confirmToken(stop)) break
+			if(this.confirmToken(stop)) break
 
 			resultList.push(parser())
 
@@ -542,17 +542,17 @@ class Parser {
 
 	// confirm a token without consuming it
 	confirmToken(value = "", type = "") {
-		if (this.tokenizer.eof()) {
+		if(this.tokenizer.eof()) {
 			return false
 		}
 
 		let token = this.tokenizer.peek()
 
-		if (type !== "" && token.type !== type) {
+		if(type !== "" && token.type !== type) {
 			return false
 		}
 
-		if (value !== "" && token.value !== value) {
+		if(value !== "" && token.value !== value) {
 			return false
 		}
 
@@ -561,7 +561,7 @@ class Parser {
 
 	// confirm and consume a token
 	consumeToken(value, type = "") {
-		if (this.confirmToken(value, type)) {
+		if(this.confirmToken(value, type)) {
 			this.tokenizer.next()
 		} else {
 			const tokenKindFullNames = {
