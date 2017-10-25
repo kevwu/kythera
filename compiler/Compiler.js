@@ -1,5 +1,8 @@
 const Scope = require("./Scope")
-const NodeType = require("./runtime").type
+
+// runtime-side representations of values and types
+const KytheraValue = require("./runtime").value
+const KytheraType = require("./runtime").type
 
 class Compiler {
 	constructor(program = null) {
@@ -49,7 +52,7 @@ class Compiler {
 	}
 
 	// expression node dispatcher
-	// every expression returns a tuple: the string output and the NodeType of the result.
+	// every expression returns a tuple: the string output and the KytheraType of the result.
 	visitExpressionNode(node) {
 		switch(node.kind) {
 			case "new":
@@ -78,27 +81,32 @@ class Compiler {
 			case "str":
 			case "null":
 				return {
-					output: this.makeValueConstructor(node.value, NodeType.PRIMITIVES[node.type.type]),
-					type: NodeType.PRIMITIVES[node.type.type]
+					output: this.makeValueConstructor(new KytheraValue(node.value, KytheraType.PRIMITIVES[node.type.type])),
+					type: KytheraType.PRIMITIVES[node.type.type]
 				}
 			case "type":
 				return {
-					output: this.makeValueConstructor(this.makeNodeType(node.value), NodeType.PRIMITIVES.type),
-					type: NodeType.PRIMITIVES.type
+					output: this.makeValueConstructor(new KytheraValue(this.makeKytheraType(node.value), KytheraType.PRIMITIVES.type)),
+					type: KytheraType.PRIMITIVES.type
 				}
 			case "fn":
-				let fnType = this.makeNodeType(node.type)
+				let fnType = this.makeKytheraType(node.type)
 				return {
 					output: this.makeValueConstructor(
-						{parameters: node.parameters, body: node.body, returns: node.returns},
-						fnType
+						new KytheraValue(
+						{
+							parameters: node.parameters,
+							body: node.body,
+							returns: node.returns
+						},
+						fnType)
 					),
 					type: fnType
 				}
 			case "obj":
-				let objType = this.makeNodeType(node.type)
+				let objType = this.makeKytheraType(node.type)
 				return {
-					output: this.makeValueConstructor(node.value, objType),
+					output: this.makeValueConstructor(new KytheraValue(node.value, objType)),
 					type: objType
 				}
 			default:
@@ -107,7 +115,7 @@ class Compiler {
 	}
 
 	visitNew(node) {
-		let targetType = this.makeNodeType(node.target)
+		let targetType = this.makeKytheraType(node.target)
 		console.log("Target type for new:")
 		console.log(JSON.stringify(targetType, null, 2))
 
@@ -126,7 +134,7 @@ class Compiler {
 
 	visitAssign(node) {
 		if(node.left.kind === "identifier") {
-			// let lhsType = this.makeNodeType(node.left)
+			// let lhsType = this.makeKytheraType(node.left)
 			let lhsType = this.currentScope.get(node.left.name)
 			let rhs = this.visitExpressionNode(node.right)
 			if(!this.currentScope.get(node.left.name).eq(rhs.type)) {
@@ -149,8 +157,8 @@ class Compiler {
 		}
 	}
 
-	// transform a type ParseNode into a NodeType
-	makeNodeType(node) {
+	// transform a type ParseNode into a KytheraType
+	makeKytheraType(node) {
 		if(node.kind !== "type") {
 			throw new Error("Expected a type ParseNode but got " + JSON.stringify(node, null, 2))
 		}
@@ -166,20 +174,20 @@ class Compiler {
 			case "str":
 			case "null":
 			case "type":
-				return NodeType.PRIMITIVES[node.type]
+				return KytheraType.PRIMITIVES[node.type]
 			case "fn":
-				return new NodeType(node.type, {
+				return new KytheraType(node.type, {
 					parameters: node.parameters.map((param, i) => {
-						return this.makeNodeType(param)
+						return this.makeKytheraType(param)
 					}),
-					returns: this.makeNodeType(node.returns)
+					returns: this.makeKytheraType(node.returns)
 				})
 			case "obj":
 				let structure = {}
 				Object.entries(node.structure).forEach(([key, value], i) => {
-					structure[key] = this.makeNodeType(value)
+					structure[key] = this.makeKytheraType(value)
 				})
-				return new NodeType(node.type, structure)
+				return new KytheraType(node.type, structure)
 			case "list":
 				throw new Error("Not yet implemented")
 			default:
@@ -187,19 +195,28 @@ class Compiler {
 		}
 	}
 
-	// runtime-side constructor call string for a new KYTHERA.value
-	makeValueConstructor(value, nodeType) {
+	// make runtime-side constructor call for a KYTHERA.value
+	makeValueConstructor(kytheraValue) {
+		if(!(kytheraValue instanceof KytheraValue)) {
+			throw new Error("Value must be a Kythera runtime value.")
+		}
+
+		let kytheraType = kytheraValue.type
+
+		// shim, will go away
+		let value = kytheraValue.value
+
 		let out = `new KYTHERA.value(`
-		if(nodeType.type === "str") {
+		if(kytheraType.type === "str") {
 			out += `"${value}"`
-		} else if(nodeType.type === "fn") {
+		} else if(kytheraType.type === "fn") {
 			// extend scope one level
 			this.currentScope = new Scope(this.currentScope, "function")
 
 			out += "("
 			// build parameter list and bring parameters into scope
 			out += value.parameters.reduce((prev, param, i) => {
-				this.currentScope.create(param.name, nodeType.structure.parameters[i])
+				this.currentScope.create(param.name, kytheraType.structure.parameters[i])
 				return prev + param.name + ((i !== value.parameters.length - 1) ? "," : "")
 			}, "")
 
@@ -212,7 +229,7 @@ class Compiler {
 			}, "")
 
 			out += '}'
-		} else if(nodeType.type === "obj") {
+		} else if(kytheraType.type === "obj") {
 			out += "{"
 
 			out += Object.entries(value).reduce((prev, [key, val], i) => {
@@ -220,10 +237,10 @@ class Compiler {
 			}, "")
 
 			out += "}"
-			// TODO nodeType.type === "type"
-		} else if(nodeType.type === "type") {
-			if(!(value instanceof NodeType)) {
-				throw new Error("Value for a type must be a NodeType")
+			// TODO kytheraType.type === "type"
+		} else if(kytheraType.type === "type") {
+			if(!(value instanceof KytheraType)) {
+				throw new Error("Value for a type must be a KytheraType")
 			}
 
 			out += this.makeTypeConstructor(value)
@@ -231,35 +248,38 @@ class Compiler {
 			out += value
 		}
 
-		out += `, ${this.makeTypeConstructor(nodeType)})`
+		out += `, ${this.makeTypeConstructor(kytheraType)})`
 
 		return out
 	}
 
-	// runtime-side constructor call string for a KYTHERA.type, from a KYTHERA.type. This wrinkles my brain
-	makeTypeConstructor(nodeType) {
-		let out = `new KYTHERA.type("${nodeType.type}"`
+	// make runtime-side constructor call for a KYTHERA.type, from a KYTHERA.type. This wrinkles my brain
+	makeTypeConstructor(type) {
+		if(!(type instanceof KytheraType)) {
+			throw new Error("Type must be a Kythera runtime type.")
+		}
+		let out = `new KYTHERA.type("${type.type}"`
 
-		if(nodeType.type === "fn") {
+		if(type.type === "fn") {
 			out += ", { parameters: ["
 
-			out += nodeType.structure.parameters.reduce((prev, param, i) => {
-				return prev + this.makeTypeConstructor(param) + ((i < nodeType.structure.parameters.length - 1) ? "," : "")
+			out += type.structure.parameters.reduce((prev, param, i) => {
+				return prev + this.makeTypeConstructor(param) + ((i < type.structure.parameters.length - 1) ? "," : "")
 			}, "")
 
-			out += `], returns: ${this.makeTypeConstructor(nodeType.structure.returns)}}`
-		} else if(nodeType.type === "obj") {
+			out += `], returns: ${this.makeTypeConstructor(type.structure.returns)}}`
+		} else if(type.type === "obj") {
 			out += ", {"
 
-			out += Object.entries(nodeType.structure).reduce((prev, [key, val], i) => {
+			out += Object.entries(type.structure).reduce((prev, [key, val], i) => {
 				return prev + `"${key}": ${this.makeTypeConstructor(val)},`
 			}, "")
 
 			out += "}"
-		} else if(nodeType.type === "list") {
+		} else if(type.type === "list") {
 
 		} else {
-			return `KYTHERA.type.PRIMITIVES["${nodeType.type}"]`
+			return `KYTHERA.type.PRIMITIVES["${type.type}"]`
 		}
 		out += ")"
 		return out

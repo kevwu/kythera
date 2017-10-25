@@ -1,6 +1,2 @@
-// obj{int a, str b,}
-// new int
-// new fn<int> null
-// new fn<> null
-// new fn<fn<> null> null
-[1, 2, 3, 4]
+// [1, 2, 3, 4]
+10

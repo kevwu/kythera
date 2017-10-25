@@ -2,16 +2,16 @@
 const KYTHERA = {}
 KYTHERA.type = class {
 	constructor(type, structure = null, name = null) {
+		if(typeof type !== "string") {
+			throw new Error("type parameter must be a string.")
+		}
 		this.type = type
 
+		// named types. TBD
 		if(name !== null) {
 			this.name = name
 		}
 
-		/*
-		We have to re-validate type object structure here because they could come
-		not just from the compiler but also from the FFI.
-		 */
 		if(type === "fn" || type === "obj" || type === "list") {
 			if(structure === null) {
 				throw new Error(`Cannot initialize ${type} without structure.`)
@@ -135,6 +135,8 @@ KYTHERA.value = class {
 
 		this.type = type
 		this.value = value
+
+		// TODO check value against type structure
 	}
 
 	// TODO this definitely does not check functions and objects correctly
