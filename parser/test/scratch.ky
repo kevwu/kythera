@@ -1,3 +1,4 @@
-// [1, 2, 3, 4]
-10
-new fn<int> null
+<int a> null {
+	a
+	return null
+}

@@ -30,9 +30,7 @@ class Compiler {
 		this.currentScope = this.rootScope
 
 		return this.program.reduce((prev, node) => {
-			let prog = prev + this.visitNode(node) + ';\n'
-			console.log(prog)
-			return prog
+			return prev + this.visitNode(node) + ';\n'
 		}, "")
 	}
 
@@ -90,17 +88,33 @@ class Compiler {
 					type: KytheraType.PRIMITIVES.type
 				}
 			case "fn":
+				// A function cannot be constructed from a runtime value at compile-time; we must compile directly.
+
 				let fnType = this.makeKytheraType(node.type)
+
+				// extend scope one level
+				this.currentScope = new Scope(this.currentScope, "function")
+
+				let out = "("
+
+				// build parameter list and bring parameters into scope
+				out += node.parameters.reduce((prev, param, i) => {
+					this.currentScope.create(param.name, fnType.structure.parameters[i])
+					return prev + param.name + ((i !== node.parameters.length - 1) ? "," : "")
+				}, "")
+
+				out += ') => {\n'
+
+				// TODO verify that the function returns
+				// build body statements
+				out += node.body.reduce((prev, statement, i) => {
+					return prev + this.visitNode(statement) + ';\n'
+				}, "")
+
+				out += '}'
+
 				return {
-					output: this.makeValueConstructor(
-						new KytheraValue(
-						{
-							parameters: node.parameters,
-							body: node.body,
-							returns: node.returns
-						},
-						fnType)
-					),
+					output: `new KYTHERA.value(${out}, ${this.makeTypeConstructor(fnType)})`,
 					type: fnType
 				}
 			case "obj":
@@ -116,8 +130,6 @@ class Compiler {
 
 	visitNew(node) {
 		let targetType = this.makeKytheraType(node.target)
-		console.log("Target type for new:")
-		console.log(JSON.stringify(targetType, null, 2))
 
 		// TODO support for custom named types
 		return {
@@ -204,44 +216,24 @@ class Compiler {
 
 		let kytheraType = kytheraValue.type
 
-		// shim, will go away
-		let value = kytheraValue.value
-
 		let out = `new KYTHERA.value(`
 		if(kytheraType.type === "str") {
-			out += `"${value}"`
+			out += `"${kytheraValue.value}"`
 		} else if(kytheraType.type === "fn") {
-			// extend scope one level
-			this.currentScope = new Scope(this.currentScope, "function")
-
-			out += "("
-			// build parameter list and bring parameters into scope
-			out += value.parameters.reduce((prev, param, i) => {
-				this.currentScope.create(param.name, kytheraType.structure.parameters[i])
-				return prev + param.name + ((i !== value.parameters.length - 1) ? "," : "")
-			}, "")
-
-			out += ') => {\n'
-
-			// TODO verify that the function returns
-			// build body statements
-			out += value.body.reduce((prev, statement, i) => {
-				return prev + this.visitNode(statement) + ';\n'
-			}, "")
-
-			out += '}'
+			// see visitLiteral()
+			throw new Error("Functions cannot be constructed from existing runtime values at compile time.")
 		} else if(kytheraType.type === "obj") {
 			out += "{"
 
-			out += Object.entries(value).reduce((prev, [key, val], i) => {
+			out += Object.entries(kytheraValue.value).reduce((prev, [key, val], i) => {
 				return prev + `"${key}": ${this.visitExpressionNode(val).output},`
 			}, "")
 
 			out += "}"
 		} else if(kytheraType.type === "type") {
-			out += this.makeTypeConstructor(value)
+			out += this.makeTypeConstructor(kytheraValue.value)
 		} else {
-			out += value
+			out += kytheraValue.value
 		}
 
 		out += `, ${this.makeTypeConstructor(kytheraType)})`
