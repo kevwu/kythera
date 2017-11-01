@@ -1,10 +1,10 @@
 // this largely comes from the Scope implementation in kevwu/kythera-antlr
 class Scope {
-	constructor(parent = null, scopeType = "global") {
+	constructor(parent = null, meta = {type: "global"}) {
 		// null for top-level scope
 		this.parent = parent
 		this.symbols = []
-		this.scopeType = scopeType
+		this.meta = meta
 	}
 
 	// initialize variable. Throws error if already declared.
@@ -46,14 +46,27 @@ class Scope {
 
 	// true current scope is within a function
 	isInFunction() {
-		if(this.scopeType === "function") {
+		if(this.meta.type === "function") {
 			return true
 		}
 
 		if(this.parent === null) {
-			return (this.scopeType === "function")
+			return (this.meta.type === "function")
 		} else {
 			return this.parent.isInFunction()
+		}
+	}
+
+	// if current scope is in a function, get the return type
+	getReturnType() {
+		if(this.meta.type === "function") {
+			return this.meta.returns
+		}
+
+		if(this.parent === null) {
+			throw new Error("Current scope is not in a function")
+		} else {
+			return this.parent.getReturnType()
 		}
 	}
 }

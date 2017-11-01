@@ -93,7 +93,7 @@ class Compiler {
 				let fnType = this.makeKytheraType(node.type)
 
 				// extend scope one level
-				this.currentScope = new Scope(this.currentScope, "function")
+				this.currentScope = new Scope(this.currentScope, {type: "function", returns: fnType.structure.returns})
 
 				let out = "("
 
@@ -112,6 +112,9 @@ class Compiler {
 				}, "")
 
 				out += '}'
+
+				// return to previous scope
+				this.currentScope = this.currentScope.parent
 
 				return {
 					output: `new KYTHERA.value(${out}, ${this.makeTypeConstructor(fnType)})`,
@@ -161,11 +164,17 @@ class Compiler {
 		}
 	}
 
-	// TODO check return type against what the function expects
-	// we can do that by storing function info with the scope
 	visitReturn(node) {
 		if(this.currentScope.isInFunction()) {
-			return `return ${this.visitExpressionNode(node.value).output}`
+			let returnVal = this.visitExpressionNode(node.value)
+
+			if(!(KytheraType.eq(returnVal.type, this.currentScope.getReturnType() ))) {
+				throw new Error(`Expected return value of type ${this.currentScope.getReturnType().type} but got ${returnVal.type.type}`)
+			}
+
+			return `return ${returnVal.output}`
+		} else {
+			throw new Error("Return used outside of function scope")
 		}
 	}
 
@@ -242,32 +251,32 @@ class Compiler {
 	}
 
 	// make runtime-side constructor call for a KYTHERA.type, from a KYTHERA.type. This wrinkles my brain
-	makeTypeConstructor(type) {
-		if(!(type instanceof KytheraType)) {
+	makeTypeConstructor(kytheraType) {
+		if(!(kytheraType instanceof KytheraType)) {
 			throw new Error("Type must be a Kythera runtime type.")
 		}
-		let out = `new KYTHERA.type("${type.type}"`
+		let out = `new KYTHERA.type("${kytheraType.type}"`
 
-		if(type.type === "fn") {
+		if(kytheraType.type === "fn") {
 			out += ", { parameters: ["
 
-			out += type.structure.parameters.reduce((prev, param, i) => {
-				return prev + this.makeTypeConstructor(param) + ((i < type.structure.parameters.length - 1) ? "," : "")
+			out += kytheraType.structure.parameters.reduce((prev, param, i) => {
+				return prev + this.makeTypeConstructor(param) + ((i < kytheraType.structure.parameters.length - 1) ? "," : "")
 			}, "")
 
-			out += `], returns: ${this.makeTypeConstructor(type.structure.returns)}}`
-		} else if(type.type === "obj") {
+			out += `], returns: ${this.makeTypeConstructor(kytheraType.structure.returns)}}`
+		} else if(kytheraType.type === "obj") {
 			out += ", {"
 
-			out += Object.entries(type.structure).reduce((prev, [key, val], i) => {
+			out += Object.entries(kytheraType.structure).reduce((prev, [key, val], i) => {
 				return prev + `"${key}": ${this.makeTypeConstructor(val)},`
 			}, "")
 
 			out += "}"
-		} else if(type.type === "list") {
+		} else if(kytheraType.type === "list") {
 			throw new Error("Not yet implemented")
 		} else {
-			return `KYTHERA.type.PRIMITIVES["${type.type}"]`
+			return `KYTHERA.type.PRIMITIVES["${kytheraType.type}"]`
 		}
 		out += ")"
 		return out

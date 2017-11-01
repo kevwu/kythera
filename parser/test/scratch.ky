@@ -1,4 +1,5 @@
-<int a> null {
-	a
-	return null
+<int q> fn<> null {
+		return <> null {
+			return null
+		}
 }
