@@ -46,7 +46,9 @@ KYTHERA.type = class {
 			}
 
 			if(type === "list") {
-
+				if(structure.contains.constructor !== this.constructor) {
+					throw new Error("List must contain a type.")
+				}
 			}
 
 			this.structure = structure

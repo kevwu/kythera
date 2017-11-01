@@ -95,29 +95,29 @@ class Compiler {
 				// extend scope one level
 				this.currentScope = new Scope(this.currentScope, {type: "function", returns: fnType.structure.returns})
 
-				let out = "("
+				let fn = "("
 
 				// build parameter list and bring parameters into scope
-				out += node.parameters.reduce((prev, param, i) => {
+				fn += node.parameters.reduce((prev, param, i) => {
 					this.currentScope.create(param.name, fnType.structure.parameters[i])
 					return prev + param.name + ((i !== node.parameters.length - 1) ? "," : "")
 				}, "")
 
-				out += ') => {\n'
+				fn += ') => {\n'
 
 				// TODO verify that the function returns
 				// build body statements
-				out += node.body.reduce((prev, statement, i) => {
+				fn += node.body.reduce((prev, statement, i) => {
 					return prev + this.visitNode(statement) + ';\n'
 				}, "")
 
-				out += '}'
+				fn += '}'
 
 				// return to previous scope
 				this.currentScope = this.currentScope.parent
 
 				return {
-					output: `new KYTHERA.value(${out}, ${this.makeTypeConstructor(fnType)})`,
+					output: `new KYTHERA.value(${fn}, ${this.makeTypeConstructor(fnType)})`,
 					type: fnType
 				}
 			case "obj":
@@ -125,6 +125,34 @@ class Compiler {
 				return {
 					output: this.makeValueConstructor(new KytheraValue(node.value, objType)),
 					type: objType
+				}
+			case "list":
+				if(node.elements.length === 0) {
+					throw new Error("Cannot have empty list literal.")
+				}
+
+				let listType = this.makeKytheraType(node.type)
+				let containsType = null
+
+				let list = "["
+
+				list += node.elements.reduce((prev, elem, i) => {
+					let listExp = this.visitExpressionNode(elem)
+					if(containsType === null) {
+						containsType = listExp.type
+					} else {
+						if(!KytheraType.eq(containsType, listExp.type)) {
+							throw new Error(`List types do not match, expecting ${containsType.type} but got ${listExp.type.type}`)
+						}
+					}
+					return prev + listExp.output + ((i !== node.elements.length-1) ? "," : "")
+				}, "")
+
+				list += "]"
+
+				return {
+					output: `new KYTHERA.value(${list}, ${this.makeTypeConstructor(listType)})`,
+					type: listType
 				}
 			default:
 				throw new Error("Unhandled type: " + node.type.type)
@@ -210,7 +238,9 @@ class Compiler {
 				})
 				return new KytheraType(node.type, structure)
 			case "list":
-				throw new Error("Not yet implemented")
+				return new KytheraType(node.type, {
+					contains: this.makeKytheraType(node.contains)
+				})
 			default:
 				throw new Error("Invalid builtin type: " + node.type)
 		}
@@ -274,7 +304,7 @@ class Compiler {
 
 			out += "}"
 		} else if(kytheraType.type === "list") {
-			throw new Error("Not yet implemented")
+			out += `, { contains: ${this.makeTypeConstructor(kytheraType.structure.contains)}}`
 		} else {
 			return `KYTHERA.type.PRIMITIVES["${kytheraType.type}"]`
 		}
