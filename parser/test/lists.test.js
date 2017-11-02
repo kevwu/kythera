@@ -23,4 +23,15 @@ describe("Lists", () => {
 	t("Initialization from object list literal")
 	t("Function returning list")
 	t("Access from function call result")
+	describe("List literals", () => {
+		t("int")
+		t("bool")
+		t("float")
+		t("str")
+		t("null")
+		t("type")
+		t("fn")
+		t("obj")
+
+	})
 })

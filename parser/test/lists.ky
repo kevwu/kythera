@@ -20,3 +20,13 @@ let myListFn = <> int[] {
 }
 
 myListFn()[10]
+
+// list literals
+[1, 2, 3, 4]
+[true, false]
+[1.234, 3.14159]
+["hello", "world"]
+[null, null]
+[int, float, fn<int> null]
+[<int a> null {return null}, <int b> null { return null }]
+[{a = 0, b = "asdf",}, {a = 3, b = "qwerty",}]
