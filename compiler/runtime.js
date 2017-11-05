@@ -138,7 +138,7 @@ KYTHERA.value = class {
 		this.type = type
 
 		// this switch block is near-verbatim from ParseNode, but I believe it still needs to exist independently here.
-		// it may be executed in places where ParseNode does not.
+		// it may be executed in places where ParseNode does not (e.g. in the runtime).
 		// TODO clean ^that^ up, reduce redundancy, or verify that it's necessary.
 		switch(this.type.type) {
 			case "int":

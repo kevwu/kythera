@@ -66,6 +66,8 @@ class Compiler {
 				}
 			case "literal":
 				return this.visitLiteral(node)
+			case "typeof":
+				return this.visitTypeof(node)
 			default:
 				throw new Error("Unhandled node kind: " + node.kind)
 		}
@@ -203,6 +205,13 @@ class Compiler {
 			return `return ${returnVal.output}`
 		} else {
 			throw new Error("Return used outside of function scope")
+		}
+	}
+
+	visitTypeof(node) {
+		return {
+			output: this.makeTypeConstructor(this.visitExpressionNode(node.target).type),
+			type: KytheraType.PRIMITIVES.type,
 		}
 	}
 
