@@ -30,4 +30,4 @@ let myNewInt = new int
 let myNewFloat = new float
 let myNewBool = new bool
 let myNewStr = new str
-let myFn = new fn<> null
+let myNewFn = new fn<> null

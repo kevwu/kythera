@@ -182,8 +182,8 @@ class Compiler {
 			// let lhsType = this.makeKytheraType(node.left)
 			let lhsType = this.currentScope.get(node.left.name)
 			let rhs = this.visitExpressionNode(node.right)
-			if(!this.currentScope.get(node.left.name).eq(rhs.type)) {
-				throw new Error(`Cannot assign ${rhs.type} value to ${node.left.name}, which has type ${lhsType.type}`)
+			if(!KytheraType.eq(lhsType, rhs.type)) {
+				throw new Error(`Cannot assign ${rhs.type.type} value to ${node.left.name}, which has type ${lhsType.type}`)
 			} else {
 				return `${node.left.name} = ${rhs.output}`
 			}
