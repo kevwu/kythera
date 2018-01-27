@@ -255,7 +255,7 @@ ParseNode {
 
 exports[`Variables using 'new' fn 1`] = `
 ParseNode {
-  "identifier": "myFn",
+  "identifier": "myNewFn",
   "kind": "let",
   "value": ParseNode {
     "kind": "new",
