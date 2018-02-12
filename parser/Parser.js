@@ -270,7 +270,6 @@ class Parser {
 			}
 		}
 
-
 		// make a function call if needed
 		let makeCall = (expression) => {
 			// it's a call if there's an open-paren after the expression.

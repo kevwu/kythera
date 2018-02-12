@@ -40,8 +40,6 @@ class Compiler {
 			// statements
 			case "let":
 				return this.visitLet(node)
-			case "assign":
-				return this.visitAssign(node)
 			case "return":
 				return this.visitReturn(node)
 			default:
@@ -68,6 +66,8 @@ class Compiler {
 				return this.visitLiteral(node)
 			case "typeof":
 				return this.visitTypeof(node)
+			case "assign":
+				return this.visitAssign(node)
 			default:
 				throw new Error("Unhandled node kind: " + node.kind)
 		}
@@ -185,7 +185,10 @@ class Compiler {
 			if(!KytheraType.eq(lhsType, rhs.type)) {
 				throw new Error(`Cannot assign ${rhs.type.type} value to ${node.left.name}, which has type ${lhsType.type}`)
 			} else {
-				return `${node.left.name} = ${rhs.output}`
+				return {
+					output: `(${node.left.name} = ${rhs.output})`,
+					type: rhs.type
+				}
 			}
 		} else if(node.left.kind === "objAccess" || node.left.kind === "access") {
 			throw new Error("Writing to object member not yet supported")
