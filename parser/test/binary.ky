@@ -1,0 +1,28 @@
+// all binary operators
+
+// arithmetic
+1 + 2
+1 - 2
+1 * 2
+1 / 2
+1 % 2
+
+// comparison
+1 < 2
+1 > 2
+1 <= 2
+1 >= 2
+1 == 2
+1 != 2
+
+// assignment
+let a = 1
+a += 2
+a -= 2
+a *= 2
+a /= 2
+a %= 2
+
+// boolean
+true && false
+true || false

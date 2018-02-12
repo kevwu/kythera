@@ -4,7 +4,7 @@ const Tokenizer = require("./Tokenizer")
 const ParseNode = require("./ParseNode")
 
 const PRECEDENCE = {
-	"=": 1,
+	"=": 1, "+=": 1, "-=": 1, "*=": 1, "/=": 1, "%=": 1,
 	"||": 2,
 	"&&": 3,
 	"<": 7, ">": 7, "<=": 7, ">=": 7, "==": 7, "!=": 7,
@@ -244,7 +244,7 @@ class Parser {
 					let right = makeBinary(this.parseExpression(false), nextPrecedence)
 
 					let binary = new ParseNode(
-						token.value === "=" ? "assign" : "binary", {
+						["=", "+=", "-=", "*=", "/=", "%="].includes(token.value) ? "assign" : "binary", {
 							operator: token.value,
 							left: left,
 							right: right,

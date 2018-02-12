@@ -20,7 +20,7 @@ class ParseNode {
 				this.target = payload.target
 				break
 			case "binary":
-				if(!["==", "<=", ">=", ">", "<", "+", "-", "*", "/", "%", "||", "&&"].includes(payload.operator)) {
+				if(!["==", "!=", "<=", ">=", ">", "<", "+", "-", "*", "/", "%", "||", "&&"].includes(payload.operator)) {
 					throw new Error("Invalid operator: " + payload.operator)
 				}
 				this.operator = payload.operator
@@ -37,8 +37,8 @@ class ParseNode {
 				break
 			case "assign":
 				// TODO remove this requirement? May be redudant
-				if(payload.operator !== "=") {
-					throw new Error("Assign must use the '=' operator.")
+				if(!["=", "+=" ,"-=" ,"*=", "/=", "%="].includes(payload.operator)) {
+					throw new Error(`${payload.operator} is not an assignment operator.`)
 				}
 				this.operator = payload.operator
 

@@ -1,0 +1,426 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Binary operations Arithmetic Addition 1`] = `
+ParseNode {
+  "kind": "binary",
+  "left": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+    "value": 1,
+  },
+  "operator": "+",
+  "right": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+    "value": 2,
+  },
+}
+`;
+
+exports[`Binary operations Arithmetic Division 1`] = `
+ParseNode {
+  "kind": "binary",
+  "left": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+    "value": 1,
+  },
+  "operator": "/",
+  "right": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+    "value": 2,
+  },
+}
+`;
+
+exports[`Binary operations Arithmetic Modulo 1`] = `
+ParseNode {
+  "kind": "binary",
+  "left": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+    "value": 1,
+  },
+  "operator": "%",
+  "right": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+    "value": 2,
+  },
+}
+`;
+
+exports[`Binary operations Arithmetic Multiplication 1`] = `
+ParseNode {
+  "kind": "binary",
+  "left": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+    "value": 1,
+  },
+  "operator": "*",
+  "right": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+    "value": 2,
+  },
+}
+`;
+
+exports[`Binary operations Arithmetic Subtraction 1`] = `
+ParseNode {
+  "kind": "binary",
+  "left": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+    "value": 1,
+  },
+  "operator": "-",
+  "right": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+    "value": 2,
+  },
+}
+`;
+
+exports[`Binary operations Assignment Addition assignment 1`] = `
+ParseNode {
+  "kind": "assign",
+  "left": ParseNode {
+    "kind": "identifier",
+    "name": "a",
+  },
+  "operator": "+=",
+  "right": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+    "value": 2,
+  },
+}
+`;
+
+exports[`Binary operations Assignment Division assignment 1`] = `
+ParseNode {
+  "kind": "assign",
+  "left": ParseNode {
+    "kind": "identifier",
+    "name": "a",
+  },
+  "operator": "/=",
+  "right": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+    "value": 2,
+  },
+}
+`;
+
+exports[`Binary operations Assignment Modulo assignment 1`] = `
+ParseNode {
+  "kind": "assign",
+  "left": ParseNode {
+    "kind": "identifier",
+    "name": "a",
+  },
+  "operator": "%=",
+  "right": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+    "value": 2,
+  },
+}
+`;
+
+exports[`Binary operations Assignment Multiplication assignment 1`] = `
+ParseNode {
+  "kind": "assign",
+  "left": ParseNode {
+    "kind": "identifier",
+    "name": "a",
+  },
+  "operator": "*=",
+  "right": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+    "value": 2,
+  },
+}
+`;
+
+exports[`Binary operations Assignment Subtraction assignment 1`] = `
+ParseNode {
+  "kind": "assign",
+  "left": ParseNode {
+    "kind": "identifier",
+    "name": "a",
+  },
+  "operator": "-=",
+  "right": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+    "value": 2,
+  },
+}
+`;
+
+exports[`Binary operations Boolean And 1`] = `
+ParseNode {
+  "kind": "binary",
+  "left": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "bool",
+    },
+    "value": true,
+  },
+  "operator": "&&",
+  "right": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "bool",
+    },
+    "value": false,
+  },
+}
+`;
+
+exports[`Binary operations Boolean Or 1`] = `
+ParseNode {
+  "kind": "binary",
+  "left": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "bool",
+    },
+    "value": true,
+  },
+  "operator": "||",
+  "right": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "bool",
+    },
+    "value": false,
+  },
+}
+`;
+
+exports[`Binary operations Comparison Equals 1`] = `
+ParseNode {
+  "kind": "binary",
+  "left": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+    "value": 1,
+  },
+  "operator": "==",
+  "right": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+    "value": 2,
+  },
+}
+`;
+
+exports[`Binary operations Comparison Greater than 1`] = `
+ParseNode {
+  "kind": "binary",
+  "left": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+    "value": 1,
+  },
+  "operator": ">",
+  "right": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+    "value": 2,
+  },
+}
+`;
+
+exports[`Binary operations Comparison Greater than or equal to 1`] = `
+ParseNode {
+  "kind": "binary",
+  "left": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+    "value": 1,
+  },
+  "operator": ">=",
+  "right": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+    "value": 2,
+  },
+}
+`;
+
+exports[`Binary operations Comparison Less than 1`] = `
+ParseNode {
+  "kind": "binary",
+  "left": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+    "value": 1,
+  },
+  "operator": "<",
+  "right": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+    "value": 2,
+  },
+}
+`;
+
+exports[`Binary operations Comparison Less than or equal to 1`] = `
+ParseNode {
+  "kind": "binary",
+  "left": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+    "value": 1,
+  },
+  "operator": "<=",
+  "right": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+    "value": 2,
+  },
+}
+`;
+
+exports[`Binary operations Comparison Not equals 1`] = `
+ParseNode {
+  "kind": "binary",
+  "left": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+    "value": 1,
+  },
+  "operator": "!=",
+  "right": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+    "value": 2,
+  },
+}
+`;
