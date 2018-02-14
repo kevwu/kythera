@@ -1,5 +1,5 @@
 require("jest")
-const common = require("./common")
+const util = require("./util")
 
 let i = 0
 
@@ -8,7 +8,7 @@ afterEach(() => {
 })
 
 describe("Variables", () => {
-	let program = common.parseFile("parser/test/vars.ky")
+	let program = util.parseFile("test/vars.ky")
 	i = 0
 
 	let t = (name) => {

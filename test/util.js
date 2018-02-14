@@ -1,5 +1,7 @@
-const Parser = require("../../parser/Parser")
-const Compiler = require("../Compiler")
+const Parser = require("../parser/Parser")
+const Compiler = require("../compiler/Compiler")
+
+const fs = require("fs");
 
 module.exports = {
 	// compiles a new program containing only statement and tests the resulting output string.
@@ -19,5 +21,9 @@ module.exports = {
 				expect(compiler.visitProgram().replace(/[\n\r]/g, '')).toMatchSnapshot()
 			})
 		}
+	},
+	parseFile: (file) => {
+		let parser = new Parser(fs.readFileSync(file).toString())
+		return parser.parse()
 	}
 }

@@ -1,5 +1,5 @@
 require("jest")
-const common = require("./common")
+const util = require("./util")
 
 let i = 0
 
@@ -8,7 +8,7 @@ afterEach(() => {
 })
 
 describe("Binary operations", () => {
-	let program = common.parseFile("parser/test/binary.ky")
+	let program = util.parseFile("test/binary.ky")
 	i = 0
 
 	let t = (name) => {

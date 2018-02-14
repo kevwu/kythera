@@ -1,5 +1,5 @@
 require("jest")
-const common = require("./common")
+const util = require("./util")
 
 let i = 0
 
@@ -8,7 +8,7 @@ afterEach(() => {
 })
 
 describe("Function examples", () => {
-	let program = common.parseFile("parser/test/fn.ky")
+	let program = util.parseFile("test/fn.ky")
 	i = 0
 
 	let t = (name) => {
