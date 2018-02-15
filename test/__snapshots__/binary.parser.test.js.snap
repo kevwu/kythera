@@ -424,3 +424,79 @@ ParseNode {
   },
 }
 `;
+
+exports[`Binary operations Operator precedence multiply before addition 1`] = `
+ParseNode {
+  "kind": "binary",
+  "left": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+    "value": 2,
+  },
+  "operator": "+",
+  "right": ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 3,
+    },
+    "operator": "*",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 4,
+    },
+  },
+}
+`;
+
+exports[`Binary operations Operator precedence parentheses 1`] = `
+ParseNode {
+  "kind": "binary",
+  "left": ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 2,
+    },
+    "operator": "+",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 3,
+    },
+  },
+  "operator": "*",
+  "right": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+    "value": 4,
+  },
+}
+`;

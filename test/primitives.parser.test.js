@@ -39,11 +39,6 @@ describe("Primitive Types", () => {
 		t("division")
 		t("multiplication")
 		t("modulo")
-
-		describe("Operator precedence", () => {
-			t("multiply before addition")
-			t("parentheses")
-		})
 	})
 
 	describe("Boolean operations", () => {

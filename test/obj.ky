@@ -4,9 +4,20 @@
 
 // access
 
+// type of freeform object
+
 // object with rigid type
 
 // access
+
+// type of casted rigid object
+typeof {
+	l = 2,
+	s = "asdf",
+} as obj{
+	int l,
+	str s,
+}
 
 // unlisted fields become private in rigid objects
 

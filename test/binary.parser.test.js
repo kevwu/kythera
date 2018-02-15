@@ -45,4 +45,9 @@ describe("Binary operations", () => {
 		t("And")
 		t("Or")
 	})
+
+	describe("Operator precedence", () => {
+		t("multiply before addition")
+		t("parentheses")
+	})
 })
