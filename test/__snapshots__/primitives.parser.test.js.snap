@@ -1,0 +1,248 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Primitive Types 'new' bool 1`] = `
+ParseNode {
+  "kind": "new",
+  "target": ParseNode {
+    "kind": "type",
+    "origin": "builtin",
+    "type": "bool",
+  },
+}
+`;
+
+exports[`Primitive Types 'new' float 1`] = `
+ParseNode {
+  "kind": "new",
+  "target": ParseNode {
+    "kind": "type",
+    "origin": "builtin",
+    "type": "float",
+  },
+}
+`;
+
+exports[`Primitive Types 'new' int 1`] = `
+ParseNode {
+  "kind": "new",
+  "target": ParseNode {
+    "kind": "type",
+    "origin": "builtin",
+    "type": "int",
+  },
+}
+`;
+
+exports[`Primitive Types 'new' null 1`] = `
+ParseNode {
+  "kind": "new",
+  "target": ParseNode {
+    "kind": "type",
+    "origin": "builtin",
+    "type": "null",
+  },
+}
+`;
+
+exports[`Primitive Types 'new' str 1`] = `
+ParseNode {
+  "kind": "new",
+  "target": ParseNode {
+    "kind": "type",
+    "origin": "builtin",
+    "type": "str",
+  },
+}
+`;
+
+exports[`Primitive Types casting ints and floats float as int 1`] = `
+ParseNode {
+  "from": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "float",
+    },
+    "value": 3.14159,
+  },
+  "kind": "as",
+  "to": ParseNode {
+    "kind": "type",
+    "origin": "builtin",
+    "type": "int",
+  },
+}
+`;
+
+exports[`Primitive Types casting ints and floats int as float 1`] = `
+ParseNode {
+  "from": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+    "value": 10,
+  },
+  "kind": "as",
+  "to": ParseNode {
+    "kind": "type",
+    "origin": "builtin",
+    "type": "float",
+  },
+}
+`;
+
+exports[`Primitive Types casting ints and floats to bool 0 as bool 1`] = `
+ParseNode {
+  "from": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+    "value": 0,
+  },
+  "kind": "as",
+  "to": ParseNode {
+    "kind": "type",
+    "origin": "builtin",
+    "type": "bool",
+  },
+}
+`;
+
+exports[`Primitive Types casting ints and floats to bool 0.0 as bool 1`] = `
+ParseNode {
+  "from": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+    "value": 0,
+  },
+  "kind": "as",
+  "to": ParseNode {
+    "kind": "type",
+    "origin": "builtin",
+    "type": "bool",
+  },
+}
+`;
+
+exports[`Primitive Types casting ints and floats to bool 1 as bool 1`] = `
+ParseNode {
+  "from": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+    "value": 1,
+  },
+  "kind": "as",
+  "to": ParseNode {
+    "kind": "type",
+    "origin": "builtin",
+    "type": "bool",
+  },
+}
+`;
+
+exports[`Primitive Types casting ints and floats to bool 1.0 as bool 1`] = `
+ParseNode {
+  "from": ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+    "value": 1,
+  },
+  "kind": "as",
+  "to": ParseNode {
+    "kind": "type",
+    "origin": "builtin",
+    "type": "bool",
+  },
+}
+`;
+
+exports[`Primitive Types literals false 1`] = `
+ParseNode {
+  "kind": "literal",
+  "type": ParseNode {
+    "kind": "type",
+    "origin": "builtin",
+    "type": "bool",
+  },
+  "value": false,
+}
+`;
+
+exports[`Primitive Types literals float 1`] = `
+ParseNode {
+  "kind": "literal",
+  "type": ParseNode {
+    "kind": "type",
+    "origin": "builtin",
+    "type": "float",
+  },
+  "value": 3.14159,
+}
+`;
+
+exports[`Primitive Types literals int 1`] = `
+ParseNode {
+  "kind": "literal",
+  "type": ParseNode {
+    "kind": "type",
+    "origin": "builtin",
+    "type": "int",
+  },
+  "value": 10,
+}
+`;
+
+exports[`Primitive Types literals null 1`] = `
+ParseNode {
+  "kind": "literal",
+  "type": ParseNode {
+    "kind": "type",
+    "origin": "builtin",
+    "type": "null",
+  },
+  "value": null,
+}
+`;
+
+exports[`Primitive Types literals str 1`] = `
+ParseNode {
+  "kind": "literal",
+  "type": ParseNode {
+    "kind": "type",
+    "origin": "builtin",
+    "type": "str",
+  },
+  "value": "kythera",
+}
+`;
+
+exports[`Primitive Types literals true 1`] = `
+ParseNode {
+  "kind": "literal",
+  "type": ParseNode {
+    "kind": "type",
+    "origin": "builtin",
+    "type": "bool",
+  },
+  "value": true,
+}
+`;

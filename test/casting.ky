@@ -1,7 +1,5 @@
-new int
-new float
-new str
-new null
+// comparing ints and floats
+// 1 != 1.0 // true
 
 // custom type assignment
 let myIntType = int
@@ -11,22 +9,16 @@ let myObjType = obj{
     str b,
 }
 
-let a = 10
-let b = new int
-
 let myObj = {
     a = 99,
     b = "beep",
 }
-
 
 myObj.a
 
 (myObj as myObjType).a
 
 myObj.a + 10
-
-someFn().a
 
 let myCastedObj = myObj as myObjType
 typeof myCastedObj

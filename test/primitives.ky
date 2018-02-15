@@ -1,0 +1,24 @@
+// initialization with "new"
+new bool
+new int
+new float
+new str
+new null
+
+// literals
+true
+false
+10
+3.14159
+"kythera"
+null
+
+// casting ints and floats
+10 as float
+3.14159 as int
+
+// casting number values to bool
+1.0 as bool
+0.0 as bool
+1 as bool
+0 as bool

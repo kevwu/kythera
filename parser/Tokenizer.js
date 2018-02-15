@@ -1,4 +1,13 @@
-const KEYWORDS =  [ "let", "new", "if", "else", "while", "each", "return", "break", "continue", "typeof", "as", "bool", "int", "float", "str", "fn", "obj", "list", "type", "import", "export", "include", "this", "true", "false", "null"]
+const KEYWORDS =  [
+	"let", "new", // declaration
+	"if", "else", "while", "each", "switch", "break", "return", "continue", // control flow
+	"bool", "int", "float", "str", "fn", "obj", "list", "type", // types
+	"typeof", "as", // type handling
+	"import", "export", "include", // packages
+	"this",
+	"true", "false", // boolean literal
+	"null" // null literal (and type)
+]
 
 class Tokenizer {
 	constructor(inputStream) {

@@ -1,0 +1,7 @@
+// casting to a literal
+10 as 3.14159
+
+// assigning to a literal
+10 = 20
+
+// casting an object to a rigid form with fields that the object does not have
