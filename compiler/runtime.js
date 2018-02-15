@@ -86,6 +86,7 @@ KYTHERA.type = class {
 		}
 	}
 
+	// compare the types of two values
 	static eq(a, b) {
 		if(a.type !== b.type) {
 			return false

@@ -68,6 +68,8 @@ class Compiler {
 				return this.visitTypeof(node)
 			case "assign":
 				return this.visitAssign(node)
+			case "binary":
+				return this.visitBinary(node)
 			default:
 				throw new Error("Unhandled node kind: " + node.kind)
 		}
@@ -215,6 +217,35 @@ class Compiler {
 		return {
 			output: this.makeTypeConstructor(this.visitExpressionNode(node.target).type),
 			type: KytheraType.PRIMITIVES.type,
+		}
+	}
+
+	visitBinary(node) {
+		let lhs = this.visitExpressionNode(node.left)
+		let rhs = this.visitExpressionNode(node.right)
+
+		if(!(KytheraType.eq(lhs.type, rhs.type))) {
+			throw new Error(`Incompatible types: ${lhs.type.type} vs ${rhs.type.type}`)
+		}
+
+		let outType
+		if(["&&", "||"].includes(node.operator)) {
+			if(!(KytheraType.eq(lhs.type, KytheraType.PRIMITIVES.bool))) {
+				throw new Error("Boolean operators require bool, not " + lhs.type.type)
+			}
+
+			outType = KytheraType.PRIMITIVES.bool
+		} else if(["==", "!=", "<", ">", "<=", ">="].includes(node.operator)) {
+			outType = KytheraType.PRIMITIVES.bool
+		} else if(["+", "-", "*", "/", "%"].includes(node.operator)) {
+			outType = lhs.type
+		} else {
+			throw new Error("Invalid operator: " + node.operator)
+		}
+
+		return {
+			output: `(${lhs.output}) ${node.operator} (${rhs.output})`,
+			type: outType,
 		}
 	}
 
