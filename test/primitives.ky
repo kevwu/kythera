@@ -13,6 +13,38 @@ false
 "kythera"
 null
 
+// arithmetic
+2 + 2
+3.14159 + 2.71828
+9 - 5
+6 / 3
+4 * 2
+18 % 3
+
+// operator precedence
+2 + 3 * 4
+(2 + 3) * 4
+
+// boolean operations
+!false
+!true
+
+true && true
+true && false
+false && true
+
+true || true
+false || true
+true || false
+
+// typeofs
+typeof true
+typeof false
+typeof 10
+typeof 3.14159
+typeof "kythera"
+typeof null
+
 // casting ints and floats
 10 as float
 3.14159 as int
