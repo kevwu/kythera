@@ -162,7 +162,11 @@ class Tokenizer {
 		})
 
 		// if newline, then the previous token was the last on the line and a semi can be placed
-		if(this.inputStream.eof() || this.inputStream.input[this.inputStream.pos] === "\n") {
+		if(
+			this.inputStream.eof() ||
+			this.inputStream.input[this.inputStream.pos] === "\n" ||
+			(this.inputStream.input[this.inputStream.pos] === '/' && this.inputStream.input[this.inputStream.pos + 1] === '/')
+		) {
 			// TODO optimize
 			this.inputStream.input = this.inputStream.input.substr(0, this.inputStream.pos) + ';' + this.inputStream.input.substr(this.inputStream.pos, this.inputStream.input.length)
 		}

@@ -18,7 +18,7 @@ null
 3.14159 as int
 
 // casting number values to bool
-1.0 as bool
-0.0 as bool
-1 as bool
-0 as bool
+1.0 as bool // true
+0.0 as bool // false
+1 as bool // true
+0 as bool // false

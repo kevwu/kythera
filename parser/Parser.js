@@ -72,6 +72,7 @@ class Parser {
 	// entry point for all parsing operations
 	parse() {
 		this.program = []
+
 		while (!this.tokenizer.eof()) {
 			this.program.push(this.parseExpression())
 			if(!this.confirmToken(';', "punc")) {
