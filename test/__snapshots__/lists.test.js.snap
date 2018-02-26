@@ -1,0 +1,753 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Lists [COMPL] Initialization from object list literal 1`] = `"let myTypeList = new KYTHERA.type(\\"list\\", { contains: new KYTHERA.type(\\"obj\\", {\\"a\\": KYTHERA.type.PRIMITIVES[\\"int\\"],\\"b\\": KYTHERA.type.PRIMITIVES[\\"str\\"],})}).makeNew();"`;
+
+exports[`Lists [PARSE] Access function returning list 1`] = `
+Array [
+  ParseNode {
+    "identifier": "myListFn",
+    "kind": "let",
+    "value": ParseNode {
+      "body": Array [
+        ParseNode {
+          "identifier": "result",
+          "kind": "let",
+          "value": ParseNode {
+            "kind": "new",
+            "target": ParseNode {
+              "contains": ParseNode {
+                "kind": "type",
+                "origin": "builtin",
+                "type": "int",
+              },
+              "kind": "type",
+              "origin": "builtin",
+              "type": "list",
+            },
+          },
+        },
+        ParseNode {
+          "kind": "assign",
+          "left": ParseNode {
+            "index": ParseNode {
+              "kind": "literal",
+              "type": ParseNode {
+                "kind": "type",
+                "origin": "builtin",
+                "type": "int",
+              },
+              "value": 0,
+            },
+            "kind": "access",
+            "target": ParseNode {
+              "kind": "identifier",
+              "name": "result",
+            },
+            "type": "unknown",
+          },
+          "operator": "=",
+          "right": ParseNode {
+            "kind": "literal",
+            "type": ParseNode {
+              "kind": "type",
+              "origin": "builtin",
+              "type": "int",
+            },
+            "value": 10,
+          },
+        },
+      ],
+      "kind": "literal",
+      "parameters": Array [],
+      "returns": ParseNode {
+        "contains": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "int",
+        },
+        "kind": "type",
+        "origin": "builtin",
+        "type": "list",
+      },
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "parameters": Array [],
+        "returns": ParseNode {
+          "contains": ParseNode {
+            "kind": "type",
+            "origin": "builtin",
+            "type": "int",
+          },
+          "kind": "type",
+          "origin": "builtin",
+          "type": "list",
+        },
+        "type": "fn",
+      },
+    },
+  },
+  ParseNode {
+    "index": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 0,
+    },
+    "kind": "access",
+    "target": ParseNode {
+      "arguments": Array [],
+      "kind": "call",
+      "target": ParseNode {
+        "kind": "identifier",
+        "name": "myListFn",
+      },
+    },
+    "type": "unknown",
+  },
+]
+`;
+
+exports[`Lists [PARSE] Initialization and assignment access 1`] = `
+Array [
+  ParseNode {
+    "identifier": "myList",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "new",
+      "target": ParseNode {
+        "contains": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "int",
+        },
+        "kind": "type",
+        "origin": "builtin",
+        "type": "list",
+      },
+    },
+  },
+  ParseNode {
+    "kind": "assign",
+    "left": ParseNode {
+      "index": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "int",
+        },
+        "value": 0,
+      },
+      "kind": "access",
+      "target": ParseNode {
+        "kind": "identifier",
+        "name": "myList",
+      },
+      "type": "unknown",
+    },
+    "operator": "=",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 10,
+    },
+  },
+]
+`;
+
+exports[`Lists [PARSE] Initialization from object list literal 1`] = `
+Array [
+  ParseNode {
+    "identifier": "myTypeList",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "new",
+      "target": ParseNode {
+        "contains": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "structure": Object {
+            "a": ParseNode {
+              "kind": "type",
+              "origin": "builtin",
+              "type": "int",
+            },
+            "b": ParseNode {
+              "kind": "type",
+              "origin": "builtin",
+              "type": "str",
+            },
+          },
+          "type": "obj",
+        },
+        "kind": "type",
+        "origin": "builtin",
+        "type": "list",
+      },
+    },
+  },
+]
+`;
+
+exports[`Lists [PARSE] Initialization with custom type 1`] = `
+Array [
+  ParseNode {
+    "identifier": "myType",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "type",
+      },
+      "value": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "structure": Object {
+          "a": ParseNode {
+            "kind": "type",
+            "origin": "builtin",
+            "type": "int",
+          },
+          "b": ParseNode {
+            "kind": "type",
+            "origin": "builtin",
+            "type": "str",
+          },
+        },
+        "type": "obj",
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "myTypeList",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "new",
+      "target": ParseNode {
+        "contains": ParseNode {
+          "kind": "type",
+          "name": "myType",
+          "origin": "named",
+        },
+        "kind": "type",
+        "origin": "builtin",
+        "type": "list",
+      },
+    },
+  },
+]
+`;
+
+exports[`Lists List literals [COMPL] bool 1`] = `"new KYTHERA.value([new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]),new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"])], new KYTHERA.type(\\"list\\", { contains: KYTHERA.type.PRIMITIVES[\\"bool\\"]}));"`;
+
+exports[`Lists List literals [COMPL] float 1`] = `"new KYTHERA.value([new KYTHERA.value(1.234, KYTHERA.type.PRIMITIVES[\\"float\\"]),new KYTHERA.value(3.14159, KYTHERA.type.PRIMITIVES[\\"float\\"])], new KYTHERA.type(\\"list\\", { contains: KYTHERA.type.PRIMITIVES[\\"float\\"]}));"`;
+
+exports[`Lists List literals [COMPL] fn 1`] = `"new KYTHERA.value([new KYTHERA.value((a) => {return new KYTHERA.value(null, KYTHERA.type.PRIMITIVES[\\"null\\"]);}, new KYTHERA.type(\\"fn\\", { parameters: [KYTHERA.type.PRIMITIVES[\\"int\\"]], returns: KYTHERA.type.PRIMITIVES[\\"null\\"]})),new KYTHERA.value((b) => {return new KYTHERA.value(null, KYTHERA.type.PRIMITIVES[\\"null\\"]);}, new KYTHERA.type(\\"fn\\", { parameters: [KYTHERA.type.PRIMITIVES[\\"int\\"]], returns: KYTHERA.type.PRIMITIVES[\\"null\\"]}))], new KYTHERA.type(\\"list\\", { contains: new KYTHERA.type(\\"fn\\", { parameters: [KYTHERA.type.PRIMITIVES[\\"int\\"]], returns: KYTHERA.type.PRIMITIVES[\\"null\\"]})}));"`;
+
+exports[`Lists List literals [COMPL] int 1`] = `"new KYTHERA.value([new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]),new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]),new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]),new KYTHERA.value(4, KYTHERA.type.PRIMITIVES[\\"int\\"])], new KYTHERA.type(\\"list\\", { contains: KYTHERA.type.PRIMITIVES[\\"int\\"]}));"`;
+
+exports[`Lists List literals [COMPL] null 1`] = `"new KYTHERA.value([new KYTHERA.value(null, KYTHERA.type.PRIMITIVES[\\"null\\"]),new KYTHERA.value(null, KYTHERA.type.PRIMITIVES[\\"null\\"])], new KYTHERA.type(\\"list\\", { contains: KYTHERA.type.PRIMITIVES[\\"null\\"]}));"`;
+
+exports[`Lists List literals [COMPL] obj 1`] = `"new KYTHERA.value([new KYTHERA.value({\\"a\\": new KYTHERA.value(0, KYTHERA.type.PRIMITIVES[\\"int\\"]),\\"b\\": new KYTHERA.value(\\"asdf\\", KYTHERA.type.PRIMITIVES[\\"str\\"]),}, new KYTHERA.type(\\"obj\\", {})),new KYTHERA.value({\\"a\\": new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]),\\"b\\": new KYTHERA.value(\\"qwerty\\", KYTHERA.type.PRIMITIVES[\\"str\\"]),}, new KYTHERA.type(\\"obj\\", {}))], new KYTHERA.type(\\"list\\", { contains: new KYTHERA.type(\\"obj\\", {})}));"`;
+
+exports[`Lists List literals [COMPL] str 1`] = `"new KYTHERA.value([new KYTHERA.value(\\"hello\\", KYTHERA.type.PRIMITIVES[\\"str\\"]),new KYTHERA.value(\\"world\\", KYTHERA.type.PRIMITIVES[\\"str\\"])], new KYTHERA.type(\\"list\\", { contains: KYTHERA.type.PRIMITIVES[\\"str\\"]}));"`;
+
+exports[`Lists List literals [COMPL] type 1`] = `"new KYTHERA.value([new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"int\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]),new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"float\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]),new KYTHERA.value(new KYTHERA.type(\\"fn\\", { parameters: [KYTHERA.type.PRIMITIVES[\\"int\\"]], returns: KYTHERA.type.PRIMITIVES[\\"null\\"]}), KYTHERA.type.PRIMITIVES[\\"type\\"])], new KYTHERA.type(\\"list\\", { contains: KYTHERA.type.PRIMITIVES[\\"type\\"]}));"`;
+
+exports[`Lists List literals [PARSE] bool 1`] = `
+Array [
+  ParseNode {
+    "elements": Array [
+      ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "bool",
+        },
+        "value": true,
+      },
+      ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "bool",
+        },
+        "value": false,
+      },
+    ],
+    "kind": "literal",
+    "type": ParseNode {
+      "contains": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "bool",
+      },
+      "kind": "type",
+      "origin": "builtin",
+      "type": "list",
+    },
+  },
+]
+`;
+
+exports[`Lists List literals [PARSE] float 1`] = `
+Array [
+  ParseNode {
+    "elements": Array [
+      ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "float",
+        },
+        "value": 1.234,
+      },
+      ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "float",
+        },
+        "value": 3.14159,
+      },
+    ],
+    "kind": "literal",
+    "type": ParseNode {
+      "contains": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "float",
+      },
+      "kind": "type",
+      "origin": "builtin",
+      "type": "list",
+    },
+  },
+]
+`;
+
+exports[`Lists List literals [PARSE] fn 1`] = `
+Array [
+  ParseNode {
+    "elements": Array [
+      ParseNode {
+        "body": Array [
+          ParseNode {
+            "kind": "return",
+            "value": ParseNode {
+              "kind": "literal",
+              "type": ParseNode {
+                "kind": "type",
+                "origin": "builtin",
+                "type": "null",
+              },
+              "value": null,
+            },
+          },
+        ],
+        "kind": "literal",
+        "parameters": Array [
+          Object {
+            "name": "a",
+            "type": ParseNode {
+              "kind": "type",
+              "origin": "builtin",
+              "type": "int",
+            },
+          },
+        ],
+        "returns": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "null",
+        },
+        "type": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "parameters": Array [
+            ParseNode {
+              "kind": "type",
+              "origin": "builtin",
+              "type": "int",
+            },
+          ],
+          "returns": ParseNode {
+            "kind": "type",
+            "origin": "builtin",
+            "type": "null",
+          },
+          "type": "fn",
+        },
+      },
+      ParseNode {
+        "body": Array [
+          ParseNode {
+            "kind": "return",
+            "value": ParseNode {
+              "kind": "literal",
+              "type": ParseNode {
+                "kind": "type",
+                "origin": "builtin",
+                "type": "null",
+              },
+              "value": null,
+            },
+          },
+        ],
+        "kind": "literal",
+        "parameters": Array [
+          Object {
+            "name": "b",
+            "type": ParseNode {
+              "kind": "type",
+              "origin": "builtin",
+              "type": "int",
+            },
+          },
+        ],
+        "returns": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "null",
+        },
+        "type": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "parameters": Array [
+            ParseNode {
+              "kind": "type",
+              "origin": "builtin",
+              "type": "int",
+            },
+          ],
+          "returns": ParseNode {
+            "kind": "type",
+            "origin": "builtin",
+            "type": "null",
+          },
+          "type": "fn",
+        },
+      },
+    ],
+    "kind": "literal",
+    "type": ParseNode {
+      "contains": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "parameters": Array [
+          ParseNode {
+            "kind": "type",
+            "origin": "builtin",
+            "type": "int",
+          },
+        ],
+        "returns": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "null",
+        },
+        "type": "fn",
+      },
+      "kind": "type",
+      "origin": "builtin",
+      "type": "list",
+    },
+  },
+]
+`;
+
+exports[`Lists List literals [PARSE] int 1`] = `
+Array [
+  ParseNode {
+    "elements": Array [
+      ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "int",
+        },
+        "value": 1,
+      },
+      ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "int",
+        },
+        "value": 2,
+      },
+      ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "int",
+        },
+        "value": 3,
+      },
+      ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "int",
+        },
+        "value": 4,
+      },
+    ],
+    "kind": "literal",
+    "type": ParseNode {
+      "contains": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "kind": "type",
+      "origin": "builtin",
+      "type": "list",
+    },
+  },
+]
+`;
+
+exports[`Lists List literals [PARSE] null 1`] = `
+Array [
+  ParseNode {
+    "elements": Array [
+      ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "null",
+        },
+        "value": null,
+      },
+      ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "null",
+        },
+        "value": null,
+      },
+    ],
+    "kind": "literal",
+    "type": ParseNode {
+      "contains": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "null",
+      },
+      "kind": "type",
+      "origin": "builtin",
+      "type": "list",
+    },
+  },
+]
+`;
+
+exports[`Lists List literals [PARSE] obj 1`] = `
+Array [
+  ParseNode {
+    "elements": Array [
+      ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "structure": Object {},
+          "type": "obj",
+        },
+        "value": Object {
+          "a": ParseNode {
+            "kind": "literal",
+            "type": ParseNode {
+              "kind": "type",
+              "origin": "builtin",
+              "type": "int",
+            },
+            "value": 0,
+          },
+          "b": ParseNode {
+            "kind": "literal",
+            "type": ParseNode {
+              "kind": "type",
+              "origin": "builtin",
+              "type": "str",
+            },
+            "value": "asdf",
+          },
+        },
+      },
+      ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "structure": Object {},
+          "type": "obj",
+        },
+        "value": Object {
+          "a": ParseNode {
+            "kind": "literal",
+            "type": ParseNode {
+              "kind": "type",
+              "origin": "builtin",
+              "type": "int",
+            },
+            "value": 3,
+          },
+          "b": ParseNode {
+            "kind": "literal",
+            "type": ParseNode {
+              "kind": "type",
+              "origin": "builtin",
+              "type": "str",
+            },
+            "value": "qwerty",
+          },
+        },
+      },
+    ],
+    "kind": "literal",
+    "type": ParseNode {
+      "contains": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "structure": Object {},
+        "type": "obj",
+      },
+      "kind": "type",
+      "origin": "builtin",
+      "type": "list",
+    },
+  },
+]
+`;
+
+exports[`Lists List literals [PARSE] str 1`] = `
+Array [
+  ParseNode {
+    "elements": Array [
+      ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "str",
+        },
+        "value": "hello",
+      },
+      ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "str",
+        },
+        "value": "world",
+      },
+    ],
+    "kind": "literal",
+    "type": ParseNode {
+      "contains": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "str",
+      },
+      "kind": "type",
+      "origin": "builtin",
+      "type": "list",
+    },
+  },
+]
+`;
+
+exports[`Lists List literals [PARSE] type 1`] = `
+Array [
+  ParseNode {
+    "elements": Array [
+      ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "type",
+        },
+        "value": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "int",
+        },
+      },
+      ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "type",
+        },
+        "value": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "float",
+        },
+      },
+      ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "type",
+        },
+        "value": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "parameters": Array [
+            ParseNode {
+              "kind": "type",
+              "origin": "builtin",
+              "type": "int",
+            },
+          ],
+          "returns": ParseNode {
+            "kind": "type",
+            "origin": "builtin",
+            "type": "null",
+          },
+          "type": "fn",
+        },
+      },
+    ],
+    "kind": "literal",
+    "type": ParseNode {
+      "contains": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "type",
+      },
+      "kind": "type",
+      "origin": "builtin",
+      "type": "list",
+    },
+  },
+]
+`;

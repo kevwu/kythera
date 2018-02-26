@@ -1,0 +1,442 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Type casting [PARSE] Casting object 1`] = `
+Array [
+  ParseNode {
+    "identifier": "myObj",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "structure": Object {},
+        "type": "obj",
+      },
+      "value": Object {
+        "a": ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "kind": "type",
+            "origin": "builtin",
+            "type": "int",
+          },
+          "value": 99,
+        },
+        "b": ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "kind": "type",
+            "origin": "builtin",
+            "type": "str",
+          },
+          "value": "beep",
+        },
+      },
+    },
+  },
+  ParseNode {
+    "index": "a",
+    "kind": "access",
+    "target": ParseNode {
+      "kind": "identifier",
+      "name": "myObj",
+    },
+    "type": "object",
+  },
+  ParseNode {
+    "index": "a",
+    "kind": "access",
+    "target": ParseNode {
+      "from": ParseNode {
+        "kind": "identifier",
+        "name": "myObj",
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "kind": "type",
+        "name": "myObjType",
+        "origin": "named",
+      },
+    },
+    "type": "object",
+  },
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "index": "a",
+      "kind": "access",
+      "target": ParseNode {
+        "kind": "identifier",
+        "name": "myObj",
+      },
+      "type": "object",
+    },
+    "operator": "+",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 10,
+    },
+  },
+  ParseNode {
+    "identifier": "myCastedObj",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "identifier",
+        "name": "myObj",
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "kind": "type",
+        "name": "myObjType",
+        "origin": "named",
+      },
+    },
+  },
+  ParseNode {
+    "kind": "typeof",
+    "target": ParseNode {
+      "kind": "identifier",
+      "name": "myCastedObj",
+    },
+  },
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "typeof",
+      "target": ParseNode {
+        "kind": "identifier",
+        "name": "myCastedObj",
+      },
+    },
+    "operator": "==",
+    "right": ParseNode {
+      "kind": "typeof",
+      "target": ParseNode {
+        "kind": "identifier",
+        "name": "myObj",
+      },
+    },
+  },
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "typeof",
+      "target": ParseNode {
+        "kind": "identifier",
+        "name": "myCastedObj",
+      },
+    },
+    "operator": "==",
+    "right": ParseNode {
+      "kind": "typeof",
+      "target": ParseNode {
+        "from": ParseNode {
+          "kind": "identifier",
+          "name": "myObj",
+        },
+        "kind": "as",
+        "to": ParseNode {
+          "kind": "type",
+          "name": "myObjType",
+          "origin": "named",
+        },
+      },
+    },
+  },
+]
+`;
+
+exports[`Type casting [PARSE] Usage as fn param 1`] = `
+Array [
+  ParseNode {
+    "identifier": "myObjType",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "type",
+      },
+      "value": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "structure": Object {
+          "a": ParseNode {
+            "kind": "type",
+            "origin": "builtin",
+            "type": "int",
+          },
+          "b": ParseNode {
+            "kind": "type",
+            "origin": "builtin",
+            "type": "str",
+          },
+        },
+        "type": "obj",
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "myObj",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "structure": Object {},
+        "type": "obj",
+      },
+      "value": Object {
+        "a": ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "kind": "type",
+            "origin": "builtin",
+            "type": "int",
+          },
+          "value": 99,
+        },
+        "b": ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "kind": "type",
+            "origin": "builtin",
+            "type": "str",
+          },
+          "value": "beep",
+        },
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "myCastedObj",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "identifier",
+        "name": "myObj",
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "kind": "type",
+        "name": "myObjType",
+        "origin": "named",
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "myFn",
+    "kind": "let",
+    "value": ParseNode {
+      "body": Array [
+        ParseNode {
+          "index": "a",
+          "kind": "access",
+          "target": ParseNode {
+            "kind": "identifier",
+            "name": "object",
+          },
+          "type": "object",
+        },
+        ParseNode {
+          "index": "b",
+          "kind": "access",
+          "target": ParseNode {
+            "kind": "identifier",
+            "name": "object",
+          },
+          "type": "object",
+        },
+        ParseNode {
+          "kind": "return",
+          "value": ParseNode {
+            "kind": "literal",
+            "type": ParseNode {
+              "kind": "type",
+              "origin": "builtin",
+              "type": "int",
+            },
+            "value": 10,
+          },
+        },
+      ],
+      "kind": "literal",
+      "parameters": Array [
+        Object {
+          "name": "object",
+          "type": ParseNode {
+            "kind": "type",
+            "name": "myObjType",
+            "origin": "named",
+          },
+        },
+      ],
+      "returns": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "null",
+      },
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "parameters": Array [
+          ParseNode {
+            "kind": "type",
+            "name": "myObjType",
+            "origin": "named",
+          },
+        ],
+        "returns": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "null",
+        },
+        "type": "fn",
+      },
+    },
+  },
+  ParseNode {
+    "arguments": Array [
+      ParseNode {
+        "from": ParseNode {
+          "kind": "identifier",
+          "name": "myObj",
+        },
+        "kind": "as",
+        "to": ParseNode {
+          "kind": "type",
+          "name": "myObjType",
+          "origin": "named",
+        },
+      },
+    ],
+    "kind": "call",
+    "target": ParseNode {
+      "kind": "identifier",
+      "name": "myFn",
+    },
+  },
+  ParseNode {
+    "arguments": Array [
+      ParseNode {
+        "kind": "identifier",
+        "name": "myCastedObj",
+      },
+    ],
+    "kind": "call",
+    "target": ParseNode {
+      "kind": "identifier",
+      "name": "myFn",
+    },
+  },
+]
+`;
+
+exports[`Type casting Custom type assignment [PARSE] fn type 1`] = `
+Array [
+  ParseNode {
+    "identifier": "myFnType",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "type",
+      },
+      "value": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "parameters": Array [
+          ParseNode {
+            "kind": "type",
+            "origin": "builtin",
+            "type": "int",
+          },
+          ParseNode {
+            "kind": "type",
+            "origin": "builtin",
+            "type": "str",
+          },
+          ParseNode {
+            "kind": "type",
+            "name": "myIntType",
+            "origin": "named",
+          },
+        ],
+        "returns": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "str",
+        },
+        "type": "fn",
+      },
+    },
+  },
+]
+`;
+
+exports[`Type casting Custom type assignment [PARSE] obj type 1`] = `
+Array [
+  ParseNode {
+    "identifier": "myObjType",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "type",
+      },
+      "value": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "structure": Object {
+          "a": ParseNode {
+            "kind": "type",
+            "origin": "builtin",
+            "type": "int",
+          },
+          "b": ParseNode {
+            "kind": "type",
+            "origin": "builtin",
+            "type": "str",
+          },
+        },
+        "type": "obj",
+      },
+    },
+  },
+]
+`;
+
+exports[`Type casting Custom type assignment [PARSE] primitive 1`] = `
+Array [
+  ParseNode {
+    "identifier": "myIntType",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "type",
+      },
+      "value": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+    },
+  },
+]
+`;

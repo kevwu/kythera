@@ -1,0 +1,321 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Control flow if [PARSE] if 1`] = `
+Array [
+  ParseNode {
+    "body": Array [
+      ParseNode {
+        "kind": "identifier",
+        "name": "a",
+      },
+    ],
+    "condition": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "bool",
+      },
+      "value": false,
+    },
+    "kind": "if",
+  },
+]
+`;
+
+exports[`Control flow if [PARSE] if-else 1`] = `
+Array [
+  ParseNode {
+    "body": Array [
+      ParseNode {
+        "kind": "identifier",
+        "name": "a",
+      },
+    ],
+    "condition": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "bool",
+      },
+      "value": false,
+    },
+    "else": Array [
+      ParseNode {
+        "kind": "identifier",
+        "name": "b",
+      },
+    ],
+    "kind": "if",
+  },
+]
+`;
+
+exports[`Control flow if [PARSE] if-else with boolean 1`] = `
+Array [
+  ParseNode {
+    "body": Array [
+      ParseNode {
+        "kind": "identifier",
+        "name": "a",
+      },
+    ],
+    "condition": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "identifier",
+        "name": "a",
+      },
+      "operator": "==",
+      "right": ParseNode {
+        "kind": "identifier",
+        "name": "b",
+      },
+    },
+    "else": Array [
+      ParseNode {
+        "kind": "identifier",
+        "name": "b",
+      },
+    ],
+    "kind": "if",
+  },
+]
+`;
+
+exports[`Control flow if [PARSE] if-else-if 1`] = `
+Array [
+  ParseNode {
+    "body": Array [
+      ParseNode {
+        "kind": "identifier",
+        "name": "a",
+      },
+    ],
+    "condition": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "bool",
+      },
+      "value": false,
+    },
+    "else": ParseNode {
+      "body": Array [
+        ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "kind": "type",
+            "origin": "builtin",
+            "type": "int",
+          },
+          "value": 23,
+        },
+      ],
+      "condition": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "bool",
+        },
+        "value": false,
+      },
+      "else": Array [
+        ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "kind": "type",
+            "origin": "builtin",
+            "type": "str",
+          },
+          "value": "yay",
+        },
+      ],
+      "kind": "if",
+    },
+    "kind": "if",
+  },
+]
+`;
+
+exports[`Control flow if [PARSE] if-else-if with boolean 1`] = `
+Array [
+  ParseNode {
+    "body": Array [
+      ParseNode {
+        "kind": "identifier",
+        "name": "a",
+      },
+    ],
+    "condition": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "identifier",
+        "name": "a",
+      },
+      "operator": "==",
+      "right": ParseNode {
+        "kind": "identifier",
+        "name": "b",
+      },
+    },
+    "else": ParseNode {
+      "body": Array [
+        ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "kind": "type",
+            "origin": "builtin",
+            "type": "int",
+          },
+          "value": 23,
+        },
+      ],
+      "condition": ParseNode {
+        "kind": "binary",
+        "left": ParseNode {
+          "kind": "identifier",
+          "name": "b",
+        },
+        "operator": "==",
+        "right": ParseNode {
+          "kind": "identifier",
+          "name": "c",
+        },
+      },
+      "else": Array [
+        ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "kind": "type",
+            "origin": "builtin",
+            "type": "str",
+          },
+          "value": "hello",
+        },
+      ],
+      "kind": "if",
+    },
+    "kind": "if",
+  },
+]
+`;
+
+exports[`Control flow while [PARSE] while 1`] = `
+Array [
+  ParseNode {
+    "body": Array [
+      ParseNode {
+        "kind": "assign",
+        "left": ParseNode {
+          "kind": "identifier",
+          "name": "a",
+        },
+        "operator": "=",
+        "right": ParseNode {
+          "kind": "binary",
+          "left": ParseNode {
+            "kind": "identifier",
+            "name": "a",
+          },
+          "operator": "+",
+          "right": ParseNode {
+            "kind": "literal",
+            "type": ParseNode {
+              "kind": "type",
+              "origin": "builtin",
+              "type": "int",
+            },
+            "value": 2,
+          },
+        },
+      },
+    ],
+    "condition": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "identifier",
+        "name": "a",
+      },
+      "operator": "==",
+      "right": ParseNode {
+        "kind": "identifier",
+        "name": "b",
+      },
+    },
+    "kind": "while",
+  },
+]
+`;
+
+exports[`Control flow while [PARSE] while 2`] = `
+Array [
+  ParseNode {
+    "identifier": "x",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 0,
+    },
+  },
+  ParseNode {
+    "body": Array [
+      ParseNode {
+        "kind": "assign",
+        "left": ParseNode {
+          "kind": "identifier",
+          "name": "x",
+        },
+        "operator": "=",
+        "right": ParseNode {
+          "kind": "binary",
+          "left": ParseNode {
+            "kind": "identifier",
+            "name": "x",
+          },
+          "operator": "+",
+          "right": ParseNode {
+            "kind": "literal",
+            "type": ParseNode {
+              "kind": "type",
+              "origin": "builtin",
+              "type": "int",
+            },
+            "value": 1,
+          },
+        },
+      },
+    ],
+    "condition": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "identifier",
+        "name": "x",
+      },
+      "operator": "<",
+      "right": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "int",
+        },
+        "value": 10,
+      },
+    },
+    "kind": "while",
+  },
+  ParseNode {
+    "kind": "identifier",
+    "name": "x",
+  },
+]
+`;
