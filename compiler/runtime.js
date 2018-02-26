@@ -114,7 +114,11 @@ KYTHERA.type = class {
 				return false
 			}
 
-			return Object.keys(this.structure).every((key, i) => this.eq(a.structure[key], b.structure[key]));
+			const aContainsAllb = Object.keys(a.structure).every((key, i) => this.eq(a.structure[key], b.structure[key]));
+			const bContainsAlla = Object.keys(b.structure).every((key, i) => this.eq(a.structure[key], b.structure[key]));
+
+			return aContainsAllb && bContainsAlla
+
 		}
 		return true
 	}

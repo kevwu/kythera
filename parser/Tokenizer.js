@@ -1,12 +1,11 @@
 const KEYWORDS =  [
 	"let", "new", // declaration
 	"if", "else", "while", "each", "switch", "break", "return", "continue", // control flow
-	"bool", "int", "float", "str", "fn", "obj", "list", "type", // types
+	"bool", "int", "float", "str", "null", "fn", "obj", "list", "type", // types
 	"typeof", "as", // type handling
 	"import", "export", "include", // packages
 	"this",
 	"true", "false", // boolean literal
-	"null" // null literal (and type)
 ]
 
 class Tokenizer {

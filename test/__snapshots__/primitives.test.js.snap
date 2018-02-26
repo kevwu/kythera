@@ -1,0 +1,802 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Primitive Types Arithmetic [COMPL] division 1`] = `"(new KYTHERA.value(6, KYTHERA.type.PRIMITIVES[\\"int\\"])) / (new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+
+exports[`Primitive Types Arithmetic [COMPL] float addition 1`] = `"(new KYTHERA.value(3.14159, KYTHERA.type.PRIMITIVES[\\"float\\"])) + (new KYTHERA.value(2.71828, KYTHERA.type.PRIMITIVES[\\"float\\"]));"`;
+
+exports[`Primitive Types Arithmetic [COMPL] int Addition 1`] = `"(new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])) + (new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+
+exports[`Primitive Types Arithmetic [COMPL] modulo 1`] = `"(new KYTHERA.value(18, KYTHERA.type.PRIMITIVES[\\"int\\"])) % (new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+
+exports[`Primitive Types Arithmetic [COMPL] multiplication 1`] = `"(new KYTHERA.value(4, KYTHERA.type.PRIMITIVES[\\"int\\"])) * (new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+
+exports[`Primitive Types Arithmetic [COMPL] subtraction 1`] = `"(new KYTHERA.value(9, KYTHERA.type.PRIMITIVES[\\"int\\"])) - (new KYTHERA.value(5, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+
+exports[`Primitive Types Arithmetic [PARSE] division 1`] = `
+Array [
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 6,
+    },
+    "operator": "/",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 3,
+    },
+  },
+]
+`;
+
+exports[`Primitive Types Arithmetic [PARSE] float addition 1`] = `
+Array [
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "float",
+      },
+      "value": 3.14159,
+    },
+    "operator": "+",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "float",
+      },
+      "value": 2.71828,
+    },
+  },
+]
+`;
+
+exports[`Primitive Types Arithmetic [PARSE] int Addition 1`] = `
+Array [
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 2,
+    },
+    "operator": "+",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 2,
+    },
+  },
+]
+`;
+
+exports[`Primitive Types Arithmetic [PARSE] modulo 1`] = `
+Array [
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 18,
+    },
+    "operator": "%",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 3,
+    },
+  },
+]
+`;
+
+exports[`Primitive Types Arithmetic [PARSE] multiplication 1`] = `
+Array [
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 4,
+    },
+    "operator": "*",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 2,
+    },
+  },
+]
+`;
+
+exports[`Primitive Types Arithmetic [PARSE] subtraction 1`] = `
+Array [
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 9,
+    },
+    "operator": "-",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 5,
+    },
+  },
+]
+`;
+
+exports[`Primitive Types Boolean operations [COMPL] and 1`] = `"(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"])) && (new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]));"`;
+
+exports[`Primitive Types Boolean operations [COMPL] and 2`] = `"(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"])) && (new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]));"`;
+
+exports[`Primitive Types Boolean operations [COMPL] or 1`] = `"(new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"])) || (new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]));"`;
+
+exports[`Primitive Types Boolean operations [COMPL] or 2`] = `"(new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"])) || (new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]));"`;
+
+exports[`Primitive Types Boolean operations [COMPL] short-circuit and 1`] = `"(new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"])) && (new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]));"`;
+
+exports[`Primitive Types Boolean operations [COMPL] short-circuit or 1`] = `"(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"])) || (new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]));"`;
+
+exports[`Primitive Types Boolean operations [PARSE] and 1`] = `
+Array [
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "bool",
+      },
+      "value": true,
+    },
+    "operator": "&&",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "bool",
+      },
+      "value": true,
+    },
+  },
+]
+`;
+
+exports[`Primitive Types Boolean operations [PARSE] and 2`] = `
+Array [
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "bool",
+      },
+      "value": true,
+    },
+    "operator": "&&",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "bool",
+      },
+      "value": false,
+    },
+  },
+]
+`;
+
+exports[`Primitive Types Boolean operations [PARSE] negate false 1`] = `
+Array [
+  ParseNode {
+    "kind": "unary",
+    "operator": "!",
+    "target": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "bool",
+      },
+      "value": false,
+    },
+  },
+]
+`;
+
+exports[`Primitive Types Boolean operations [PARSE] negate true 1`] = `
+Array [
+  ParseNode {
+    "kind": "unary",
+    "operator": "!",
+    "target": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "bool",
+      },
+      "value": true,
+    },
+  },
+]
+`;
+
+exports[`Primitive Types Boolean operations [PARSE] or 1`] = `
+Array [
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "bool",
+      },
+      "value": false,
+    },
+    "operator": "||",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "bool",
+      },
+      "value": false,
+    },
+  },
+]
+`;
+
+exports[`Primitive Types Boolean operations [PARSE] or 2`] = `
+Array [
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "bool",
+      },
+      "value": false,
+    },
+    "operator": "||",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "bool",
+      },
+      "value": true,
+    },
+  },
+]
+`;
+
+exports[`Primitive Types Boolean operations [PARSE] short-circuit and 1`] = `
+Array [
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "bool",
+      },
+      "value": false,
+    },
+    "operator": "&&",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "bool",
+      },
+      "value": true,
+    },
+  },
+]
+`;
+
+exports[`Primitive Types Boolean operations [PARSE] short-circuit or 1`] = `
+Array [
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "bool",
+      },
+      "value": true,
+    },
+    "operator": "||",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "bool",
+      },
+      "value": false,
+    },
+  },
+]
+`;
+
+exports[`Primitive Types Casting ints and floats [PARSE] float as int 1`] = `
+Array [
+  ParseNode {
+    "from": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "float",
+      },
+      "value": 3.14159,
+    },
+    "kind": "as",
+    "to": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+  },
+]
+`;
+
+exports[`Primitive Types Casting ints and floats [PARSE] int as float 1`] = `
+Array [
+  ParseNode {
+    "from": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 10,
+    },
+    "kind": "as",
+    "to": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "float",
+    },
+  },
+]
+`;
+
+exports[`Primitive Types Casting ints and floats to bool [PARSE] 0 as bool 1`] = `
+Array [
+  ParseNode {
+    "from": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 0,
+    },
+    "kind": "as",
+    "to": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "bool",
+    },
+  },
+]
+`;
+
+exports[`Primitive Types Casting ints and floats to bool [PARSE] 0.0 as bool 1`] = `
+Array [
+  ParseNode {
+    "from": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 0,
+    },
+    "kind": "as",
+    "to": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "bool",
+    },
+  },
+]
+`;
+
+exports[`Primitive Types Casting ints and floats to bool [PARSE] 1 as bool 1`] = `
+Array [
+  ParseNode {
+    "from": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 1,
+    },
+    "kind": "as",
+    "to": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "bool",
+    },
+  },
+]
+`;
+
+exports[`Primitive Types Casting ints and floats to bool [PARSE] 1.0 as bool 1`] = `
+Array [
+  ParseNode {
+    "from": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 1,
+    },
+    "kind": "as",
+    "to": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "bool",
+    },
+  },
+]
+`;
+
+exports[`Primitive Types Initialization with 'new' [COMPL] bool 1`] = `"KYTHERA.type.PRIMITIVES[\\"bool\\"].makeNew();"`;
+
+exports[`Primitive Types Initialization with 'new' [COMPL] float 1`] = `"KYTHERA.type.PRIMITIVES[\\"float\\"].makeNew();"`;
+
+exports[`Primitive Types Initialization with 'new' [COMPL] int 1`] = `"KYTHERA.type.PRIMITIVES[\\"int\\"].makeNew();"`;
+
+exports[`Primitive Types Initialization with 'new' [COMPL] null 1`] = `"KYTHERA.type.PRIMITIVES[\\"null\\"].makeNew();"`;
+
+exports[`Primitive Types Initialization with 'new' [COMPL] str 1`] = `"KYTHERA.type.PRIMITIVES[\\"str\\"].makeNew();"`;
+
+exports[`Primitive Types Initialization with 'new' [PARSE] bool 1`] = `
+Array [
+  ParseNode {
+    "kind": "new",
+    "target": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "bool",
+    },
+  },
+]
+`;
+
+exports[`Primitive Types Initialization with 'new' [PARSE] float 1`] = `
+Array [
+  ParseNode {
+    "kind": "new",
+    "target": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "float",
+    },
+  },
+]
+`;
+
+exports[`Primitive Types Initialization with 'new' [PARSE] int 1`] = `
+Array [
+  ParseNode {
+    "kind": "new",
+    "target": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+  },
+]
+`;
+
+exports[`Primitive Types Initialization with 'new' [PARSE] null 1`] = `
+Array [
+  ParseNode {
+    "kind": "new",
+    "target": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "null",
+    },
+  },
+]
+`;
+
+exports[`Primitive Types Initialization with 'new' [PARSE] str 1`] = `
+Array [
+  ParseNode {
+    "kind": "new",
+    "target": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "str",
+    },
+  },
+]
+`;
+
+exports[`Primitive Types Literals [COMPL] false 1`] = `"new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]);"`;
+
+exports[`Primitive Types Literals [COMPL] float 1`] = `"new KYTHERA.value(3.14159, KYTHERA.type.PRIMITIVES[\\"float\\"]);"`;
+
+exports[`Primitive Types Literals [COMPL] int 1`] = `"new KYTHERA.value(10, KYTHERA.type.PRIMITIVES[\\"int\\"]);"`;
+
+exports[`Primitive Types Literals [COMPL] null 1`] = `"new KYTHERA.value(null, KYTHERA.type.PRIMITIVES[\\"null\\"]);"`;
+
+exports[`Primitive Types Literals [COMPL] str 1`] = `"new KYTHERA.value(\\"kythera\\", KYTHERA.type.PRIMITIVES[\\"str\\"]);"`;
+
+exports[`Primitive Types Literals [COMPL] true 1`] = `"new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]);"`;
+
+exports[`Primitive Types Literals [PARSE] false 1`] = `
+Array [
+  ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "bool",
+    },
+    "value": false,
+  },
+]
+`;
+
+exports[`Primitive Types Literals [PARSE] float 1`] = `
+Array [
+  ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "float",
+    },
+    "value": 3.14159,
+  },
+]
+`;
+
+exports[`Primitive Types Literals [PARSE] int 1`] = `
+Array [
+  ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "int",
+    },
+    "value": 10,
+  },
+]
+`;
+
+exports[`Primitive Types Literals [PARSE] null 1`] = `
+Array [
+  ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "null",
+    },
+    "value": null,
+  },
+]
+`;
+
+exports[`Primitive Types Literals [PARSE] str 1`] = `
+Array [
+  ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "str",
+    },
+    "value": "kythera",
+  },
+]
+`;
+
+exports[`Primitive Types Literals [PARSE] true 1`] = `
+Array [
+  ParseNode {
+    "kind": "literal",
+    "type": ParseNode {
+      "kind": "type",
+      "origin": "builtin",
+      "type": "bool",
+    },
+    "value": true,
+  },
+]
+`;
+
+exports[`Primitive Types typeof [COMPL] false 1`] = `"KYTHERA.type.PRIMITIVES[\\"bool\\"];"`;
+
+exports[`Primitive Types typeof [COMPL] float 1`] = `"KYTHERA.type.PRIMITIVES[\\"float\\"];"`;
+
+exports[`Primitive Types typeof [COMPL] int 1`] = `"KYTHERA.type.PRIMITIVES[\\"int\\"];"`;
+
+exports[`Primitive Types typeof [COMPL] null 1`] = `"KYTHERA.type.PRIMITIVES[\\"null\\"];"`;
+
+exports[`Primitive Types typeof [COMPL] str 1`] = `"KYTHERA.type.PRIMITIVES[\\"str\\"];"`;
+
+exports[`Primitive Types typeof [COMPL] true 1`] = `"KYTHERA.type.PRIMITIVES[\\"bool\\"];"`;
+
+exports[`Primitive Types typeof [PARSE] false 1`] = `
+Array [
+  ParseNode {
+    "kind": "typeof",
+    "target": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "bool",
+      },
+      "value": false,
+    },
+  },
+]
+`;
+
+exports[`Primitive Types typeof [PARSE] float 1`] = `
+Array [
+  ParseNode {
+    "kind": "typeof",
+    "target": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "float",
+      },
+      "value": 3.14159,
+    },
+  },
+]
+`;
+
+exports[`Primitive Types typeof [PARSE] int 1`] = `
+Array [
+  ParseNode {
+    "kind": "typeof",
+    "target": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 10,
+    },
+  },
+]
+`;
+
+exports[`Primitive Types typeof [PARSE] null 1`] = `
+Array [
+  ParseNode {
+    "kind": "typeof",
+    "target": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "null",
+      },
+      "value": null,
+    },
+  },
+]
+`;
+
+exports[`Primitive Types typeof [PARSE] str 1`] = `
+Array [
+  ParseNode {
+    "kind": "typeof",
+    "target": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "str",
+      },
+      "value": "kythera",
+    },
+  },
+]
+`;
+
+exports[`Primitive Types typeof [PARSE] true 1`] = `
+Array [
+  ParseNode {
+    "kind": "typeof",
+    "target": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "bool",
+      },
+      "value": true,
+    },
+  },
+]
+`;

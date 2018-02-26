@@ -1,0 +1,647 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Binary operations Arithmetic [COMPL] Addition 1`] = `"(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"])) + (new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+
+exports[`Binary operations Arithmetic [COMPL] Division 1`] = `"(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"])) / (new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+
+exports[`Binary operations Arithmetic [COMPL] Modulo 1`] = `"(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"])) % (new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+
+exports[`Binary operations Arithmetic [COMPL] Multiplication 1`] = `"(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"])) * (new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+
+exports[`Binary operations Arithmetic [COMPL] Subtraction 1`] = `"(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"])) - (new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+
+exports[`Binary operations Arithmetic [PARSE] Addition 1`] = `
+Array [
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 1,
+    },
+    "operator": "+",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 2,
+    },
+  },
+]
+`;
+
+exports[`Binary operations Arithmetic [PARSE] Division 1`] = `
+Array [
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 1,
+    },
+    "operator": "/",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 2,
+    },
+  },
+]
+`;
+
+exports[`Binary operations Arithmetic [PARSE] Modulo 1`] = `
+Array [
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 1,
+    },
+    "operator": "%",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 2,
+    },
+  },
+]
+`;
+
+exports[`Binary operations Arithmetic [PARSE] Multiplication 1`] = `
+Array [
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 1,
+    },
+    "operator": "*",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 2,
+    },
+  },
+]
+`;
+
+exports[`Binary operations Arithmetic [PARSE] Subtraction 1`] = `
+Array [
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 1,
+    },
+    "operator": "-",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 2,
+    },
+  },
+]
+`;
+
+exports[`Binary operations Assignment [COMPL] Addition assignment 1`] = `"let a = new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]);(a = new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+
+exports[`Binary operations Assignment [COMPL] Division assignment 1`] = `"let a = new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]);(a = new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+
+exports[`Binary operations Assignment [COMPL] Modulo assignment 1`] = `"let a = new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]);(a = new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+
+exports[`Binary operations Assignment [COMPL] Multiplication assignment 1`] = `"let a = new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]);(a = new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+
+exports[`Binary operations Assignment [COMPL] Subtraction assignment 1`] = `"let a = new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]);(a = new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+
+exports[`Binary operations Assignment [PARSE] Addition assignment 1`] = `
+Array [
+  ParseNode {
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 1,
+    },
+  },
+  ParseNode {
+    "kind": "assign",
+    "left": ParseNode {
+      "kind": "identifier",
+      "name": "a",
+    },
+    "operator": "+=",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 2,
+    },
+  },
+]
+`;
+
+exports[`Binary operations Assignment [PARSE] Division assignment 1`] = `
+Array [
+  ParseNode {
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 1,
+    },
+  },
+  ParseNode {
+    "kind": "assign",
+    "left": ParseNode {
+      "kind": "identifier",
+      "name": "a",
+    },
+    "operator": "/=",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 2,
+    },
+  },
+]
+`;
+
+exports[`Binary operations Assignment [PARSE] Modulo assignment 1`] = `
+Array [
+  ParseNode {
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 1,
+    },
+  },
+  ParseNode {
+    "kind": "assign",
+    "left": ParseNode {
+      "kind": "identifier",
+      "name": "a",
+    },
+    "operator": "%=",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 2,
+    },
+  },
+]
+`;
+
+exports[`Binary operations Assignment [PARSE] Multiplication assignment 1`] = `
+Array [
+  ParseNode {
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 1,
+    },
+  },
+  ParseNode {
+    "kind": "assign",
+    "left": ParseNode {
+      "kind": "identifier",
+      "name": "a",
+    },
+    "operator": "*=",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 2,
+    },
+  },
+]
+`;
+
+exports[`Binary operations Assignment [PARSE] Subtraction assignment 1`] = `
+Array [
+  ParseNode {
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 1,
+    },
+  },
+  ParseNode {
+    "kind": "assign",
+    "left": ParseNode {
+      "kind": "identifier",
+      "name": "a",
+    },
+    "operator": "-=",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 2,
+    },
+  },
+]
+`;
+
+exports[`Binary operations Boolean [COMPL] And 1`] = `"(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"])) && (new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]));"`;
+
+exports[`Binary operations Boolean [COMPL] Or 1`] = `"(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"])) || (new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]));"`;
+
+exports[`Binary operations Boolean [PARSE] And 1`] = `
+Array [
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "bool",
+      },
+      "value": true,
+    },
+    "operator": "&&",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "bool",
+      },
+      "value": false,
+    },
+  },
+]
+`;
+
+exports[`Binary operations Boolean [PARSE] Or 1`] = `
+Array [
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "bool",
+      },
+      "value": true,
+    },
+    "operator": "||",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "bool",
+      },
+      "value": false,
+    },
+  },
+]
+`;
+
+exports[`Binary operations Comparison [COMPL] Equals 1`] = `"(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"])) == (new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+
+exports[`Binary operations Comparison [COMPL] Greater than 1`] = `"(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"])) > (new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+
+exports[`Binary operations Comparison [COMPL] Greater than or equal to 1`] = `"(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"])) >= (new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+
+exports[`Binary operations Comparison [COMPL] Less than 1`] = `"(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"])) < (new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+
+exports[`Binary operations Comparison [COMPL] Less than or equal to 1`] = `"(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"])) <= (new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+
+exports[`Binary operations Comparison [COMPL] Not equals 1`] = `"(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"])) != (new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+
+exports[`Binary operations Comparison [PARSE] Equals 1`] = `
+Array [
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 1,
+    },
+    "operator": "==",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 2,
+    },
+  },
+]
+`;
+
+exports[`Binary operations Comparison [PARSE] Greater than 1`] = `
+Array [
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 1,
+    },
+    "operator": ">",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 2,
+    },
+  },
+]
+`;
+
+exports[`Binary operations Comparison [PARSE] Greater than or equal to 1`] = `
+Array [
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 1,
+    },
+    "operator": ">=",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 2,
+    },
+  },
+]
+`;
+
+exports[`Binary operations Comparison [PARSE] Less than 1`] = `
+Array [
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 1,
+    },
+    "operator": "<",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 2,
+    },
+  },
+]
+`;
+
+exports[`Binary operations Comparison [PARSE] Less than or equal to 1`] = `
+Array [
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 1,
+    },
+    "operator": "<=",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 2,
+    },
+  },
+]
+`;
+
+exports[`Binary operations Comparison [PARSE] Not equals 1`] = `
+Array [
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 1,
+    },
+    "operator": "!=",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 2,
+    },
+  },
+]
+`;
+
+exports[`Binary operations Operator precedence [COMPL] multiply before addition 1`] = `"(new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])) + ((new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"])) * (new KYTHERA.value(4, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+
+exports[`Binary operations Operator precedence [COMPL] parentheses 1`] = `"((new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])) + (new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]))) * (new KYTHERA.value(4, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+
+exports[`Binary operations Operator precedence [PARSE] multiply before addition 1`] = `
+Array [
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 2,
+    },
+    "operator": "+",
+    "right": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "int",
+        },
+        "value": 3,
+      },
+      "operator": "*",
+      "right": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "int",
+        },
+        "value": 4,
+      },
+    },
+  },
+]
+`;
+
+exports[`Binary operations Operator precedence [PARSE] parentheses 1`] = `
+Array [
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "int",
+        },
+        "value": 2,
+      },
+      "operator": "+",
+      "right": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "int",
+        },
+        "value": 3,
+      },
+    },
+    "operator": "*",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 4,
+    },
+  },
+]
+`;
