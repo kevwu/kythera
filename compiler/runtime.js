@@ -55,7 +55,7 @@ KYTHERA.type = class {
 		}
 	}
 
-	// create a new KYTHERA.value of this type
+	// create a KYTHERA.value with the "new" keyword
 	makeNew() {
 		switch(this.type) {
 			case "int":
@@ -68,7 +68,7 @@ KYTHERA.type = class {
 				return new KYTHERA.value("", this)
 			case "null":
 				return new KYTHERA.value(null, this)
-			case "type":
+			case "type": // zero value for type is type
 				return new KYTHERA.value(KYTHERA.type.PRIMITIVES.type, this)
 			case "fn": // zero value for fn is a function with only a return statement for a new instance of the return type
 				return new KYTHERA.value(() => {
@@ -109,7 +109,7 @@ KYTHERA.type = class {
 			return true
 		}
 
-		if(b.type === "obj") {
+		if(a.type === "obj") {
 			if(Object.keys(a.structure).length !== Object.keys(b.structure).length) {
 				return false
 			}
@@ -118,8 +118,12 @@ KYTHERA.type = class {
 			const bContainsAlla = Object.keys(b.structure).every((key, i) => this.eq(a.structure[key], b.structure[key]));
 
 			return aContainsAllb && bContainsAlla
-
 		}
+
+		if(a.type === "list") {
+			return this.eq(a.contains.eq(b.contains))
+		}
+
 		return true
 	}
 }
@@ -146,6 +150,12 @@ KYTHERA.value = class {
 		// it may be executed in places where ParseNode does not (e.g. in the runtime).
 		// TODO clean ^that^ up, reduce redundancy, or verify that it's necessary.
 		switch(this.type.type) {
+			case "bool":
+				if(typeof value !== "boolean") {
+					throw new Error("bool value must be a boolean")
+				}
+				this.value = value
+				break
 			case "int":
 				if(!(typeof value === "number" && isFinite(value) && (value % 1 === 0))) {
 					throw new Error("int value must be an integer.")
@@ -155,12 +165,6 @@ KYTHERA.value = class {
 			case "float":
 				if(!(typeof value === "number" && isFinite(value))) {
 					throw new Error("float value must be a number.")
-				}
-				this.value = value
-				break
-			case "bool":
-				if(typeof value !== "boolean") {
-					throw new Error("bool value must be a boolean")
 				}
 				this.value = value
 				break
@@ -215,9 +219,98 @@ KYTHERA.value = class {
 		}
 	}
 
-	// TODO this definitely does not check functions and objects correctly
-	eq(other) {
-		return this.value === other.value && KYTHERA.type.eq(this.type, other.type)
+	static eq(a, b) {
+		if(!KYTHERA.type.eq(a.type, b.type)) {
+			return false
+		}
+
+		if(["bool", "int", "float", "str", "null"].includes(a.type.type)) {
+			return a.value === b.value
+		}
+
+		if(a.type.type === "obj") {
+			// TODO compare each object member
+		}
+
+		if(a.type.type === "fn") {
+			// TODO compare memory addresses for now
+			return this.value === b.value
+		}
+
+		if(a.type.type === "list") {
+			// TODO compare each list member
+			this.value.every()
+		}
+
+		if(a.type.type === "type") {
+			return KYTHERA.type.eq(a.value, b.value)
+		}
+	}
+
+	static ne(a, b) {
+		return !(a.eq(b))
+	}
+
+	static lt(a, b) {
+		if(!KYTHERA.type.eq(a.type, b.type)) {
+			return false
+		}
+	}
+
+	static gt(a, b) {
+		if(!KYTHERA.type.eq(a.type, b.type)) {
+			return false
+		}
+	}
+
+	static le(a, b) {
+		return !(a.gt(b))
+	}
+
+	static ge(a, b) {
+		return !(a.lt(b))
+	}
+
+	static add(a, b) {
+		if(!KYTHERA.type.eq(a.type, b.type)) {
+			return false
+		}
+	}
+
+	static sub(a, b) {
+		if(!KYTHERA.type.eq(a.type, b.type)) {
+			return false
+		}
+	}
+
+	static mul(a, b) {
+		if(!KYTHERA.type.eq(a.type, b.type)) {
+			return false
+		}
+	}
+
+	static div(a, b) {
+		if(!KYTHERA.type.eq(a.type, b.type)) {
+			return false
+		}
+	}
+
+	static mod(a, b) {
+		if(!KYTHERA.type.eq(a.type, b.type)) {
+			return false
+		}
+	}
+
+	static and(a, b) {
+		if(!(a.type.type === "bool" && b.type.type === "bool")) {
+			throw new Error("Non-boolean types used for boolean operation (the compiler should have caught this)")
+		}
+	}
+
+	static or(a, b) {
+		if(!(a.type.type === "bool" && b.type.type === "bool")) {
+			throw new Error("Non-boolean types used for boolean operation (the compiler should have caught this)")
+		}
 	}
 }
 

@@ -244,8 +244,25 @@ class Compiler {
 			throw new Error("Invalid operator: " + node.operator)
 		}
 
+		// map operator to its corresponding operator function in runtime
+		let opFunction = {
+			"==": "eq",
+			"!=": "ne",
+			"<": "lt",
+			">": "gt",
+			"<=": "le",
+			">=": "ge",
+			"+": "add",
+			"-": "sub",
+			"*": "mul",
+			"/": "div",
+			"%": "mod",
+			"&&": "and",
+			"||": "or",
+		}[node.operator]
+
 		return {
-			output: `(${lhs.output}) ${node.operator} (${rhs.output})`,
+			output: `(${lhs.output}).${opFunction}(${rhs.output})`,
 			type: outType,
 		}
 	}

@@ -4,13 +4,17 @@ const Compiler = require("../compiler/Compiler")
 require("jest")
 
 module.exports = {
-	test: (name, input, {compile = true, only = false} = {}) => {
+	test: (name, input, {compile = true, only = false, skip = false} = {}) => {
 		let parser = new Parser()
 
 		parser.load(input)
 		let program = parser.parse()
 
-		if(only) {
+		if(skip) {
+			test.skip(`[PARSE] ${name}`, () => {
+				expect(program).toMatchSnapshot()
+			})
+		} else if(only) {
 			test.only(`[PARSE] ${name}`, () => {
 				expect(program).toMatchSnapshot()
 			})
@@ -25,7 +29,11 @@ module.exports = {
 
 			compiler.load(program)
 
-			if(only) {
+			if(skip) {
+				test.skip(`[COMPL] ${name}`, () => {
+					expect(compiler.visitProgram().replace(/[\n\r]/g, '')).toMatchSnapshot()
+				})
+			} else if(only) {
 				test.only(`[COMPL] ${name}`, () => {
 					expect(compiler.visitProgram().replace(/[\n\r]/g, '')).toMatchSnapshot()
 				})
@@ -35,5 +43,7 @@ module.exports = {
 				})
 			}
 		}
+
+		// TODO add "exec" option as the compiler matures
 	}
 }
