@@ -2,21 +2,51 @@ const fs = require("fs")
 const Parser = require("./parser/Parser")
 const Compiler = require("./compiler/Compiler")
 
+// used inside eval
+const KYTHERA = require("./compiler/runtime")
+
 try {
-	let parser = new Parser(fs.readFileSync(process.argv[2]).toString())
-	let ast = parser.parse()
+	if (process.argv.length === 3) { // run file
+		let parser = new Parser(fs.readFileSync(process.argv[2]).toString())
+		let ast = parser.parse()
 
-	console.log(JSON.stringify(ast, null, 2))
+		console.log(JSON.stringify(ast, null, 2))
 
-	let compiler = new Compiler(ast)
-	let output = compiler.visitProgram()
-	console.log("Compilation complete:")
-	console.log(output)
+		let compiler = new Compiler(ast)
+		let output = compiler.visitProgram()
+		console.log("Compilation complete:")
+		console.log(output)
 
-	console.log("Executing...")
-	output = `const KYTHERA = require("./compiler/runtime");` + output
-	eval(output)
-} catch(e) {
+		console.log("Executing...")
+		eval(output)
+	} else { // REPL
+		const readline = require("readline")
+		const stdin = readline.createInterface(process.stdin, process.stdout)
+		stdin.setPrompt("> ")
+
+		let parser = new Parser()
+		let compiler = new Compiler()
+
+		stdin.prompt();
+
+		stdin.on("line", (line) => {
+			try {
+				parser.load(line)
+				let lineNodes = parser.parse()
+				console.log(lineNodes)
+
+				compiler.load(lineNodes, false)
+				let result = compiler.visitProgram()
+
+				console.log(result)
+			} catch (e) {
+				console.log(e)
+			}
+
+			stdin.prompt();
+		})
+	}
+} catch (e) {
 	console.log(e)
 	return
 }

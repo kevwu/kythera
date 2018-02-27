@@ -6,17 +6,22 @@ const KytheraType = require("./runtime").type
 
 class Compiler {
 	constructor(program = null) {
+		this.rootScope = new Scope()
+		this.currentScope = this.rootScope
+
 		if(program !== null) {
 			this.load(program)
 		}
 	}
 
-	load(program) {
+	load(program, clearScope = true) {
 		this.program = program
 
 		// symbol table
-		this.rootScope = new Scope()
-		this.currentScope = this.rootScope
+		if(clearScope) {
+			this.rootScope = new Scope()
+			this.currentScope = this.rootScope
+		}
 	}
 
 	// compile
@@ -24,10 +29,6 @@ class Compiler {
 		if(typeof this.program !== "object") {
 			throw new Error("No program is loaded.")
 		}
-
-		// clear symbol table
-		this.rootScope = new Scope()
-		this.currentScope = this.rootScope
 
 		return this.program.reduce((prev, node) => {
 			return prev + this.visitNode(node) + ';\n'
