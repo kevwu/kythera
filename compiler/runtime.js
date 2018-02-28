@@ -248,69 +248,122 @@ KYTHERA.value = class {
 	}
 
 	static ne(a, b) {
-		return !(a.eq(b))
+		return !(this.eq(a,b))
 	}
 
 	static lt(a, b) {
-		if(!KYTHERA.type.eq(a.type, b.type)) {
-			return false
+		if(a.type.type !== "int" && a.type.type !== "float") {
+			throw new Error("Comparison requires int or float (the compiler should have caught this")
 		}
+
+		if(!KYTHERA.type.eq(a.type, b.type)) {
+			throw new Error("Types do not match (the compiler should have caught this")
+		}
+
+		return a.value < b.value;
 	}
 
 	static gt(a, b) {
-		if(!KYTHERA.type.eq(a.type, b.type)) {
-			return false
+		if(a.type.type !== "int" && a.type.type !== "float") {
+			throw new Error("Comparison requires int or float (the compiler should have caught this")
 		}
+		
+		if(!KYTHERA.type.eq(a.type, b.type)) {
+			throw new Error("Types do not match (the compiler should have caught this")
+		}
+
+		return a.value > b.value;
 	}
 
 	static le(a, b) {
-		return !(a.gt(b))
+		return !(this.gt(a,b))
 	}
 
 	static ge(a, b) {
-		return !(a.lt(b))
+		return !(this.lt(a,b))
 	}
 
 	static add(a, b) {
-		if(!KYTHERA.type.eq(a.type, b.type)) {
-			return false
+		if(a.type.type !== "int" && a.type.type !== "float") {
+			throw new Error("Arithmetic requires int or float (the compiler should have caught this")
 		}
+
+		if(!KYTHERA.type.eq(a.type, b.type)) {
+			throw new Error("Types do not match (the compiler should have caught this")
+		}
+
+		return new KYTHERA.value((a.value + b.value), a.type)
 	}
 
 	static sub(a, b) {
-		if(!KYTHERA.type.eq(a.type, b.type)) {
-			return false
+		if(a.type.type !== "int" && a.type.type !== "float") {
+			throw new Error("Arithmetic requires int or float (the compiler should have caught this")
 		}
+
+		if(!KYTHERA.type.eq(a.type, b.type)) {
+			throw new Error("Types do not match (the compiler should have caught this")
+		}
+
+		return new KYTHERA.value((a.value - b.value), a.type)
 	}
 
 	static mul(a, b) {
-		if(!KYTHERA.type.eq(a.type, b.type)) {
-			return false
+		if(a.type.type !== "int" && a.type.type !== "float") {
+			throw new Error("Arithmetic requires int or float (the compiler should have caught this")
 		}
+
+		if(!KYTHERA.type.eq(a.type, b.type)) {
+			throw new Error("Types do not match (the compiler should have caught this")
+		}
+
+		return new KYTHERA.value((a.value * b.value), a.type)
 	}
 
 	static div(a, b) {
-		if(!KYTHERA.type.eq(a.type, b.type)) {
-			return false
+		if(a.type.type !== "int" && a.type.type !== "float") {
+			throw new Error("Arithmetic requires int or float (the compiler should have caught this")
 		}
+
+		if(!KYTHERA.type.eq(a.type, b.type)) {
+			throw new Error("Types do not match (the compiler should have caught this")
+		}
+
+		let result
+		if(a.type.type === "int") {
+			result = Math.floor(a.value / b.value)
+		} else {
+			result = a.value / b.value
+		}
+
+		return new KYTHERA.value(result , a.type)
 	}
 
 	static mod(a, b) {
-		if(!KYTHERA.type.eq(a.type, b.type)) {
-			return false
+		if(a.type.type !== "int" && a.type.type !== "float") {
+			throw new Error("Arithmetic requires int or float (the compiler should have caught this")
 		}
+
+		if(!KYTHERA.type.eq(a.type, b.type)) {
+			throw new Error("Types do not match (the compiler should have caught this")
+		}
+
+		return new KYTHERA.value((a.value % b.value), a.type)
 	}
 
 	static and(a, b) {
 		if(!(a.type.type === "bool" && b.type.type === "bool")) {
 			throw new Error("Non-boolean types used for boolean operation (the compiler should have caught this)")
 		}
+
+		return new KYTHERA.value((a.value && b.value), KYTHERA.type.PRIMITIVES.bool)
 	}
 
 	static or(a, b) {
 		if(!(a.type.type === "bool" && b.type.type === "bool")) {
 			throw new Error("Non-boolean types used for boolean operation (the compiler should have caught this)")
 		}
+
+		return new KYTHERA.value((a.value || b.value), KYTHERA.type.PRIMITIVES.bool)
 	}
 }
 

@@ -1,14 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Binary operations Arithmetic [COMPL] Addition 1`] = `"(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"])).add(new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+exports[`Binary operations Arithmetic [COMPL] Addition 1`] = `"(KYTHERA.value.add(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
 
-exports[`Binary operations Arithmetic [COMPL] Division 1`] = `"(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"])).div(new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+exports[`Binary operations Arithmetic [COMPL] Division 1`] = `"(KYTHERA.value.div(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
 
-exports[`Binary operations Arithmetic [COMPL] Modulo 1`] = `"(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"])).mod(new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+exports[`Binary operations Arithmetic [COMPL] Modulo 1`] = `"(KYTHERA.value.mod(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
 
-exports[`Binary operations Arithmetic [COMPL] Multiplication 1`] = `"(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"])).mul(new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+exports[`Binary operations Arithmetic [COMPL] Multiplication 1`] = `"(KYTHERA.value.mul(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
 
-exports[`Binary operations Arithmetic [COMPL] Subtraction 1`] = `"(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"])).sub(new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+exports[`Binary operations Arithmetic [COMPL] Subtraction 1`] = `"(KYTHERA.value.sub(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
 
 exports[`Binary operations Arithmetic [PARSE] Addition 1`] = `
 Array [
@@ -145,15 +145,15 @@ Array [
 ]
 `;
 
-exports[`Binary operations Assignment [COMPL] Addition assignment 1`] = `"let a = new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]);(a = new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+exports[`Binary operations Assignment [COMPL] Addition assignment 1`] = `"let a = new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]);(a = KYTHERA.value.add(a, new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
 
-exports[`Binary operations Assignment [COMPL] Division assignment 1`] = `"let a = new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]);(a = new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+exports[`Binary operations Assignment [COMPL] Division assignment 1`] = `"let a = new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]);(a = KYTHERA.value.div(a, new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
 
-exports[`Binary operations Assignment [COMPL] Modulo assignment 1`] = `"let a = new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]);(a = new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+exports[`Binary operations Assignment [COMPL] Modulo assignment 1`] = `"let a = new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]);(a = KYTHERA.value.mod(a, new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
 
-exports[`Binary operations Assignment [COMPL] Multiplication assignment 1`] = `"let a = new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]);(a = new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+exports[`Binary operations Assignment [COMPL] Multiplication assignment 1`] = `"let a = new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]);(a = KYTHERA.value.mul(a, new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
 
-exports[`Binary operations Assignment [COMPL] Subtraction assignment 1`] = `"let a = new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]);(a = new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+exports[`Binary operations Assignment [COMPL] Subtraction assignment 1`] = `"let a = new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]);(a = KYTHERA.value.sub(a, new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
 
 exports[`Binary operations Assignment [PARSE] Addition assignment 1`] = `
 Array [
@@ -330,9 +330,9 @@ Array [
 ]
 `;
 
-exports[`Binary operations Boolean [COMPL] And 1`] = `"(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"])).and(new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]));"`;
+exports[`Binary operations Boolean [COMPL] And 1`] = `"(KYTHERA.value.and(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"])));"`;
 
-exports[`Binary operations Boolean [COMPL] Or 1`] = `"(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"])).or(new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]));"`;
+exports[`Binary operations Boolean [COMPL] Or 1`] = `"(KYTHERA.value.or(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"])));"`;
 
 exports[`Binary operations Boolean [PARSE] And 1`] = `
 Array [
@@ -388,17 +388,17 @@ Array [
 ]
 `;
 
-exports[`Binary operations Comparison [COMPL] Equals 1`] = `"(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"])).eq(new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+exports[`Binary operations Comparison [COMPL] Equals 1`] = `"(KYTHERA.value.eq(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
 
-exports[`Binary operations Comparison [COMPL] Greater than 1`] = `"(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"])).gt(new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+exports[`Binary operations Comparison [COMPL] Greater than 1`] = `"(KYTHERA.value.gt(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
 
-exports[`Binary operations Comparison [COMPL] Greater than or equal to 1`] = `"(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"])).ge(new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+exports[`Binary operations Comparison [COMPL] Greater than or equal to 1`] = `"(KYTHERA.value.ge(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
 
-exports[`Binary operations Comparison [COMPL] Less than 1`] = `"(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"])).lt(new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+exports[`Binary operations Comparison [COMPL] Less than 1`] = `"(KYTHERA.value.lt(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
 
-exports[`Binary operations Comparison [COMPL] Less than or equal to 1`] = `"(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"])).le(new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+exports[`Binary operations Comparison [COMPL] Less than or equal to 1`] = `"(KYTHERA.value.le(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
 
-exports[`Binary operations Comparison [COMPL] Not equals 1`] = `"(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"])).ne(new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+exports[`Binary operations Comparison [COMPL] Not equals 1`] = `"(KYTHERA.value.ne(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
 
 exports[`Binary operations Comparison [PARSE] Equals 1`] = `
 Array [
@@ -562,9 +562,9 @@ Array [
 ]
 `;
 
-exports[`Binary operations Operator precedence [COMPL] multiply before addition 1`] = `"(new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])).add((new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"])).mul(new KYTHERA.value(4, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Binary operations Operator precedence [COMPL] multiply before addition 1`] = `"(KYTHERA.value.add(new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]), (KYTHERA.value.mul(new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(4, KYTHERA.type.PRIMITIVES[\\"int\\"])))));"`;
 
-exports[`Binary operations Operator precedence [COMPL] parentheses 1`] = `"((new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])).add(new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]))).mul(new KYTHERA.value(4, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+exports[`Binary operations Operator precedence [COMPL] parentheses 1`] = `"(KYTHERA.value.mul((KYTHERA.value.add(new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]))), new KYTHERA.value(4, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
 
 exports[`Binary operations Operator precedence [PARSE] multiply before addition 1`] = `
 Array [

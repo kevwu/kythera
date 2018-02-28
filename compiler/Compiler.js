@@ -4,6 +4,22 @@ const Scope = require("./Scope")
 const KytheraValue = require("./runtime").value
 const KytheraType = require("./runtime").type
 
+const OPFUNCTIONS = {
+	"==": "eq",
+	"!=": "ne",
+	"<": "lt",
+	">": "gt",
+	"<=": "le",
+	">=": "ge",
+	"+": "add",
+	"-": "sub",
+	"*": "mul",
+	"/": "div",
+	"%": "mod",
+	"&&": "and",
+	"||": "or",
+}
+
 class Compiler {
 	constructor(program = null) {
 		this.rootScope = new Scope()
@@ -150,7 +166,7 @@ class Compiler {
 							throw new Error(`List types do not match, expecting ${containsType.type} but got ${listExp.type.type}`)
 						}
 					}
-					return prev + listExp.output + ((i !== node.elements.length-1) ? "," : "")
+					return prev + listExp.output + ((i !== node.elements.length - 1) ? "," : "")
 				}, "")
 
 				list += "]"
@@ -187,11 +203,16 @@ class Compiler {
 			let rhs = this.visitExpressionNode(node.right)
 			if(!KytheraType.eq(lhsType, rhs.type)) {
 				throw new Error(`Cannot assign ${rhs.type.type} value to ${node.left.name}, which has type ${lhsType.type}`)
-			} else {
-				return {
-					output: `(${node.left.name} = ${rhs.output})`,
-					type: rhs.type
-				}
+			}
+
+			let rhsOut = rhs.output
+			if(node.operator.charAt(0) !== "=") {
+				rhsOut = `KYTHERA.value.${OPFUNCTIONS[node.operator.charAt(0)]}(${node.left.name}, ${rhsOut})`
+			}
+
+			return {
+				output: `(${node.left.name} = ${rhsOut})`,
+				type: rhs.type
 			}
 		} else if(node.left.kind === "objAccess" || node.left.kind === "access") {
 			throw new Error("Writing to object member not yet supported")
@@ -204,7 +225,7 @@ class Compiler {
 		if(this.currentScope.isInFunction()) {
 			let returnVal = this.visitExpressionNode(node.value)
 
-			if(!(KytheraType.eq(returnVal.type, this.currentScope.getReturnType() ))) {
+			if(!(KytheraType.eq(returnVal.type, this.currentScope.getReturnType()))) {
 				throw new Error(`Expected return value of type ${this.currentScope.getReturnType().type} but got ${returnVal.type.type}`)
 			}
 
@@ -236,33 +257,30 @@ class Compiler {
 			}
 
 			outType = KytheraType.PRIMITIVES.bool
-		} else if(["==", "!=", "<", ">", "<=", ">="].includes(node.operator)) {
+		} else if(["==", "!="].includes(node.operator)) {
 			outType = KytheraType.PRIMITIVES.bool
+		} else if(["<", ">", "<=", ">="].includes(node.operator)) {
+			// TODO set comparison with objects?
+			if(!["int", "float"].includes(lhs.type.type)) {
+				throw new Error("Comparison operators require int or float, not " + lhs.type.type)
+			}
+
+			outType = lhs.type
 		} else if(["+", "-", "*", "/", "%"].includes(node.operator)) {
+			if(!["int", "float"].includes(lhs.type.type)) {
+				throw new Error("Arithmetic operators require int or float, not " + lhs.type.type)
+			}
+
 			outType = lhs.type
 		} else {
 			throw new Error("Invalid operator: " + node.operator)
 		}
 
 		// map operator to its corresponding operator function in runtime
-		let opFunction = {
-			"==": "eq",
-			"!=": "ne",
-			"<": "lt",
-			">": "gt",
-			"<=": "le",
-			">=": "ge",
-			"+": "add",
-			"-": "sub",
-			"*": "mul",
-			"/": "div",
-			"%": "mod",
-			"&&": "and",
-			"||": "or",
-		}[node.operator]
+		let opFunction = OPFUNCTIONS[node.operator]
 
 		return {
-			output: `(${lhs.output}).${opFunction}(${rhs.output})`,
+			output: `(KYTHERA.value.${opFunction}(${lhs.output}, ${rhs.output}))`,
 			type: outType,
 		}
 	}

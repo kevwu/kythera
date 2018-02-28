@@ -1,16 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Primitive Types Arithmetic [COMPL] division 1`] = `"(new KYTHERA.value(6, KYTHERA.type.PRIMITIVES[\\"int\\"])).div(new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+exports[`Primitive Types Arithmetic [COMPL] division 1`] = `"(KYTHERA.value.div(new KYTHERA.value(6, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
 
-exports[`Primitive Types Arithmetic [COMPL] float addition 1`] = `"(new KYTHERA.value(3.14159, KYTHERA.type.PRIMITIVES[\\"float\\"])).add(new KYTHERA.value(2.71828, KYTHERA.type.PRIMITIVES[\\"float\\"]));"`;
+exports[`Primitive Types Arithmetic [COMPL] float addition 1`] = `"(KYTHERA.value.add(new KYTHERA.value(3.14159, KYTHERA.type.PRIMITIVES[\\"float\\"]), new KYTHERA.value(2.71828, KYTHERA.type.PRIMITIVES[\\"float\\"])));"`;
 
-exports[`Primitive Types Arithmetic [COMPL] int Addition 1`] = `"(new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])).add(new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+exports[`Primitive Types Arithmetic [COMPL] int Addition 1`] = `"(KYTHERA.value.add(new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
 
-exports[`Primitive Types Arithmetic [COMPL] modulo 1`] = `"(new KYTHERA.value(18, KYTHERA.type.PRIMITIVES[\\"int\\"])).mod(new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+exports[`Primitive Types Arithmetic [COMPL] modulo 1`] = `"(KYTHERA.value.mod(new KYTHERA.value(18, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
 
-exports[`Primitive Types Arithmetic [COMPL] multiplication 1`] = `"(new KYTHERA.value(4, KYTHERA.type.PRIMITIVES[\\"int\\"])).mul(new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+exports[`Primitive Types Arithmetic [COMPL] multiplication 1`] = `"(KYTHERA.value.mul(new KYTHERA.value(4, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
 
-exports[`Primitive Types Arithmetic [COMPL] subtraction 1`] = `"(new KYTHERA.value(9, KYTHERA.type.PRIMITIVES[\\"int\\"])).sub(new KYTHERA.value(5, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+exports[`Primitive Types Arithmetic [COMPL] subtraction 1`] = `"(KYTHERA.value.sub(new KYTHERA.value(9, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(5, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
 
 exports[`Primitive Types Arithmetic [PARSE] division 1`] = `
 Array [
@@ -174,17 +174,17 @@ Array [
 ]
 `;
 
-exports[`Primitive Types Boolean operations [COMPL] and 1`] = `"(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"])).and(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]));"`;
+exports[`Primitive Types Boolean operations [COMPL] and 1`] = `"(KYTHERA.value.and(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"])));"`;
 
-exports[`Primitive Types Boolean operations [COMPL] and 2`] = `"(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"])).and(new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]));"`;
+exports[`Primitive Types Boolean operations [COMPL] and 2`] = `"(KYTHERA.value.and(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"])));"`;
 
-exports[`Primitive Types Boolean operations [COMPL] or 1`] = `"(new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"])).or(new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]));"`;
+exports[`Primitive Types Boolean operations [COMPL] or 1`] = `"(KYTHERA.value.or(new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"])));"`;
 
-exports[`Primitive Types Boolean operations [COMPL] or 2`] = `"(new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"])).or(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]));"`;
+exports[`Primitive Types Boolean operations [COMPL] or 2`] = `"(KYTHERA.value.or(new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"])));"`;
 
-exports[`Primitive Types Boolean operations [COMPL] short-circuit and 1`] = `"(new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"])).and(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]));"`;
+exports[`Primitive Types Boolean operations [COMPL] short-circuit and 1`] = `"(KYTHERA.value.and(new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"])));"`;
 
-exports[`Primitive Types Boolean operations [COMPL] short-circuit or 1`] = `"(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"])).or(new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]));"`;
+exports[`Primitive Types Boolean operations [COMPL] short-circuit or 1`] = `"(KYTHERA.value.or(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"])));"`;
 
 exports[`Primitive Types Boolean operations [PARSE] and 1`] = `
 Array [
