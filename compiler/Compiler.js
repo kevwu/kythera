@@ -30,14 +30,12 @@ class Compiler {
 		}
 	}
 
-	load(program, clearScope = true) {
+	load(program) {
 		this.program = program
 
 		// symbol table
-		if(clearScope) {
-			this.rootScope = new Scope()
-			this.currentScope = this.rootScope
-		}
+		this.rootScope = new Scope()
+		this.currentScope = this.rootScope
 	}
 
 	// compile

@@ -17,6 +17,11 @@ try {
 		let compiler = new Compiler(ast)
 		let output = `const KYTHERA = require("./compiler/runtime");\n` + compiler.visitProgram()
 		if(!flags.c) {
+			// output all variables at top-level scope
+			Object.keys(compiler.rootScope.symbols).forEach((key, i) => {
+				output += `console.log("${key}:");\nconsole.log(${key});\n`
+			})
+
 			console.log("Compilation complete:")
 		}
 		console.log(output)
@@ -25,31 +30,47 @@ try {
 			console.log("Executing...")
 			eval(output)
 		}
-	} else { // REPL
+	} else {
+		console.log("Starting interactive mode.\n" +
+			"This is not a proper REPL. Variables are not saved between executions.\n" +
+			"Enter code line by line. Enter a blank line to execute.")
+
+
 		const readline = require("readline")
 		const stdin = readline.createInterface(process.stdin, process.stdout)
-		stdin.setPrompt("> ")
 
-		let parser = new Parser()
-		let compiler = new Compiler()
+		const parser = new Parser()
+		const compiler = new Compiler()
 
-		stdin.prompt();
+		let codeBlock = ""
 
+		stdin.setPrompt("==> ")
+		stdin.prompt()
 		stdin.on("line", (line) => {
 			try {
-				parser.load(line)
-				let lineNodes = parser.parse()
-				console.log(lineNodes)
+				if(line === "") { // execute
+					parser.load(codeBlock)
+					let lineNodes = parser.parse()
+					console.log(lineNodes)
+					console.log()
 
-				compiler.load(lineNodes, false)
-				let result = compiler.visitProgram()
+					compiler.load(lineNodes)
+					let result = compiler.visitProgram()
 
-				console.log(result)
+					console.log(result)
+					codeBlock = ""
+					stdin.setPrompt("==> ")
+				} else { // accumulate
+					codeBlock += line + "\n"
+					stdin.setPrompt("  > ")
+				}
 			} catch (e) {
-				console.log(e)
+				console.log(e + "\n")
+				codeBlock = ""
+				stdin.setPrompt("==> ")
 			}
 
-			stdin.prompt();
+			stdin.prompt()
 		})
 	}
 } catch (e) {
