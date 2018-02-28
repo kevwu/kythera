@@ -2,23 +2,29 @@ const fs = require("fs")
 const Parser = require("./parser/Parser")
 const Compiler = require("./compiler/Compiler")
 
-// used inside eval
-const KYTHERA = require("./compiler/runtime")
-
 try {
-	if (process.argv.length === 3) { // run file
+	if (process.argv.length >= 3) { // run file
+		const flags = {}
+		process.argv.filter(flag => flag.charAt(0) === "-").forEach(flag => flags[flag.replace("-", "")] = true)
+
 		let parser = new Parser(fs.readFileSync(process.argv[2]).toString())
 		let ast = parser.parse()
 
-		console.log(JSON.stringify(ast, null, 2))
+		if(!flags.c) {
+			console.log(JSON.stringify(ast, null, 2))
+		}
 
 		let compiler = new Compiler(ast)
-		let output = compiler.visitProgram()
-		console.log("Compilation complete:")
+		let output = `const KYTHERA = require("./compiler/runtime");\n` + compiler.visitProgram()
+		if(!flags.c) {
+			console.log("Compilation complete:")
+		}
 		console.log(output)
 
-		console.log("Executing...")
-		eval(output)
+		if(!flags.c) {
+			console.log("Executing...")
+			eval(output)
+		}
 	} else { // REPL
 		const readline = require("readline")
 		const stdin = readline.createInterface(process.stdin, process.stdout)
