@@ -57,6 +57,8 @@ class Compiler {
 				return this.visitLet(node)
 			case "return":
 				return this.visitReturn(node)
+			case "if":
+				return this.visitIf(node)
 			default:
 				return this.visitExpressionNode(node).output
 		}
@@ -281,6 +283,36 @@ class Compiler {
 			output: `(KYTHERA.value.${opFunction}(${lhs.output}, ${rhs.output}))`,
 			type: outType,
 		}
+	}
+
+	visitIf(node) {
+		let out = "if(KYTHERA.value.eq("
+
+		let condition = this.visitExpressionNode(node.condition)
+		if(condition.type.type !== "bool") {
+			throw new Error("Condition for if statement must evaluate to bool")
+		}
+
+		out += condition.output
+
+		out += ", KYTHERA.LITERALS.true)) {\n"
+
+		out += node.body.reduce((prev, bodyNode) => {
+			return prev + this.visitNode(bodyNode) + ';\n'
+		}, "")
+
+		out += "}"
+
+		if(node.else) {
+			out += " else {"
+
+			out += node.else.reduce((prev, elseNode) => {
+				return prev + this.visitNode(elseNode) + ';\n'
+			}, "")
+
+			out += "}"
+		}
+		return out
 	}
 
 	// transform a type ParseNode into a KytheraType

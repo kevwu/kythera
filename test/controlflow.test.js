@@ -3,46 +3,52 @@ const t = require("./util").test
 describe("Control flow", () => {
 	describe("if", () => {
 		t("if", `
-if false {
-	a
+if true {
+	true
 }	
-	`, {compile: false})
+	`)
 
 		t("if-else", `
 if false {
-    a
+    false
 } else {
-    b
+    true
 }	
-	`, {compile: false})
+	`)
 
 		t("if-else-if", `
-if false {
-    a
-} else if false {
-    23
+let a = 3
+if a == 1 {
+    "one"
+} else if a == 2{
+    "two"
 } else {
-    "yay"
+    "something else"
 }	
-	`, {compile: false})
+	`)
 
 		t("if-else with boolean", `
+let a = 1
+let b = 2
 if a == b {
     a
 } else {
     b
 }	
-	`, {compile: false})
+	`)
 
 		t("if-else-if with boolean", `
+let a = 1
+let b = 2
+let c = 3
 if a == b {
 	a
 } else if b == c {
-	23
+	"two"
 } else {
 	"hello"
 }	
-	`, {compile: false})
+	`)
 
 	})
 

@@ -130,11 +130,11 @@ KYTHERA.type = class {
 
 // types with no need for structure. These are always the same, so we can instantiate them once and reuse them.
 KYTHERA.type.PRIMITIVES = {
+	bool: new KYTHERA.type("bool"),
 	int: new KYTHERA.type("int"),
 	float: new KYTHERA.type("float"),
-	bool: new KYTHERA.type("bool"),
-	"null": new KYTHERA.type("null"),
 	str: new KYTHERA.type("str"),
+	"null": new KYTHERA.type("null"),
 	type: new KYTHERA.type("type"),
 }
 
@@ -143,7 +143,6 @@ KYTHERA.value = class {
 		if(!(type instanceof KYTHERA.type)) {
 			throw new Error("Value type must be a KYTHERA.type.")
 		}
-
 		this.type = type
 
 		// this switch block is near-verbatim from ParseNode, but I believe it still needs to exist independently here.
@@ -199,12 +198,6 @@ KYTHERA.value = class {
 
 				// TODO check object values against type structure
 				break
-			case "type": // type literal node - not a type node!
-				if(!(value instanceof KYTHERA.type)) {
-					throw new Error('type value must be a KYTHERA.type.')
-				}
-				this.value = value
-				break
 			case "list":
 				if(!Array.isArray(value)) {
 					throw new Error("list value must be an array.")
@@ -214,6 +207,12 @@ KYTHERA.value = class {
 				// TODO type check list elements
 
 				break
+			case "type": // type literal node - not a type node!
+				if(!(value instanceof KYTHERA.type)) {
+					throw new Error('type value must be a KYTHERA.type.')
+				}
+				this.value = value
+				break
 			default:
 				throw new Error("Invalid payload type: " + type)
 		}
@@ -221,11 +220,11 @@ KYTHERA.value = class {
 
 	static eq(a, b) {
 		if(!KYTHERA.type.eq(a.type, b.type)) {
-			return false
+			return new KYTHERA.value(false, KYTHERA.type.PRIMITIVES.bool)
 		}
 
 		if(["bool", "int", "float", "str", "null"].includes(a.type.type)) {
-			return a.value === b.value
+			return new KYTHERA.value(a.value === b.value, KYTHERA.type.PRIMITIVES.bool)
 		}
 
 		if(a.type.type === "obj") {
@@ -248,7 +247,7 @@ KYTHERA.value = class {
 	}
 
 	static ne(a, b) {
-		return !(this.eq(a,b))
+		return new KYTHERA.value(!(this.eq(a,b)), KYTHERA.type.PRIMITIVES.bool)
 	}
 
 	static lt(a, b) {
@@ -260,7 +259,7 @@ KYTHERA.value = class {
 			throw new Error("Types do not match (the compiler should have caught this")
 		}
 
-		return a.value < b.value;
+		return new KYTHERA.value(a.value < b.value, KYTHERA.type.PRIMITIVES.bool);
 	}
 
 	static gt(a, b) {
@@ -272,15 +271,15 @@ KYTHERA.value = class {
 			throw new Error("Types do not match (the compiler should have caught this")
 		}
 
-		return a.value > b.value;
+		return new KYTHERA.value(a.value > b.value, KYTHERA.type.PRIMITIVES.bool);
 	}
 
 	static le(a, b) {
-		return !(this.gt(a,b))
+		return new KYTHERA.value(!(this.gt(a,b)), KYTHERA.type.PRIMITIVES.bool)
 	}
 
 	static ge(a, b) {
-		return !(this.lt(a,b))
+		return new KYTHERA.value(!(this.lt(a,b)), KYTHERA.type.PRIMITIVES.bool)
 	}
 
 	static add(a, b) {
@@ -367,5 +366,11 @@ KYTHERA.value = class {
 	}
 }
 
+// reusable literals
+KYTHERA.LITERALS = {
+	"true": new KYTHERA.value(true, KYTHERA.type.PRIMITIVES.bool),
+	"false": new KYTHERA.value(false, KYTHERA.type.PRIMITIVES.bool),
+	"null": new KYTHERA.value(null, KYTHERA.type.PRIMITIVES.null)
+}
 
 module.exports = KYTHERA

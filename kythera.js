@@ -35,7 +35,6 @@ try {
 			"This is not a proper REPL. Variables are not saved between executions.\n" +
 			"Enter code line by line. Enter a blank line to execute.")
 
-
 		const readline = require("readline")
 		const stdin = readline.createInterface(process.stdin, process.stdout)
 
@@ -51,13 +50,15 @@ try {
 				if(line === "") { // execute
 					parser.load(codeBlock)
 					let lineNodes = parser.parse()
-					console.log(lineNodes)
+					console.log(JSON.stringify(lineNodes, null, 2))
 					console.log()
 
 					compiler.load(lineNodes)
 					let result = compiler.visitProgram()
-
 					console.log(result)
+
+					eval(`const KYTHERA = require("./compiler/runtime");\n${result}`)
+
 					codeBlock = ""
 					stdin.setPrompt("==> ")
 				} else { // accumulate

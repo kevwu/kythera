@@ -1,12 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Control flow if [COMPL] if 1`] = `"if(KYTHERA.value.eq(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]), KYTHERA.LITERALS.true)) {new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]);};"`;
+
+exports[`Control flow if [COMPL] if-else 1`] = `"if(KYTHERA.value.eq(new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]), KYTHERA.LITERALS.true)) {new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]);} else {new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]);};"`;
+
+exports[`Control flow if [COMPL] if-else with boolean 1`] = `"let a = new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]);let b = new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]);if(KYTHERA.value.eq((KYTHERA.value.eq(a, b)), KYTHERA.LITERALS.true)) {a;} else {b;};"`;
+
+exports[`Control flow if [COMPL] if-else-if 1`] = `"let a = new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]);if(KYTHERA.value.eq((KYTHERA.value.eq(a, new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]))), KYTHERA.LITERALS.true)) {new KYTHERA.value(\\"one\\", KYTHERA.type.PRIMITIVES[\\"str\\"]);} else {if(KYTHERA.value.eq((KYTHERA.value.eq(a, new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]))), KYTHERA.LITERALS.true)) {new KYTHERA.value(\\"two\\", KYTHERA.type.PRIMITIVES[\\"str\\"]);} else {new KYTHERA.value(\\"something else\\", KYTHERA.type.PRIMITIVES[\\"str\\"]);};};"`;
+
+exports[`Control flow if [COMPL] if-else-if with boolean 1`] = `"let a = new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]);let b = new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]);let c = new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]);if(KYTHERA.value.eq((KYTHERA.value.eq(a, b)), KYTHERA.LITERALS.true)) {a;} else {if(KYTHERA.value.eq((KYTHERA.value.eq(b, c)), KYTHERA.LITERALS.true)) {new KYTHERA.value(\\"two\\", KYTHERA.type.PRIMITIVES[\\"str\\"]);} else {new KYTHERA.value(\\"hello\\", KYTHERA.type.PRIMITIVES[\\"str\\"]);};};"`;
+
 exports[`Control flow if [PARSE] if 1`] = `
 Array [
   ParseNode {
     "body": Array [
       ParseNode {
-        "kind": "identifier",
-        "name": "a",
+        "kind": "literal",
+        "type": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "bool",
+        },
+        "value": true,
       },
     ],
     "condition": ParseNode {
@@ -16,7 +31,7 @@ Array [
         "origin": "builtin",
         "type": "bool",
       },
-      "value": false,
+      "value": true,
     },
     "kind": "if",
   },
@@ -28,8 +43,13 @@ Array [
   ParseNode {
     "body": Array [
       ParseNode {
-        "kind": "identifier",
-        "name": "a",
+        "kind": "literal",
+        "type": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "bool",
+        },
+        "value": false,
       },
     ],
     "condition": ParseNode {
@@ -43,8 +63,13 @@ Array [
     },
     "else": Array [
       ParseNode {
-        "kind": "identifier",
-        "name": "b",
+        "kind": "literal",
+        "type": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "bool",
+        },
+        "value": true,
       },
     ],
     "kind": "if",
@@ -54,6 +79,32 @@ Array [
 
 exports[`Control flow if [PARSE] if-else with boolean 1`] = `
 Array [
+  ParseNode {
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 1,
+    },
+  },
+  ParseNode {
+    "identifier": "b",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 2,
+    },
+  },
   ParseNode {
     "body": Array [
       ParseNode {
@@ -87,55 +138,91 @@ Array [
 exports[`Control flow if [PARSE] if-else-if 1`] = `
 Array [
   ParseNode {
-    "body": Array [
-      ParseNode {
-        "kind": "identifier",
-        "name": "a",
-      },
-    ],
-    "condition": ParseNode {
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
       "kind": "literal",
       "type": ParseNode {
         "kind": "type",
         "origin": "builtin",
-        "type": "bool",
+        "type": "int",
       },
-      "value": false,
+      "value": 3,
     },
-    "else": ParseNode {
-      "body": Array [
-        ParseNode {
-          "kind": "literal",
-          "type": ParseNode {
-            "kind": "type",
-            "origin": "builtin",
-            "type": "int",
-          },
-          "value": 23,
-        },
-      ],
-      "condition": ParseNode {
+  },
+  ParseNode {
+    "body": Array [
+      ParseNode {
         "kind": "literal",
         "type": ParseNode {
           "kind": "type",
           "origin": "builtin",
-          "type": "bool",
+          "type": "str",
         },
-        "value": false,
+        "value": "one",
       },
-      "else": Array [
-        ParseNode {
-          "kind": "literal",
-          "type": ParseNode {
-            "kind": "type",
-            "origin": "builtin",
-            "type": "str",
-          },
-          "value": "yay",
+    ],
+    "condition": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "identifier",
+        "name": "a",
+      },
+      "operator": "==",
+      "right": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "kind": "type",
+          "origin": "builtin",
+          "type": "int",
         },
-      ],
-      "kind": "if",
+        "value": 1,
+      },
     },
+    "else": Array [
+      ParseNode {
+        "body": Array [
+          ParseNode {
+            "kind": "literal",
+            "type": ParseNode {
+              "kind": "type",
+              "origin": "builtin",
+              "type": "str",
+            },
+            "value": "two",
+          },
+        ],
+        "condition": ParseNode {
+          "kind": "binary",
+          "left": ParseNode {
+            "kind": "identifier",
+            "name": "a",
+          },
+          "operator": "==",
+          "right": ParseNode {
+            "kind": "literal",
+            "type": ParseNode {
+              "kind": "type",
+              "origin": "builtin",
+              "type": "int",
+            },
+            "value": 2,
+          },
+        },
+        "else": Array [
+          ParseNode {
+            "kind": "literal",
+            "type": ParseNode {
+              "kind": "type",
+              "origin": "builtin",
+              "type": "str",
+            },
+            "value": "something else",
+          },
+        ],
+        "kind": "if",
+      },
+    ],
     "kind": "if",
   },
 ]
@@ -143,6 +230,45 @@ Array [
 
 exports[`Control flow if [PARSE] if-else-if with boolean 1`] = `
 Array [
+  ParseNode {
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 1,
+    },
+  },
+  ParseNode {
+    "identifier": "b",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 2,
+    },
+  },
+  ParseNode {
+    "identifier": "c",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "kind": "type",
+        "origin": "builtin",
+        "type": "int",
+      },
+      "value": 3,
+    },
+  },
   ParseNode {
     "body": Array [
       ParseNode {
@@ -162,43 +288,45 @@ Array [
         "name": "b",
       },
     },
-    "else": ParseNode {
-      "body": Array [
-        ParseNode {
-          "kind": "literal",
-          "type": ParseNode {
-            "kind": "type",
-            "origin": "builtin",
-            "type": "int",
+    "else": Array [
+      ParseNode {
+        "body": Array [
+          ParseNode {
+            "kind": "literal",
+            "type": ParseNode {
+              "kind": "type",
+              "origin": "builtin",
+              "type": "str",
+            },
+            "value": "two",
           },
-          "value": 23,
+        ],
+        "condition": ParseNode {
+          "kind": "binary",
+          "left": ParseNode {
+            "kind": "identifier",
+            "name": "b",
+          },
+          "operator": "==",
+          "right": ParseNode {
+            "kind": "identifier",
+            "name": "c",
+          },
         },
-      ],
-      "condition": ParseNode {
-        "kind": "binary",
-        "left": ParseNode {
-          "kind": "identifier",
-          "name": "b",
-        },
-        "operator": "==",
-        "right": ParseNode {
-          "kind": "identifier",
-          "name": "c",
-        },
+        "else": Array [
+          ParseNode {
+            "kind": "literal",
+            "type": ParseNode {
+              "kind": "type",
+              "origin": "builtin",
+              "type": "str",
+            },
+            "value": "hello",
+          },
+        ],
+        "kind": "if",
       },
-      "else": Array [
-        ParseNode {
-          "kind": "literal",
-          "type": ParseNode {
-            "kind": "type",
-            "origin": "builtin",
-            "type": "str",
-          },
-          "value": "hello",
-        },
-      ],
-      "kind": "if",
-    },
+    ],
     "kind": "if",
   },
 ]

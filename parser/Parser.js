@@ -166,22 +166,23 @@ class Parser {
 						let ifCondition = this.parseExpression()
 						let ifBody = this.parseBlock()
 
-						let ifStatement = new ParseNode("if", {
-							condition: ifCondition,
-							body: ifBody,
-						})
+						let ifElse
 
 						if(this.confirmToken("else", "kw")) {
 							this.consumeToken("else", "kw")
 
-							// else only
-							if(this.confirmToken('{', "punc")) {
-								ifStatement.else = this.parseBlock()
-							} else {
-								// else-if
-								ifStatement.else = this.parseExpression(false)
+							if(this.confirmToken('{', "punc")) { // else only
+								ifElse = this.parseBlock()
+							} else { // else-if
+								ifElse = [this.parseExpression(false)]
 							}
 						}
+
+						let ifStatement = new ParseNode("if", {
+							condition: ifCondition,
+							body: ifBody,
+							else: ifElse,
+						})
 
 						return ifStatement
 					case "while":

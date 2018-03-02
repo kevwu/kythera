@@ -387,49 +387,8 @@ Array [
                   },
                 },
               },
-              "else": ParseNode {
-                "body": Array [
-                  ParseNode {
-                    "kind": "literal",
-                    "type": ParseNode {
-                      "kind": "type",
-                      "origin": "builtin",
-                      "type": "str",
-                    },
-                    "value": "buzz",
-                  },
-                ],
-                "condition": ParseNode {
-                  "kind": "binary",
-                  "left": ParseNode {
-                    "kind": "binary",
-                    "left": ParseNode {
-                      "kind": "identifier",
-                      "name": "x",
-                    },
-                    "operator": "%",
-                    "right": ParseNode {
-                      "kind": "literal",
-                      "type": ParseNode {
-                        "kind": "type",
-                        "origin": "builtin",
-                        "type": "int",
-                      },
-                      "value": 5,
-                    },
-                  },
-                  "operator": "==",
-                  "right": ParseNode {
-                    "kind": "literal",
-                    "type": ParseNode {
-                      "kind": "type",
-                      "origin": "builtin",
-                      "type": "int",
-                    },
-                    "value": 0,
-                  },
-                },
-                "else": ParseNode {
+              "else": Array [
+                ParseNode {
                   "body": Array [
                     ParseNode {
                       "kind": "literal",
@@ -438,7 +397,7 @@ Array [
                         "origin": "builtin",
                         "type": "str",
                       },
-                      "value": "fizz",
+                      "value": "buzz",
                     },
                   ],
                   "condition": ParseNode {
@@ -457,7 +416,7 @@ Array [
                           "origin": "builtin",
                           "type": "int",
                         },
-                        "value": 3,
+                        "value": 5,
                       },
                     },
                     "operator": "==",
@@ -473,14 +432,59 @@ Array [
                   },
                   "else": Array [
                     ParseNode {
-                      "kind": "identifier",
-                      "name": "x",
+                      "body": Array [
+                        ParseNode {
+                          "kind": "literal",
+                          "type": ParseNode {
+                            "kind": "type",
+                            "origin": "builtin",
+                            "type": "str",
+                          },
+                          "value": "fizz",
+                        },
+                      ],
+                      "condition": ParseNode {
+                        "kind": "binary",
+                        "left": ParseNode {
+                          "kind": "binary",
+                          "left": ParseNode {
+                            "kind": "identifier",
+                            "name": "x",
+                          },
+                          "operator": "%",
+                          "right": ParseNode {
+                            "kind": "literal",
+                            "type": ParseNode {
+                              "kind": "type",
+                              "origin": "builtin",
+                              "type": "int",
+                            },
+                            "value": 3,
+                          },
+                        },
+                        "operator": "==",
+                        "right": ParseNode {
+                          "kind": "literal",
+                          "type": ParseNode {
+                            "kind": "type",
+                            "origin": "builtin",
+                            "type": "int",
+                          },
+                          "value": 0,
+                        },
+                      },
+                      "else": Array [
+                        ParseNode {
+                          "kind": "identifier",
+                          "name": "x",
+                        },
+                      ],
+                      "kind": "if",
                     },
                   ],
                   "kind": "if",
                 },
-                "kind": "if",
-              },
+              ],
               "kind": "if",
             },
             ParseNode {
