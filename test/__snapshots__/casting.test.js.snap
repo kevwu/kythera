@@ -8,27 +8,27 @@ Array [
     "value": ParseNode {
       "kind": "literal",
       "type": ParseNode {
+        "baseType": "obj",
         "kind": "type",
         "origin": "builtin",
         "structure": Object {},
-        "type": "obj",
       },
       "value": Object {
         "a": ParseNode {
           "kind": "literal",
           "type": ParseNode {
+            "baseType": "int",
             "kind": "type",
             "origin": "builtin",
-            "type": "int",
           },
           "value": 99,
         },
         "b": ParseNode {
           "kind": "literal",
           "type": ParseNode {
+            "baseType": "str",
             "kind": "type",
             "origin": "builtin",
-            "type": "str",
           },
           "value": "beep",
         },
@@ -76,9 +76,9 @@ Array [
     "right": ParseNode {
       "kind": "literal",
       "type": ParseNode {
+        "baseType": "int",
         "kind": "type",
         "origin": "builtin",
-        "type": "int",
       },
       "value": 10,
     },
@@ -161,26 +161,26 @@ Array [
     "value": ParseNode {
       "kind": "literal",
       "type": ParseNode {
+        "baseType": "type",
         "kind": "type",
         "origin": "builtin",
-        "type": "type",
       },
       "value": ParseNode {
+        "baseType": "obj",
         "kind": "type",
         "origin": "builtin",
         "structure": Object {
           "a": ParseNode {
+            "baseType": "int",
             "kind": "type",
             "origin": "builtin",
-            "type": "int",
           },
           "b": ParseNode {
+            "baseType": "str",
             "kind": "type",
             "origin": "builtin",
-            "type": "str",
           },
         },
-        "type": "obj",
       },
     },
   },
@@ -190,27 +190,27 @@ Array [
     "value": ParseNode {
       "kind": "literal",
       "type": ParseNode {
+        "baseType": "obj",
         "kind": "type",
         "origin": "builtin",
         "structure": Object {},
-        "type": "obj",
       },
       "value": Object {
         "a": ParseNode {
           "kind": "literal",
           "type": ParseNode {
+            "baseType": "int",
             "kind": "type",
             "origin": "builtin",
-            "type": "int",
           },
           "value": 99,
         },
         "b": ParseNode {
           "kind": "literal",
           "type": ParseNode {
+            "baseType": "str",
             "kind": "type",
             "origin": "builtin",
-            "type": "str",
           },
           "value": "beep",
         },
@@ -261,9 +261,9 @@ Array [
           "value": ParseNode {
             "kind": "literal",
             "type": ParseNode {
+              "baseType": "int",
               "kind": "type",
               "origin": "builtin",
-              "type": "int",
             },
             "value": 10,
           },
@@ -281,11 +281,12 @@ Array [
         },
       ],
       "returns": ParseNode {
+        "baseType": "null",
         "kind": "type",
         "origin": "builtin",
-        "type": "null",
       },
       "type": ParseNode {
+        "baseType": "fn",
         "kind": "type",
         "origin": "builtin",
         "parameters": Array [
@@ -296,11 +297,10 @@ Array [
           },
         ],
         "returns": ParseNode {
+          "baseType": "null",
           "kind": "type",
           "origin": "builtin",
-          "type": "null",
         },
-        "type": "fn",
       },
     },
   },
@@ -349,23 +349,24 @@ Array [
     "value": ParseNode {
       "kind": "literal",
       "type": ParseNode {
+        "baseType": "type",
         "kind": "type",
         "origin": "builtin",
-        "type": "type",
       },
       "value": ParseNode {
+        "baseType": "fn",
         "kind": "type",
         "origin": "builtin",
         "parameters": Array [
           ParseNode {
+            "baseType": "int",
             "kind": "type",
             "origin": "builtin",
-            "type": "int",
           },
           ParseNode {
+            "baseType": "str",
             "kind": "type",
             "origin": "builtin",
-            "type": "str",
           },
           ParseNode {
             "kind": "type",
@@ -374,11 +375,10 @@ Array [
           },
         ],
         "returns": ParseNode {
+          "baseType": "str",
           "kind": "type",
           "origin": "builtin",
-          "type": "str",
         },
-        "type": "fn",
       },
     },
   },
@@ -393,26 +393,26 @@ Array [
     "value": ParseNode {
       "kind": "literal",
       "type": ParseNode {
+        "baseType": "type",
         "kind": "type",
         "origin": "builtin",
-        "type": "type",
       },
       "value": ParseNode {
+        "baseType": "obj",
         "kind": "type",
         "origin": "builtin",
         "structure": Object {
           "a": ParseNode {
+            "baseType": "int",
             "kind": "type",
             "origin": "builtin",
-            "type": "int",
           },
           "b": ParseNode {
+            "baseType": "str",
             "kind": "type",
             "origin": "builtin",
-            "type": "str",
           },
         },
-        "type": "obj",
       },
     },
   },
@@ -427,14 +427,14 @@ Array [
     "value": ParseNode {
       "kind": "literal",
       "type": ParseNode {
+        "baseType": "type",
         "kind": "type",
         "origin": "builtin",
-        "type": "type",
       },
       "value": ParseNode {
+        "baseType": "int",
         "kind": "type",
         "origin": "builtin",
-        "type": "int",
       },
     },
   },

@@ -15,27 +15,27 @@ const PRECEDENCE = {
 // primitive types
 const TYPES = {
 	"null": new ParseNode("type", {
-		type: "null",
+		baseType: "null",
 		origin: "builtin"
 	}),
 	int: new ParseNode("type", {
-		type: "int",
+		baseType: "int",
 		origin: "builtin"
 	}),
 	float: new ParseNode("type", {
-		type: "float",
+		baseType: "float",
 		origin: "builtin"
 	}),
 	str: new ParseNode("type", {
-		type: "str",
+		baseType: "str",
 		origin: "builtin"
 	}),
 	bool: new ParseNode("type", {
-		type: "bool",
+		baseType: "bool",
 		origin: "builtin"
 	}),
 	type: new ParseNode("type", {
-		type: "type",
+		baseType: "type",
 		origin: "builtin"
 	})
 }
@@ -290,7 +290,7 @@ class Parser {
 				let memberName = this.tokenizer.next()
 
 				return new ParseNode("access", {
-					type: "object",
+					method: "object",
 					target: exp,
 					index: memberName.value,
 				})
@@ -309,7 +309,7 @@ class Parser {
 
 			// list types like int[] are handled by parseType. Seeing a [ in this context guarantees it's an access
 			return new ParseNode("access", {
-				type: "unknown",
+				method: "unknown",
 				target: exp,
 				index: indexExp,
 			})
@@ -378,7 +378,7 @@ class Parser {
 
 		return new ParseNode("literal", {
 			type: new ParseNode("type", {
-				type: "obj",
+				baseType: "obj",
 				origin: "builtin",
 				structure: {}, // freeform structure
 			}),
@@ -413,7 +413,7 @@ class Parser {
 
 		return new ParseNode("literal", {
 			type: new ParseNode("type", {
-				type: "fn",
+				baseType: "fn",
 				origin: "builtin",
 				parameters: parameters.map((param, i) => {
 					return param.type
@@ -441,7 +441,7 @@ class Parser {
 
 		return new ParseNode("literal", {
 			type: new ParseNode("type", {
-				type: "list",
+				baseType: "list",
 				origin: "builtin",
 				contains: listType
 			}),
@@ -490,7 +490,7 @@ class Parser {
 
 					parseTypeAtom = new ParseNode("type", {
 						origin: "builtin",
-						type: "fn",
+						baseType: "fn",
 						parameters: parameters,
 						returns: returnType,
 					})
@@ -511,7 +511,7 @@ class Parser {
 
 					parseTypeAtom = new ParseNode("type", {
 						origin: "builtin",
-						type: "obj",
+						baseType: "obj",
 						structure: entries,
 					})
 
@@ -534,7 +534,7 @@ class Parser {
 			this.consumeToken("]", "punc")
 
 			return new ParseNode("type", {
-				type: "list",
+				baseType: "list",
 				origin: "builtin",
 				contains: parseTypeAtom,
 			})

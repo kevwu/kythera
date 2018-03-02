@@ -5,7 +5,7 @@ KYTHERA.type = class {
 		if(typeof type !== "string") {
 			throw new Error("type parameter must be a string.")
 		}
-		this.type = type
+		this.baseType = type
 
 		// named types. TBD
 		if(name !== null) {
@@ -88,11 +88,11 @@ KYTHERA.type = class {
 
 	// compare the types of two values
 	static eq(a, b) {
-		if(a.type !== b.type) {
+		if(a.baseType !== b.baseType) {
 			return false
 		}
 
-		if(a.type === "fn") {
+		if(a.baseType === "fn") {
 			if(!this.eq(a.structure.returns, b.structure.returns)) {
 				return false
 			}
@@ -109,7 +109,7 @@ KYTHERA.type = class {
 			return true
 		}
 
-		if(a.type === "obj") {
+		if(a.baseType === "obj") {
 			if(Object.keys(a.structure).length !== Object.keys(b.structure).length) {
 				return false
 			}
@@ -120,7 +120,7 @@ KYTHERA.type = class {
 			return aContainsAllb && bContainsAlla
 		}
 
-		if(a.type === "list") {
+		if(a.baseType === "list") {
 			return this.eq(a.contains.eq(b.contains))
 		}
 
@@ -148,7 +148,7 @@ KYTHERA.value = class {
 		// this switch block is near-verbatim from ParseNode, but I believe it still needs to exist independently here.
 		// it may be executed in places where ParseNode does not (e.g. in the runtime).
 		// TODO clean ^that^ up, reduce redundancy, or verify that it's necessary.
-		switch(this.type.type) {
+		switch(this.type.baseType) {
 			case "bool":
 				if(typeof value !== "boolean") {
 					throw new Error("bool value must be a boolean")
@@ -235,25 +235,25 @@ KYTHERA.value.eq = (a, b) => {
 		return KYTHERA.LITERALS.false
 	}
 
-	if(["bool", "int", "float", "str", "null"].includes(a.type.type)) {
+	if(["bool", "int", "float", "str", "null"].includes(a.type.baseType)) {
 		return kytheraBool(a.value === b.value)
 	}
 
-	if(a.type.type === "obj") {
+	if(a.type.baseType === "obj") {
 		// TODO compare each object member
 	}
 
-	if(a.type.type === "fn") {
+	if(a.type.baseType === "fn") {
 		// TODO compare memory addresses for now
 		return this.value === b.value
 	}
 
-	if(a.type.type === "list") {
+	if(a.type.baseType === "list") {
 		// TODO compare each list member
 		this.value.every()
 	}
 
-	if(a.type.type === "type") {
+	if(a.type.baseType === "type") {
 		return KYTHERA.type.eq(a.value, b.value)
 	}
 }
@@ -263,7 +263,7 @@ KYTHERA.value.ne = (a, b) => {
 }
 
 KYTHERA.value.lt = (a, b) => {
-	if(a.type.type !== "int" && a.type.type !== "float") {
+	if(a.type.baseType !== "int" && a.type.baseType !== "float") {
 		throw new Error("Comparison requires int or float (the compiler should have caught this")
 	}
 
@@ -275,7 +275,7 @@ KYTHERA.value.lt = (a, b) => {
 }
 
 KYTHERA.value.gt = (a, b) => {
-	if(a.type.type !== "int" && a.type.type !== "float") {
+	if(a.type.baseType !== "int" && a.type.baseType !== "float") {
 		throw new Error("Comparison requires int or float (the compiler should have caught this")
 	}
 
@@ -295,7 +295,7 @@ KYTHERA.value.ge = (a, b) => {
 }
 
 KYTHERA.value.add = (a, b) => {
-	if(a.type.type !== "int" && a.type.type !== "float") {
+	if(a.type.baseType !== "int" && a.type.baseType !== "float") {
 		throw new Error("Arithmetic requires int or float (the compiler should have caught this")
 	}
 
@@ -307,7 +307,7 @@ KYTHERA.value.add = (a, b) => {
 }
 
 KYTHERA.value.sub = (a, b) => {
-	if(a.type.type !== "int" && a.type.type !== "float") {
+	if(a.type.baseType !== "int" && a.type.baseType !== "float") {
 		throw new Error("Arithmetic requires int or float (the compiler should have caught this")
 	}
 
@@ -319,7 +319,7 @@ KYTHERA.value.sub = (a, b) => {
 }
 
 KYTHERA.value.mul = (a, b) => {
-	if(a.type.type !== "int" && a.type.type !== "float") {
+	if(a.type.baseType !== "int" && a.type.baseType !== "float") {
 		throw new Error("Arithmetic requires int or float (the compiler should have caught this")
 	}
 
@@ -331,7 +331,7 @@ KYTHERA.value.mul = (a, b) => {
 }
 
 KYTHERA.value.div = (a, b) => {
-	if(a.type.type !== "int" && a.type.type !== "float") {
+	if(a.type.baseType !== "int" && a.type.baseType !== "float") {
 		throw new Error("Arithmetic requires int or float (the compiler should have caught this")
 	}
 
@@ -340,7 +340,7 @@ KYTHERA.value.div = (a, b) => {
 	}
 
 	let result
-	if(a.type.type === "int") {
+	if(a.type.baseType === "int") {
 		result = Math.floor(a.value / b.value)
 	} else {
 		result = a.value / b.value
@@ -350,7 +350,7 @@ KYTHERA.value.div = (a, b) => {
 }
 
 KYTHERA.value.mod = (a, b) => {
-	if(a.type.type !== "int" && a.type.type !== "float") {
+	if(a.type.baseType !== "int" && a.type.baseType !== "float") {
 		throw new Error("Arithmetic requires int or float (the compiler should have caught this")
 	}
 
@@ -362,7 +362,7 @@ KYTHERA.value.mod = (a, b) => {
 }
 
 KYTHERA.value.and = (a, b) => {
-	if(!(a.type.type === "bool" && b.type.type === "bool")) {
+	if(!(a.type.baseType === "bool" && b.type.baseType === "bool")) {
 		throw new Error("Non-boolean types used for boolean operation (the compiler should have caught this)")
 	}
 
@@ -370,7 +370,7 @@ KYTHERA.value.and = (a, b) => {
 }
 
 KYTHERA.value.or = (a, b) => {
-	if(!(a.type.type === "bool" && b.type.type === "bool")) {
+	if(!(a.type.baseType === "bool" && b.type.baseType === "bool")) {
 		throw new Error("Non-boolean types used for boolean operation (the compiler should have caught this)")
 	}
 

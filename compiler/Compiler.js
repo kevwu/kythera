@@ -93,15 +93,15 @@ class Compiler {
 	}
 
 	visitLiteral(node) {
-		switch(node.type.type) {
+		switch(node.type.baseType) {
 			case "int":
 			case "float":
 			case "bool":
 			case "str":
 			case "null":
 				return {
-					output: this.makeValueConstructor(new KytheraValue(node.value, KytheraType.PRIMITIVES[node.type.type])),
-					type: KytheraType.PRIMITIVES[node.type.type]
+					output: this.makeValueConstructor(new KytheraValue(node.value, KytheraType.PRIMITIVES[node.type.baseType])),
+					type: KytheraType.PRIMITIVES[node.type.baseType]
 				}
 			case "type":
 				return {
@@ -163,7 +163,7 @@ class Compiler {
 						containsType = listExp.type
 					} else {
 						if(!KytheraType.eq(containsType, listExp.type)) {
-							throw new Error(`List types do not match, expecting ${containsType.type} but got ${listExp.type.type}`)
+							throw new Error(`List types do not match, expecting ${containsType.baseType} but got ${listExp.type.baseType}`)
 						}
 					}
 					return prev + listExp.output + ((i !== node.elements.length - 1) ? "," : "")
@@ -176,7 +176,7 @@ class Compiler {
 					type: listType
 				}
 			default:
-				throw new Error("Unhandled type: " + node.type.type)
+				throw new Error("Unhandled type: " + node.type.baseType)
 		}
 	}
 
@@ -202,7 +202,7 @@ class Compiler {
 			let lhsType = this.currentScope.get(node.left.name)
 			let rhs = this.visitExpressionNode(node.right)
 			if(!KytheraType.eq(lhsType, rhs.type)) {
-				throw new Error(`Cannot assign ${rhs.type.type} value to ${node.left.name}, which has type ${lhsType.type}`)
+				throw new Error(`Cannot assign ${rhs.type.baseType} value to ${node.left.name}, which has type ${lhsType.baseType}`)
 			}
 
 			let rhsOut = rhs.output
@@ -226,7 +226,7 @@ class Compiler {
 			let returnVal = this.visitExpressionNode(node.value)
 
 			if(!(KytheraType.eq(returnVal.type, this.currentScope.getReturnType()))) {
-				throw new Error(`Expected return value of type ${this.currentScope.getReturnType().type} but got ${returnVal.type.type}`)
+				throw new Error(`Expected return value of type ${this.currentScope.getReturnType().baseType} but got ${returnVal.type.baseType}`)
 			}
 
 			return `return ${returnVal.output}`
@@ -247,13 +247,13 @@ class Compiler {
 		let rhs = this.visitExpressionNode(node.right)
 
 		if(!(KytheraType.eq(lhs.type, rhs.type))) {
-			throw new Error(`Incompatible types: ${lhs.type.type} vs ${rhs.type.type}`)
+			throw new Error(`Incompatible types: ${lhs.type.baseType} vs ${rhs.type.baseType}`)
 		}
 
 		let outType
 		if(["&&", "||"].includes(node.operator)) {
 			if(!(KytheraType.eq(lhs.type, KytheraType.PRIMITIVES.bool))) {
-				throw new Error("Boolean operators require bool, not " + lhs.type.type)
+				throw new Error("Boolean operators require bool, not " + lhs.type.baseType)
 			}
 
 			outType = KytheraType.PRIMITIVES.bool
@@ -261,14 +261,14 @@ class Compiler {
 			outType = KytheraType.PRIMITIVES.bool
 		} else if(["<", ">", "<=", ">="].includes(node.operator)) {
 			// TODO set comparison with objects?
-			if(!["int", "float"].includes(lhs.type.type)) {
-				throw new Error("Comparison operators require int or float, not " + lhs.type.type)
+			if(!["int", "float"].includes(lhs.type.baseType)) {
+				throw new Error("Comparison operators require int or float, not " + lhs.type.baseType)
 			}
 
 			outType = lhs.type
 		} else if(["+", "-", "*", "/", "%"].includes(node.operator)) {
-			if(!["int", "float"].includes(lhs.type.type)) {
-				throw new Error("Arithmetic operators require int or float, not " + lhs.type.type)
+			if(!["int", "float"].includes(lhs.type.baseType)) {
+				throw new Error("Arithmetic operators require int or float, not " + lhs.type.baseType)
 			}
 
 			outType = lhs.type
@@ -289,7 +289,7 @@ class Compiler {
 		let out = "if(KYTHERA.value.eq("
 
 		let condition = this.visitExpressionNode(node.condition)
-		if(condition.type.type !== "bool") {
+		if(condition.type.baseType !== "bool") {
 			throw new Error("Condition for if statement must evaluate to bool")
 		}
 
@@ -325,16 +325,16 @@ class Compiler {
 			throw new Error("named types not yet supported")
 		}
 
-		switch(node.type) {
+		switch(node.baseType) {
 			case "int":
 			case "float":
 			case "bool":
 			case "str":
 			case "null":
 			case "type":
-				return KytheraType.PRIMITIVES[node.type]
+				return KytheraType.PRIMITIVES[node.baseType]
 			case "fn":
-				return new KytheraType(node.type, {
+				return new KytheraType(node.baseType, {
 					parameters: node.parameters.map((param, i) => {
 						return this.makeKytheraType(param)
 					}),
@@ -345,13 +345,13 @@ class Compiler {
 				Object.entries(node.structure).forEach(([key, value], i) => {
 					structure[key] = this.makeKytheraType(value)
 				})
-				return new KytheraType(node.type, structure)
+				return new KytheraType(node.baseType, structure)
 			case "list":
-				return new KytheraType(node.type, {
+				return new KytheraType(node.baseType, {
 					contains: this.makeKytheraType(node.contains)
 				})
 			default:
-				throw new Error("Invalid builtin type: " + node.type)
+				throw new Error("Invalid builtin type: " + node.baseType)
 		}
 	}
 
@@ -365,12 +365,12 @@ class Compiler {
 		let kytheraType = kytheraValue.type
 
 		let out = `new KYTHERA.value(`
-		if(kytheraType.type === "str") {
+		if(kytheraType.baseType === "str") {
 			out += `"${kytheraValue.value}"`
-		} else if(kytheraType.type === "fn") {
+		} else if(kytheraType.baseType=== "fn") {
 			// see visitLiteral()
 			throw new Error("Functions cannot be constructed from existing runtime values at compile time.")
-		} else if(kytheraType.type === "obj") {
+		} else if(kytheraType.baseType === "obj") {
 			out += "{"
 
 			out += Object.entries(kytheraValue.value).reduce((prev, [key, val], i) => {
@@ -378,7 +378,7 @@ class Compiler {
 			}, "")
 
 			out += "}"
-		} else if(kytheraType.type === "type") {
+		} else if(kytheraType.baseType === "type") {
 			out += this.makeTypeConstructor(kytheraValue.value)
 		} else {
 			out += kytheraValue.value
@@ -394,9 +394,9 @@ class Compiler {
 		if(!(kytheraType instanceof KytheraType)) {
 			throw new Error("Type must be a Kythera runtime type.")
 		}
-		let out = `new KYTHERA.type("${kytheraType.type}"`
+		let out = `new KYTHERA.type("${kytheraType.baseType}"`
 
-		if(kytheraType.type === "fn") {
+		if(kytheraType.baseType === "fn") {
 			out += ", { parameters: ["
 
 			out += kytheraType.structure.parameters.reduce((prev, param, i) => {
@@ -404,7 +404,7 @@ class Compiler {
 			}, "")
 
 			out += `], returns: ${this.makeTypeConstructor(kytheraType.structure.returns)}}`
-		} else if(kytheraType.type === "obj") {
+		} else if(kytheraType.baseType === "obj") {
 			out += ", {"
 
 			out += Object.entries(kytheraType.structure).reduce((prev, [key, val], i) => {
@@ -412,10 +412,10 @@ class Compiler {
 			}, "")
 
 			out += "}"
-		} else if(kytheraType.type === "list") {
+		} else if(kytheraType.baseType === "list") {
 			out += `, { contains: ${this.makeTypeConstructor(kytheraType.structure.contains)}}`
 		} else {
-			return `KYTHERA.type.PRIMITIVES["${kytheraType.type}"]`
+			return `KYTHERA.type.PRIMITIVES["${kytheraType.baseType}"]`
 		}
 		out += ")"
 		return out

@@ -58,7 +58,7 @@ class ParseNode {
 				}
 
 				// all literals are interpreted as builtin types. They can become named types by casting.
-				switch(payload.type.type) {
+				switch(payload.type.baseType) {
 					case "int":
 						if(!(typeof payload.value === "number" && isFinite(payload.value) && (payload.value % 1 === 0))) {
 							throw new Error("Value stored in int literal is not an integer.")
@@ -139,16 +139,16 @@ class ParseNode {
 			case "type":
 				let builtIns = ["int", "float", "bool", "null", "str", "fn", "obj", "type", "list"]
 
-				if(payload.type) {
-					if(!builtIns.includes(payload.type)) {
-						throw new Error(`${payload.type} is not a built-in type.`)
+				if(payload.baseType) {
+					if(!builtIns.includes(payload.baseType)) {
+						throw new Error(`${payload.baseType} is not a built-in type.`)
 					}
 
 					if(payload.origin !== "builtin") {
-						throw new Error(`${payload.type} is built-in but was not marked as built-in`)
+						throw new Error(`${payload.baseType} is built-in but was not marked as built-in`)
 					}
 
-					this.type = payload.type
+					this.baseType = payload.baseType
 				} else {
 					if(!(payload.name)) {
 						throw new Error("A type node must have either type or name set.")
@@ -167,7 +167,7 @@ class ParseNode {
 
 				this.origin = payload.origin
 
-				if(payload.type === "list") {
+				if(payload.baseType === "list") {
 					if(payload.contains.kind !== "type") {
 						throw new Error("List type must contain a type node.")
 					}
@@ -175,7 +175,7 @@ class ParseNode {
 					this.contains = payload.contains
 				}
 
-				if(payload.type === "fn") {
+				if(payload.baseType === "fn") {
 					if(!Array.isArray(payload.parameters)) {
 						throw new Error("Parameters list must be an array.")
 					}
@@ -194,7 +194,7 @@ class ParseNode {
 					this.returns = payload.returns
 				}
 
-				if(payload.type === "obj") {
+				if(payload.baseType === "obj") {
 					if(typeof payload.structure !== "object") {
 						throw new Error("Object structure must be an object.")
 					}
@@ -316,23 +316,23 @@ class ParseNode {
 
 				break
 			case "access":
-				if(!["object", "array", "unknown"].includes(payload.type)) {
-					throw new Error("Access type must be object, array, or unknown")
+				if(!["object", "array", "unknown"].includes(payload.method)) {
+					throw new Error("Access method must be object, array, or unknown")
 				}
 
-				if(payload.type === "object" && (typeof payload.index !== "string")) {
+				if(payload.method === "object" && (typeof payload.index !== "string")) {
 					throw new Error("Object access index must be a string.")
 				}
 
-				if(payload.type === "array" && (typeof payload.index !== "number")) {
+				if(payload.method === "array" && (typeof payload.index !== "number")) {
 					throw new Error("Array access index must be a number.")
 				}
 
-				if(payload.type === "unknown" && (typeof payload.index !== "object")) {
+				if(payload.method === "unknown" && (typeof payload.index !== "object")) {
 					throw new Error("Access index must be a parse node.")
 				}
 
-				this.type = payload.type
+				this.method = payload.method
 
 				if(typeof payload.target.kind !== "string") {
 					throw new Error("Access target must be a Parse Node.")

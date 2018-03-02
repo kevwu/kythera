@@ -11,9 +11,9 @@ Array [
       ParseNode {
         "kind": "literal",
         "type": ParseNode {
+          "baseType": "int",
           "kind": "type",
           "origin": "builtin",
-          "type": "int",
         },
         "value": 10,
       },
@@ -27,9 +27,9 @@ Array [
           "value": ParseNode {
             "kind": "literal",
             "type": ParseNode {
+              "baseType": "int",
               "kind": "type",
               "origin": "builtin",
-              "type": "int",
             },
             "value": 99,
           },
@@ -55,33 +55,33 @@ Array [
         Object {
           "name": "a",
           "type": ParseNode {
+            "baseType": "int",
             "kind": "type",
             "origin": "builtin",
-            "type": "int",
           },
         },
       ],
       "returns": ParseNode {
+        "baseType": "int",
         "kind": "type",
         "origin": "builtin",
-        "type": "int",
       },
       "type": ParseNode {
+        "baseType": "fn",
         "kind": "type",
         "origin": "builtin",
         "parameters": Array [
           ParseNode {
+            "baseType": "int",
             "kind": "type",
             "origin": "builtin",
-            "type": "int",
           },
         ],
         "returns": ParseNode {
+          "baseType": "int",
           "kind": "type",
           "origin": "builtin",
-          "type": "int",
         },
-        "type": "fn",
       },
     },
   },
@@ -102,9 +102,9 @@ Array [
               "value": ParseNode {
                 "kind": "literal",
                 "type": ParseNode {
+                  "baseType": "int",
                   "kind": "type",
                   "origin": "builtin",
-                  "type": "int",
                 },
                 "value": 1,
               },
@@ -120,9 +120,9 @@ Array [
             "right": ParseNode {
               "kind": "literal",
               "type": ParseNode {
+                "baseType": "int",
                 "kind": "type",
                 "origin": "builtin",
-                "type": "int",
               },
               "value": 1,
             },
@@ -136,9 +136,9 @@ Array [
               "value": ParseNode {
                 "kind": "literal",
                 "type": ParseNode {
+                  "baseType": "int",
                   "kind": "type",
                   "origin": "builtin",
-                  "type": "int",
                 },
                 "value": 0,
               },
@@ -154,9 +154,9 @@ Array [
             "right": ParseNode {
               "kind": "literal",
               "type": ParseNode {
+                "baseType": "int",
                 "kind": "type",
                 "origin": "builtin",
-                "type": "int",
               },
               "value": 0,
             },
@@ -179,9 +179,9 @@ Array [
                   "right": ParseNode {
                     "kind": "literal",
                     "type": ParseNode {
+                      "baseType": "int",
                       "kind": "type",
                       "origin": "builtin",
-                      "type": "int",
                     },
                     "value": 1,
                   },
@@ -206,9 +206,9 @@ Array [
                   "right": ParseNode {
                     "kind": "literal",
                     "type": ParseNode {
+                      "baseType": "int",
                       "kind": "type",
                       "origin": "builtin",
-                      "type": "int",
                     },
                     "value": 2,
                   },
@@ -228,33 +228,33 @@ Array [
         Object {
           "name": "x",
           "type": ParseNode {
+            "baseType": "int",
             "kind": "type",
             "origin": "builtin",
-            "type": "int",
           },
         },
       ],
       "returns": ParseNode {
+        "baseType": "int",
         "kind": "type",
         "origin": "builtin",
-        "type": "int",
       },
       "type": ParseNode {
+        "baseType": "fn",
         "kind": "type",
         "origin": "builtin",
         "parameters": Array [
           ParseNode {
+            "baseType": "int",
             "kind": "type",
             "origin": "builtin",
-            "type": "int",
           },
         ],
         "returns": ParseNode {
+          "baseType": "int",
           "kind": "type",
           "origin": "builtin",
-          "type": "int",
         },
-        "type": "fn",
       },
     },
   },
@@ -263,9 +263,9 @@ Array [
       ParseNode {
         "kind": "literal",
         "type": ParseNode {
+          "baseType": "int",
           "kind": "type",
           "origin": "builtin",
-          "type": "int",
         },
         "value": 10,
       },
@@ -286,9 +286,9 @@ Array [
       ParseNode {
         "kind": "literal",
         "type": ParseNode {
+          "baseType": "int",
           "kind": "type",
           "origin": "builtin",
-          "type": "int",
         },
         "value": 20,
       },
@@ -302,9 +302,9 @@ Array [
           "value": ParseNode {
             "kind": "literal",
             "type": ParseNode {
+              "baseType": "int",
               "kind": "type",
               "origin": "builtin",
-              "type": "int",
             },
             "value": 0,
           },
@@ -316,9 +316,9 @@ Array [
                 ParseNode {
                   "kind": "literal",
                   "type": ParseNode {
+                    "baseType": "str",
                     "kind": "type",
                     "origin": "builtin",
-                    "type": "str",
                   },
                   "value": "fizzbuzz",
                 },
@@ -337,9 +337,9 @@ Array [
                     "right": ParseNode {
                       "kind": "literal",
                       "type": ParseNode {
+                        "baseType": "int",
                         "kind": "type",
                         "origin": "builtin",
-                        "type": "int",
                       },
                       "value": 3,
                     },
@@ -348,9 +348,9 @@ Array [
                   "right": ParseNode {
                     "kind": "literal",
                     "type": ParseNode {
+                      "baseType": "int",
                       "kind": "type",
                       "origin": "builtin",
-                      "type": "int",
                     },
                     "value": 0,
                   },
@@ -368,9 +368,9 @@ Array [
                     "right": ParseNode {
                       "kind": "literal",
                       "type": ParseNode {
+                        "baseType": "int",
                         "kind": "type",
                         "origin": "builtin",
-                        "type": "int",
                       },
                       "value": 5,
                     },
@@ -379,9 +379,9 @@ Array [
                   "right": ParseNode {
                     "kind": "literal",
                     "type": ParseNode {
+                      "baseType": "int",
                       "kind": "type",
                       "origin": "builtin",
-                      "type": "int",
                     },
                     "value": 0,
                   },
@@ -393,9 +393,9 @@ Array [
                     ParseNode {
                       "kind": "literal",
                       "type": ParseNode {
+                        "baseType": "str",
                         "kind": "type",
                         "origin": "builtin",
-                        "type": "str",
                       },
                       "value": "buzz",
                     },
@@ -412,9 +412,9 @@ Array [
                       "right": ParseNode {
                         "kind": "literal",
                         "type": ParseNode {
+                          "baseType": "int",
                           "kind": "type",
                           "origin": "builtin",
-                          "type": "int",
                         },
                         "value": 5,
                       },
@@ -423,9 +423,9 @@ Array [
                     "right": ParseNode {
                       "kind": "literal",
                       "type": ParseNode {
+                        "baseType": "int",
                         "kind": "type",
                         "origin": "builtin",
-                        "type": "int",
                       },
                       "value": 0,
                     },
@@ -436,9 +436,9 @@ Array [
                         ParseNode {
                           "kind": "literal",
                           "type": ParseNode {
+                            "baseType": "str",
                             "kind": "type",
                             "origin": "builtin",
-                            "type": "str",
                           },
                           "value": "fizz",
                         },
@@ -455,9 +455,9 @@ Array [
                           "right": ParseNode {
                             "kind": "literal",
                             "type": ParseNode {
+                              "baseType": "int",
                               "kind": "type",
                               "origin": "builtin",
-                              "type": "int",
                             },
                             "value": 3,
                           },
@@ -466,9 +466,9 @@ Array [
                         "right": ParseNode {
                           "kind": "literal",
                           "type": ParseNode {
+                            "baseType": "int",
                             "kind": "type",
                             "origin": "builtin",
-                            "type": "int",
                           },
                           "value": 0,
                         },
@@ -504,9 +504,9 @@ Array [
                 "right": ParseNode {
                   "kind": "literal",
                   "type": ParseNode {
+                    "baseType": "int",
                     "kind": "type",
                     "origin": "builtin",
-                    "type": "int",
                   },
                   "value": 1,
                 },
@@ -532,9 +532,9 @@ Array [
           "value": ParseNode {
             "kind": "literal",
             "type": ParseNode {
+              "baseType": "null",
               "kind": "type",
               "origin": "builtin",
-              "type": "null",
             },
             "value": null,
           },
@@ -545,33 +545,33 @@ Array [
         Object {
           "name": "count",
           "type": ParseNode {
+            "baseType": "int",
             "kind": "type",
             "origin": "builtin",
-            "type": "int",
           },
         },
       ],
       "returns": ParseNode {
+        "baseType": "null",
         "kind": "type",
         "origin": "builtin",
-        "type": "null",
       },
       "type": ParseNode {
+        "baseType": "fn",
         "kind": "type",
         "origin": "builtin",
         "parameters": Array [
           ParseNode {
+            "baseType": "int",
             "kind": "type",
             "origin": "builtin",
-            "type": "int",
           },
         ],
         "returns": ParseNode {
+          "baseType": "null",
           "kind": "type",
           "origin": "builtin",
-          "type": "null",
         },
-        "type": "fn",
       },
     },
   },
@@ -587,9 +587,9 @@ Array [
         "value": ParseNode {
           "kind": "literal",
           "type": ParseNode {
+            "baseType": "null",
             "kind": "type",
             "origin": "builtin",
-            "type": "null",
           },
           "value": null,
         },
@@ -598,20 +598,20 @@ Array [
     "kind": "literal",
     "parameters": Array [],
     "returns": ParseNode {
+      "baseType": "null",
       "kind": "type",
       "origin": "builtin",
-      "type": "null",
     },
     "type": ParseNode {
+      "baseType": "fn",
       "kind": "type",
       "origin": "builtin",
       "parameters": Array [],
       "returns": ParseNode {
+        "baseType": "null",
         "kind": "type",
         "origin": "builtin",
-        "type": "null",
       },
-      "type": "fn",
     },
   },
 ]
@@ -626,9 +626,9 @@ Array [
         "value": ParseNode {
           "kind": "literal",
           "type": ParseNode {
+            "baseType": "null",
             "kind": "type",
             "origin": "builtin",
-            "type": "null",
           },
           "value": null,
         },
@@ -637,20 +637,20 @@ Array [
     "kind": "literal",
     "parameters": Array [],
     "returns": ParseNode {
+      "baseType": "null",
       "kind": "type",
       "origin": "builtin",
-      "type": "null",
     },
     "type": ParseNode {
+      "baseType": "fn",
       "kind": "type",
       "origin": "builtin",
       "parameters": Array [],
       "returns": ParseNode {
+        "baseType": "null",
         "kind": "type",
         "origin": "builtin",
-        "type": "null",
       },
-      "type": "fn",
     },
   },
 ]
