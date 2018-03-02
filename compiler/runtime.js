@@ -217,153 +217,6 @@ KYTHERA.value = class {
 				throw new Error("Invalid payload type: " + type)
 		}
 	}
-
-	static eq(a, b) {
-		if(!KYTHERA.type.eq(a.type, b.type)) {
-			return new KYTHERA.value(false, KYTHERA.type.PRIMITIVES.bool)
-		}
-
-		if(["bool", "int", "float", "str", "null"].includes(a.type.type)) {
-			return new KYTHERA.value(a.value === b.value, KYTHERA.type.PRIMITIVES.bool)
-		}
-
-		if(a.type.type === "obj") {
-			// TODO compare each object member
-		}
-
-		if(a.type.type === "fn") {
-			// TODO compare memory addresses for now
-			return this.value === b.value
-		}
-
-		if(a.type.type === "list") {
-			// TODO compare each list member
-			this.value.every()
-		}
-
-		if(a.type.type === "type") {
-			return KYTHERA.type.eq(a.value, b.value)
-		}
-	}
-
-	static ne(a, b) {
-		return new KYTHERA.value(!(this.eq(a,b)), KYTHERA.type.PRIMITIVES.bool)
-	}
-
-	static lt(a, b) {
-		if(a.type.type !== "int" && a.type.type !== "float") {
-			throw new Error("Comparison requires int or float (the compiler should have caught this")
-		}
-
-		if(!KYTHERA.type.eq(a.type, b.type)) {
-			throw new Error("Types do not match (the compiler should have caught this")
-		}
-
-		return new KYTHERA.value(a.value < b.value, KYTHERA.type.PRIMITIVES.bool);
-	}
-
-	static gt(a, b) {
-		if(a.type.type !== "int" && a.type.type !== "float") {
-			throw new Error("Comparison requires int or float (the compiler should have caught this")
-		}
-		
-		if(!KYTHERA.type.eq(a.type, b.type)) {
-			throw new Error("Types do not match (the compiler should have caught this")
-		}
-
-		return new KYTHERA.value(a.value > b.value, KYTHERA.type.PRIMITIVES.bool);
-	}
-
-	static le(a, b) {
-		return new KYTHERA.value(!(this.gt(a,b)), KYTHERA.type.PRIMITIVES.bool)
-	}
-
-	static ge(a, b) {
-		return new KYTHERA.value(!(this.lt(a,b)), KYTHERA.type.PRIMITIVES.bool)
-	}
-
-	static add(a, b) {
-		if(a.type.type !== "int" && a.type.type !== "float") {
-			throw new Error("Arithmetic requires int or float (the compiler should have caught this")
-		}
-
-		if(!KYTHERA.type.eq(a.type, b.type)) {
-			throw new Error("Types do not match (the compiler should have caught this")
-		}
-
-		return new KYTHERA.value((a.value + b.value), a.type)
-	}
-
-	static sub(a, b) {
-		if(a.type.type !== "int" && a.type.type !== "float") {
-			throw new Error("Arithmetic requires int or float (the compiler should have caught this")
-		}
-
-		if(!KYTHERA.type.eq(a.type, b.type)) {
-			throw new Error("Types do not match (the compiler should have caught this")
-		}
-
-		return new KYTHERA.value((a.value - b.value), a.type)
-	}
-
-	static mul(a, b) {
-		if(a.type.type !== "int" && a.type.type !== "float") {
-			throw new Error("Arithmetic requires int or float (the compiler should have caught this")
-		}
-
-		if(!KYTHERA.type.eq(a.type, b.type)) {
-			throw new Error("Types do not match (the compiler should have caught this")
-		}
-
-		return new KYTHERA.value((a.value * b.value), a.type)
-	}
-
-	static div(a, b) {
-		if(a.type.type !== "int" && a.type.type !== "float") {
-			throw new Error("Arithmetic requires int or float (the compiler should have caught this")
-		}
-
-		if(!KYTHERA.type.eq(a.type, b.type)) {
-			throw new Error("Types do not match (the compiler should have caught this")
-		}
-
-		let result
-		if(a.type.type === "int") {
-			result = Math.floor(a.value / b.value)
-		} else {
-			result = a.value / b.value
-		}
-
-		return new KYTHERA.value(result , a.type)
-	}
-
-	static mod(a, b) {
-		if(a.type.type !== "int" && a.type.type !== "float") {
-			throw new Error("Arithmetic requires int or float (the compiler should have caught this")
-		}
-
-		if(!KYTHERA.type.eq(a.type, b.type)) {
-			throw new Error("Types do not match (the compiler should have caught this")
-		}
-
-		return new KYTHERA.value((a.value % b.value), a.type)
-	}
-
-	static and(a, b) {
-		if(!(a.type.type === "bool" && b.type.type === "bool")) {
-			throw new Error("Non-boolean types used for boolean operation (the compiler should have caught this)")
-		}
-
-		return new KYTHERA.value((a.value && b.value), KYTHERA.type.PRIMITIVES.bool)
-	}
-
-	static or(a, b) {
-		if(!(a.type.type === "bool" && b.type.type === "bool")) {
-			throw new Error("Non-boolean types used for boolean operation (the compiler should have caught this)")
-		}
-
-		return new KYTHERA.value((a.value || b.value), KYTHERA.type.PRIMITIVES.bool)
-	}
 }
 
 // reusable literals
@@ -371,6 +224,157 @@ KYTHERA.LITERALS = {
 	"true": new KYTHERA.value(true, KYTHERA.type.PRIMITIVES.bool),
 	"false": new KYTHERA.value(false, KYTHERA.type.PRIMITIVES.bool),
 	"null": new KYTHERA.value(null, KYTHERA.type.PRIMITIVES.null)
+}
+
+// convenience function
+const kytheraBool = (val) => val ? KYTHERA.LITERALS.true : KYTHERA.LITERALS.false
+
+
+KYTHERA.value.eq = (a, b) => {
+	if(!KYTHERA.type.eq(a.type, b.type)) {
+		return KYTHERA.LITERALS.false
+	}
+
+	if(["bool", "int", "float", "str", "null"].includes(a.type.type)) {
+		return kytheraBool(a.value === b.value)
+	}
+
+	if(a.type.type === "obj") {
+		// TODO compare each object member
+	}
+
+	if(a.type.type === "fn") {
+		// TODO compare memory addresses for now
+		return this.value === b.value
+	}
+
+	if(a.type.type === "list") {
+		// TODO compare each list member
+		this.value.every()
+	}
+
+	if(a.type.type === "type") {
+		return KYTHERA.type.eq(a.value, b.value)
+	}
+}
+
+KYTHERA.value.ne = (a, b) => {
+	return kytheraBool(!(this.eq(a,b)))
+}
+
+KYTHERA.value.lt = (a, b) => {
+	if(a.type.type !== "int" && a.type.type !== "float") {
+		throw new Error("Comparison requires int or float (the compiler should have caught this")
+	}
+
+	if(!KYTHERA.type.eq(a.type, b.type)) {
+		throw new Error("Types do not match (the compiler should have caught this")
+	}
+
+	return kytheraBool(a.value < b.value)
+}
+
+KYTHERA.value.gt = (a, b) => {
+	if(a.type.type !== "int" && a.type.type !== "float") {
+		throw new Error("Comparison requires int or float (the compiler should have caught this")
+	}
+
+	if(!KYTHERA.type.eq(a.type, b.type)) {
+		throw new Error("Types do not match (the compiler should have caught this")
+	}
+
+	return kytheraBool(a.value > b.value)
+}
+
+KYTHERA.value.le = (a, b) => {
+	return kytheraBool(!(this.gt(a,b)))
+}
+
+KYTHERA.value.ge = (a, b) => {
+	return kytheraBool(!(this.lt(a,b)))
+}
+
+KYTHERA.value.add = (a, b) => {
+	if(a.type.type !== "int" && a.type.type !== "float") {
+		throw new Error("Arithmetic requires int or float (the compiler should have caught this")
+	}
+
+	if(!KYTHERA.type.eq(a.type, b.type)) {
+		throw new Error("Types do not match (the compiler should have caught this")
+	}
+
+	return new KYTHERA.value((a.value + b.value), a.type)
+}
+
+KYTHERA.value.sub = (a, b) => {
+	if(a.type.type !== "int" && a.type.type !== "float") {
+		throw new Error("Arithmetic requires int or float (the compiler should have caught this")
+	}
+
+	if(!KYTHERA.type.eq(a.type, b.type)) {
+		throw new Error("Types do not match (the compiler should have caught this")
+	}
+
+	return new KYTHERA.value((a.value - b.value), a.type)
+}
+
+KYTHERA.value.mul = (a, b) => {
+	if(a.type.type !== "int" && a.type.type !== "float") {
+		throw new Error("Arithmetic requires int or float (the compiler should have caught this")
+	}
+
+	if(!KYTHERA.type.eq(a.type, b.type)) {
+		throw new Error("Types do not match (the compiler should have caught this")
+	}
+
+	return new KYTHERA.value((a.value * b.value), a.type)
+}
+
+KYTHERA.value.div = (a, b) => {
+	if(a.type.type !== "int" && a.type.type !== "float") {
+		throw new Error("Arithmetic requires int or float (the compiler should have caught this")
+	}
+
+	if(!KYTHERA.type.eq(a.type, b.type)) {
+		throw new Error("Types do not match (the compiler should have caught this")
+	}
+
+	let result
+	if(a.type.type === "int") {
+		result = Math.floor(a.value / b.value)
+	} else {
+		result = a.value / b.value
+	}
+
+	return new KYTHERA.value(result , a.type)
+}
+
+KYTHERA.value.mod = (a, b) => {
+	if(a.type.type !== "int" && a.type.type !== "float") {
+		throw new Error("Arithmetic requires int or float (the compiler should have caught this")
+	}
+
+	if(!KYTHERA.type.eq(a.type, b.type)) {
+		throw new Error("Types do not match (the compiler should have caught this")
+	}
+
+	return new KYTHERA.value((a.value % b.value), a.type)
+}
+
+KYTHERA.value.and = (a, b) => {
+	if(!(a.type.type === "bool" && b.type.type === "bool")) {
+		throw new Error("Non-boolean types used for boolean operation (the compiler should have caught this)")
+	}
+
+	return kytheraBool(a.value && b.value)
+}
+
+KYTHERA.value.or = (a, b) => {
+	if(!(a.type.type === "bool" && b.type.type === "bool")) {
+		throw new Error("Non-boolean types used for boolean operation (the compiler should have caught this)")
+	}
+
+	return kytheraBool(a.value || b.value)
 }
 
 module.exports = KYTHERA
