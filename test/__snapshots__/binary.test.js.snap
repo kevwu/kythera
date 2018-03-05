@@ -1,37 +1,96 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Binary operations Arithmetic [COMPL] Addition 1`] = `"(KYTHERA.value.add(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Binary operations Arithmetic [COMPL] Addition 1`] = `"let a = (KYTHERA.value.add(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
 
-exports[`Binary operations Arithmetic [COMPL] Division 1`] = `"(KYTHERA.value.div(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Binary operations Arithmetic [COMPL] Division 1`] = `"let a = (KYTHERA.value.div(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
 
-exports[`Binary operations Arithmetic [COMPL] Modulo 1`] = `"(KYTHERA.value.mod(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Binary operations Arithmetic [COMPL] Modulo 1`] = `"let a = (KYTHERA.value.mod(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
 
-exports[`Binary operations Arithmetic [COMPL] Multiplication 1`] = `"(KYTHERA.value.mul(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Binary operations Arithmetic [COMPL] Multiplication 1`] = `"let a = (KYTHERA.value.mul(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
 
-exports[`Binary operations Arithmetic [COMPL] Subtraction 1`] = `"(KYTHERA.value.sub(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Binary operations Arithmetic [COMPL] Subtraction 1`] = `"let a = (KYTHERA.value.sub(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+
+exports[`Binary operations Arithmetic [EVALT] Addition 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 3,
+  },
+}
+`;
+
+exports[`Binary operations Arithmetic [EVALT] Division 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 0,
+  },
+}
+`;
+
+exports[`Binary operations Arithmetic [EVALT] Modulo 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 1,
+  },
+}
+`;
+
+exports[`Binary operations Arithmetic [EVALT] Multiplication 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 2,
+  },
+}
+`;
+
+exports[`Binary operations Arithmetic [EVALT] Subtraction 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": -1,
+  },
+}
+`;
 
 exports[`Binary operations Arithmetic [PARSE] Addition 1`] = `
 Array [
   ParseNode {
-    "kind": "binary",
-    "left": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
-        "kind": "type",
-        "origin": "builtin",
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 1,
       },
-      "value": 1,
-    },
-    "operator": "+",
-    "right": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
-        "kind": "type",
-        "origin": "builtin",
+      "operator": "+",
+      "right": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 2,
       },
-      "value": 2,
     },
   },
 ]
@@ -40,25 +99,29 @@ Array [
 exports[`Binary operations Arithmetic [PARSE] Division 1`] = `
 Array [
   ParseNode {
-    "kind": "binary",
-    "left": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
-        "kind": "type",
-        "origin": "builtin",
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 1,
       },
-      "value": 1,
-    },
-    "operator": "/",
-    "right": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
-        "kind": "type",
-        "origin": "builtin",
+      "operator": "/",
+      "right": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 2,
       },
-      "value": 2,
     },
   },
 ]
@@ -67,25 +130,29 @@ Array [
 exports[`Binary operations Arithmetic [PARSE] Modulo 1`] = `
 Array [
   ParseNode {
-    "kind": "binary",
-    "left": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
-        "kind": "type",
-        "origin": "builtin",
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 1,
       },
-      "value": 1,
-    },
-    "operator": "%",
-    "right": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
-        "kind": "type",
-        "origin": "builtin",
+      "operator": "%",
+      "right": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 2,
       },
-      "value": 2,
     },
   },
 ]
@@ -94,25 +161,29 @@ Array [
 exports[`Binary operations Arithmetic [PARSE] Multiplication 1`] = `
 Array [
   ParseNode {
-    "kind": "binary",
-    "left": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
-        "kind": "type",
-        "origin": "builtin",
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 1,
       },
-      "value": 1,
-    },
-    "operator": "*",
-    "right": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
-        "kind": "type",
-        "origin": "builtin",
+      "operator": "*",
+      "right": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 2,
       },
-      "value": 2,
     },
   },
 ]
@@ -121,25 +192,29 @@ Array [
 exports[`Binary operations Arithmetic [PARSE] Subtraction 1`] = `
 Array [
   ParseNode {
-    "kind": "binary",
-    "left": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
-        "kind": "type",
-        "origin": "builtin",
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 1,
       },
-      "value": 1,
-    },
-    "operator": "-",
-    "right": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
-        "kind": "type",
-        "origin": "builtin",
+      "operator": "-",
+      "right": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 2,
       },
-      "value": 2,
     },
   },
 ]
@@ -154,6 +229,61 @@ exports[`Binary operations Assignment [COMPL] Modulo assignment 1`] = `"let a = 
 exports[`Binary operations Assignment [COMPL] Multiplication assignment 1`] = `"let a = new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]);(a = KYTHERA.value.mul(a, new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
 
 exports[`Binary operations Assignment [COMPL] Subtraction assignment 1`] = `"let a = new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]);(a = KYTHERA.value.sub(a, new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+
+exports[`Binary operations Assignment [EVALT] Addition assignment 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 3,
+  },
+}
+`;
+
+exports[`Binary operations Assignment [EVALT] Division assignment 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 0,
+  },
+}
+`;
+
+exports[`Binary operations Assignment [EVALT] Modulo assignment 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 1,
+  },
+}
+`;
+
+exports[`Binary operations Assignment [EVALT] Multiplication assignment 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 2,
+  },
+}
+`;
+
+exports[`Binary operations Assignment [EVALT] Subtraction assignment 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": -1,
+  },
+}
+`;
 
 exports[`Binary operations Assignment [PARSE] Addition assignment 1`] = `
 Array [
@@ -330,32 +460,58 @@ Array [
 ]
 `;
 
-exports[`Binary operations Boolean [COMPL] And 1`] = `"(KYTHERA.value.and(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"])));"`;
+exports[`Binary operations Boolean [COMPL] And 1`] = `"let a = (KYTHERA.value.and(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"])));"`;
 
-exports[`Binary operations Boolean [COMPL] Or 1`] = `"(KYTHERA.value.or(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"])));"`;
+exports[`Binary operations Boolean [COMPL] Or 1`] = `"let a = (KYTHERA.value.or(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"])));"`;
+
+exports[`Binary operations Boolean [EVALT] And 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "bool",
+    },
+    "value": false,
+  },
+}
+`;
+
+exports[`Binary operations Boolean [EVALT] Or 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "bool",
+    },
+    "value": true,
+  },
+}
+`;
 
 exports[`Binary operations Boolean [PARSE] And 1`] = `
 Array [
   ParseNode {
-    "kind": "binary",
-    "left": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "bool",
-        "kind": "type",
-        "origin": "builtin",
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": true,
       },
-      "value": true,
-    },
-    "operator": "&&",
-    "right": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "bool",
-        "kind": "type",
-        "origin": "builtin",
+      "operator": "&&",
+      "right": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": false,
       },
-      "value": false,
     },
   },
 ]
@@ -364,223 +520,118 @@ Array [
 exports[`Binary operations Boolean [PARSE] Or 1`] = `
 Array [
   ParseNode {
-    "kind": "binary",
-    "left": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "bool",
-        "kind": "type",
-        "origin": "builtin",
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": true,
       },
-      "value": true,
-    },
-    "operator": "||",
-    "right": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "bool",
-        "kind": "type",
-        "origin": "builtin",
+      "operator": "||",
+      "right": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": false,
       },
-      "value": false,
     },
   },
 ]
 `;
 
-exports[`Binary operations Comparison [COMPL] Equals 1`] = `"(KYTHERA.value.eq(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Binary operations Comparison [COMPL] Equals 1`] = `"let a = (KYTHERA.value.eq(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
 
-exports[`Binary operations Comparison [COMPL] Greater than 1`] = `"(KYTHERA.value.gt(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Binary operations Comparison [COMPL] Greater than 1`] = `"let a = (KYTHERA.value.gt(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
 
-exports[`Binary operations Comparison [COMPL] Greater than or equal to 1`] = `"(KYTHERA.value.ge(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Binary operations Comparison [COMPL] Greater than or equal to 1`] = `"let a = (KYTHERA.value.ge(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
 
-exports[`Binary operations Comparison [COMPL] Less than 1`] = `"(KYTHERA.value.lt(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Binary operations Comparison [COMPL] Less than 1`] = `"let a = (KYTHERA.value.lt(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
 
-exports[`Binary operations Comparison [COMPL] Less than or equal to 1`] = `"(KYTHERA.value.le(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Binary operations Comparison [COMPL] Less than or equal to 1`] = `"let a = (KYTHERA.value.le(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
 
-exports[`Binary operations Comparison [COMPL] Not equals 1`] = `"(KYTHERA.value.ne(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Binary operations Comparison [COMPL] Not equals 1`] = `"let a = (KYTHERA.value.ne(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+
+exports[`Binary operations Comparison [EVALT] Equals 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "bool",
+    },
+    "value": false,
+  },
+}
+`;
+
+exports[`Binary operations Comparison [EVALT] Greater than 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "bool",
+    },
+    "value": false,
+  },
+}
+`;
+
+exports[`Binary operations Comparison [EVALT] Greater than or equal to 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "bool",
+    },
+    "value": false,
+  },
+}
+`;
+
+exports[`Binary operations Comparison [EVALT] Less than 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "bool",
+    },
+    "value": true,
+  },
+}
+`;
+
+exports[`Binary operations Comparison [EVALT] Less than or equal to 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "bool",
+    },
+    "value": true,
+  },
+}
+`;
+
+exports[`Binary operations Comparison [EVALT] Not equals 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "bool",
+    },
+    "value": true,
+  },
+}
+`;
 
 exports[`Binary operations Comparison [PARSE] Equals 1`] = `
 Array [
   ParseNode {
-    "kind": "binary",
-    "left": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
-        "kind": "type",
-        "origin": "builtin",
-      },
-      "value": 1,
-    },
-    "operator": "==",
-    "right": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
-        "kind": "type",
-        "origin": "builtin",
-      },
-      "value": 2,
-    },
-  },
-]
-`;
-
-exports[`Binary operations Comparison [PARSE] Greater than 1`] = `
-Array [
-  ParseNode {
-    "kind": "binary",
-    "left": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
-        "kind": "type",
-        "origin": "builtin",
-      },
-      "value": 1,
-    },
-    "operator": ">",
-    "right": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
-        "kind": "type",
-        "origin": "builtin",
-      },
-      "value": 2,
-    },
-  },
-]
-`;
-
-exports[`Binary operations Comparison [PARSE] Greater than or equal to 1`] = `
-Array [
-  ParseNode {
-    "kind": "binary",
-    "left": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
-        "kind": "type",
-        "origin": "builtin",
-      },
-      "value": 1,
-    },
-    "operator": ">=",
-    "right": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
-        "kind": "type",
-        "origin": "builtin",
-      },
-      "value": 2,
-    },
-  },
-]
-`;
-
-exports[`Binary operations Comparison [PARSE] Less than 1`] = `
-Array [
-  ParseNode {
-    "kind": "binary",
-    "left": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
-        "kind": "type",
-        "origin": "builtin",
-      },
-      "value": 1,
-    },
-    "operator": "<",
-    "right": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
-        "kind": "type",
-        "origin": "builtin",
-      },
-      "value": 2,
-    },
-  },
-]
-`;
-
-exports[`Binary operations Comparison [PARSE] Less than or equal to 1`] = `
-Array [
-  ParseNode {
-    "kind": "binary",
-    "left": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
-        "kind": "type",
-        "origin": "builtin",
-      },
-      "value": 1,
-    },
-    "operator": "<=",
-    "right": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
-        "kind": "type",
-        "origin": "builtin",
-      },
-      "value": 2,
-    },
-  },
-]
-`;
-
-exports[`Binary operations Comparison [PARSE] Not equals 1`] = `
-Array [
-  ParseNode {
-    "kind": "binary",
-    "left": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
-        "kind": "type",
-        "origin": "builtin",
-      },
-      "value": 1,
-    },
-    "operator": "!=",
-    "right": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
-        "kind": "type",
-        "origin": "builtin",
-      },
-      "value": 2,
-    },
-  },
-]
-`;
-
-exports[`Binary operations Operator precedence [COMPL] multiply before addition 1`] = `"(KYTHERA.value.add(new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]), (KYTHERA.value.mul(new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(4, KYTHERA.type.PRIMITIVES[\\"int\\"])))));"`;
-
-exports[`Binary operations Operator precedence [COMPL] parentheses 1`] = `"(KYTHERA.value.mul((KYTHERA.value.add(new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]))), new KYTHERA.value(4, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
-
-exports[`Binary operations Operator precedence [PARSE] multiply before addition 1`] = `
-Array [
-  ParseNode {
-    "kind": "binary",
-    "left": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
-        "kind": "type",
-        "origin": "builtin",
-      },
-      "value": 2,
-    },
-    "operator": "+",
-    "right": ParseNode {
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
       "kind": "binary",
       "left": ParseNode {
         "kind": "literal",
@@ -589,7 +640,276 @@ Array [
           "kind": "type",
           "origin": "builtin",
         },
-        "value": 3,
+        "value": 1,
+      },
+      "operator": "==",
+      "right": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 2,
+      },
+    },
+  },
+]
+`;
+
+exports[`Binary operations Comparison [PARSE] Greater than 1`] = `
+Array [
+  ParseNode {
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 1,
+      },
+      "operator": ">",
+      "right": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 2,
+      },
+    },
+  },
+]
+`;
+
+exports[`Binary operations Comparison [PARSE] Greater than or equal to 1`] = `
+Array [
+  ParseNode {
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 1,
+      },
+      "operator": ">=",
+      "right": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 2,
+      },
+    },
+  },
+]
+`;
+
+exports[`Binary operations Comparison [PARSE] Less than 1`] = `
+Array [
+  ParseNode {
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 1,
+      },
+      "operator": "<",
+      "right": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 2,
+      },
+    },
+  },
+]
+`;
+
+exports[`Binary operations Comparison [PARSE] Less than or equal to 1`] = `
+Array [
+  ParseNode {
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 1,
+      },
+      "operator": "<=",
+      "right": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 2,
+      },
+    },
+  },
+]
+`;
+
+exports[`Binary operations Comparison [PARSE] Not equals 1`] = `
+Array [
+  ParseNode {
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 1,
+      },
+      "operator": "!=",
+      "right": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 2,
+      },
+    },
+  },
+]
+`;
+
+exports[`Binary operations Operator precedence [COMPL] multiply before addition 1`] = `"let a = (KYTHERA.value.add(new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]), (KYTHERA.value.mul(new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(4, KYTHERA.type.PRIMITIVES[\\"int\\"])))));"`;
+
+exports[`Binary operations Operator precedence [COMPL] parentheses 1`] = `"let a = (KYTHERA.value.mul((KYTHERA.value.add(new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]))), new KYTHERA.value(4, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+
+exports[`Binary operations Operator precedence [EVALT] multiply before addition 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 14,
+  },
+}
+`;
+
+exports[`Binary operations Operator precedence [EVALT] parentheses 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 20,
+  },
+}
+`;
+
+exports[`Binary operations Operator precedence [PARSE] multiply before addition 1`] = `
+Array [
+  ParseNode {
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 2,
+      },
+      "operator": "+",
+      "right": ParseNode {
+        "kind": "binary",
+        "left": ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "value": 3,
+        },
+        "operator": "*",
+        "right": ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "value": 4,
+        },
+      },
+    },
+  },
+]
+`;
+
+exports[`Binary operations Operator precedence [PARSE] parentheses 1`] = `
+Array [
+  ParseNode {
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "binary",
+        "left": ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "value": 2,
+        },
+        "operator": "+",
+        "right": ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "value": 3,
+        },
       },
       "operator": "*",
       "right": ParseNode {
@@ -606,70 +926,45 @@ Array [
 ]
 `;
 
-exports[`Binary operations Operator precedence [PARSE] parentheses 1`] = `
+exports[`Binary operations String concatenation [COMPL] Concatenate 1`] = `"let a = (KYTHERA.value.add(new KYTHERA.value(\\"asdf\\", KYTHERA.type.PRIMITIVES[\\"str\\"]), new KYTHERA.value(\\"zxcv\\", KYTHERA.type.PRIMITIVES[\\"str\\"])));"`;
+
+exports[`Binary operations String concatenation [EVALT] Concatenate 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "asdfzxcv",
+  },
+}
+`;
+
+exports[`Binary operations String concatenation [PARSE] Concatenate 1`] = `
 Array [
   ParseNode {
-    "kind": "binary",
-    "left": ParseNode {
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
       "kind": "binary",
       "left": ParseNode {
         "kind": "literal",
         "type": ParseNode {
-          "baseType": "int",
+          "baseType": "str",
           "kind": "type",
           "origin": "builtin",
         },
-        "value": 2,
+        "value": "asdf",
       },
       "operator": "+",
       "right": ParseNode {
         "kind": "literal",
         "type": ParseNode {
-          "baseType": "int",
+          "baseType": "str",
           "kind": "type",
           "origin": "builtin",
         },
-        "value": 3,
+        "value": "zxcv",
       },
-    },
-    "operator": "*",
-    "right": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
-        "kind": "type",
-        "origin": "builtin",
-      },
-      "value": 4,
-    },
-  },
-]
-`;
-
-exports[`Binary operations String concatenation [COMPL] Concatenate 1`] = `"(KYTHERA.value.add(new KYTHERA.value(\\"asdf\\", KYTHERA.type.PRIMITIVES[\\"str\\"]), new KYTHERA.value(\\"zxcv\\", KYTHERA.type.PRIMITIVES[\\"str\\"])));"`;
-
-exports[`Binary operations String concatenation [PARSE] Concatenate 1`] = `
-Array [
-  ParseNode {
-    "kind": "binary",
-    "left": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "str",
-        "kind": "type",
-        "origin": "builtin",
-      },
-      "value": "asdf",
-    },
-    "operator": "+",
-    "right": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "str",
-        "kind": "type",
-        "origin": "builtin",
-      },
-      "value": "zxcv",
     },
   },
 ]

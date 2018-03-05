@@ -8,7 +8,68 @@ exports[`Control flow if [COMPL] if-else with boolean 1`] = `"let a = new KYTHER
 
 exports[`Control flow if [COMPL] if-else-if 1`] = `"let a = new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]);if(KYTHERA.value.eq((KYTHERA.value.eq(a, new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]))), KYTHERA.LITERALS.true).value) {new KYTHERA.value(\\"one\\", KYTHERA.type.PRIMITIVES[\\"str\\"]);} else {if(KYTHERA.value.eq((KYTHERA.value.eq(a, new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]))), KYTHERA.LITERALS.true).value) {new KYTHERA.value(\\"two\\", KYTHERA.type.PRIMITIVES[\\"str\\"]);} else {new KYTHERA.value(\\"something else\\", KYTHERA.type.PRIMITIVES[\\"str\\"]);};};"`;
 
-exports[`Control flow if [COMPL] if-else-if with boolean 1`] = `"let a = new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]);let b = new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]);let c = new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]);if(KYTHERA.value.eq((KYTHERA.value.eq(a, b)), KYTHERA.LITERALS.true).value) {a;} else {if(KYTHERA.value.eq((KYTHERA.value.eq(b, c)), KYTHERA.LITERALS.true).value) {new KYTHERA.value(\\"two\\", KYTHERA.type.PRIMITIVES[\\"str\\"]);} else {new KYTHERA.value(\\"hello\\", KYTHERA.type.PRIMITIVES[\\"str\\"]);};};"`;
+exports[`Control flow if [COMPL] if-else-if with boolean 1`] = `"let a = new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]);let b = new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]);let c = new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]);let result = KYTHERA.type.PRIMITIVES[\\"str\\"].makeNew();if(KYTHERA.value.eq((KYTHERA.value.eq(a, b)), KYTHERA.LITERALS.true).value) {(result = new KYTHERA.value(\\"a equals b\\", KYTHERA.type.PRIMITIVES[\\"str\\"]));} else {if(KYTHERA.value.eq((KYTHERA.value.eq(b, c)), KYTHERA.LITERALS.true).value) {(result = new KYTHERA.value(\\"b equals c\\", KYTHERA.type.PRIMITIVES[\\"str\\"]));} else {(result = new KYTHERA.value(\\"neither\\", KYTHERA.type.PRIMITIVES[\\"str\\"]));};};"`;
+
+exports[`Control flow if [EVALT] if 1`] = `Object {}`;
+
+exports[`Control flow if [EVALT] if-else 1`] = `Object {}`;
+
+exports[`Control flow if [EVALT] if-else with boolean 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 1,
+  },
+  "b":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 2,
+  },
+}
+`;
+
+exports[`Control flow if [EVALT] if-else-if 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 3,
+  },
+}
+`;
+
+exports[`Control flow if [EVALT] if-else-if with boolean 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 1,
+  },
+  "b":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 2,
+  },
+  "c":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 3,
+  },
+  "result":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "neither",
+  },
+}
+`;
 
 exports[`Control flow if [PARSE] if 1`] = `
 Array [
@@ -270,10 +331,35 @@ Array [
     },
   },
   ParseNode {
+    "identifier": "result",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "new",
+      "target": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+  ParseNode {
     "body": Array [
       ParseNode {
-        "kind": "identifier",
-        "name": "a",
+        "kind": "assign",
+        "left": ParseNode {
+          "kind": "identifier",
+          "name": "result",
+        },
+        "operator": "=",
+        "right": ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "str",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "value": "a equals b",
+        },
       },
     ],
     "condition": ParseNode {
@@ -292,13 +378,21 @@ Array [
       ParseNode {
         "body": Array [
           ParseNode {
-            "kind": "literal",
-            "type": ParseNode {
-              "baseType": "str",
-              "kind": "type",
-              "origin": "builtin",
+            "kind": "assign",
+            "left": ParseNode {
+              "kind": "identifier",
+              "name": "result",
             },
-            "value": "two",
+            "operator": "=",
+            "right": ParseNode {
+              "kind": "literal",
+              "type": ParseNode {
+                "baseType": "str",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "value": "b equals c",
+            },
           },
         ],
         "condition": ParseNode {
@@ -315,13 +409,21 @@ Array [
         },
         "else": Array [
           ParseNode {
-            "kind": "literal",
-            "type": ParseNode {
-              "baseType": "str",
-              "kind": "type",
-              "origin": "builtin",
+            "kind": "assign",
+            "left": ParseNode {
+              "kind": "identifier",
+              "name": "result",
             },
-            "value": "hello",
+            "operator": "=",
+            "right": ParseNode {
+              "kind": "literal",
+              "type": ParseNode {
+                "baseType": "str",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "value": "neither",
+            },
           },
         ],
         "kind": "if",
@@ -335,6 +437,34 @@ Array [
 exports[`Control flow while [COMPL] while 1`] = `"let a = new KYTHERA.value(0, KYTHERA.type.PRIMITIVES[\\"int\\"]);let b = new KYTHERA.value(0, KYTHERA.type.PRIMITIVES[\\"int\\"]);while(KYTHERA.value.eq((KYTHERA.value.eq(a, b)), KYTHERA.LITERALS.true).value) {(a = (KYTHERA.value.add(a, new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]))));};"`;
 
 exports[`Control flow while [COMPL] while 2`] = `"let x = new KYTHERA.value(0, KYTHERA.type.PRIMITIVES[\\"int\\"]);while(KYTHERA.value.eq((KYTHERA.value.lt(x, new KYTHERA.value(10, KYTHERA.type.PRIMITIVES[\\"int\\"]))), KYTHERA.LITERALS.true).value) {(x = (KYTHERA.value.add(x, new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]))));};x;"`;
+
+exports[`Control flow while [EVALT] while 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 2,
+  },
+  "b":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 0,
+  },
+}
+`;
+
+exports[`Control flow while [EVALT] while 2`] = `
+Object {
+  "x":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 10,
+  },
+}
+`;
 
 exports[`Control flow while [PARSE] while 1`] = `
 Array [

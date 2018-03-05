@@ -41,12 +41,13 @@ if a == b {
 let a = 1
 let b = 2
 let c = 3
+let result = new str
 if a == b {
-	a
+	result = "a equals b"
 } else if b == c {
-	"two"
+	result = "b equals c"
 } else {
-	"hello"
+	result = "neither"
 }	
 	`)
 

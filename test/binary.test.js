@@ -2,20 +2,20 @@ const t = require("./util").test
 
 describe("Binary operations", () => {
 	describe("Arithmetic", () => {
-		t("Addition", `1 + 2`)
-		t("Subtraction", `1 - 2`)
-		t("Multiplication", `1 * 2`)
-		t("Division", `1 / 2`)
-		t("Modulo", `1 % 2`)
+		t("Addition", `let a = 1 + 2`)
+		t("Subtraction", `let a = 1 - 2`)
+		t("Multiplication", `let a = 1 * 2`)
+		t("Division", `let a = 1 / 2`)
+		t("Modulo", `let a = 1 % 2`)
 	})
 
 	describe("Comparison", () => {
-		t("Less than", `1 < 2`)
-		t("Greater than", `1 > 2`)
-		t("Less than or equal to", `1 <= 2`)
-		t("Greater than or equal to", `1 >= 2`)
-		t("Equals", `1 == 2`)
-		t("Not equals", `1 != 2`)
+		t("Less than", `let a = 1 < 2`)
+		t("Greater than", `let a = 1 > 2`)
+		t("Less than or equal to", `let a = 1 <= 2`)
+		t("Greater than or equal to", `let a = 1 >= 2`)
+		t("Equals", `let a = 1 == 2`)
+		t("Not equals", `let a = 1 != 2`)
 	})
 
 	describe("Assignment", () => {
@@ -27,17 +27,17 @@ describe("Binary operations", () => {
 	})
 
 	describe("Boolean", () => {
-		t("And", `true && false`)
-		t("Or", `true || false`)
+		t("And", `let a = true && false`)
+		t("Or", `let a = true || false`)
 	})
 
 	describe("Operator precedence", () => {
-		t("multiply before addition", `2 + 3 * 4`)
-		t("parentheses", `(2 + 3) * 4`)
+		t("multiply before addition", `let a = 2 + 3 * 4`)
+		t("parentheses", `let a = (2 + 3) * 4`)
 	})
 
 	describe("String concatenation", () => {
-		t("Concatenate", `"asdf" + "zxcv"`)
+		t("Concatenate", `let a = "asdf" + "zxcv"`)
 	})
 })
 

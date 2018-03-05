@@ -22,13 +22,16 @@ try {
 		console.log(output)
 
 		if(!flags.c) {
-			// output all variables at top-level scope
-			Object.keys(compiler.rootScope.symbols).forEach((key, i) => {
-				output += `console.log("${key}:");\nconsole.log(${key});\n`
+			// collect all variables at top-level scope and make them accessible from outside eval
+			output += "\nvar evalResult = {\n"
+			Object.keys(compiler.rootScope.symbols).forEach((sym, i) => {
+				output += `"${sym}": ${sym},\n`
 			})
+			output += "};"
 
 			console.log("Executing...")
 			eval(output)
+			console.log(JSON.stringify(evalResult, null, 2))
 		}
 	} else {
 		console.log("Starting interactive mode.\n" +
@@ -56,18 +59,20 @@ try {
 					console.log()
 
 					compiler.load(lineNodes)
-					let result = compiler.visitProgram()
+					let output = compiler.visitProgram()
 					console.log("Compiled result:")
-					console.log(result)
+					console.log(output)
 
-					// output all variables at top-level scope
-					Object.keys(compiler.rootScope.symbols).forEach((key, i) => {
-						result += `console.log("${key}:");\nconsole.log(${key});\n`
+					// collect all variables at top-level scope and make them accessible from outside eval
+					output += "\nvar evalResult = {\n"
+					Object.keys(compiler.rootScope.symbols).forEach((sym, i) => {
+						output += `"${sym}": ${sym},\n`
 					})
-					result += ``
+					output += "};"
 
-					console.log("Evaluated output:")
-					eval(`const KYTHERA = require("./compiler/runtime");\n${result}`)
+					console.log("Evaluating...")
+					eval(`const KYTHERA = require("./compiler/runtime");\n${output}`)
+					console.log(JSON.stringify(evalResult, null, 2))
 
 					codeBlock = ""
 					stdin.setPrompt("==> ")

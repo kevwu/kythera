@@ -1,39 +1,109 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Primitive Types Arithmetic [COMPL] division 1`] = `"(KYTHERA.value.div(new KYTHERA.value(6, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Primitive Types Arithmetic [COMPL] division 1`] = `"let a = (KYTHERA.value.div(new KYTHERA.value(6, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
 
-exports[`Primitive Types Arithmetic [COMPL] float addition 1`] = `"(KYTHERA.value.add(new KYTHERA.value(3.14159, KYTHERA.type.PRIMITIVES[\\"float\\"]), new KYTHERA.value(2.71828, KYTHERA.type.PRIMITIVES[\\"float\\"])));"`;
+exports[`Primitive Types Arithmetic [COMPL] float addition 1`] = `"let a = (KYTHERA.value.add(new KYTHERA.value(3.14159, KYTHERA.type.PRIMITIVES[\\"float\\"]), new KYTHERA.value(2.71828, KYTHERA.type.PRIMITIVES[\\"float\\"])));"`;
 
-exports[`Primitive Types Arithmetic [COMPL] int Addition 1`] = `"(KYTHERA.value.add(new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Primitive Types Arithmetic [COMPL] int Addition 1`] = `"let a = (KYTHERA.value.add(new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
 
-exports[`Primitive Types Arithmetic [COMPL] modulo 1`] = `"(KYTHERA.value.mod(new KYTHERA.value(18, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Primitive Types Arithmetic [COMPL] modulo 1`] = `"let a = (KYTHERA.value.mod(new KYTHERA.value(18, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
 
-exports[`Primitive Types Arithmetic [COMPL] multiplication 1`] = `"(KYTHERA.value.mul(new KYTHERA.value(4, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Primitive Types Arithmetic [COMPL] multiplication 1`] = `"let a = (KYTHERA.value.mul(new KYTHERA.value(4, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
 
-exports[`Primitive Types Arithmetic [COMPL] subtraction 1`] = `"(KYTHERA.value.sub(new KYTHERA.value(9, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(5, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Primitive Types Arithmetic [COMPL] subtraction 1`] = `"let a = (KYTHERA.value.sub(new KYTHERA.value(9, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(5, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+
+exports[`Primitive Types Arithmetic [EVALT] division 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 2,
+  },
+}
+`;
+
+exports[`Primitive Types Arithmetic [EVALT] float addition 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "float",
+    },
+    "value": 5.85987,
+  },
+}
+`;
+
+exports[`Primitive Types Arithmetic [EVALT] int Addition 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 4,
+  },
+}
+`;
+
+exports[`Primitive Types Arithmetic [EVALT] modulo 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 0,
+  },
+}
+`;
+
+exports[`Primitive Types Arithmetic [EVALT] multiplication 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 8,
+  },
+}
+`;
+
+exports[`Primitive Types Arithmetic [EVALT] subtraction 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 4,
+  },
+}
+`;
 
 exports[`Primitive Types Arithmetic [PARSE] division 1`] = `
 Array [
   ParseNode {
-    "kind": "binary",
-    "left": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
-        "kind": "type",
-        "origin": "builtin",
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 6,
       },
-      "value": 6,
-    },
-    "operator": "/",
-    "right": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
-        "kind": "type",
-        "origin": "builtin",
+      "operator": "/",
+      "right": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 3,
       },
-      "value": 3,
     },
   },
 ]
@@ -42,25 +112,29 @@ Array [
 exports[`Primitive Types Arithmetic [PARSE] float addition 1`] = `
 Array [
   ParseNode {
-    "kind": "binary",
-    "left": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "float",
-        "kind": "type",
-        "origin": "builtin",
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "float",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 3.14159,
       },
-      "value": 3.14159,
-    },
-    "operator": "+",
-    "right": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "float",
-        "kind": "type",
-        "origin": "builtin",
+      "operator": "+",
+      "right": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "float",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 2.71828,
       },
-      "value": 2.71828,
     },
   },
 ]
@@ -69,25 +143,29 @@ Array [
 exports[`Primitive Types Arithmetic [PARSE] int Addition 1`] = `
 Array [
   ParseNode {
-    "kind": "binary",
-    "left": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
-        "kind": "type",
-        "origin": "builtin",
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 2,
       },
-      "value": 2,
-    },
-    "operator": "+",
-    "right": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
-        "kind": "type",
-        "origin": "builtin",
+      "operator": "+",
+      "right": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 2,
       },
-      "value": 2,
     },
   },
 ]
@@ -96,25 +174,29 @@ Array [
 exports[`Primitive Types Arithmetic [PARSE] modulo 1`] = `
 Array [
   ParseNode {
-    "kind": "binary",
-    "left": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
-        "kind": "type",
-        "origin": "builtin",
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 18,
       },
-      "value": 18,
-    },
-    "operator": "%",
-    "right": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
-        "kind": "type",
-        "origin": "builtin",
+      "operator": "%",
+      "right": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 3,
       },
-      "value": 3,
     },
   },
 ]
@@ -123,25 +205,29 @@ Array [
 exports[`Primitive Types Arithmetic [PARSE] multiplication 1`] = `
 Array [
   ParseNode {
-    "kind": "binary",
-    "left": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
-        "kind": "type",
-        "origin": "builtin",
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 4,
       },
-      "value": 4,
-    },
-    "operator": "*",
-    "right": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
-        "kind": "type",
-        "origin": "builtin",
+      "operator": "*",
+      "right": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 2,
       },
-      "value": 2,
     },
   },
 ]
@@ -150,64 +236,138 @@ Array [
 exports[`Primitive Types Arithmetic [PARSE] subtraction 1`] = `
 Array [
   ParseNode {
-    "kind": "binary",
-    "left": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
-        "kind": "type",
-        "origin": "builtin",
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 9,
       },
-      "value": 9,
-    },
-    "operator": "-",
-    "right": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
-        "kind": "type",
-        "origin": "builtin",
+      "operator": "-",
+      "right": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 5,
       },
-      "value": 5,
     },
   },
 ]
 `;
 
-exports[`Primitive Types Boolean operations [COMPL] and 1`] = `"(KYTHERA.value.and(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"])));"`;
+exports[`Primitive Types Boolean operations [COMPL] and 1`] = `"let a = (KYTHERA.value.and(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"])));"`;
 
-exports[`Primitive Types Boolean operations [COMPL] and 2`] = `"(KYTHERA.value.and(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"])));"`;
+exports[`Primitive Types Boolean operations [COMPL] and 2`] = `"let a = (KYTHERA.value.and(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"])));"`;
 
-exports[`Primitive Types Boolean operations [COMPL] or 1`] = `"(KYTHERA.value.or(new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"])));"`;
+exports[`Primitive Types Boolean operations [COMPL] or 1`] = `"let a = (KYTHERA.value.or(new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"])));"`;
 
-exports[`Primitive Types Boolean operations [COMPL] or 2`] = `"(KYTHERA.value.or(new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"])));"`;
+exports[`Primitive Types Boolean operations [COMPL] or 2`] = `"let a = (KYTHERA.value.or(new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"])));"`;
 
-exports[`Primitive Types Boolean operations [COMPL] short-circuit and 1`] = `"(KYTHERA.value.and(new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"])));"`;
+exports[`Primitive Types Boolean operations [COMPL] short-circuit and 1`] = `"let a = (KYTHERA.value.and(new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"])));"`;
 
-exports[`Primitive Types Boolean operations [COMPL] short-circuit or 1`] = `"(KYTHERA.value.or(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"])));"`;
+exports[`Primitive Types Boolean operations [COMPL] short-circuit or 1`] = `"let a = (KYTHERA.value.or(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"])));"`;
+
+exports[`Primitive Types Boolean operations [EVALT] and 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "bool",
+    },
+    "value": true,
+  },
+}
+`;
+
+exports[`Primitive Types Boolean operations [EVALT] and 2`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "bool",
+    },
+    "value": false,
+  },
+}
+`;
+
+exports[`Primitive Types Boolean operations [EVALT] or 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "bool",
+    },
+    "value": false,
+  },
+}
+`;
+
+exports[`Primitive Types Boolean operations [EVALT] or 2`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "bool",
+    },
+    "value": true,
+  },
+}
+`;
+
+exports[`Primitive Types Boolean operations [EVALT] short-circuit and 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "bool",
+    },
+    "value": false,
+  },
+}
+`;
+
+exports[`Primitive Types Boolean operations [EVALT] short-circuit or 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "bool",
+    },
+    "value": true,
+  },
+}
+`;
 
 exports[`Primitive Types Boolean operations [PARSE] and 1`] = `
 Array [
   ParseNode {
-    "kind": "binary",
-    "left": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "bool",
-        "kind": "type",
-        "origin": "builtin",
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": true,
       },
-      "value": true,
-    },
-    "operator": "&&",
-    "right": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "bool",
-        "kind": "type",
-        "origin": "builtin",
+      "operator": "&&",
+      "right": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": true,
       },
-      "value": true,
     },
   },
 ]
@@ -216,25 +376,29 @@ Array [
 exports[`Primitive Types Boolean operations [PARSE] and 2`] = `
 Array [
   ParseNode {
-    "kind": "binary",
-    "left": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "bool",
-        "kind": "type",
-        "origin": "builtin",
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": true,
       },
-      "value": true,
-    },
-    "operator": "&&",
-    "right": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "bool",
-        "kind": "type",
-        "origin": "builtin",
+      "operator": "&&",
+      "right": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": false,
       },
-      "value": false,
     },
   },
 ]
@@ -243,16 +407,20 @@ Array [
 exports[`Primitive Types Boolean operations [PARSE] negate false 1`] = `
 Array [
   ParseNode {
-    "kind": "unary",
-    "operator": "!",
-    "target": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "bool",
-        "kind": "type",
-        "origin": "builtin",
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "unary",
+      "operator": "!",
+      "target": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": false,
       },
-      "value": false,
     },
   },
 ]
@@ -261,16 +429,20 @@ Array [
 exports[`Primitive Types Boolean operations [PARSE] negate true 1`] = `
 Array [
   ParseNode {
-    "kind": "unary",
-    "operator": "!",
-    "target": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "bool",
-        "kind": "type",
-        "origin": "builtin",
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "unary",
+      "operator": "!",
+      "target": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": true,
       },
-      "value": true,
     },
   },
 ]
@@ -279,25 +451,29 @@ Array [
 exports[`Primitive Types Boolean operations [PARSE] or 1`] = `
 Array [
   ParseNode {
-    "kind": "binary",
-    "left": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "bool",
-        "kind": "type",
-        "origin": "builtin",
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": false,
       },
-      "value": false,
-    },
-    "operator": "||",
-    "right": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "bool",
-        "kind": "type",
-        "origin": "builtin",
+      "operator": "||",
+      "right": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": false,
       },
-      "value": false,
     },
   },
 ]
@@ -306,25 +482,29 @@ Array [
 exports[`Primitive Types Boolean operations [PARSE] or 2`] = `
 Array [
   ParseNode {
-    "kind": "binary",
-    "left": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "bool",
-        "kind": "type",
-        "origin": "builtin",
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": false,
       },
-      "value": false,
-    },
-    "operator": "||",
-    "right": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "bool",
-        "kind": "type",
-        "origin": "builtin",
+      "operator": "||",
+      "right": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": true,
       },
-      "value": true,
     },
   },
 ]
@@ -333,25 +513,29 @@ Array [
 exports[`Primitive Types Boolean operations [PARSE] short-circuit and 1`] = `
 Array [
   ParseNode {
-    "kind": "binary",
-    "left": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "bool",
-        "kind": "type",
-        "origin": "builtin",
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": false,
       },
-      "value": false,
-    },
-    "operator": "&&",
-    "right": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "bool",
-        "kind": "type",
-        "origin": "builtin",
+      "operator": "&&",
+      "right": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": true,
       },
-      "value": true,
     },
   },
 ]
@@ -360,25 +544,29 @@ Array [
 exports[`Primitive Types Boolean operations [PARSE] short-circuit or 1`] = `
 Array [
   ParseNode {
-    "kind": "binary",
-    "left": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "bool",
-        "kind": "type",
-        "origin": "builtin",
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": true,
       },
-      "value": true,
-    },
-    "operator": "||",
-    "right": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "bool",
-        "kind": "type",
-        "origin": "builtin",
+      "operator": "||",
+      "right": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": false,
       },
-      "value": false,
     },
   },
 ]
@@ -387,20 +575,24 @@ Array [
 exports[`Primitive Types Casting ints and floats [PARSE] float as int 1`] = `
 Array [
   ParseNode {
-    "from": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "float",
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "float",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 3.14159,
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "int",
         "kind": "type",
         "origin": "builtin",
       },
-      "value": 3.14159,
-    },
-    "kind": "as",
-    "to": ParseNode {
-      "baseType": "int",
-      "kind": "type",
-      "origin": "builtin",
     },
   },
 ]
@@ -409,20 +601,24 @@ Array [
 exports[`Primitive Types Casting ints and floats [PARSE] int as float 1`] = `
 Array [
   ParseNode {
-    "from": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 10,
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "float",
         "kind": "type",
         "origin": "builtin",
       },
-      "value": 10,
-    },
-    "kind": "as",
-    "to": ParseNode {
-      "baseType": "float",
-      "kind": "type",
-      "origin": "builtin",
     },
   },
 ]
@@ -431,20 +627,24 @@ Array [
 exports[`Primitive Types Casting ints and floats to bool [PARSE] 0 as bool 1`] = `
 Array [
   ParseNode {
-    "from": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 0,
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "bool",
         "kind": "type",
         "origin": "builtin",
       },
-      "value": 0,
-    },
-    "kind": "as",
-    "to": ParseNode {
-      "baseType": "bool",
-      "kind": "type",
-      "origin": "builtin",
     },
   },
 ]
@@ -453,20 +653,24 @@ Array [
 exports[`Primitive Types Casting ints and floats to bool [PARSE] 0.0 as bool 1`] = `
 Array [
   ParseNode {
-    "from": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 0,
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "bool",
         "kind": "type",
         "origin": "builtin",
       },
-      "value": 0,
-    },
-    "kind": "as",
-    "to": ParseNode {
-      "baseType": "bool",
-      "kind": "type",
-      "origin": "builtin",
     },
   },
 ]
@@ -475,20 +679,24 @@ Array [
 exports[`Primitive Types Casting ints and floats to bool [PARSE] 1 as bool 1`] = `
 Array [
   ParseNode {
-    "from": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 1,
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "bool",
         "kind": "type",
         "origin": "builtin",
       },
-      "value": 1,
-    },
-    "kind": "as",
-    "to": ParseNode {
-      "baseType": "bool",
-      "kind": "type",
-      "origin": "builtin",
     },
   },
 ]
@@ -497,20 +705,24 @@ Array [
 exports[`Primitive Types Casting ints and floats to bool [PARSE] 1.0 as bool 1`] = `
 Array [
   ParseNode {
-    "from": ParseNode {
-      "kind": "literal",
-      "type": ParseNode {
-        "baseType": "int",
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 1,
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "bool",
         "kind": "type",
         "origin": "builtin",
       },
-      "value": 1,
-    },
-    "kind": "as",
-    "to": ParseNode {
-      "baseType": "bool",
-      "kind": "type",
-      "origin": "builtin",
     },
   },
 ]
@@ -525,6 +737,61 @@ exports[`Primitive Types Declaration and assignment [COMPL] int 1`] = `"let myIn
 exports[`Primitive Types Declaration and assignment [COMPL] null 1`] = `"let myNull = new KYTHERA.value(null, KYTHERA.type.PRIMITIVES[\\"null\\"]);(myNull = new KYTHERA.value(null, KYTHERA.type.PRIMITIVES[\\"null\\"]));"`;
 
 exports[`Primitive Types Declaration and assignment [COMPL] str 1`] = `"let myStr = new KYTHERA.value(\\"hello\\", KYTHERA.type.PRIMITIVES[\\"str\\"]);(myStr = new KYTHERA.value(\\"world\\", KYTHERA.type.PRIMITIVES[\\"str\\"]));"`;
+
+exports[`Primitive Types Declaration and assignment [EVALT] bool 1`] = `
+Object {
+  "myBool":  {
+    "type":  {
+      "baseType": "bool",
+    },
+    "value": true,
+  },
+}
+`;
+
+exports[`Primitive Types Declaration and assignment [EVALT] float 1`] = `
+Object {
+  "myFloat":  {
+    "type":  {
+      "baseType": "float",
+    },
+    "value": 2.71828183,
+  },
+}
+`;
+
+exports[`Primitive Types Declaration and assignment [EVALT] int 1`] = `
+Object {
+  "myInt":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 3,
+  },
+}
+`;
+
+exports[`Primitive Types Declaration and assignment [EVALT] null 1`] = `
+Object {
+  "myNull":  {
+    "type":  {
+      "baseType": "null",
+    },
+    "value": null,
+  },
+}
+`;
+
+exports[`Primitive Types Declaration and assignment [EVALT] str 1`] = `
+Object {
+  "myStr":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "world",
+  },
+}
+`;
 
 exports[`Primitive Types Declaration and assignment [PARSE] bool 1`] = `
 Array [
@@ -701,24 +968,83 @@ Array [
 ]
 `;
 
-exports[`Primitive Types Initialization with 'new' [COMPL] bool 1`] = `"KYTHERA.type.PRIMITIVES[\\"bool\\"].makeNew();"`;
+exports[`Primitive Types Initialization with 'new' [COMPL] bool 1`] = `"let a = KYTHERA.type.PRIMITIVES[\\"bool\\"].makeNew();"`;
 
-exports[`Primitive Types Initialization with 'new' [COMPL] float 1`] = `"KYTHERA.type.PRIMITIVES[\\"float\\"].makeNew();"`;
+exports[`Primitive Types Initialization with 'new' [COMPL] float 1`] = `"let a = KYTHERA.type.PRIMITIVES[\\"float\\"].makeNew();"`;
 
-exports[`Primitive Types Initialization with 'new' [COMPL] int 1`] = `"KYTHERA.type.PRIMITIVES[\\"int\\"].makeNew();"`;
+exports[`Primitive Types Initialization with 'new' [COMPL] int 1`] = `"let a = KYTHERA.type.PRIMITIVES[\\"int\\"].makeNew();"`;
 
-exports[`Primitive Types Initialization with 'new' [COMPL] null 1`] = `"KYTHERA.type.PRIMITIVES[\\"null\\"].makeNew();"`;
+exports[`Primitive Types Initialization with 'new' [COMPL] null 1`] = `"let a = KYTHERA.type.PRIMITIVES[\\"null\\"].makeNew();"`;
 
-exports[`Primitive Types Initialization with 'new' [COMPL] str 1`] = `"KYTHERA.type.PRIMITIVES[\\"str\\"].makeNew();"`;
+exports[`Primitive Types Initialization with 'new' [COMPL] str 1`] = `"let a = KYTHERA.type.PRIMITIVES[\\"str\\"].makeNew();"`;
+
+exports[`Primitive Types Initialization with 'new' [EVALT] bool 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "bool",
+    },
+    "value": false,
+  },
+}
+`;
+
+exports[`Primitive Types Initialization with 'new' [EVALT] float 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "float",
+    },
+    "value": 0,
+  },
+}
+`;
+
+exports[`Primitive Types Initialization with 'new' [EVALT] int 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 0,
+  },
+}
+`;
+
+exports[`Primitive Types Initialization with 'new' [EVALT] null 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "null",
+    },
+    "value": null,
+  },
+}
+`;
+
+exports[`Primitive Types Initialization with 'new' [EVALT] str 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "",
+  },
+}
+`;
 
 exports[`Primitive Types Initialization with 'new' [PARSE] bool 1`] = `
 Array [
   ParseNode {
-    "kind": "new",
-    "target": ParseNode {
-      "baseType": "bool",
-      "kind": "type",
-      "origin": "builtin",
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "new",
+      "target": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
   },
 ]
@@ -727,11 +1053,15 @@ Array [
 exports[`Primitive Types Initialization with 'new' [PARSE] float 1`] = `
 Array [
   ParseNode {
-    "kind": "new",
-    "target": ParseNode {
-      "baseType": "float",
-      "kind": "type",
-      "origin": "builtin",
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "new",
+      "target": ParseNode {
+        "baseType": "float",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
   },
 ]
@@ -740,11 +1070,15 @@ Array [
 exports[`Primitive Types Initialization with 'new' [PARSE] int 1`] = `
 Array [
   ParseNode {
-    "kind": "new",
-    "target": ParseNode {
-      "baseType": "int",
-      "kind": "type",
-      "origin": "builtin",
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "new",
+      "target": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
   },
 ]
@@ -753,11 +1087,15 @@ Array [
 exports[`Primitive Types Initialization with 'new' [PARSE] null 1`] = `
 Array [
   ParseNode {
-    "kind": "new",
-    "target": ParseNode {
-      "baseType": "null",
-      "kind": "type",
-      "origin": "builtin",
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "new",
+      "target": ParseNode {
+        "baseType": "null",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
   },
 ]
@@ -766,129 +1104,104 @@ Array [
 exports[`Primitive Types Initialization with 'new' [PARSE] str 1`] = `
 Array [
   ParseNode {
-    "kind": "new",
-    "target": ParseNode {
-      "baseType": "str",
-      "kind": "type",
-      "origin": "builtin",
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "new",
+      "target": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
   },
 ]
 `;
 
-exports[`Primitive Types Literals [COMPL] false 1`] = `"new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]);"`;
+exports[`Primitive Types Literals [COMPL] false 1`] = `"let a = new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]);"`;
 
-exports[`Primitive Types Literals [COMPL] float 1`] = `"new KYTHERA.value(3.14159, KYTHERA.type.PRIMITIVES[\\"float\\"]);"`;
+exports[`Primitive Types Literals [COMPL] float 1`] = `"let a = new KYTHERA.value(3.14159, KYTHERA.type.PRIMITIVES[\\"float\\"]);"`;
 
-exports[`Primitive Types Literals [COMPL] int 1`] = `"new KYTHERA.value(10, KYTHERA.type.PRIMITIVES[\\"int\\"]);"`;
+exports[`Primitive Types Literals [COMPL] int 1`] = `"let a = new KYTHERA.value(10, KYTHERA.type.PRIMITIVES[\\"int\\"]);"`;
 
-exports[`Primitive Types Literals [COMPL] null 1`] = `"new KYTHERA.value(null, KYTHERA.type.PRIMITIVES[\\"null\\"]);"`;
+exports[`Primitive Types Literals [COMPL] null 1`] = `"let a = new KYTHERA.value(null, KYTHERA.type.PRIMITIVES[\\"null\\"]);"`;
 
-exports[`Primitive Types Literals [COMPL] str 1`] = `"new KYTHERA.value(\\"kythera\\", KYTHERA.type.PRIMITIVES[\\"str\\"]);"`;
+exports[`Primitive Types Literals [COMPL] str 1`] = `"let a = new KYTHERA.value(\\"kythera\\", KYTHERA.type.PRIMITIVES[\\"str\\"]);"`;
 
-exports[`Primitive Types Literals [COMPL] true 1`] = `"new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]);"`;
+exports[`Primitive Types Literals [COMPL] true 1`] = `"let a = new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]);"`;
+
+exports[`Primitive Types Literals [EVALT] false 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "bool",
+    },
+    "value": false,
+  },
+}
+`;
+
+exports[`Primitive Types Literals [EVALT] float 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "float",
+    },
+    "value": 3.14159,
+  },
+}
+`;
+
+exports[`Primitive Types Literals [EVALT] int 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 10,
+  },
+}
+`;
+
+exports[`Primitive Types Literals [EVALT] null 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "null",
+    },
+    "value": null,
+  },
+}
+`;
+
+exports[`Primitive Types Literals [EVALT] str 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "kythera",
+  },
+}
+`;
+
+exports[`Primitive Types Literals [EVALT] true 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "bool",
+    },
+    "value": true,
+  },
+}
+`;
 
 exports[`Primitive Types Literals [PARSE] false 1`] = `
 Array [
   ParseNode {
-    "kind": "literal",
-    "type": ParseNode {
-      "baseType": "bool",
-      "kind": "type",
-      "origin": "builtin",
-    },
-    "value": false,
-  },
-]
-`;
-
-exports[`Primitive Types Literals [PARSE] float 1`] = `
-Array [
-  ParseNode {
-    "kind": "literal",
-    "type": ParseNode {
-      "baseType": "float",
-      "kind": "type",
-      "origin": "builtin",
-    },
-    "value": 3.14159,
-  },
-]
-`;
-
-exports[`Primitive Types Literals [PARSE] int 1`] = `
-Array [
-  ParseNode {
-    "kind": "literal",
-    "type": ParseNode {
-      "baseType": "int",
-      "kind": "type",
-      "origin": "builtin",
-    },
-    "value": 10,
-  },
-]
-`;
-
-exports[`Primitive Types Literals [PARSE] null 1`] = `
-Array [
-  ParseNode {
-    "kind": "literal",
-    "type": ParseNode {
-      "baseType": "null",
-      "kind": "type",
-      "origin": "builtin",
-    },
-    "value": null,
-  },
-]
-`;
-
-exports[`Primitive Types Literals [PARSE] str 1`] = `
-Array [
-  ParseNode {
-    "kind": "literal",
-    "type": ParseNode {
-      "baseType": "str",
-      "kind": "type",
-      "origin": "builtin",
-    },
-    "value": "kythera",
-  },
-]
-`;
-
-exports[`Primitive Types Literals [PARSE] true 1`] = `
-Array [
-  ParseNode {
-    "kind": "literal",
-    "type": ParseNode {
-      "baseType": "bool",
-      "kind": "type",
-      "origin": "builtin",
-    },
-    "value": true,
-  },
-]
-`;
-
-exports[`Primitive Types typeof [COMPL] false 1`] = `"KYTHERA.type.PRIMITIVES[\\"bool\\"];"`;
-
-exports[`Primitive Types typeof [COMPL] float 1`] = `"KYTHERA.type.PRIMITIVES[\\"float\\"];"`;
-
-exports[`Primitive Types typeof [COMPL] int 1`] = `"KYTHERA.type.PRIMITIVES[\\"int\\"];"`;
-
-exports[`Primitive Types typeof [COMPL] null 1`] = `"KYTHERA.type.PRIMITIVES[\\"null\\"];"`;
-
-exports[`Primitive Types typeof [COMPL] str 1`] = `"KYTHERA.type.PRIMITIVES[\\"str\\"];"`;
-
-exports[`Primitive Types typeof [COMPL] true 1`] = `"KYTHERA.type.PRIMITIVES[\\"bool\\"];"`;
-
-exports[`Primitive Types typeof [PARSE] false 1`] = `
-Array [
-  ParseNode {
-    "kind": "typeof",
-    "target": ParseNode {
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
       "kind": "literal",
       "type": ParseNode {
         "baseType": "bool",
@@ -901,11 +1214,12 @@ Array [
 ]
 `;
 
-exports[`Primitive Types typeof [PARSE] float 1`] = `
+exports[`Primitive Types Literals [PARSE] float 1`] = `
 Array [
   ParseNode {
-    "kind": "typeof",
-    "target": ParseNode {
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
       "kind": "literal",
       "type": ParseNode {
         "baseType": "float",
@@ -918,11 +1232,12 @@ Array [
 ]
 `;
 
-exports[`Primitive Types typeof [PARSE] int 1`] = `
+exports[`Primitive Types Literals [PARSE] int 1`] = `
 Array [
   ParseNode {
-    "kind": "typeof",
-    "target": ParseNode {
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
       "kind": "literal",
       "type": ParseNode {
         "baseType": "int",
@@ -935,11 +1250,12 @@ Array [
 ]
 `;
 
-exports[`Primitive Types typeof [PARSE] null 1`] = `
+exports[`Primitive Types Literals [PARSE] null 1`] = `
 Array [
   ParseNode {
-    "kind": "typeof",
-    "target": ParseNode {
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
       "kind": "literal",
       "type": ParseNode {
         "baseType": "null",
@@ -952,11 +1268,12 @@ Array [
 ]
 `;
 
-exports[`Primitive Types typeof [PARSE] str 1`] = `
+exports[`Primitive Types Literals [PARSE] str 1`] = `
 Array [
   ParseNode {
-    "kind": "typeof",
-    "target": ParseNode {
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
       "kind": "literal",
       "type": ParseNode {
         "baseType": "str",
@@ -969,11 +1286,12 @@ Array [
 ]
 `;
 
-exports[`Primitive Types typeof [PARSE] true 1`] = `
+exports[`Primitive Types Literals [PARSE] true 1`] = `
 Array [
   ParseNode {
-    "kind": "typeof",
-    "target": ParseNode {
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
       "kind": "literal",
       "type": ParseNode {
         "baseType": "bool",
@@ -981,6 +1299,192 @@ Array [
         "origin": "builtin",
       },
       "value": true,
+    },
+  },
+]
+`;
+
+exports[`Primitive Types typeof [COMPL] false 1`] = `"let a = KYTHERA.type.PRIMITIVES[\\"bool\\"];"`;
+
+exports[`Primitive Types typeof [COMPL] float 1`] = `"let a = KYTHERA.type.PRIMITIVES[\\"float\\"];"`;
+
+exports[`Primitive Types typeof [COMPL] int 1`] = `"let a = KYTHERA.type.PRIMITIVES[\\"int\\"];"`;
+
+exports[`Primitive Types typeof [COMPL] null 1`] = `"let a = KYTHERA.type.PRIMITIVES[\\"null\\"];"`;
+
+exports[`Primitive Types typeof [COMPL] str 1`] = `"let a = KYTHERA.type.PRIMITIVES[\\"str\\"];"`;
+
+exports[`Primitive Types typeof [COMPL] true 1`] = `"let a = KYTHERA.type.PRIMITIVES[\\"bool\\"];"`;
+
+exports[`Primitive Types typeof [EVALT] false 1`] = `
+Object {
+  "a":  {
+    "baseType": "bool",
+  },
+}
+`;
+
+exports[`Primitive Types typeof [EVALT] float 1`] = `
+Object {
+  "a":  {
+    "baseType": "float",
+  },
+}
+`;
+
+exports[`Primitive Types typeof [EVALT] int 1`] = `
+Object {
+  "a":  {
+    "baseType": "int",
+  },
+}
+`;
+
+exports[`Primitive Types typeof [EVALT] null 1`] = `
+Object {
+  "a":  {
+    "baseType": "null",
+  },
+}
+`;
+
+exports[`Primitive Types typeof [EVALT] str 1`] = `
+Object {
+  "a":  {
+    "baseType": "str",
+  },
+}
+`;
+
+exports[`Primitive Types typeof [EVALT] true 1`] = `
+Object {
+  "a":  {
+    "baseType": "bool",
+  },
+}
+`;
+
+exports[`Primitive Types typeof [PARSE] false 1`] = `
+Array [
+  ParseNode {
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "typeof",
+      "target": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": false,
+      },
+    },
+  },
+]
+`;
+
+exports[`Primitive Types typeof [PARSE] float 1`] = `
+Array [
+  ParseNode {
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "typeof",
+      "target": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "float",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 3.14159,
+      },
+    },
+  },
+]
+`;
+
+exports[`Primitive Types typeof [PARSE] int 1`] = `
+Array [
+  ParseNode {
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "typeof",
+      "target": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 10,
+      },
+    },
+  },
+]
+`;
+
+exports[`Primitive Types typeof [PARSE] null 1`] = `
+Array [
+  ParseNode {
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "typeof",
+      "target": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "null",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": null,
+      },
+    },
+  },
+]
+`;
+
+exports[`Primitive Types typeof [PARSE] str 1`] = `
+Array [
+  ParseNode {
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "typeof",
+      "target": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "str",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": "kythera",
+      },
+    },
+  },
+]
+`;
+
+exports[`Primitive Types typeof [PARSE] true 1`] = `
+Array [
+  ParseNode {
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "typeof",
+      "target": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": true,
+      },
     },
   },
 ]

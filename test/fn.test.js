@@ -46,12 +46,12 @@ fibo(10)
 `, {compile: false})
 
 	t("Function with no parameters", `
-<> null {
+let nullFn = <> null {
 	return null
 }
 `)
 	t("Function with no parameters (with space)", `
-< > null {
+let nullFn = < > null {
 	return null
 }
 	`)

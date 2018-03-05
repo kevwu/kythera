@@ -202,7 +202,7 @@ KYTHERA.value = class {
 				if(!Array.isArray(value)) {
 					throw new Error("list value must be an array.")
 				}
-				this.elements = value.elements
+				this.elements = value
 
 				// TODO type check list elements
 
@@ -259,7 +259,7 @@ KYTHERA.value.eq = (a, b) => {
 }
 
 KYTHERA.value.ne = (a, b) => {
-	return kytheraBool(!(KYTHERA.value.eq(a,b)))
+	return kytheraBool(!(KYTHERA.value.eq(a,b).value))
 }
 
 KYTHERA.value.lt = (a, b) => {
@@ -287,11 +287,11 @@ KYTHERA.value.gt = (a, b) => {
 }
 
 KYTHERA.value.le = (a, b) => {
-	return kytheraBool(!(KYTHERA.value.gt(a,b)))
+	return kytheraBool(!(KYTHERA.value.gt(a,b).value))
 }
 
 KYTHERA.value.ge = (a, b) => {
-	return kytheraBool(!(KYTHERA.value.lt(a,b)))
+	return kytheraBool(!(KYTHERA.value.lt(a,b).value))
 }
 
 KYTHERA.value.add = (a, b) => {

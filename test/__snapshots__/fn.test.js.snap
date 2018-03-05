@@ -1,8 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Functions [COMPL] Function with no parameters (with space) 1`] = `"new KYTHERA.value(() => {return new KYTHERA.value(null, KYTHERA.type.PRIMITIVES[\\"null\\"]);}, new KYTHERA.type(\\"fn\\", { parameters: [], returns: KYTHERA.type.PRIMITIVES[\\"null\\"]}));"`;
+exports[`Functions [COMPL] Function with no parameters (with space) 1`] = `"let nullFn = new KYTHERA.value(() => {return new KYTHERA.value(null, KYTHERA.type.PRIMITIVES[\\"null\\"]);}, new KYTHERA.type(\\"fn\\", { parameters: [], returns: KYTHERA.type.PRIMITIVES[\\"null\\"]}));"`;
 
-exports[`Functions [COMPL] Function with no parameters 1`] = `"new KYTHERA.value(() => {return new KYTHERA.value(null, KYTHERA.type.PRIMITIVES[\\"null\\"]);}, new KYTHERA.type(\\"fn\\", { parameters: [], returns: KYTHERA.type.PRIMITIVES[\\"null\\"]}));"`;
+exports[`Functions [COMPL] Function with no parameters 1`] = `"let nullFn = new KYTHERA.value(() => {return new KYTHERA.value(null, KYTHERA.type.PRIMITIVES[\\"null\\"]);}, new KYTHERA.type(\\"fn\\", { parameters: [], returns: KYTHERA.type.PRIMITIVES[\\"null\\"]}));"`;
+
+exports[`Functions [EVALT] Function with no parameters (with space) 1`] = `
+Object {
+  "nullFn":  {
+    "type":  {
+      "baseType": "fn",
+      "structure": Object {
+        "parameters": Array [],
+        "returns":  {
+          "baseType": "null",
+        },
+      },
+    },
+    "value": [Function],
+  },
+}
+`;
+
+exports[`Functions [EVALT] Function with no parameters 1`] = `
+Object {
+  "nullFn":  {
+    "type":  {
+      "baseType": "fn",
+      "structure": Object {
+        "parameters": Array [],
+        "returns":  {
+          "baseType": "null",
+        },
+      },
+    },
+    "value": [Function],
+  },
+}
+`;
 
 exports[`Functions [PARSE] Anonymous function and call 1`] = `
 Array [
@@ -581,36 +615,40 @@ Array [
 exports[`Functions [PARSE] Function with no parameters (with space) 1`] = `
 Array [
   ParseNode {
-    "body": Array [
-      ParseNode {
-        "kind": "return",
-        "value": ParseNode {
-          "kind": "literal",
-          "type": ParseNode {
-            "baseType": "null",
-            "kind": "type",
-            "origin": "builtin",
+    "identifier": "nullFn",
+    "kind": "let",
+    "value": ParseNode {
+      "body": Array [
+        ParseNode {
+          "kind": "return",
+          "value": ParseNode {
+            "kind": "literal",
+            "type": ParseNode {
+              "baseType": "null",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "value": null,
           },
-          "value": null,
         },
-      },
-    ],
-    "kind": "literal",
-    "parameters": Array [],
-    "returns": ParseNode {
-      "baseType": "null",
-      "kind": "type",
-      "origin": "builtin",
-    },
-    "type": ParseNode {
-      "baseType": "fn",
-      "kind": "type",
-      "origin": "builtin",
+      ],
+      "kind": "literal",
       "parameters": Array [],
       "returns": ParseNode {
         "baseType": "null",
         "kind": "type",
         "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "fn",
+        "kind": "type",
+        "origin": "builtin",
+        "parameters": Array [],
+        "returns": ParseNode {
+          "baseType": "null",
+          "kind": "type",
+          "origin": "builtin",
+        },
       },
     },
   },
@@ -620,36 +658,40 @@ Array [
 exports[`Functions [PARSE] Function with no parameters 1`] = `
 Array [
   ParseNode {
-    "body": Array [
-      ParseNode {
-        "kind": "return",
-        "value": ParseNode {
-          "kind": "literal",
-          "type": ParseNode {
-            "baseType": "null",
-            "kind": "type",
-            "origin": "builtin",
+    "identifier": "nullFn",
+    "kind": "let",
+    "value": ParseNode {
+      "body": Array [
+        ParseNode {
+          "kind": "return",
+          "value": ParseNode {
+            "kind": "literal",
+            "type": ParseNode {
+              "baseType": "null",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "value": null,
           },
-          "value": null,
         },
-      },
-    ],
-    "kind": "literal",
-    "parameters": Array [],
-    "returns": ParseNode {
-      "baseType": "null",
-      "kind": "type",
-      "origin": "builtin",
-    },
-    "type": ParseNode {
-      "baseType": "fn",
-      "kind": "type",
-      "origin": "builtin",
+      ],
+      "kind": "literal",
       "parameters": Array [],
       "returns": ParseNode {
         "baseType": "null",
         "kind": "type",
         "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "fn",
+        "kind": "type",
+        "origin": "builtin",
+        "parameters": Array [],
+        "returns": ParseNode {
+          "baseType": "null",
+          "kind": "type",
+          "origin": "builtin",
+        },
       },
     },
   },

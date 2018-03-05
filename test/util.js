@@ -4,7 +4,7 @@ const Compiler = require("../compiler/Compiler")
 require("jest")
 
 module.exports = {
-	test: (name, input, {compile = true, only = false, skip = false} = {}) => {
+	test: (name, input, {compile = true, exec = true, only = false, skip = false} = {}) => {
 		let parser = new Parser()
 
 		parser.load(input)
@@ -28,22 +28,48 @@ module.exports = {
 			let compiler = new Compiler()
 
 			compiler.load(program)
+			let output = compiler.visitProgram()
 
 			if(skip) {
 				test.skip(`[COMPL] ${name}`, () => {
-					expect(compiler.visitProgram().replace(/[\n\r]/g, '')).toMatchSnapshot()
+					expect(output.replace(/[\n\r]/g, '')).toMatchSnapshot()
 				})
 			} else if(only) {
 				test.only(`[COMPL] ${name}`, () => {
-					expect(compiler.visitProgram().replace(/[\n\r]/g, '')).toMatchSnapshot()
+					expect(output.replace(/[\n\r]/g, '')).toMatchSnapshot()
 				})
 			} else {
 				test(`[COMPL] ${name}`, () => {
-					expect(compiler.visitProgram().replace(/[\n\r]/g, '')).toMatchSnapshot()
+					expect(output.replace(/[\n\r]/g, '')).toMatchSnapshot()
 				})
 			}
-		}
 
-		// TODO add "exec" option as the compiler matures
+			let execOutput = output
+
+			if(exec) {
+				execOutput = `const KYTHERA = require("../compiler/runtime");\n` + output
+				execOutput += `var evalResult = {\n`
+				Object.keys(compiler.rootScope.symbols).forEach((sym, i) => {
+					execOutput += `"${sym}": ${sym},\n`
+				})
+				execOutput += "};"
+
+				eval(execOutput)
+
+				if(skip) {
+					test.skip(`[EVALT] ${name}`, () => {
+						expect(evalResult).toMatchSnapshot()
+					})
+				} else if(only) {
+					test.only(`[EVALT] ${name}`, () => {
+						expect(evalResult).toMatchSnapshot()
+					})
+				} else {
+					test(`[EVALT] ${name}`, () => {
+						expect(evalResult).toMatchSnapshot()
+					})
+				}
+			}
+		}
 	}
 }
