@@ -17,16 +17,16 @@ try {
 		let compiler = new Compiler(ast)
 		let output = `const KYTHERA = require("./compiler/runtime");\n` + compiler.visitProgram()
 		if(!flags.c) {
+			console.log("Compilation complete:\n")
+		}
+		console.log(output)
+
+		if(!flags.c) {
 			// output all variables at top-level scope
 			Object.keys(compiler.rootScope.symbols).forEach((key, i) => {
 				output += `console.log("${key}:");\nconsole.log(${key});\n`
 			})
 
-			console.log("Compilation complete:")
-		}
-		console.log(output)
-
-		if(!flags.c) {
 			console.log("Executing...")
 			eval(output)
 		}
@@ -50,13 +50,23 @@ try {
 				if(line === "") { // execute
 					parser.load(codeBlock)
 					let lineNodes = parser.parse()
+
+					console.log("Parse tree:")
 					console.log(JSON.stringify(lineNodes, null, 2))
 					console.log()
 
 					compiler.load(lineNodes)
 					let result = compiler.visitProgram()
+					console.log("Compiled result:")
 					console.log(result)
 
+					// output all variables at top-level scope
+					Object.keys(compiler.rootScope.symbols).forEach((key, i) => {
+						result += `console.log("${key}:");\nconsole.log(${key});\n`
+					})
+					result += ``
+
+					console.log("Evaluated output:")
 					eval(`const KYTHERA = require("./compiler/runtime");\n${result}`)
 
 					codeBlock = ""

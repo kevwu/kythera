@@ -59,6 +59,8 @@ class Compiler {
 				return this.visitReturn(node)
 			case "if":
 				return this.visitIf(node)
+			case "while":
+				return this.visitWhile(node)
 			default:
 				return this.visitExpressionNode(node).output
 		}
@@ -265,7 +267,7 @@ class Compiler {
 				throw new Error("Comparison operators require int or float, not " + lhs.type.baseType)
 			}
 
-			outType = lhs.type
+			outType = KytheraType.PRIMITIVES.bool
 		} else if(["+", "-", "*", "/", "%"].includes(node.operator)) {
 			if(!["int", "float"].includes(lhs.type.baseType)) {
 				throw new Error("Arithmetic operators require int or float, not " + lhs.type.baseType)
@@ -290,12 +292,12 @@ class Compiler {
 
 		let condition = this.visitExpressionNode(node.condition)
 		if(condition.type.baseType !== "bool") {
-			throw new Error("Condition for if statement must evaluate to bool")
+			throw new Error("Condition for if statement must evaluate to bool, not " + condition.type.baseType)
 		}
 
 		out += condition.output
 
-		out += ", KYTHERA.LITERALS.true)) {\n"
+		out += ", KYTHERA.LITERALS.true).value) {\n"
 
 		out += node.body.reduce((prev, bodyNode) => {
 			return prev + this.visitNode(bodyNode) + ';\n'
@@ -312,6 +314,28 @@ class Compiler {
 
 			out += "}"
 		}
+		return out
+	}
+
+	visitWhile(node) {
+		let out = "while(KYTHERA.value.eq("
+
+		let condition = this.visitExpressionNode(node.condition)
+
+		if(condition.type.baseType !== "bool") {
+			throw new Error("Condition for while statement must evaluate to bool, not " + condition.type.baseType)
+		}
+
+		out += condition.output
+
+		out += ", KYTHERA.LITERALS.true).value) {\n"
+
+		out += node.body.reduce((prev, bodyNode) => {
+			return prev + this.visitNode(bodyNode) + ";\n"
+		}, "")
+
+		out += "}"
+
 		return out
 	}
 

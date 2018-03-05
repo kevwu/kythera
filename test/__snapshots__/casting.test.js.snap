@@ -38,15 +38,16 @@ Array [
   ParseNode {
     "index": "a",
     "kind": "access",
+    "method": "object",
     "target": ParseNode {
       "kind": "identifier",
       "name": "myObj",
     },
-    "type": "object",
   },
   ParseNode {
     "index": "a",
     "kind": "access",
+    "method": "object",
     "target": ParseNode {
       "from": ParseNode {
         "kind": "identifier",
@@ -59,18 +60,17 @@ Array [
         "origin": "named",
       },
     },
-    "type": "object",
   },
   ParseNode {
     "kind": "binary",
     "left": ParseNode {
       "index": "a",
       "kind": "access",
+      "method": "object",
       "target": ParseNode {
         "kind": "identifier",
         "name": "myObj",
       },
-      "type": "object",
     },
     "operator": "+",
     "right": ParseNode {
@@ -241,20 +241,20 @@ Array [
         ParseNode {
           "index": "a",
           "kind": "access",
+          "method": "object",
           "target": ParseNode {
             "kind": "identifier",
             "name": "object",
           },
-          "type": "object",
         },
         ParseNode {
           "index": "b",
           "kind": "access",
+          "method": "object",
           "target": ParseNode {
             "kind": "identifier",
             "name": "object",
           },
-          "type": "object",
         },
         ParseNode {
           "kind": "return",

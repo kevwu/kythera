@@ -57,7 +57,7 @@ KYTHERA.type = class {
 
 	// create a KYTHERA.value with the "new" keyword
 	makeNew() {
-		switch(this.type) {
+		switch(this.baseType) {
 			case "int":
 				return new KYTHERA.value(0, this)
 			case "float":
@@ -82,7 +82,7 @@ KYTHERA.type = class {
 			case "list":
 				throw new Error("Not yet implemented")
 			default:
-				throw new Error("Invalid type: " + this.type)
+				throw new Error("Invalid type: " + this.baseType)
 		}
 	}
 

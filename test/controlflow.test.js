@@ -54,10 +54,12 @@ if a == b {
 
 	describe("while", () => {
 		t("while", `
+let a = 0
+let b = 0
 while a == b {
     a = a + 2
 }	
-	`, {compile: false})
+	`)
 
 		t("while", `
 let x = 0
@@ -66,6 +68,6 @@ while x < 10 {
 }
 
 x	
-	`, {compile: false})
+	`)
 	})
 })

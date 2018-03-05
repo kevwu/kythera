@@ -39,11 +39,11 @@ Array [
               "value": 0,
             },
             "kind": "access",
+            "method": "unknown",
             "target": ParseNode {
               "kind": "identifier",
               "name": "result",
             },
-            "type": "unknown",
           },
           "operator": "=",
           "right": ParseNode {
@@ -98,6 +98,7 @@ Array [
       "value": 0,
     },
     "kind": "access",
+    "method": "unknown",
     "target": ParseNode {
       "arguments": Array [],
       "kind": "call",
@@ -106,7 +107,6 @@ Array [
         "name": "myListFn",
       },
     },
-    "type": "unknown",
   },
 ]
 `;
@@ -143,11 +143,11 @@ Array [
         "value": 0,
       },
       "kind": "access",
+      "method": "unknown",
       "target": ParseNode {
         "kind": "identifier",
         "name": "myList",
       },
-      "type": "unknown",
     },
     "operator": "=",
     "right": ParseNode {

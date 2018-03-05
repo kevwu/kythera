@@ -1,6 +1,6 @@
 const KEYWORDS =  [
 	"let", "new", // declaration
-	"if", "else", "while", "each", "switch", "break", "return", "continue", // control flow
+	"if", "else", "while", "each", "switch", "case", "fallthrough", "default", "break", "return", "continue", // control flow
 	"bool", "int", "float", "str", "null", "fn", "obj", "list", "type", // types
 	"typeof", "as", // type handling
 	"import", "export", "include", // packages
