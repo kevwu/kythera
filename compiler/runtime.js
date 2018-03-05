@@ -377,4 +377,12 @@ KYTHERA.value.or = (a, b) => {
 	return kytheraBool(a.value || b.value)
 }
 
+KYTHERA.value.not = (a) => {
+	if(!(a.type.baseType === "bool")) {
+		throw new Error("Not operator requires boolean (the compiler should have caught this)")
+	}
+
+	return kytheraBool(!a.value)
+}
+
 module.exports = KYTHERA

@@ -18,6 +18,7 @@ const OPFUNCTIONS = {
 	"%": "mod",
 	"&&": "and",
 	"||": "or",
+	"!": "not",
 }
 
 class Compiler {
@@ -87,6 +88,8 @@ class Compiler {
 				return this.visitTypeof(node)
 			case "assign":
 				return this.visitAssign(node)
+			case "unary":
+				return this.visitUnary(node)
 			case "binary":
 				return this.visitBinary(node)
 			default:
@@ -241,6 +244,20 @@ class Compiler {
 		return {
 			output: this.makeTypeConstructor(this.visitExpressionNode(node.target).type),
 			type: KytheraType.PRIMITIVES.type,
+		}
+	}
+
+	visitUnary(node) {
+		let target = this.visitExpressionNode(node.target)
+
+		// right now, the only unary operator is !
+		if(target.type.baseType !== "bool") {
+			throw new Error("Not operator requires bool, not " + target.type.baseType)
+		}
+
+		return {
+			output: `KYTHERA.value.not(${target.output})`,
+			type: target.type,
 		}
 	}
 

@@ -1,6 +1,6 @@
 const t = require("./util").test
 
-describe("Binary operations", () => {
+describe("Operations", () => {
 	describe("Arithmetic", () => {
 		t("Addition", `let a = 1 + 2`)
 		t("Subtraction", `let a = 1 - 2`)
@@ -38,6 +38,38 @@ describe("Binary operations", () => {
 
 	describe("String concatenation", () => {
 		t("Concatenate", `let a = "asdf" + "zxcv"`)
+	})
+
+	describe("Negation", () => {
+		t("not false", `let a = !false`)
+		t("not true", `let a = !true`)
+	})
+
+	describe("DeMorgan's laws", () => {
+		t("AB", `
+let A = true
+let B = true
+let r1 = (!(A || B) == (!A && !B))
+let r2 = (!(A && B) == (!A || !B))
+`)
+		t("A'B", `
+let A = false
+let B = true
+let r1 = (!(A || B) == (!A && !B))
+let r2 = (!(A && B) == (!A || !B))
+		`)
+		t("AB'",`
+let A = true
+let B = false
+let r1 = (!(A || B) == (!A && !B))
+let r2 = (!(A && B) == (!A || !B))
+`)
+		t("A'B'", `
+let A = false
+let B = false
+let r1 = (!(A || B) == (!A && !B))
+let r2 = (!(A && B) == (!A || !B))
+		`)
 	})
 })
 
