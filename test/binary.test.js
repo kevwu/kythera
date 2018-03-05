@@ -35,5 +35,9 @@ describe("Binary operations", () => {
 		t("multiply before addition", `2 + 3 * 4`)
 		t("parentheses", `(2 + 3) * 4`)
 	})
+
+	describe("String concatenation", () => {
+		t("Concatenate", `"asdf" + "zxcv"`)
+	})
 })
 

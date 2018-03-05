@@ -30,3 +30,6 @@ true || false
 // operator precedence
 2 + 3 * 4
 (2 + 3) * 4
+
+// string concatenation
+"asdf" + "zxcv"

@@ -269,8 +269,14 @@ class Compiler {
 
 			outType = KytheraType.PRIMITIVES.bool
 		} else if(["+", "-", "*", "/", "%"].includes(node.operator)) {
-			if(!["int", "float"].includes(lhs.type.baseType)) {
-				throw new Error("Arithmetic operators require int or float, not " + lhs.type.baseType)
+			if(lhs.type.baseType === "str") {
+				if(node.operator !== "+") {
+					throw new Error("Invalid operation on string: " + node.operator)
+				}
+			} else {
+				if(!["int", "float"].includes(lhs.type.baseType)) {
+					throw new Error("Arithmetic operators require int or float, not " + lhs.type.baseType)
+				}
 			}
 
 			outType = lhs.type

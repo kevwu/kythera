@@ -259,7 +259,7 @@ KYTHERA.value.eq = (a, b) => {
 }
 
 KYTHERA.value.ne = (a, b) => {
-	return kytheraBool(!(this.eq(a,b)))
+	return kytheraBool(!(KYTHERA.value.eq(a,b)))
 }
 
 KYTHERA.value.lt = (a, b) => {
@@ -287,15 +287,15 @@ KYTHERA.value.gt = (a, b) => {
 }
 
 KYTHERA.value.le = (a, b) => {
-	return kytheraBool(!(this.gt(a,b)))
+	return kytheraBool(!(KYTHERA.value.gt(a,b)))
 }
 
 KYTHERA.value.ge = (a, b) => {
-	return kytheraBool(!(this.lt(a,b)))
+	return kytheraBool(!(KYTHERA.value.lt(a,b)))
 }
 
 KYTHERA.value.add = (a, b) => {
-	if(a.type.baseType !== "int" && a.type.baseType !== "float") {
+	if(a.type.baseType !== "int" && a.type.baseType !== "float" && a.type.baseType !== "str") {
 		throw new Error("Arithmetic requires int or float (the compiler should have caught this")
 	}
 

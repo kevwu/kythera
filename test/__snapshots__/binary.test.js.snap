@@ -645,3 +645,32 @@ Array [
   },
 ]
 `;
+
+exports[`Binary operations String concatenation [COMPL] Concatenate 1`] = `"(KYTHERA.value.add(new KYTHERA.value(\\"asdf\\", KYTHERA.type.PRIMITIVES[\\"str\\"]), new KYTHERA.value(\\"zxcv\\", KYTHERA.type.PRIMITIVES[\\"str\\"])));"`;
+
+exports[`Binary operations String concatenation [PARSE] Concatenate 1`] = `
+Array [
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": "asdf",
+    },
+    "operator": "+",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": "zxcv",
+    },
+  },
+]
+`;
