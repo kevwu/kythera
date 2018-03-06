@@ -92,6 +92,8 @@ class Compiler {
 				return this.visitUnary(node)
 			case "binary":
 				return this.visitBinary(node)
+			case "call":
+				return this.visitCall(node)
 			default:
 				throw new Error("Unhandled node kind: " + node.kind)
 		}
@@ -360,6 +362,41 @@ class Compiler {
 		out += "}"
 
 		return out
+	}
+
+	visitCall(node) {
+		let target = this.visitExpressionNode(node.target)
+
+		if(target.type.baseType !== "fn") {
+			throw new Error("Cannot perform function call on non-function type: " + target.type.baseType)
+		}
+
+		if(target.type.structure.parameters.length !== node.arguments.length) {
+			throw new Error(`Incorrect parameter count: Expected ${target.type.structure.parameters.length}, got ${node.arguments.length}`)
+		}
+
+		let output = target.output + '.value('
+
+		target.type.structure.parameters.forEach((param, i) => {
+			let arg = this.visitExpressionNode(node.arguments[i])
+
+			if(!KytheraType.eq(param, arg.type)) {
+				throw new Error(`Types for parameter ${i} do not match: Expected ${param.baseType}, got ${arg.type.baseType}`)
+			}
+
+			output += arg.output
+
+			if(i !== target.type.structure.parameters.length - 1) {
+				output += ","
+			}
+		})
+
+		output += ")"
+
+		return {
+			output: output,
+			type: target.type.structure.returns
+		}
 	}
 
 	// transform a type ParseNode into a KytheraType

@@ -1,8 +1,76 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Functions [COMPL] Anonymous function and call 1`] = `"let res = new KYTHERA.value((a) => {let q = new KYTHERA.value(99, KYTHERA.type.PRIMITIVES[\\"int\\"]);let r = q;return q;}, new KYTHERA.type(\\"fn\\", { parameters: [KYTHERA.type.PRIMITIVES[\\"int\\"]], returns: KYTHERA.type.PRIMITIVES[\\"int\\"]})).value(new KYTHERA.value(10, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+
+exports[`Functions [COMPL] Anonymous function modifying parameter 1`] = `"let res = new KYTHERA.value((a) => {return (KYTHERA.value.add(a, new KYTHERA.value(10, KYTHERA.type.PRIMITIVES[\\"int\\"])));}, new KYTHERA.type(\\"fn\\", { parameters: [KYTHERA.type.PRIMITIVES[\\"int\\"]], returns: KYTHERA.type.PRIMITIVES[\\"int\\"]})).value(new KYTHERA.value(5, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+
+exports[`Functions [COMPL] Fibonacci 1`] = `"let fibo = new KYTHERA.type(\\"fn\\", { parameters: [KYTHERA.type.PRIMITIVES[\\"int\\"]], returns: KYTHERA.type.PRIMITIVES[\\"int\\"]}).makeNew();(fibo = new KYTHERA.value((x) => {if(KYTHERA.value.eq((KYTHERA.value.eq(x, new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]))), KYTHERA.LITERALS.true).value) {return new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]);};if(KYTHERA.value.eq((KYTHERA.value.eq(x, new KYTHERA.value(0, KYTHERA.type.PRIMITIVES[\\"int\\"]))), KYTHERA.LITERALS.true).value) {return new KYTHERA.value(0, KYTHERA.type.PRIMITIVES[\\"int\\"]);};return (KYTHERA.value.add(fibo.value((KYTHERA.value.sub(x, new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"])))), fibo.value((KYTHERA.value.sub(x, new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]))))));}, new KYTHERA.type(\\"fn\\", { parameters: [KYTHERA.type.PRIMITIVES[\\"int\\"]], returns: KYTHERA.type.PRIMITIVES[\\"int\\"]})));let res = fibo.value(new KYTHERA.value(10, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+
+exports[`Functions [COMPL] Fizzbuzz and call 1`] = `"let fb = KYTHERA.type.PRIMITIVES[\\"str\\"].makeNew();new KYTHERA.value((count) => {let x = new KYTHERA.value(0, KYTHERA.type.PRIMITIVES[\\"int\\"]);while(KYTHERA.value.eq((KYTHERA.value.lt(x, count)), KYTHERA.LITERALS.true).value) {if(KYTHERA.value.eq((KYTHERA.value.and((KYTHERA.value.eq((KYTHERA.value.mod(x, new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]))), new KYTHERA.value(0, KYTHERA.type.PRIMITIVES[\\"int\\"]))), (KYTHERA.value.eq((KYTHERA.value.mod(x, new KYTHERA.value(5, KYTHERA.type.PRIMITIVES[\\"int\\"]))), new KYTHERA.value(0, KYTHERA.type.PRIMITIVES[\\"int\\"]))))), KYTHERA.LITERALS.true).value) {(fb = KYTHERA.value.add(fb, new KYTHERA.value(\\"fizzbuzz\\", KYTHERA.type.PRIMITIVES[\\"str\\"])));} else {if(KYTHERA.value.eq((KYTHERA.value.eq((KYTHERA.value.mod(x, new KYTHERA.value(5, KYTHERA.type.PRIMITIVES[\\"int\\"]))), new KYTHERA.value(0, KYTHERA.type.PRIMITIVES[\\"int\\"]))), KYTHERA.LITERALS.true).value) {(fb = KYTHERA.value.add(fb, new KYTHERA.value(\\"buzz\\", KYTHERA.type.PRIMITIVES[\\"str\\"])));} else {if(KYTHERA.value.eq((KYTHERA.value.eq((KYTHERA.value.mod(x, new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]))), new KYTHERA.value(0, KYTHERA.type.PRIMITIVES[\\"int\\"]))), KYTHERA.LITERALS.true).value) {(fb = KYTHERA.value.add(fb, new KYTHERA.value(\\"fizz\\", KYTHERA.type.PRIMITIVES[\\"str\\"])));} else {x;};};};(x = (KYTHERA.value.add(x, new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]))));};return new KYTHERA.value(null, KYTHERA.type.PRIMITIVES[\\"null\\"]);}, new KYTHERA.type(\\"fn\\", { parameters: [KYTHERA.type.PRIMITIVES[\\"int\\"]], returns: KYTHERA.type.PRIMITIVES[\\"null\\"]})).value(new KYTHERA.value(20, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+
 exports[`Functions [COMPL] Function with no parameters (with space) 1`] = `"let nullFn = new KYTHERA.value(() => {return new KYTHERA.value(null, KYTHERA.type.PRIMITIVES[\\"null\\"]);}, new KYTHERA.type(\\"fn\\", { parameters: [], returns: KYTHERA.type.PRIMITIVES[\\"null\\"]}));"`;
 
 exports[`Functions [COMPL] Function with no parameters 1`] = `"let nullFn = new KYTHERA.value(() => {return new KYTHERA.value(null, KYTHERA.type.PRIMITIVES[\\"null\\"]);}, new KYTHERA.type(\\"fn\\", { parameters: [], returns: KYTHERA.type.PRIMITIVES[\\"null\\"]}));"`;
+
+exports[`Functions [EVALT] Anonymous function and call 1`] = `
+Object {
+  "res":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 99,
+  },
+}
+`;
+
+exports[`Functions [EVALT] Anonymous function modifying parameter 1`] = `
+Object {
+  "res":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 15,
+  },
+}
+`;
+
+exports[`Functions [EVALT] Fibonacci 1`] = `
+Object {
+  "fibo":  {
+    "type":  {
+      "baseType": "fn",
+      "structure": Object {
+        "parameters": Array [
+           {
+            "baseType": "int",
+          },
+        ],
+        "returns":  {
+          "baseType": "int",
+        },
+      },
+    },
+    "value": [Function],
+  },
+  "res":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 55,
+  },
+}
+`;
+
+exports[`Functions [EVALT] Fizzbuzz and call 1`] = `
+Object {
+  "fb":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "fizzbuzzfizzbuzzfizzfizzbuzzfizzfizzbuzzfizz",
+  },
+}
+`;
 
 exports[`Functions [EVALT] Function with no parameters (with space) 1`] = `
 Object {
@@ -41,66 +109,179 @@ Object {
 exports[`Functions [PARSE] Anonymous function and call 1`] = `
 Array [
   ParseNode {
-    "arguments": Array [
-      ParseNode {
-        "kind": "literal",
-        "type": ParseNode {
-          "baseType": "int",
-          "kind": "type",
-          "origin": "builtin",
-        },
-        "value": 10,
-      },
-    ],
-    "kind": "call",
-    "target": ParseNode {
-      "body": Array [
+    "identifier": "res",
+    "kind": "let",
+    "value": ParseNode {
+      "arguments": Array [
         ParseNode {
-          "identifier": "q",
-          "kind": "let",
-          "value": ParseNode {
-            "kind": "literal",
-            "type": ParseNode {
-              "baseType": "int",
-              "kind": "type",
-              "origin": "builtin",
-            },
-            "value": 99,
-          },
-        },
-        ParseNode {
-          "identifier": "r",
-          "kind": "let",
-          "value": ParseNode {
-            "kind": "identifier",
-            "name": "q",
-          },
-        },
-        ParseNode {
-          "kind": "return",
-          "value": ParseNode {
-            "kind": "identifier",
-            "name": "q",
-          },
-        },
-      ],
-      "kind": "literal",
-      "parameters": Array [
-        Object {
-          "name": "a",
+          "kind": "literal",
           "type": ParseNode {
             "baseType": "int",
             "kind": "type",
             "origin": "builtin",
           },
+          "value": 10,
         },
       ],
-      "returns": ParseNode {
-        "baseType": "int",
-        "kind": "type",
-        "origin": "builtin",
+      "kind": "call",
+      "target": ParseNode {
+        "body": Array [
+          ParseNode {
+            "identifier": "q",
+            "kind": "let",
+            "value": ParseNode {
+              "kind": "literal",
+              "type": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "value": 99,
+            },
+          },
+          ParseNode {
+            "identifier": "r",
+            "kind": "let",
+            "value": ParseNode {
+              "kind": "identifier",
+              "name": "q",
+            },
+          },
+          ParseNode {
+            "kind": "return",
+            "value": ParseNode {
+              "kind": "identifier",
+              "name": "q",
+            },
+          },
+        ],
+        "kind": "literal",
+        "parameters": Array [
+          Object {
+            "name": "a",
+            "type": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+        ],
+        "returns": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "type": ParseNode {
+          "baseType": "fn",
+          "kind": "type",
+          "origin": "builtin",
+          "parameters": Array [
+            ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          ],
+          "returns": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
       },
-      "type": ParseNode {
+    },
+  },
+]
+`;
+
+exports[`Functions [PARSE] Anonymous function modifying parameter 1`] = `
+Array [
+  ParseNode {
+    "identifier": "res",
+    "kind": "let",
+    "value": ParseNode {
+      "arguments": Array [
+        ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "value": 5,
+        },
+      ],
+      "kind": "call",
+      "target": ParseNode {
+        "body": Array [
+          ParseNode {
+            "kind": "return",
+            "value": ParseNode {
+              "kind": "binary",
+              "left": ParseNode {
+                "kind": "identifier",
+                "name": "a",
+              },
+              "operator": "+",
+              "right": ParseNode {
+                "kind": "literal",
+                "type": ParseNode {
+                  "baseType": "int",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+                "value": 10,
+              },
+            },
+          },
+        ],
+        "kind": "literal",
+        "parameters": Array [
+          Object {
+            "name": "a",
+            "type": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+        ],
+        "returns": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "type": ParseNode {
+          "baseType": "fn",
+          "kind": "type",
+          "origin": "builtin",
+          "parameters": Array [
+            ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          ],
+          "returns": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+      },
+    },
+  },
+]
+`;
+
+exports[`Functions [PARSE] Fibonacci 1`] = `
+Array [
+  ParseNode {
+    "identifier": "fibo",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "new",
+      "target": ParseNode {
         "baseType": "fn",
         "kind": "type",
         "origin": "builtin",
@@ -119,15 +300,14 @@ Array [
       },
     },
   },
-]
-`;
-
-exports[`Functions [PARSE] Fibonacci 1`] = `
-Array [
   ParseNode {
-    "identifier": "fibo",
-    "kind": "let",
-    "value": ParseNode {
+    "kind": "assign",
+    "left": ParseNode {
+      "kind": "identifier",
+      "name": "fibo",
+    },
+    "operator": "=",
+    "right": ParseNode {
       "body": Array [
         ParseNode {
           "body": Array [
@@ -293,21 +473,25 @@ Array [
     },
   },
   ParseNode {
-    "arguments": Array [
-      ParseNode {
-        "kind": "literal",
-        "type": ParseNode {
-          "baseType": "int",
-          "kind": "type",
-          "origin": "builtin",
+    "identifier": "res",
+    "kind": "let",
+    "value": ParseNode {
+      "arguments": Array [
+        ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "value": 10,
         },
-        "value": 10,
+      ],
+      "kind": "call",
+      "target": ParseNode {
+        "kind": "identifier",
+        "name": "fibo",
       },
-    ],
-    "kind": "call",
-    "target": ParseNode {
-      "kind": "identifier",
-      "name": "fibo",
     },
   },
 ]
@@ -315,6 +499,18 @@ Array [
 
 exports[`Functions [PARSE] Fizzbuzz and call 1`] = `
 Array [
+  ParseNode {
+    "identifier": "fb",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "new",
+      "target": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
   ParseNode {
     "arguments": Array [
       ParseNode {
@@ -348,13 +544,21 @@ Array [
             ParseNode {
               "body": Array [
                 ParseNode {
-                  "kind": "literal",
-                  "type": ParseNode {
-                    "baseType": "str",
-                    "kind": "type",
-                    "origin": "builtin",
+                  "kind": "assign",
+                  "left": ParseNode {
+                    "kind": "identifier",
+                    "name": "fb",
                   },
-                  "value": "fizzbuzz",
+                  "operator": "+=",
+                  "right": ParseNode {
+                    "kind": "literal",
+                    "type": ParseNode {
+                      "baseType": "str",
+                      "kind": "type",
+                      "origin": "builtin",
+                    },
+                    "value": "fizzbuzz",
+                  },
                 },
               ],
               "condition": ParseNode {
@@ -425,13 +629,21 @@ Array [
                 ParseNode {
                   "body": Array [
                     ParseNode {
-                      "kind": "literal",
-                      "type": ParseNode {
-                        "baseType": "str",
-                        "kind": "type",
-                        "origin": "builtin",
+                      "kind": "assign",
+                      "left": ParseNode {
+                        "kind": "identifier",
+                        "name": "fb",
                       },
-                      "value": "buzz",
+                      "operator": "+=",
+                      "right": ParseNode {
+                        "kind": "literal",
+                        "type": ParseNode {
+                          "baseType": "str",
+                          "kind": "type",
+                          "origin": "builtin",
+                        },
+                        "value": "buzz",
+                      },
                     },
                   ],
                   "condition": ParseNode {
@@ -468,13 +680,21 @@ Array [
                     ParseNode {
                       "body": Array [
                         ParseNode {
-                          "kind": "literal",
-                          "type": ParseNode {
-                            "baseType": "str",
-                            "kind": "type",
-                            "origin": "builtin",
+                          "kind": "assign",
+                          "left": ParseNode {
+                            "kind": "identifier",
+                            "name": "fb",
                           },
-                          "value": "fizz",
+                          "operator": "+=",
+                          "right": ParseNode {
+                            "kind": "literal",
+                            "type": ParseNode {
+                              "baseType": "str",
+                              "kind": "type",
+                              "origin": "builtin",
+                            },
+                            "value": "fizz",
+                          },
                         },
                       ],
                       "condition": ParseNode {
