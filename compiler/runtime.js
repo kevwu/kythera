@@ -202,7 +202,7 @@ KYTHERA.value = class {
 				if(!Array.isArray(value)) {
 					throw new Error("list value must be an array.")
 				}
-				this.elements = value
+				this.value = value
 
 				// TODO type check list elements
 

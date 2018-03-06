@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Structures (obj and list) [COMPL] Array access 1`] = `"let myAr = new KYTHERA.value([new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]),new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]),new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]),new KYTHERA.value(4, KYTHERA.type.PRIMITIVES[\\"int\\"])], new KYTHERA.type(\\"list\\", { contains: KYTHERA.type.PRIMITIVES[\\"int\\"]}));let r = myAr.value[(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"])).value];"`;
+
+exports[`Structures (obj and list) [EVALT] Array access 1`] = `
+Object {
+  "myAr":  {
+    "type":  {
+      "baseType": "list",
+      "structure": Object {
+        "contains":  {
+          "baseType": "int",
+        },
+      },
+    },
+    "value": Array [
+       {
+        "type":  {
+          "baseType": "int",
+        },
+        "value": 1,
+      },
+       {
+        "type":  {
+          "baseType": "int",
+        },
+        "value": 2,
+      },
+       {
+        "type":  {
+          "baseType": "int",
+        },
+        "value": 3,
+      },
+       {
+        "type":  {
+          "baseType": "int",
+        },
+        "value": 4,
+      },
+    ],
+  },
+  "r":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 2,
+  },
+}
+`;
+
+exports[`Structures (obj and list) [PARSE] Array access 1`] = `
+Array [
+  ParseNode {
+    "identifier": "myAr",
+    "kind": "let",
+    "value": ParseNode {
+      "elements": Array [
+        ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "value": 1,
+        },
+        ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "value": 2,
+        },
+        ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "value": 3,
+        },
+        ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "value": 4,
+        },
+      ],
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "list",
+        "contains": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "r",
+    "kind": "let",
+    "value": ParseNode {
+      "index": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 1,
+      },
+      "kind": "access",
+      "method": "bracket",
+      "target": ParseNode {
+        "kind": "identifier",
+        "name": "myAr",
+      },
+    },
+  },
+]
+`;

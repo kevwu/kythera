@@ -94,6 +94,8 @@ class Compiler {
 				return this.visitBinary(node)
 			case "call":
 				return this.visitCall(node)
+			case "access":
+				return this.visitAccess(node)
 			default:
 				throw new Error("Unhandled node kind: " + node.kind)
 		}
@@ -396,6 +398,52 @@ class Compiler {
 		return {
 			output: output,
 			type: target.type.structure.returns
+		}
+	}
+
+	visitAccess(node) {
+		let target = this.visitExpressionNode(node.target)
+
+		let output = target.output
+		let type
+
+		if(node.method === "dot") {
+			// TODO typecheck to see if target type has this field?
+			if(target.type.baseType !== "obj") {
+				throw new Error("Dot access target must be an object, not " + target.type.baseType)
+			}
+
+			output += `.value.${node.index}`
+			type = target.type.structure[node.index]
+		}
+
+		if(node.method === "bracket") {
+			let indexExp = this.visitExpressionNode(node.index)
+
+
+			if(target.type.baseType === "obj") {
+				if(indexExp.type.baseType !== "str") {
+					throw new Error("Bracket access to an object must use a string literal for the index, not " + indexExp.type.baseType)
+				}
+
+				output += `.value[(${indexExp.output}).value]`
+				type = target.type.structure[node.index]
+			} else if(target.type.baseType === "list") {
+				if(indexExp.type.baseType !== "int") {
+					throw new Error("List access must use an integer, not " + indexExp.type.baseType)
+				}
+
+				output += `.value[(${indexExp.output}).value]`
+				type = target.type.structure.contains
+			} else {
+				throw new Error("Bracket access target must be an object or a list.")
+			}
+		}
+
+
+		return {
+			output: output,
+			type: type,
 		}
 	}
 

@@ -290,7 +290,7 @@ class Parser {
 				let memberName = this.tokenizer.next()
 
 				return new ParseNode("access", {
-					method: "object",
+					method: "dot",
 					target: exp,
 					index: memberName.value,
 				})
@@ -309,7 +309,7 @@ class Parser {
 
 			// list types like int[] are handled by parseType. Seeing a [ in this context guarantees it's an access
 			return new ParseNode("access", {
-				method: "unknown",
+				method: "bracket",
 				target: exp,
 				index: indexExp,
 			})

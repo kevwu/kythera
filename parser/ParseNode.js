@@ -316,19 +316,15 @@ class ParseNode {
 
 				break
 			case "access":
-				if(!["object", "array", "unknown"].includes(payload.method)) {
-					throw new Error("Access method must be object, array, or unknown")
+				if(!["dot", "bracket"].includes(payload.method)) {
+					throw new Error("Access method must be dot or bracket")
 				}
 
-				if(payload.method === "object" && (typeof payload.index !== "string")) {
+				if(payload.method === "dot" && (typeof payload.index !== "string")) {
 					throw new Error("Object access index must be a string.")
 				}
 
-				if(payload.method === "array" && (typeof payload.index !== "number")) {
-					throw new Error("Array access index must be a number.")
-				}
-
-				if(payload.method === "unknown" && (typeof payload.index !== "object")) {
+				if(payload.method === "bracket" && (typeof payload.index !== "object")) {
 					throw new Error("Access index must be a parse node.")
 				}
 
