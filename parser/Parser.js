@@ -358,6 +358,7 @@ class Parser {
 	// parse an object literal
 	parseObjectLiteral() {
 		let contents = {}
+		let structure = {}
 
 		this.consumeToken('{', "punc")
 
@@ -372,6 +373,7 @@ class Parser {
 			this.consumeToken(',', "punc")
 
 			contents[entryKey] = entryValue
+			structure[entryKey] = new ParseNode("type", entryValue.type)
 		}
 
 		this.consumeToken('}', "punc")
@@ -380,7 +382,7 @@ class Parser {
 			type: new ParseNode("type", {
 				baseType: "obj",
 				origin: "builtin",
-				structure: {}, // freeform structure
+				structure: structure, // objects always default to rigid structure
 			}),
 			value: contents,
 		})
