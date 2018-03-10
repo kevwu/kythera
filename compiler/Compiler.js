@@ -438,7 +438,7 @@ class Compiler {
 				throw new Error("Dot access target must be an object, not " + target.type.baseType)
 			}
 
-			if(target.type.structure[node.index] !== "object") {
+			if(typeof target.type.structure[node.index] !== "object") {
 				throw new Error(`Member ${node.index} is not defined on this object.`)
 			}
 
