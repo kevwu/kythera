@@ -1,15 +1,16 @@
 const t = require("./util").test
 
 describe("Type casting", () => {
+	// TODO type casting is about to be completely overhauled so these tests are disabled
 	describe("Custom type assignment", () => {
-		t("primitive", `let myIntType = int`, {compile: false})
-		t("fn type", `let myFnType = fn<int, str, myIntType> str`, {compile: false})
+		t("primitive", `let myIntType = int`, {skip: true})
+		t("fn type", `let myFnType = fn<int, str, myIntType> str`, {skip: true})
 		t("obj type", `
 let myObjType = obj{
     int a,
     str b,
 }
-	`, {compile: false})
+	`, {skip: true})
 	})
 
 	t("Casting object", `
@@ -29,7 +30,7 @@ typeof myCastedObj
 
 typeof myCastedObj == typeof myObj
 typeof myCastedObj == typeof (myObj as myObjType)	
-	`, {compile: false})
+	`, {skip: true})
 
 	t("Usage as fn param", `
 let myObjType = obj{
@@ -53,5 +54,5 @@ let myFn = <myObjType object> null {
 
 myFn(myObj as myObjType)
 myFn(myCastedObj)	
-	`, {compile: false})
+	`, {skip: true})
 })

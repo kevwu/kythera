@@ -96,6 +96,8 @@ class Compiler {
 				return this.visitCall(node)
 			case "access":
 				return this.visitAccess(node)
+			case "this":
+				return this.visitThis(node)
 			default:
 				throw new Error("Unhandled node kind: " + node.kind)
 		}
@@ -206,27 +208,40 @@ class Compiler {
 	}
 
 	visitAssign(node) {
+		let lhsType, lhsOut
 		if(node.left.kind === "identifier") {
-			// let lhsType = this.makeKytheraType(node.left)
-			let lhsType = this.currentScope.get(node.left.name)
-			let rhs = this.visitExpressionNode(node.right)
-			if(!KytheraType.eq(lhsType, rhs.type)) {
-				throw new Error(`Cannot assign ${rhs.type.baseType} value to ${node.left.name}, which has type ${lhsType.baseType}`)
-			}
+			lhsType = this.currentScope.get(node.left.name)
+			lhsOut = node.left.name
+		} else if(node.left.kind === "access") {
+			let lhsExp = this.visitExpressionNode(node.left)
+			lhsType = lhsExp.type
+			lhsOut = lhsExp.output
 
-			let rhsOut = rhs.output
-			if(node.operator.charAt(0) !== "=") {
-				rhsOut = `KYTHERA.value.${OPFUNCTIONS[node.operator.charAt(0)]}(${node.left.name}, ${rhsOut})`
-			}
+			let target = this.visitExpressionNode(node.left.target)
 
-			return {
-				output: `(${node.left.name} = ${rhsOut})`,
-				type: rhs.type
-			}
-		} else if(node.left.kind === "objAccess" || node.left.kind === "access") {
-			throw new Error("Writing to object member not yet supported")
+			this.currentScope = new Scope(this.currentScope, {thisId: target.output, thisType: target.type})
 		} else {
 			throw new Error(`${node.left.kind} is not valid as an assignment target`)
+		}
+
+		let rhs = this.visitExpressionNode(node.right)
+
+		if(!KytheraType.eq(lhsType, rhs.type)) {
+			throw new Error(`Cannot assign ${rhs.type.baseType} value to ${node.left.name}, which has type ${lhsType.baseType}`)
+		}
+
+		let rhsOut = rhs.output
+		if(node.operator.charAt(0) !== "=") {
+			rhsOut = `KYTHERA.value.${OPFUNCTIONS[node.operator.charAt(0)]}(${node.left.name}, ${rhsOut})`
+		}
+
+		// return to previous scope if needed
+		if(node.left.kind === "access") {
+			this.currentScope = this.currentScope.parent
+		}
+		return {
+			output: `(${lhsOut} = ${rhsOut})`,
+			type: rhs.type
 		}
 	}
 
@@ -447,6 +462,13 @@ class Compiler {
 		}
 	}
 
+	visitThis(node) {
+		return {
+			output: `(${this.currentScope.getThisId()})`,
+			type: this.currentScope.getThisType()
+		}
+	}
+
 	// transform a type ParseNode into a KytheraType
 	makeKytheraType(node) {
 		if(node.kind !== "type") {
@@ -503,13 +525,16 @@ class Compiler {
 			// see visitLiteral()
 			throw new Error("Functions cannot be constructed from existing runtime values at compile time.")
 		} else if(kytheraType.baseType === "obj") {
-			out += "{"
+			this.currentScope = new Scope(this.currentScope, {thisId: "thisObj", thisType: kytheraType})
+			// we use .value{} for compatibility with other objects
+			out += "(() => {\nlet thisObj = {value: {}};\n"
 
 			out += Object.entries(kytheraValue.value).reduce((prev, [key, val], i) => {
-				return prev + `"${key}": ${this.visitExpressionNode(val).output},`
+				return prev + `thisObj.value["${key}"] = ${this.visitExpressionNode(val).output};\n`
 			}, "")
 
-			out += "}"
+			out += "\nreturn thisObj.value;\n})()"
+			this.currentScope = this.currentScope.parent
 		} else if(kytheraType.baseType === "type") {
 			out += this.makeTypeConstructor(kytheraValue.value)
 		} else {

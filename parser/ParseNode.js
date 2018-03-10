@@ -337,6 +337,8 @@ class ParseNode {
 
 				this.index = payload.index
 				break
+			case "this":
+				break
 			default:
 				throw new Error("Invalid node kind: " + kind)
 		}

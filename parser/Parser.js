@@ -197,6 +197,8 @@ class Parser {
 						return new ParseNode("return", {
 							value: this.parseExpression()
 						})
+					case "this":
+						return new ParseNode("this", {})
 					default:
 						this.err("Unhandled keyword: " + nextToken.value)
 				}

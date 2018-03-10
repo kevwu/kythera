@@ -24,7 +24,7 @@ module.exports = {
 			})
 		}
 
-		if(compile) {
+		if(compile && !skip) {
 			let compiler = new Compiler()
 
 			compiler.load(program)

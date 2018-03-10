@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Structures (obj and list) [COMPL] Array access 1`] = `"let myAr = new KYTHERA.value([new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]),new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]),new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]),new KYTHERA.value(4, KYTHERA.type.PRIMITIVES[\\"int\\"])], new KYTHERA.type(\\"list\\", { contains: KYTHERA.type.PRIMITIVES[\\"int\\"]}));let r = myAr.value[(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"])).value];"`;
+exports[`Builtin data structures Lists [COMPL] List access 1`] = `"let myList = new KYTHERA.value([new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]),new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]),new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]),new KYTHERA.value(4, KYTHERA.type.PRIMITIVES[\\"int\\"])], new KYTHERA.type(\\"list\\", { contains: KYTHERA.type.PRIMITIVES[\\"int\\"]}));let r = myList.value[(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"])).value];"`;
 
-exports[`Structures (obj and list) [EVALT] Array access 1`] = `
+exports[`Builtin data structures Lists [EVALT] List access 1`] = `
 Object {
-  "myAr":  {
+  "myList":  {
     "type":  {
       "baseType": "list",
       "structure": Object {
@@ -49,10 +49,10 @@ Object {
 }
 `;
 
-exports[`Structures (obj and list) [PARSE] Array access 1`] = `
+exports[`Builtin data structures Lists [PARSE] List access 1`] = `
 Array [
   ParseNode {
-    "identifier": "myAr",
+    "identifier": "myList",
     "kind": "let",
     "value": ParseNode {
       "elements": Array [
@@ -123,7 +123,615 @@ Array [
       "method": "bracket",
       "target": ParseNode {
         "kind": "identifier",
-        "name": "myAr",
+        "name": "myList",
+      },
+    },
+  },
+]
+`;
+
+exports[`Builtin data structures Objects [COMPL] Access variables in outer scope 1`] = `"let g = new KYTHERA.value(10, KYTHERA.type.PRIMITIVES[\\"int\\"]);let myObj = new KYTHERA.value((() => {let thisObj = {value: {}};thisObj.value[\\"a\\"] = new KYTHERA.value(() => {return (KYTHERA.value.add(g, new KYTHERA.value(10, KYTHERA.type.PRIMITIVES[\\"int\\"])));}, new KYTHERA.type(\\"fn\\", { parameters: [], returns: KYTHERA.type.PRIMITIVES[\\"int\\"]}));return thisObj.value;})(), new KYTHERA.type(\\"obj\\", {\\"a\\": new KYTHERA.type(\\"fn\\", { parameters: [], returns: KYTHERA.type.PRIMITIVES[\\"int\\"]}),}));let out = myObj.value.a.value();"`;
+
+exports[`Builtin data structures Objects [COMPL] Object access 1`] = `"let myObj = new KYTHERA.value((() => {let thisObj = {value: {}};thisObj.value[\\"a\\"] = new KYTHERA.value(10, KYTHERA.type.PRIMITIVES[\\"int\\"]);return thisObj.value;})(), new KYTHERA.type(\\"obj\\", {\\"a\\": KYTHERA.type.PRIMITIVES[\\"int\\"],}));let out = myObj.value.a;"`;
+
+exports[`Builtin data structures Objects [COMPL] Object insertion 1`] = `"let myObj = new KYTHERA.value((() => {let thisObj = {value: {}};thisObj.value[\\"a\\"] = new KYTHERA.value(10, KYTHERA.type.PRIMITIVES[\\"int\\"]);return thisObj.value;})(), new KYTHERA.type(\\"obj\\", {\\"a\\": KYTHERA.type.PRIMITIVES[\\"int\\"],}));let out1 = myObj.value.a;(myObj.value.a = new KYTHERA.value(20, KYTHERA.type.PRIMITIVES[\\"int\\"]));let out2 = myObj.value.a;"`;
+
+exports[`Builtin data structures Objects [EVALT] Access variables in outer scope 1`] = `
+Object {
+  "g":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 10,
+  },
+  "myObj":  {
+    "type":  {
+      "baseType": "obj",
+      "structure": Object {
+        "a":  {
+          "baseType": "fn",
+          "structure": Object {
+            "parameters": Array [],
+            "returns":  {
+              "baseType": "int",
+            },
+          },
+        },
+      },
+    },
+    "value": Object {
+      "a":  {
+        "type":  {
+          "baseType": "fn",
+          "structure": Object {
+            "parameters": Array [],
+            "returns":  {
+              "baseType": "int",
+            },
+          },
+        },
+        "value": [Function],
+      },
+    },
+  },
+  "out":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 20,
+  },
+}
+`;
+
+exports[`Builtin data structures Objects [EVALT] Object access 1`] = `
+Object {
+  "myObj":  {
+    "type":  {
+      "baseType": "obj",
+      "structure": Object {
+        "a":  {
+          "baseType": "int",
+        },
+      },
+    },
+    "value": Object {
+      "a":  {
+        "type":  {
+          "baseType": "int",
+        },
+        "value": 10,
+      },
+    },
+  },
+  "out":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 10,
+  },
+}
+`;
+
+exports[`Builtin data structures Objects [EVALT] Object insertion 1`] = `
+Object {
+  "myObj":  {
+    "type":  {
+      "baseType": "obj",
+      "structure": Object {
+        "a":  {
+          "baseType": "int",
+        },
+      },
+    },
+    "value": Object {
+      "a":  {
+        "type":  {
+          "baseType": "int",
+        },
+        "value": 20,
+      },
+    },
+  },
+  "out1":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 10,
+  },
+  "out2":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 20,
+  },
+}
+`;
+
+exports[`Builtin data structures Objects [PARSE] Access variables in outer scope 1`] = `
+Array [
+  ParseNode {
+    "identifier": "g",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 10,
+    },
+  },
+  ParseNode {
+    "identifier": "myObj",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "obj",
+        "kind": "type",
+        "origin": "builtin",
+        "structure": Object {
+          "a": ParseNode {
+            "baseType": "fn",
+            "kind": "type",
+            "origin": "builtin",
+            "parameters": Array [],
+            "returns": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+        },
+      },
+      "value": Object {
+        "a": ParseNode {
+          "body": Array [
+            ParseNode {
+              "kind": "return",
+              "value": ParseNode {
+                "kind": "binary",
+                "left": ParseNode {
+                  "kind": "identifier",
+                  "name": "g",
+                },
+                "operator": "+",
+                "right": ParseNode {
+                  "kind": "literal",
+                  "type": ParseNode {
+                    "baseType": "int",
+                    "kind": "type",
+                    "origin": "builtin",
+                  },
+                  "value": 10,
+                },
+              },
+            },
+          ],
+          "kind": "literal",
+          "parameters": Array [],
+          "returns": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "type": ParseNode {
+            "baseType": "fn",
+            "kind": "type",
+            "origin": "builtin",
+            "parameters": Array [],
+            "returns": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+        },
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "out",
+    "kind": "let",
+    "value": ParseNode {
+      "arguments": Array [],
+      "kind": "call",
+      "target": ParseNode {
+        "index": "a",
+        "kind": "access",
+        "method": "dot",
+        "target": ParseNode {
+          "kind": "identifier",
+          "name": "myObj",
+        },
+      },
+    },
+  },
+]
+`;
+
+exports[`Builtin data structures Objects [PARSE] Object access 1`] = `
+Array [
+  ParseNode {
+    "identifier": "myObj",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "obj",
+        "kind": "type",
+        "origin": "builtin",
+        "structure": Object {
+          "a": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+      },
+      "value": Object {
+        "a": ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "value": 10,
+        },
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "out",
+    "kind": "let",
+    "value": ParseNode {
+      "index": "a",
+      "kind": "access",
+      "method": "dot",
+      "target": ParseNode {
+        "kind": "identifier",
+        "name": "myObj",
+      },
+    },
+  },
+]
+`;
+
+exports[`Builtin data structures Objects [PARSE] Object insertion 1`] = `
+Array [
+  ParseNode {
+    "identifier": "myObj",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "obj",
+        "kind": "type",
+        "origin": "builtin",
+        "structure": Object {
+          "a": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+      },
+      "value": Object {
+        "a": ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "value": 10,
+        },
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "out1",
+    "kind": "let",
+    "value": ParseNode {
+      "index": "a",
+      "kind": "access",
+      "method": "dot",
+      "target": ParseNode {
+        "kind": "identifier",
+        "name": "myObj",
+      },
+    },
+  },
+  ParseNode {
+    "kind": "assign",
+    "left": ParseNode {
+      "index": "a",
+      "kind": "access",
+      "method": "dot",
+      "target": ParseNode {
+        "kind": "identifier",
+        "name": "myObj",
+      },
+    },
+    "operator": "=",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 20,
+    },
+  },
+  ParseNode {
+    "identifier": "out2",
+    "kind": "let",
+    "value": ParseNode {
+      "index": "a",
+      "kind": "access",
+      "method": "dot",
+      "target": ParseNode {
+        "kind": "identifier",
+        "name": "myObj",
+      },
+    },
+  },
+]
+`;
+
+exports[`Builtin data structures Objects \`this\` reference [COMPL] Use in access assignment 1`] = `"let myObj = new KYTHERA.value((() => {let thisObj = {value: {}};thisObj.value[\\"a\\"] = new KYTHERA.value(10, KYTHERA.type.PRIMITIVES[\\"int\\"]);thisObj.value[\\"c\\"] = new KYTHERA.value(() => {return (KYTHERA.value.add(new KYTHERA.value(42, KYTHERA.type.PRIMITIVES[\\"int\\"]), (thisObj).value.a));}, new KYTHERA.type(\\"fn\\", { parameters: [], returns: KYTHERA.type.PRIMITIVES[\\"int\\"]}));return thisObj.value;})(), new KYTHERA.type(\\"obj\\", {\\"a\\": KYTHERA.type.PRIMITIVES[\\"int\\"],\\"c\\": new KYTHERA.type(\\"fn\\", { parameters: [], returns: KYTHERA.type.PRIMITIVES[\\"int\\"]}),}));let out1 = myObj.value.c.value();(myObj.value.c = new KYTHERA.value(() => {return (KYTHERA.value.add((KYTHERA.value.add(new KYTHERA.value(42, KYTHERA.type.PRIMITIVES[\\"int\\"]), (myObj).value.a)), new KYTHERA.value(10, KYTHERA.type.PRIMITIVES[\\"int\\"])));}, new KYTHERA.type(\\"fn\\", { parameters: [], returns: KYTHERA.type.PRIMITIVES[\\"int\\"]})));let out2 = myObj.value.c.value();"`;
+
+exports[`Builtin data structures Objects \`this\` reference [EVALT] Use in access assignment 1`] = `
+Object {
+  "myObj":  {
+    "type":  {
+      "baseType": "obj",
+      "structure": Object {
+        "a":  {
+          "baseType": "int",
+        },
+        "c":  {
+          "baseType": "fn",
+          "structure": Object {
+            "parameters": Array [],
+            "returns":  {
+              "baseType": "int",
+            },
+          },
+        },
+      },
+    },
+    "value": Object {
+      "a":  {
+        "type":  {
+          "baseType": "int",
+        },
+        "value": 10,
+      },
+      "c":  {
+        "type":  {
+          "baseType": "fn",
+          "structure": Object {
+            "parameters": Array [],
+            "returns":  {
+              "baseType": "int",
+            },
+          },
+        },
+        "value": [Function],
+      },
+    },
+  },
+  "out1":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 52,
+  },
+  "out2":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 62,
+  },
+}
+`;
+
+exports[`Builtin data structures Objects \`this\` reference [PARSE] Use in access assignment 1`] = `
+Array [
+  ParseNode {
+    "identifier": "myObj",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "obj",
+        "kind": "type",
+        "origin": "builtin",
+        "structure": Object {
+          "a": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "c": ParseNode {
+            "baseType": "fn",
+            "kind": "type",
+            "origin": "builtin",
+            "parameters": Array [],
+            "returns": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+        },
+      },
+      "value": Object {
+        "a": ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "value": 10,
+        },
+        "c": ParseNode {
+          "body": Array [
+            ParseNode {
+              "kind": "return",
+              "value": ParseNode {
+                "kind": "binary",
+                "left": ParseNode {
+                  "kind": "literal",
+                  "type": ParseNode {
+                    "baseType": "int",
+                    "kind": "type",
+                    "origin": "builtin",
+                  },
+                  "value": 42,
+                },
+                "operator": "+",
+                "right": ParseNode {
+                  "index": "a",
+                  "kind": "access",
+                  "method": "dot",
+                  "target": ParseNode {
+                    "kind": "this",
+                  },
+                },
+              },
+            },
+          ],
+          "kind": "literal",
+          "parameters": Array [],
+          "returns": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "type": ParseNode {
+            "baseType": "fn",
+            "kind": "type",
+            "origin": "builtin",
+            "parameters": Array [],
+            "returns": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+        },
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "out1",
+    "kind": "let",
+    "value": ParseNode {
+      "arguments": Array [],
+      "kind": "call",
+      "target": ParseNode {
+        "index": "c",
+        "kind": "access",
+        "method": "dot",
+        "target": ParseNode {
+          "kind": "identifier",
+          "name": "myObj",
+        },
+      },
+    },
+  },
+  ParseNode {
+    "kind": "assign",
+    "left": ParseNode {
+      "index": "c",
+      "kind": "access",
+      "method": "dot",
+      "target": ParseNode {
+        "kind": "identifier",
+        "name": "myObj",
+      },
+    },
+    "operator": "=",
+    "right": ParseNode {
+      "body": Array [
+        ParseNode {
+          "kind": "return",
+          "value": ParseNode {
+            "kind": "binary",
+            "left": ParseNode {
+              "kind": "binary",
+              "left": ParseNode {
+                "kind": "literal",
+                "type": ParseNode {
+                  "baseType": "int",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+                "value": 42,
+              },
+              "operator": "+",
+              "right": ParseNode {
+                "index": "a",
+                "kind": "access",
+                "method": "dot",
+                "target": ParseNode {
+                  "kind": "this",
+                },
+              },
+            },
+            "operator": "+",
+            "right": ParseNode {
+              "kind": "literal",
+              "type": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "value": 10,
+            },
+          },
+        },
+      ],
+      "kind": "literal",
+      "parameters": Array [],
+      "returns": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "fn",
+        "kind": "type",
+        "origin": "builtin",
+        "parameters": Array [],
+        "returns": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "out2",
+    "kind": "let",
+    "value": ParseNode {
+      "arguments": Array [],
+      "kind": "call",
+      "target": ParseNode {
+        "index": "c",
+        "kind": "access",
+        "method": "dot",
+        "target": ParseNode {
+          "kind": "identifier",
+          "name": "myObj",
+        },
       },
     },
   },

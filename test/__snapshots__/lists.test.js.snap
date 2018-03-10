@@ -258,7 +258,7 @@ exports[`Lists List literals [COMPL] int 1`] = `"let a = new KYTHERA.value([new 
 
 exports[`Lists List literals [COMPL] null 1`] = `"let a = new KYTHERA.value([new KYTHERA.value(null, KYTHERA.type.PRIMITIVES[\\"null\\"]),new KYTHERA.value(null, KYTHERA.type.PRIMITIVES[\\"null\\"])], new KYTHERA.type(\\"list\\", { contains: KYTHERA.type.PRIMITIVES[\\"null\\"]}));"`;
 
-exports[`Lists List literals [COMPL] obj 1`] = `"let a = new KYTHERA.value([new KYTHERA.value({\\"a\\": new KYTHERA.value(0, KYTHERA.type.PRIMITIVES[\\"int\\"]),\\"b\\": new KYTHERA.value(\\"asdf\\", KYTHERA.type.PRIMITIVES[\\"str\\"]),}, new KYTHERA.type(\\"obj\\", {})),new KYTHERA.value({\\"a\\": new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]),\\"b\\": new KYTHERA.value(\\"qwerty\\", KYTHERA.type.PRIMITIVES[\\"str\\"]),}, new KYTHERA.type(\\"obj\\", {}))], new KYTHERA.type(\\"list\\", { contains: new KYTHERA.type(\\"obj\\", {})}));"`;
+exports[`Lists List literals [COMPL] obj 1`] = `"let a = new KYTHERA.value([new KYTHERA.value((() => {let thisObj = {value: {}};thisObj.value[\\"a\\"] = new KYTHERA.value(0, KYTHERA.type.PRIMITIVES[\\"int\\"]);thisObj.value[\\"b\\"] = new KYTHERA.value(\\"asdf\\", KYTHERA.type.PRIMITIVES[\\"str\\"]);return thisObj.value;})(), new KYTHERA.type(\\"obj\\", {\\"a\\": KYTHERA.type.PRIMITIVES[\\"int\\"],\\"b\\": KYTHERA.type.PRIMITIVES[\\"str\\"],})),new KYTHERA.value((() => {let thisObj = {value: {}};thisObj.value[\\"a\\"] = new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]);thisObj.value[\\"b\\"] = new KYTHERA.value(\\"qwerty\\", KYTHERA.type.PRIMITIVES[\\"str\\"]);return thisObj.value;})(), new KYTHERA.type(\\"obj\\", {\\"a\\": KYTHERA.type.PRIMITIVES[\\"int\\"],\\"b\\": KYTHERA.type.PRIMITIVES[\\"str\\"],}))], new KYTHERA.type(\\"list\\", { contains: new KYTHERA.type(\\"obj\\", {\\"a\\": KYTHERA.type.PRIMITIVES[\\"int\\"],\\"b\\": KYTHERA.type.PRIMITIVES[\\"str\\"],})}));"`;
 
 exports[`Lists List literals [COMPL] str 1`] = `"let a = new KYTHERA.value([new KYTHERA.value(\\"hello\\", KYTHERA.type.PRIMITIVES[\\"str\\"]),new KYTHERA.value(\\"world\\", KYTHERA.type.PRIMITIVES[\\"str\\"])], new KYTHERA.type(\\"list\\", { contains: KYTHERA.type.PRIMITIVES[\\"str\\"]}));"`;
 
@@ -459,7 +459,14 @@ Object {
       "structure": Object {
         "contains":  {
           "baseType": "obj",
-          "structure": Object {},
+          "structure": Object {
+            "a":  {
+              "baseType": "int",
+            },
+            "b":  {
+              "baseType": "str",
+            },
+          },
         },
       },
     },
@@ -467,7 +474,14 @@ Object {
        {
         "type":  {
           "baseType": "obj",
-          "structure": Object {},
+          "structure": Object {
+            "a":  {
+              "baseType": "int",
+            },
+            "b":  {
+              "baseType": "str",
+            },
+          },
         },
         "value": Object {
           "a":  {
@@ -487,7 +501,14 @@ Object {
        {
         "type":  {
           "baseType": "obj",
-          "structure": Object {},
+          "structure": Object {
+            "a":  {
+              "baseType": "int",
+            },
+            "b":  {
+              "baseType": "str",
+            },
+          },
         },
         "value": Object {
           "a":  {
@@ -922,7 +943,18 @@ Array [
             "baseType": "obj",
             "kind": "type",
             "origin": "builtin",
-            "structure": Object {},
+            "structure": Object {
+              "a": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "b": ParseNode {
+                "baseType": "str",
+                "kind": "type",
+                "origin": "builtin",
+              },
+            },
           },
           "value": Object {
             "a": ParseNode {
@@ -951,7 +983,18 @@ Array [
             "baseType": "obj",
             "kind": "type",
             "origin": "builtin",
-            "structure": Object {},
+            "structure": Object {
+              "a": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "b": ParseNode {
+                "baseType": "str",
+                "kind": "type",
+                "origin": "builtin",
+              },
+            },
           },
           "value": Object {
             "a": ParseNode {
@@ -982,7 +1025,18 @@ Array [
           "baseType": "obj",
           "kind": "type",
           "origin": "builtin",
-          "structure": Object {},
+          "structure": Object {
+            "a": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "b": ParseNode {
+              "baseType": "str",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
         },
         "kind": "type",
         "origin": "builtin",

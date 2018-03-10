@@ -1,6 +1,6 @@
 // this largely comes from the Scope implementation in kevwu/kythera-antlr
 class Scope {
-	constructor(parent = null, meta = {type: "global"}) {
+	constructor(parent = null, meta = {type: "global", thisId: null, thisType: null}) {
 		// null for top-level scope
 		this.parent = parent
 		this.symbols = []
@@ -44,7 +44,7 @@ class Scope {
 		}
 	}
 
-	// true current scope is within a function
+	// true if current scope is within a function
 	isInFunction() {
 		if(this.meta.type === "function") {
 			return true
@@ -67,6 +67,33 @@ class Scope {
 			throw new Error("Current scope is not in a function")
 		} else {
 			return this.parent.getReturnType()
+		}
+	}
+
+	// 'this' is always accessed from the child of the scope containing the reference.
+	getThisType() {
+		if(this.parent === null) {
+			throw new Error("`this` is not accessible from the global scope.")
+		}
+
+		if(this.parent.meta.thisType) {
+			return this.parent.meta.thisType
+		} else {
+			return this.parent.getThisType()
+		}
+	}
+
+	// 'this' is always accessed from the child of the scope containing the reference.
+	// get JS identifier (not Kythera identifier) for current "this" object
+	getThisId() {
+		if(this.parent === null) {
+			throw new Error("`this` is not accessible from the global scope.")
+		}
+
+		if(this.parent.meta.thisId) {
+			return this.parent.meta.thisId
+		} else {
+			return this.parent.getThisId()
 		}
 	}
 }
