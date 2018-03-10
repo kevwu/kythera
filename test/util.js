@@ -71,5 +71,10 @@ module.exports = {
 				}
 			}
 		}
+	},
+
+	// TODO test for expected errors
+	testError: (name, input, failurePoint) => {
+
 	}
 }

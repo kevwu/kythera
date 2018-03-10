@@ -338,21 +338,28 @@ class Compiler {
 		}
 
 		out += condition.output
-
 		out += ", KYTHERA.LITERALS.true).value) {\n"
+
+		this.currentScope = new Scope(this.currentScope, {type: "controlflow"})
 
 		out += node.body.reduce((prev, bodyNode) => {
 			return prev + this.visitNode(bodyNode) + ';\n'
 		}, "")
+
+		this.currentScope = this.currentScope.parent
 
 		out += "}"
 
 		if(node.else) {
 			out += " else {"
 
+			this.currentScope = new Scope(this.currentScope, {type: "controlflow"})
+
 			out += node.else.reduce((prev, elseNode) => {
 				return prev + this.visitNode(elseNode) + ';\n'
 			}, "")
+
+			this.currentScope = this.currentScope.parent
 
 			out += "}"
 		}
@@ -372,9 +379,13 @@ class Compiler {
 
 		out += ", KYTHERA.LITERALS.true).value) {\n"
 
+		this.currentScope = new Scope(this.currentScope, {type: "controlflow"})
+
 		out += node.body.reduce((prev, bodyNode) => {
 			return prev + this.visitNode(bodyNode) + ";\n"
 		}, "")
+
+		this.currentScope = this.currentScope.parent
 
 		out += "}"
 
@@ -423,9 +434,12 @@ class Compiler {
 		let type
 
 		if(node.method === "dot") {
-			// TODO typecheck to see if target type has this field?
 			if(target.type.baseType !== "obj") {
 				throw new Error("Dot access target must be an object, not " + target.type.baseType)
+			}
+
+			if(target.type.structure[node.index] !== "object") {
+				throw new Error(`Member ${node.index} is not defined on this object.`)
 			}
 
 			output += `.value.${node.index}`
