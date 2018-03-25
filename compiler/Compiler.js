@@ -125,7 +125,7 @@ class Compiler {
 				let fnType = this.makeKytheraType(node.type)
 
 				// extend scope one level
-				this.currentScope = new Scope(this.currentScope, {type: "function", returns: fnType.structure.returns})
+				this.currentScope = new Scope(this.currentScope, {scopeType: "function", returns: fnType.structure.returns})
 
 				let fn = "("
 
@@ -340,7 +340,7 @@ class Compiler {
 		out += condition.output
 		out += ", KYTHERA.LITERALS.true).value) {\n"
 
-		this.currentScope = new Scope(this.currentScope, {type: "controlflow"})
+		this.currentScope = new Scope(this.currentScope, {scopeType: "controlflow"})
 
 		out += node.body.reduce((prev, bodyNode) => {
 			return prev + this.visitNode(bodyNode) + ';\n'
@@ -353,7 +353,7 @@ class Compiler {
 		if(node.else) {
 			out += " else {"
 
-			this.currentScope = new Scope(this.currentScope, {type: "controlflow"})
+			this.currentScope = new Scope(this.currentScope, {scopeType: "controlflow"})
 
 			out += node.else.reduce((prev, elseNode) => {
 				return prev + this.visitNode(elseNode) + ';\n'
@@ -379,7 +379,7 @@ class Compiler {
 
 		out += ", KYTHERA.LITERALS.true).value) {\n"
 
-		this.currentScope = new Scope(this.currentScope, {type: "controlflow"})
+		this.currentScope = new Scope(this.currentScope, {scopeType: "controlflow"})
 
 		out += node.body.reduce((prev, bodyNode) => {
 			return prev + this.visitNode(bodyNode) + ";\n"

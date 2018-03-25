@@ -1,6 +1,6 @@
 // this largely comes from the Scope implementation in kevwu/kythera-antlr
 class Scope {
-	constructor(parent = null, meta = {type: "global", thisId: null, thisType: null}) {
+	constructor(parent = null, meta = {scopeType: "global", thisId: null, thisType: null}) {
 		// null for top-level scope
 		this.parent = parent
 		this.symbols = []
@@ -46,12 +46,12 @@ class Scope {
 
 	// true if current scope is within a function
 	isInFunction() {
-		if(this.meta.type === "function") {
+		if(this.meta.scopeType === "function") {
 			return true
 		}
 
 		if(this.parent === null) {
-			return (this.meta.type === "function")
+			return (this.meta.scopeType === "function")
 		} else {
 			return this.parent.isInFunction()
 		}
@@ -59,7 +59,7 @@ class Scope {
 
 	// if current scope is in a function, get the return type
 	getReturnType() {
-		if(this.meta.type === "function") {
+		if(this.meta.scopeType === "function") {
 			return this.meta.returns
 		}
 

@@ -36,7 +36,7 @@ class ParseNode {
 				this.right = payload.right
 				break
 			case "assign":
-				// TODO remove this requirement? May be redudant
+				// TODO remove this requirement? May be redundant
 				if(!["=", "+=" ,"-=" ,"*=", "/=", "%="].includes(payload.operator)) {
 					throw new Error(`${payload.operator} is not an assignment operator.`)
 				}
