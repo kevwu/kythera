@@ -1304,22 +1304,27 @@ Array [
 ]
 `;
 
-exports[`Primitive Types typeof [COMPL] false 1`] = `"let a = KYTHERA.type.PRIMITIVES[\\"bool\\"];"`;
+exports[`Primitive Types typeof [COMPL] false 1`] = `"let a = new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"bool\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]);"`;
 
-exports[`Primitive Types typeof [COMPL] float 1`] = `"let a = KYTHERA.type.PRIMITIVES[\\"float\\"];"`;
+exports[`Primitive Types typeof [COMPL] float 1`] = `"let a = new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"float\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]);"`;
 
-exports[`Primitive Types typeof [COMPL] int 1`] = `"let a = KYTHERA.type.PRIMITIVES[\\"int\\"];"`;
+exports[`Primitive Types typeof [COMPL] int 1`] = `"let a = new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"int\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]);"`;
 
-exports[`Primitive Types typeof [COMPL] null 1`] = `"let a = KYTHERA.type.PRIMITIVES[\\"null\\"];"`;
+exports[`Primitive Types typeof [COMPL] null 1`] = `"let a = new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"null\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]);"`;
 
-exports[`Primitive Types typeof [COMPL] str 1`] = `"let a = KYTHERA.type.PRIMITIVES[\\"str\\"];"`;
+exports[`Primitive Types typeof [COMPL] str 1`] = `"let a = new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"str\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]);"`;
 
-exports[`Primitive Types typeof [COMPL] true 1`] = `"let a = KYTHERA.type.PRIMITIVES[\\"bool\\"];"`;
+exports[`Primitive Types typeof [COMPL] true 1`] = `"let a = new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"bool\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]);"`;
 
 exports[`Primitive Types typeof [EVALT] false 1`] = `
 Object {
   "a":  {
-    "baseType": "bool",
+    "type":  {
+      "baseType": "type",
+    },
+    "value":  {
+      "baseType": "bool",
+    },
   },
 }
 `;
@@ -1327,7 +1332,12 @@ Object {
 exports[`Primitive Types typeof [EVALT] float 1`] = `
 Object {
   "a":  {
-    "baseType": "float",
+    "type":  {
+      "baseType": "type",
+    },
+    "value":  {
+      "baseType": "float",
+    },
   },
 }
 `;
@@ -1335,7 +1345,12 @@ Object {
 exports[`Primitive Types typeof [EVALT] int 1`] = `
 Object {
   "a":  {
-    "baseType": "int",
+    "type":  {
+      "baseType": "type",
+    },
+    "value":  {
+      "baseType": "int",
+    },
   },
 }
 `;
@@ -1343,7 +1358,12 @@ Object {
 exports[`Primitive Types typeof [EVALT] null 1`] = `
 Object {
   "a":  {
-    "baseType": "null",
+    "type":  {
+      "baseType": "type",
+    },
+    "value":  {
+      "baseType": "null",
+    },
   },
 }
 `;
@@ -1351,7 +1371,12 @@ Object {
 exports[`Primitive Types typeof [EVALT] str 1`] = `
 Object {
   "a":  {
-    "baseType": "str",
+    "type":  {
+      "baseType": "type",
+    },
+    "value":  {
+      "baseType": "str",
+    },
   },
 }
 `;
@@ -1359,7 +1384,12 @@ Object {
 exports[`Primitive Types typeof [EVALT] true 1`] = `
 Object {
   "a":  {
-    "baseType": "bool",
+    "type":  {
+      "baseType": "type",
+    },
+    "value":  {
+      "baseType": "bool",
+    },
   },
 }
 `;

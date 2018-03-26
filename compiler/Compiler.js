@@ -261,7 +261,7 @@ class Compiler {
 
 	visitTypeof(node) {
 		return {
-			output: this.makeTypeConstructor(this.visitExpressionNode(node.target).type),
+			output: this.makeValueConstructor(new KytheraValue(this.visitExpressionNode(node.target).type, KytheraType.PRIMITIVES.type)),
 			type: KytheraType.PRIMITIVES.type,
 		}
 	}
