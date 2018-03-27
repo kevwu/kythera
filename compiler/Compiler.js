@@ -227,7 +227,14 @@ class Compiler {
 		let rhs = this.visitExpressionNode(node.right)
 
 		if(!KytheraType.eq(lhsType, rhs.type)) {
-			throw new Error(`Cannot assign ${rhs.type.baseType} value to ${node.left.name}, which has type ${lhsType.baseType}`)
+			let nodeName;
+			if(node.left.kind === "identifier") {
+				nodeName = node.left.name
+			} else {
+				nodeName = "member " + node.left.index
+			}
+
+			throw new Error(`Cannot assign ${rhs.type.baseType} value to ${nodeName}, which has type ${lhsType.baseType}`)
 		}
 
 		let rhsOut = rhs.output

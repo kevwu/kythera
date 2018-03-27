@@ -226,7 +226,7 @@ KYTHERA.LITERALS = {
 	"null": new KYTHERA.value(null, KYTHERA.type.PRIMITIVES.null)
 }
 
-// convenience function
+// convenience function, converts raw JS boolean into Kythera boolean value
 const kytheraBool = (val) => val ? KYTHERA.LITERALS.true : KYTHERA.LITERALS.false
 
 
@@ -254,7 +254,7 @@ KYTHERA.value.eq = (a, b) => {
 	}
 
 	if(a.type.baseType === "type") {
-		return KYTHERA.type.eq(a.value, b.value)
+		return kytheraBool(KYTHERA.type.eq(a.value, b.value))
 	}
 }
 
