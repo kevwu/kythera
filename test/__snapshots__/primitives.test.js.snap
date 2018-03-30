@@ -104,6 +104,11 @@ Array [
         },
         "value": 3,
       },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
   },
 ]
@@ -134,6 +139,11 @@ Array [
           "origin": "builtin",
         },
         "value": 2.71828,
+      },
+      "type": ParseNode {
+        "baseType": "float",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
   },
@@ -166,6 +176,11 @@ Array [
         },
         "value": 2,
       },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
   },
 ]
@@ -196,6 +211,11 @@ Array [
           "origin": "builtin",
         },
         "value": 3,
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
   },
@@ -228,6 +248,11 @@ Array [
         },
         "value": 2,
       },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
   },
 ]
@@ -258,6 +283,11 @@ Array [
           "origin": "builtin",
         },
         "value": 5,
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
   },
@@ -368,6 +398,11 @@ Array [
         },
         "value": true,
       },
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
   },
 ]
@@ -399,6 +434,11 @@ Array [
         },
         "value": false,
       },
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
   },
 ]
@@ -421,6 +461,11 @@ Array [
         },
         "value": false,
       },
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
   },
 ]
@@ -442,6 +487,11 @@ Array [
           "origin": "builtin",
         },
         "value": true,
+      },
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
   },
@@ -474,6 +524,11 @@ Array [
         },
         "value": false,
       },
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
   },
 ]
@@ -504,6 +559,11 @@ Array [
           "origin": "builtin",
         },
         "value": true,
+      },
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
   },
@@ -536,6 +596,11 @@ Array [
         },
         "value": true,
       },
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
   },
 ]
@@ -567,6 +632,11 @@ Array [
         },
         "value": false,
       },
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
   },
 ]
@@ -589,6 +659,11 @@ Array [
       },
       "kind": "as",
       "to": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
         "baseType": "int",
         "kind": "type",
         "origin": "builtin",
@@ -619,6 +694,11 @@ Array [
         "kind": "type",
         "origin": "builtin",
       },
+      "type": ParseNode {
+        "baseType": "float",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
   },
 ]
@@ -641,6 +721,11 @@ Array [
       },
       "kind": "as",
       "to": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
         "baseType": "bool",
         "kind": "type",
         "origin": "builtin",
@@ -671,6 +756,11 @@ Array [
         "kind": "type",
         "origin": "builtin",
       },
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
   },
 ]
@@ -697,6 +787,11 @@ Array [
         "kind": "type",
         "origin": "builtin",
       },
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
   },
 ]
@@ -719,6 +814,11 @@ Array [
       },
       "kind": "as",
       "to": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
         "baseType": "bool",
         "kind": "type",
         "origin": "builtin",
@@ -813,6 +913,11 @@ Array [
     "left": ParseNode {
       "kind": "identifier",
       "name": "myBool",
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
     "operator": "=",
     "right": ParseNode {
@@ -823,6 +928,11 @@ Array [
         "origin": "builtin",
       },
       "value": true,
+    },
+    "type": ParseNode {
+      "baseType": "bool",
+      "kind": "type",
+      "origin": "builtin",
     },
   },
 ]
@@ -848,6 +958,11 @@ Array [
     "left": ParseNode {
       "kind": "identifier",
       "name": "myFloat",
+      "type": ParseNode {
+        "baseType": "float",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
     "operator": "=",
     "right": ParseNode {
@@ -858,6 +973,11 @@ Array [
         "origin": "builtin",
       },
       "value": 2.71828183,
+    },
+    "type": ParseNode {
+      "baseType": "float",
+      "kind": "type",
+      "origin": "builtin",
     },
   },
 ]
@@ -883,6 +1003,11 @@ Array [
     "left": ParseNode {
       "kind": "identifier",
       "name": "myInt",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
     "operator": "=",
     "right": ParseNode {
@@ -893,6 +1018,11 @@ Array [
         "origin": "builtin",
       },
       "value": 3,
+    },
+    "type": ParseNode {
+      "baseType": "int",
+      "kind": "type",
+      "origin": "builtin",
     },
   },
 ]
@@ -918,6 +1048,11 @@ Array [
     "left": ParseNode {
       "kind": "identifier",
       "name": "myNull",
+      "type": ParseNode {
+        "baseType": "null",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
     "operator": "=",
     "right": ParseNode {
@@ -928,6 +1063,11 @@ Array [
         "origin": "builtin",
       },
       "value": null,
+    },
+    "type": ParseNode {
+      "baseType": "null",
+      "kind": "type",
+      "origin": "builtin",
     },
   },
 ]
@@ -953,6 +1093,11 @@ Array [
     "left": ParseNode {
       "kind": "identifier",
       "name": "myStr",
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
     "operator": "=",
     "right": ParseNode {
@@ -963,6 +1108,11 @@ Array [
         "origin": "builtin",
       },
       "value": "world",
+    },
+    "type": ParseNode {
+      "baseType": "str",
+      "kind": "type",
+      "origin": "builtin",
     },
   },
 ]
@@ -1045,6 +1195,11 @@ Array [
         "kind": "type",
         "origin": "builtin",
       },
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
   },
 ]
@@ -1058,6 +1213,11 @@ Array [
     "value": ParseNode {
       "kind": "new",
       "target": ParseNode {
+        "baseType": "float",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
         "baseType": "float",
         "kind": "type",
         "origin": "builtin",
@@ -1079,6 +1239,11 @@ Array [
         "kind": "type",
         "origin": "builtin",
       },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
   },
 ]
@@ -1096,6 +1261,11 @@ Array [
         "kind": "type",
         "origin": "builtin",
       },
+      "type": ParseNode {
+        "baseType": "null",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
   },
 ]
@@ -1109,6 +1279,11 @@ Array [
     "value": ParseNode {
       "kind": "new",
       "target": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
         "baseType": "str",
         "kind": "type",
         "origin": "builtin",
@@ -1410,6 +1585,11 @@ Array [
         },
         "value": false,
       },
+      "type": ParseNode {
+        "baseType": "type",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
   },
 ]
@@ -1430,6 +1610,11 @@ Array [
           "origin": "builtin",
         },
         "value": 3.14159,
+      },
+      "type": ParseNode {
+        "baseType": "type",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
   },
@@ -1452,6 +1637,11 @@ Array [
         },
         "value": 10,
       },
+      "type": ParseNode {
+        "baseType": "type",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
   },
 ]
@@ -1472,6 +1662,11 @@ Array [
           "origin": "builtin",
         },
         "value": null,
+      },
+      "type": ParseNode {
+        "baseType": "type",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
   },
@@ -1494,6 +1689,11 @@ Array [
         },
         "value": "kythera",
       },
+      "type": ParseNode {
+        "baseType": "type",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
   },
 ]
@@ -1514,6 +1714,11 @@ Array [
           "origin": "builtin",
         },
         "value": true,
+      },
+      "type": ParseNode {
+        "baseType": "type",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
   },

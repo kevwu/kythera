@@ -95,6 +95,62 @@ myObj.c = <> int {
 
 let out2 = myObj.c()
 			`)
+			t("Use `this` on entry defined after usage", `
+let myObj = {
+	c = <> int {
+		return this.a + 10
+	},
+	a = 5,
+}
+
+let out = myObj.c()
+			`)
+			t("Use returned object",`
+let myObj = {
+	b = "asdf",
+	c = <> int {
+		return this.a + 10 + (this.d())()
+	},
+	d = <> fn<> int {
+		return (<> int {
+			return 10
+		})
+	},
+	a = 5,
+}
+
+let myResult = myObj.c()
+
+myObj.c = <> int {
+	return this.a + 45
+}
+
+let myResult2 = myObj.c()
+			`)
+
+			t("Deferred array", `
+let myObj = {
+	a = <> int {
+		return this.b[0]
+	},
+	b = [1, 2, 3],
+}
+
+let out = myObj.a()
+			`)
+
+			t("Deferred object", `
+let myObj = {
+	a = <> int {
+		return this.b.c
+	},
+	b = {
+		c = 10,
+	},
+}
+
+let out = myObj.a()
+			`)
 		})
 
 		// TODO test error: access that does not exist

@@ -73,7 +73,7 @@ class Scope {
 	// 'this' is always accessed from the child of the scope containing the reference.
 	getThisType() {
 		if(this.parent === null) {
-			throw new Error("`this` is not accessible from the global scope.")
+			throw new Error("'this' is not accessible.")
 		}
 
 		if(this.parent.meta.thisType) {
@@ -87,7 +87,7 @@ class Scope {
 	// get JS identifier (not Kythera identifier) for current "this" object
 	getThisId() {
 		if(this.parent === null) {
-			throw new Error("`this` is not accessible from the global scope.")
+			throw new Error("'this' is not accessible from the global scope.")
 		}
 
 		if(this.parent.meta.thisId) {

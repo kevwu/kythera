@@ -13,6 +13,7 @@ let myObjType = obj{
 	`, {skip: true})
 	})
 
+	/*
 	t("Casting object", `
 let myObj = {
     a = 99,
@@ -31,13 +32,15 @@ typeof myCastedObj
 typeof myCastedObj == typeof myObj
 typeof myCastedObj == typeof (myObj as myObjType)	
 	`, {skip: true})
+	*/
 
+	/*
 	t("Usage as fn param", `
 let myObjType = obj{
     int a,
     str b,
 }
-
+	
 let myObj = {
     a = 99,
     b = "beep",
@@ -55,4 +58,5 @@ let myFn = <myObjType object> null {
 myFn(myObj as myObjType)
 myFn(myCastedObj)	
 	`, {skip: true})
+	*/
 })

@@ -3,6 +3,8 @@ const Tokenizer = require("./Tokenizer")
 
 const ParseNode = require("./ParseNode")
 
+const Scope = require("../compiler/Scope")
+
 const PRECEDENCE = {
 	"=": 1, "+=": 1, "-=": 1, "*=": 1, "/=": 1, "%=": 1,
 	"||": 2,
@@ -58,6 +60,12 @@ const LITERALS = {
 class Parser {
 	constructor(input = null) {
 		this.program = []
+
+		// right now, the parser builds its own symbol table separately from the compiler stage.
+		// these could be combined later.
+		this.rootScope = new Scope()
+		this.currentScope = this.rootScope
+
 		if(input !== null) {
 			this.load(input)
 		}
@@ -66,6 +74,10 @@ class Parser {
 	load(input) {
 		this.inputStream = new InputStream(input)
 		this.tokenizer = new Tokenizer(this.inputStream)
+
+		this.rootScope = new Scope()
+		this.currentScope = this.rootScope
+
 		this.program = []
 	}
 
@@ -158,13 +170,18 @@ class Parser {
 
 						let value = this.parseExpression()
 
+						this.currentScope.create(identToken.value, value.type)
+
 						return new ParseNode("let", {
 							identifier: identToken.value,
 							value: value,
 						})
 					case "if":
 						let ifCondition = this.parseExpression()
+
+						this.currentScope = new Scope(this.currentScope, {scopeType: "controlflow"})
 						let ifBody = this.parseBlock()
+						this.currentScope = this.currentScope.parent
 
 						let ifElse
 
@@ -172,33 +189,37 @@ class Parser {
 							this.consumeToken("else", "kw")
 
 							if(this.confirmToken('{', "punc")) { // else only
+								this.currentScope = new Scope(this.currentScope, {scopeType: "controlflow"})
 								ifElse = this.parseBlock()
+								this.currentScope = this.currentScope.parent
 							} else { // else-if
 								ifElse = [this.parseExpression(false)]
 							}
 						}
 
-						let ifStatement = new ParseNode("if", {
+						return new ParseNode("if", {
 							condition: ifCondition,
 							body: ifBody,
-							else: ifElse,
+							"else": ifElse,
 						})
-
-						return ifStatement
 					case "while":
 						let whileCondition = this.parseExpression()
+
+						this.currentScope = new Scope(this.currentScope, {scopeType: "controlflow"})
 						let whileBody = this.parseBlock()
+						this.currentScope = this.currentScope.parent
 
 						return new ParseNode("while", {
 							condition: whileCondition,
 							body: whileBody,
 						})
 					case "return":
+						// TODO check that scope is valid
 						return new ParseNode("return", {
 							value: this.parseExpression()
 						})
 					case "this":
-						return new ParseNode("this", {})
+						return new ParseNode("this", {type: this.currentScope.getThisType()})
 					default:
 						this.err("Unhandled keyword: " + nextToken.value)
 				}
@@ -232,6 +253,7 @@ class Parser {
 			if(nextToken.type === "var") {
 				return new ParseNode("identifier", {
 					name: nextToken.value,
+					type: this.currentScope.get(nextToken.value)
 				})
 			}
 
@@ -360,10 +382,16 @@ class Parser {
 	// parse an object literal
 	parseObjectLiteral() {
 		let contents = {}
-		let structure = {}
 
 		this.consumeToken('{', "punc")
 
+		let objType = new ParseNode("type", {
+			baseType: "obj",
+			origin: "builtin",
+			structure: {},
+		})
+
+		this.currentScope = new Scope(this.currentScope, {thisId: "thisObj", thisType: objType})
 		while (!this.confirmToken('}', "punc")) {
 			let nextToken = this.tokenizer.next()
 
@@ -375,22 +403,31 @@ class Parser {
 			this.consumeToken(',', "punc")
 
 			contents[entryKey] = entryValue
-			structure[entryKey] = new ParseNode("type", entryValue.type)
+
+			objType.structure[entryKey] = new ParseNode("type", entryValue.type)
 		}
 
 		this.consumeToken('}', "punc")
 
+		// check for hanging deferred nodes (invalid references)
+		Object.keys(objType.structure).forEach((key, i) => {
+			if(objType.structure[key].deferred) {
+				this.err("Access to nonexistent member " + key)
+			}
+		})
+
 		return new ParseNode("literal", {
-			type: new ParseNode("type", {
-				baseType: "obj",
-				origin: "builtin",
-				structure: structure, // objects always default to rigid structure
-			}),
+			type: objType,
 			value: contents,
 		})
 	}
 
 	parseFunctionLiteral() {
+		// extend scope one level
+
+		let returnType;
+		this.currentScope = new Scope(this.currentScope, {scopeType: "function", returns: returnType})
+
 		let parameters
 		if(this.confirmToken("<>", "op")) {
 			this.consumeToken("<>", "op")
@@ -404,6 +441,8 @@ class Parser {
 					this.err("Expected identifier but got " + paramName.value)
 				}
 
+				this.currentScope.create(paramName.value, paramType)
+
 				return {
 					name: paramName.value,
 					type: paramType,
@@ -411,9 +450,12 @@ class Parser {
 			})
 		}
 
-		let returnType = this.parseType()
+		returnType = this.parseType()
 
 		let body = this.parseBlock()
+
+		// return to previous scope
+		this.currentScope = this.currentScope.parent
 
 		return new ParseNode("literal", {
 			type: new ParseNode("type", {

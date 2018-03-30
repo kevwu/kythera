@@ -496,6 +496,10 @@ class Compiler {
 			throw new Error("Expected a type ParseNode but got " + JSON.stringify(node, null, 2))
 		}
 
+		if(node.origin === "deferred") {
+			throw new Error("Parser emitted a deferred node (internal error).")
+		}
+
 		if(node.name) {
 			throw new Error("named types not yet supported")
 		}

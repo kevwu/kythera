@@ -70,6 +70,9 @@ myNull = null
 		t("float", `let a = typeof 3.14159`)
 		t("str", `let a = typeof "kythera"`)
 		t("null", `let a = typeof null`)
+
+		t("typeof comparison", `let a = (typeof 10) == (typeof 20)`)
+		t("typeof comparison", `let a = (typeof 10) == (typeof "10")`)
 	})
 
 	describe("Casting", () => {

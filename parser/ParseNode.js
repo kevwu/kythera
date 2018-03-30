@@ -4,6 +4,8 @@ class ParseNode {
 
 		// Internal sanity check: validate node kind and structure
 		// This also serves as the de-facto listing of all node types and their expected structures
+		let requiresType = true
+
 		switch(kind) {
 			case "unary":
 				// only one unary operator right now
@@ -12,12 +14,13 @@ class ParseNode {
 				}
 				this.operator = payload.operator
 
-				// TODO can we do deeper validation on the value? Finding type, etc
 				if(typeof payload.target.kind !== "string") {
 					throw new Error("Unary target must be a Parse Node.")
 				}
 
 				this.target = payload.target
+
+				this.type = this.target.type
 				break
 			case "binary":
 				if(!["==", "!=", "<=", ">=", ">", "<", "+", "-", "*", "/", "%", "||", "&&"].includes(payload.operator)) {
@@ -34,10 +37,15 @@ class ParseNode {
 					throw new Error("Missing right-hand side value.")
 				}
 				this.right = payload.right
+
+
+				// Type-checking against the two operands is not done at the parsing stage.
+				// We use the type of the LHS, which is also what the compiler does.
+				this.type = this.left.type
+
 				break
 			case "assign":
-				// TODO remove this requirement? May be redundant
-				if(!["=", "+=" ,"-=" ,"*=", "/=", "%="].includes(payload.operator)) {
+				if(!["=", "+=", "-=", "*=", "/=", "%="].includes(payload.operator)) {
 					throw new Error(`${payload.operator} is not an assignment operator.`)
 				}
 				this.operator = payload.operator
@@ -51,11 +59,16 @@ class ParseNode {
 					throw new Error("Missing right-hand side value.")
 				}
 				this.right = payload.right
+
+				this.type = this.right.type
+
 				break
 			case "literal":
 				if(payload.type.kind !== "type") {
 					throw new Error("Literal type must be a type node.")
 				}
+
+				this.type = payload.type
 
 				// all literals are interpreted as builtin types. They can become named types by casting.
 				switch(payload.type.baseType) {
@@ -134,18 +147,27 @@ class ParseNode {
 					default:
 						throw new Error("Invalid payload type: " + payload.type)
 				}
-				this.type = payload.type
 				break
 			case "type":
-				let builtIns = ["int", "float", "bool", "null", "str", "fn", "obj", "type", "list"]
+				requiresType = false
+
+				if(payload.deferred) {
+					this.deferred = true
+					this.origin = "deferred"
+
+					break
+				}
+
+				// the "any" value refers to the result when an object is accessed by bracket (string access).
+				let builtIns = ["int", "float", "bool", "null", "str", "fn", "obj", "type", "list", "any"]
 
 				if(payload.baseType) {
 					if(!builtIns.includes(payload.baseType)) {
-						throw new Error(`${payload.baseType} is not a built-in type.`)
+						throw new Error(`Type: '${payload.baseType}' is not a built-in type.`)
 					}
 
 					if(payload.origin !== "builtin") {
-						throw new Error(`${payload.baseType} is built-in but was not marked as built-in`)
+						throw new Error(`Type: '${payload.baseType}' is built-in but was not marked as built-in`)
 					}
 
 					this.baseType = payload.baseType
@@ -155,11 +177,11 @@ class ParseNode {
 					}
 
 					if(builtIns.includes(payload.name)) {
-						throw new Error(`${payload.name} is a built-in type and is not valid as a named type.`)
+						throw new Error(`Type: '${payload.name}' is a built-in type and is not valid as a named type.`)
 					}
 
 					if(payload.origin !== "named") {
-						throw new Error(`${payload.name} is a named type but was not marked as named`)
+						throw new Error(`Type: '${payload.name}' is a named type but was not marked as named`)
 					}
 
 					this.name = payload.name
@@ -207,27 +229,40 @@ class ParseNode {
 
 					this.structure = payload.structure
 				}
+
 				break
 			case "identifier":
 				// TODO validate against JS keywords
 				if(typeof payload.name !== "string") {
 					throw new Error("Identifier name must be a string.")
 				}
+
 				this.name = payload.name
+
+				this.type = payload.type
+
 				break
 			case "typeof":
 				if(typeof payload.target.kind !== "string") {
 					throw new Error("'typeof' target must be a Parse Node.")
 				}
 				this.target = payload.target
+
+				this.type = new ParseNode("type", {baseType: "type", origin: "builtin"})
+
 				break
 			case "new":
 				if(payload.target.kind !== "type") {
 					throw new Error("'new' target must a type node.")
 				}
 				this.target = payload.target
+
+				this.type = payload.target
+
 				break
 			case "let":
+				requiresType = false
+
 				if(typeof payload.identifier !== "string") {
 					throw new Error("Identifier name must be a string.")
 				}
@@ -237,8 +272,11 @@ class ParseNode {
 					throw new Error("'let' target value must be a Parse Node.")
 				}
 				this.value = payload.value
+
 				break
 			case "if":
+				requiresType = false
+
 				if(typeof payload.condition.kind !== "string") {
 					throw new Error("'if' condition must be a Parse Node.")
 				}
@@ -268,8 +306,11 @@ class ParseNode {
 
 					this.else = payload.else
 				}
+
 				break
 			case "while":
+				requiresType = false
+
 				if(typeof payload.condition !== "object") {
 					throw new Error("'while' condition must be a Parse Node.")
 				}
@@ -284,13 +325,19 @@ class ParseNode {
 					})) {
 					throw new Error("Every member of the 'while' body must be a Parse Node.")
 				}
+
 				this.body = payload.body
+
 				break
 			case "return":
+				requiresType = false
+
 				if(typeof payload.value.kind !== "string") {
 					throw new Error("return value must be a Parse Node.")
 				}
+
 				this.value = payload.value
+
 				break
 			case "as":
 				if(typeof payload.from.kind !== "string") {
@@ -301,7 +348,11 @@ class ParseNode {
 				if(payload.to.kind !== "type") {
 					throw new Error("'as' right-hand side must be a type node.")
 				}
+
 				this.to = payload.to
+
+				this.type = payload.to
+
 				break
 			case "call":
 				if(!Array.isArray(payload.arguments)) {
@@ -312,7 +363,15 @@ class ParseNode {
 				if(typeof payload.target.kind !== "string") {
 					throw new Error("Function call target must be a Parse Node.")
 				}
+
 				this.target = payload.target
+
+				// we need a deferred node here if payload.target is itself a deferred node, it will have no return value.
+				if((typeof this.target.type.returns !== "object")) {
+					// fill in placeholder
+					this.target.type.returns = new ParseNode("type", {deferred: true})
+				}
+				this.type = this.target.type.returns
 
 				break
 			case "access":
@@ -330,17 +389,58 @@ class ParseNode {
 
 				this.method = payload.method
 
-				if(typeof payload.target.kind !== "string") {
+				if(payload.target.constructor !== this.constructor) {
 					throw new Error("Access target must be a Parse Node.")
 				}
+
 				this.target = payload.target
 
 				this.index = payload.index
+
+				if(this.method === "dot") {
+					if(!this.target.type.deferred && this.target.type.baseType !== "obj") {
+						throw new Error("Only objects may be accessed with the dot operator.")
+					}
+
+					// if the target itself is deferred, we need to give it a structure element
+					// acting under the assumption that it is indeed an object
+					if(this.target.type.deferred && !(this.target.type.structure)) {
+						this.target.type.structure = {}
+					}
+
+
+					// fill in placeholder for access of unavailable values (i.e. coming from "this")
+					if((typeof this.target.type.structure[this.index]) !== "object") {
+						this.target.type.structure[this.index] = new ParseNode("type", {deferred: true})
+					}
+
+					this.type = this.target.type.structure[this.index]
+				} else if(this.method === "bracket") {
+					if(this.target.type.baseType === "list") {
+						this.type = this.target.type.contains
+					}
+
+					/*
+					 else if(this.target.type.baseType === "map") {
+						this.type = this.target.type.keys
+					}
+					*/
+					else {
+						this.type = new ParseNode("type", {baseType: "any", origin: "builtin"})
+					}
+				}
+
 				break
 			case "this":
+				this.type = payload.type
 				break
 			default:
 				throw new Error("Invalid node kind: " + kind)
+		}
+
+		// all ParseNodes must contain a type ParseNode, except for type ParseNodes themselves.
+		if(requiresType && ((typeof this.type !== "object") || this.type.kind !== "type")) {
+			throw new Error(`Parse Node must contain a type. (${this.kind})`)
 		}
 	}
 }

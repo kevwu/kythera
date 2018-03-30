@@ -91,6 +91,11 @@ Array [
         },
         "value": 2,
       },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
   },
 ]
@@ -121,6 +126,11 @@ Array [
           "origin": "builtin",
         },
         "value": 2,
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
   },
@@ -153,6 +163,11 @@ Array [
         },
         "value": 2,
       },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
   },
 ]
@@ -184,6 +199,11 @@ Array [
         },
         "value": 2,
       },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
   },
 ]
@@ -214,6 +234,11 @@ Array [
           "origin": "builtin",
         },
         "value": 2,
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
   },
@@ -305,6 +330,11 @@ Array [
     "left": ParseNode {
       "kind": "identifier",
       "name": "a",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
     "operator": "+=",
     "right": ParseNode {
@@ -315,6 +345,11 @@ Array [
         "origin": "builtin",
       },
       "value": 2,
+    },
+    "type": ParseNode {
+      "baseType": "int",
+      "kind": "type",
+      "origin": "builtin",
     },
   },
 ]
@@ -340,6 +375,11 @@ Array [
     "left": ParseNode {
       "kind": "identifier",
       "name": "a",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
     "operator": "/=",
     "right": ParseNode {
@@ -350,6 +390,11 @@ Array [
         "origin": "builtin",
       },
       "value": 2,
+    },
+    "type": ParseNode {
+      "baseType": "int",
+      "kind": "type",
+      "origin": "builtin",
     },
   },
 ]
@@ -375,6 +420,11 @@ Array [
     "left": ParseNode {
       "kind": "identifier",
       "name": "a",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
     "operator": "%=",
     "right": ParseNode {
@@ -385,6 +435,11 @@ Array [
         "origin": "builtin",
       },
       "value": 2,
+    },
+    "type": ParseNode {
+      "baseType": "int",
+      "kind": "type",
+      "origin": "builtin",
     },
   },
 ]
@@ -410,6 +465,11 @@ Array [
     "left": ParseNode {
       "kind": "identifier",
       "name": "a",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
     "operator": "*=",
     "right": ParseNode {
@@ -420,6 +480,11 @@ Array [
         "origin": "builtin",
       },
       "value": 2,
+    },
+    "type": ParseNode {
+      "baseType": "int",
+      "kind": "type",
+      "origin": "builtin",
     },
   },
 ]
@@ -445,6 +510,11 @@ Array [
     "left": ParseNode {
       "kind": "identifier",
       "name": "a",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
     "operator": "-=",
     "right": ParseNode {
@@ -455,6 +525,11 @@ Array [
         "origin": "builtin",
       },
       "value": 2,
+    },
+    "type": ParseNode {
+      "baseType": "int",
+      "kind": "type",
+      "origin": "builtin",
     },
   },
 ]
@@ -512,6 +587,11 @@ Array [
         },
         "value": false,
       },
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
   },
 ]
@@ -542,6 +622,11 @@ Array [
           "origin": "builtin",
         },
         "value": false,
+      },
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
   },
@@ -652,6 +737,11 @@ Array [
         },
         "value": 2,
       },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
   },
 ]
@@ -682,6 +772,11 @@ Array [
           "origin": "builtin",
         },
         "value": 2,
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
   },
@@ -714,6 +809,11 @@ Array [
         },
         "value": 2,
       },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
   },
 ]
@@ -744,6 +844,11 @@ Array [
           "origin": "builtin",
         },
         "value": 2,
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
   },
@@ -776,6 +881,11 @@ Array [
         },
         "value": 2,
       },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
   },
 ]
@@ -806,6 +916,11 @@ Array [
           "origin": "builtin",
         },
         "value": 2,
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
   },
@@ -977,12 +1092,32 @@ Array [
           "left": ParseNode {
             "kind": "identifier",
             "name": "A",
+            "type": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
           },
           "operator": "||",
           "right": ParseNode {
             "kind": "identifier",
             "name": "B",
+            "type": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
           },
+          "type": ParseNode {
+            "baseType": "bool",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
         },
       },
       "operator": "==",
@@ -994,6 +1129,16 @@ Array [
           "target": ParseNode {
             "kind": "identifier",
             "name": "A",
+            "type": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          "type": ParseNode {
+            "baseType": "bool",
+            "kind": "type",
+            "origin": "builtin",
           },
         },
         "operator": "&&",
@@ -1003,8 +1148,28 @@ Array [
           "target": ParseNode {
             "kind": "identifier",
             "name": "B",
+            "type": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          "type": ParseNode {
+            "baseType": "bool",
+            "kind": "type",
+            "origin": "builtin",
           },
         },
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
   },
@@ -1021,12 +1186,32 @@ Array [
           "left": ParseNode {
             "kind": "identifier",
             "name": "A",
+            "type": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
           },
           "operator": "&&",
           "right": ParseNode {
             "kind": "identifier",
             "name": "B",
+            "type": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
           },
+          "type": ParseNode {
+            "baseType": "bool",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
         },
       },
       "operator": "==",
@@ -1038,6 +1223,16 @@ Array [
           "target": ParseNode {
             "kind": "identifier",
             "name": "A",
+            "type": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          "type": ParseNode {
+            "baseType": "bool",
+            "kind": "type",
+            "origin": "builtin",
           },
         },
         "operator": "||",
@@ -1047,8 +1242,28 @@ Array [
           "target": ParseNode {
             "kind": "identifier",
             "name": "B",
+            "type": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          "type": ParseNode {
+            "baseType": "bool",
+            "kind": "type",
+            "origin": "builtin",
           },
         },
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
   },
@@ -1096,12 +1311,32 @@ Array [
           "left": ParseNode {
             "kind": "identifier",
             "name": "A",
+            "type": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
           },
           "operator": "||",
           "right": ParseNode {
             "kind": "identifier",
             "name": "B",
+            "type": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
           },
+          "type": ParseNode {
+            "baseType": "bool",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
         },
       },
       "operator": "==",
@@ -1113,6 +1348,16 @@ Array [
           "target": ParseNode {
             "kind": "identifier",
             "name": "A",
+            "type": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          "type": ParseNode {
+            "baseType": "bool",
+            "kind": "type",
+            "origin": "builtin",
           },
         },
         "operator": "&&",
@@ -1122,8 +1367,28 @@ Array [
           "target": ParseNode {
             "kind": "identifier",
             "name": "B",
+            "type": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          "type": ParseNode {
+            "baseType": "bool",
+            "kind": "type",
+            "origin": "builtin",
           },
         },
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
   },
@@ -1140,12 +1405,32 @@ Array [
           "left": ParseNode {
             "kind": "identifier",
             "name": "A",
+            "type": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
           },
           "operator": "&&",
           "right": ParseNode {
             "kind": "identifier",
             "name": "B",
+            "type": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
           },
+          "type": ParseNode {
+            "baseType": "bool",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
         },
       },
       "operator": "==",
@@ -1157,6 +1442,16 @@ Array [
           "target": ParseNode {
             "kind": "identifier",
             "name": "A",
+            "type": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          "type": ParseNode {
+            "baseType": "bool",
+            "kind": "type",
+            "origin": "builtin",
           },
         },
         "operator": "||",
@@ -1166,8 +1461,28 @@ Array [
           "target": ParseNode {
             "kind": "identifier",
             "name": "B",
+            "type": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          "type": ParseNode {
+            "baseType": "bool",
+            "kind": "type",
+            "origin": "builtin",
           },
         },
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
   },
@@ -1215,12 +1530,32 @@ Array [
           "left": ParseNode {
             "kind": "identifier",
             "name": "A",
+            "type": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
           },
           "operator": "||",
           "right": ParseNode {
             "kind": "identifier",
             "name": "B",
+            "type": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
           },
+          "type": ParseNode {
+            "baseType": "bool",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
         },
       },
       "operator": "==",
@@ -1232,6 +1567,16 @@ Array [
           "target": ParseNode {
             "kind": "identifier",
             "name": "A",
+            "type": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          "type": ParseNode {
+            "baseType": "bool",
+            "kind": "type",
+            "origin": "builtin",
           },
         },
         "operator": "&&",
@@ -1241,8 +1586,28 @@ Array [
           "target": ParseNode {
             "kind": "identifier",
             "name": "B",
+            "type": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          "type": ParseNode {
+            "baseType": "bool",
+            "kind": "type",
+            "origin": "builtin",
           },
         },
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
   },
@@ -1259,12 +1624,32 @@ Array [
           "left": ParseNode {
             "kind": "identifier",
             "name": "A",
+            "type": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
           },
           "operator": "&&",
           "right": ParseNode {
             "kind": "identifier",
             "name": "B",
+            "type": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
           },
+          "type": ParseNode {
+            "baseType": "bool",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
         },
       },
       "operator": "==",
@@ -1276,6 +1661,16 @@ Array [
           "target": ParseNode {
             "kind": "identifier",
             "name": "A",
+            "type": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          "type": ParseNode {
+            "baseType": "bool",
+            "kind": "type",
+            "origin": "builtin",
           },
         },
         "operator": "||",
@@ -1285,8 +1680,28 @@ Array [
           "target": ParseNode {
             "kind": "identifier",
             "name": "B",
+            "type": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          "type": ParseNode {
+            "baseType": "bool",
+            "kind": "type",
+            "origin": "builtin",
           },
         },
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
   },
@@ -1334,12 +1749,32 @@ Array [
           "left": ParseNode {
             "kind": "identifier",
             "name": "A",
+            "type": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
           },
           "operator": "||",
           "right": ParseNode {
             "kind": "identifier",
             "name": "B",
+            "type": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
           },
+          "type": ParseNode {
+            "baseType": "bool",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
         },
       },
       "operator": "==",
@@ -1351,6 +1786,16 @@ Array [
           "target": ParseNode {
             "kind": "identifier",
             "name": "A",
+            "type": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          "type": ParseNode {
+            "baseType": "bool",
+            "kind": "type",
+            "origin": "builtin",
           },
         },
         "operator": "&&",
@@ -1360,8 +1805,28 @@ Array [
           "target": ParseNode {
             "kind": "identifier",
             "name": "B",
+            "type": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          "type": ParseNode {
+            "baseType": "bool",
+            "kind": "type",
+            "origin": "builtin",
           },
         },
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
   },
@@ -1378,12 +1843,32 @@ Array [
           "left": ParseNode {
             "kind": "identifier",
             "name": "A",
+            "type": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
           },
           "operator": "&&",
           "right": ParseNode {
             "kind": "identifier",
             "name": "B",
+            "type": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
           },
+          "type": ParseNode {
+            "baseType": "bool",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
         },
       },
       "operator": "==",
@@ -1395,6 +1880,16 @@ Array [
           "target": ParseNode {
             "kind": "identifier",
             "name": "A",
+            "type": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          "type": ParseNode {
+            "baseType": "bool",
+            "kind": "type",
+            "origin": "builtin",
           },
         },
         "operator": "||",
@@ -1404,8 +1899,28 @@ Array [
           "target": ParseNode {
             "kind": "identifier",
             "name": "B",
+            "type": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          "type": ParseNode {
+            "baseType": "bool",
+            "kind": "type",
+            "origin": "builtin",
           },
         },
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
   },
@@ -1455,6 +1970,11 @@ Array [
         },
         "value": false,
       },
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
   },
 ]
@@ -1476,6 +1996,11 @@ Array [
           "origin": "builtin",
         },
         "value": true,
+      },
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
   },
@@ -1546,6 +2071,16 @@ Array [
           },
           "value": 4,
         },
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
   },
@@ -1580,6 +2115,11 @@ Array [
           },
           "value": 3,
         },
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
       },
       "operator": "*",
       "right": ParseNode {
@@ -1590,6 +2130,11 @@ Array [
           "origin": "builtin",
         },
         "value": 4,
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
   },
@@ -1634,6 +2179,11 @@ Array [
           "origin": "builtin",
         },
         "value": "zxcv",
+      },
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
   },

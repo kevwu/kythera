@@ -24,6 +24,16 @@ Array [
               "kind": "type",
               "origin": "builtin",
             },
+            "type": ParseNode {
+              "baseType": "list",
+              "contains": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "kind": "type",
+              "origin": "builtin",
+            },
           },
         },
         ParseNode {
@@ -43,6 +53,21 @@ Array [
             "target": ParseNode {
               "kind": "identifier",
               "name": "result",
+              "type": ParseNode {
+                "baseType": "list",
+                "contains": ParseNode {
+                  "baseType": "int",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+                "kind": "type",
+                "origin": "builtin",
+              },
+            },
+            "type": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
             },
           },
           "operator": "=",
@@ -54,6 +79,11 @@ Array [
               "origin": "builtin",
             },
             "value": 10,
+          },
+          "type": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
           },
         },
       ],
@@ -105,7 +135,38 @@ Array [
       "target": ParseNode {
         "kind": "identifier",
         "name": "myListFn",
+        "type": ParseNode {
+          "baseType": "fn",
+          "kind": "type",
+          "origin": "builtin",
+          "parameters": Array [],
+          "returns": ParseNode {
+            "baseType": "list",
+            "contains": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
       },
+      "type": ParseNode {
+        "baseType": "list",
+        "contains": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+    "type": ParseNode {
+      "baseType": "int",
+      "kind": "type",
+      "origin": "builtin",
     },
   },
 ]
@@ -119,6 +180,16 @@ Array [
     "value": ParseNode {
       "kind": "new",
       "target": ParseNode {
+        "baseType": "list",
+        "contains": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
         "baseType": "list",
         "contains": ParseNode {
           "baseType": "int",
@@ -147,6 +218,21 @@ Array [
       "target": ParseNode {
         "kind": "identifier",
         "name": "myList",
+        "type": ParseNode {
+          "baseType": "list",
+          "contains": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
     "operator": "=",
@@ -158,6 +244,11 @@ Array [
         "origin": "builtin",
       },
       "value": 10,
+    },
+    "type": ParseNode {
+      "baseType": "int",
+      "kind": "type",
+      "origin": "builtin",
     },
   },
 ]
@@ -171,6 +262,28 @@ Array [
     "value": ParseNode {
       "kind": "new",
       "target": ParseNode {
+        "baseType": "list",
+        "contains": ParseNode {
+          "baseType": "obj",
+          "kind": "type",
+          "origin": "builtin",
+          "structure": Object {
+            "a": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "b": ParseNode {
+              "baseType": "str",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+        },
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
         "baseType": "list",
         "contains": ParseNode {
           "baseType": "obj",
@@ -234,6 +347,16 @@ Array [
     "value": ParseNode {
       "kind": "new",
       "target": ParseNode {
+        "baseType": "list",
+        "contains": ParseNode {
+          "kind": "type",
+          "name": "myType",
+          "origin": "named",
+        },
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
         "baseType": "list",
         "contains": ParseNode {
           "kind": "type",
@@ -1328,6 +1451,11 @@ Array [
                 "left": ParseNode {
                   "kind": "identifier",
                   "name": "g",
+                  "type": ParseNode {
+                    "baseType": "int",
+                    "kind": "type",
+                    "origin": "builtin",
+                  },
                 },
                 "operator": "+",
                 "right": ParseNode {
@@ -1338,6 +1466,11 @@ Array [
                     "origin": "builtin",
                   },
                   "value": 10,
+                },
+                "type": ParseNode {
+                  "baseType": "int",
+                  "kind": "type",
+                  "origin": "builtin",
                 },
               },
             },
@@ -1377,7 +1510,41 @@ Array [
         "target": ParseNode {
           "kind": "identifier",
           "name": "myObj",
+          "type": ParseNode {
+            "baseType": "obj",
+            "kind": "type",
+            "origin": "builtin",
+            "structure": Object {
+              "a": ParseNode {
+                "baseType": "fn",
+                "kind": "type",
+                "origin": "builtin",
+                "parameters": Array [],
+                "returns": ParseNode {
+                  "baseType": "int",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+              },
+            },
+          },
         },
+        "type": ParseNode {
+          "baseType": "fn",
+          "kind": "type",
+          "origin": "builtin",
+          "parameters": Array [],
+          "returns": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
   },
@@ -1426,6 +1593,23 @@ Array [
       "target": ParseNode {
         "kind": "identifier",
         "name": "myObj",
+        "type": ParseNode {
+          "baseType": "obj",
+          "kind": "type",
+          "origin": "builtin",
+          "structure": Object {
+            "a": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+        },
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
   },
@@ -1474,6 +1658,23 @@ Array [
       "target": ParseNode {
         "kind": "identifier",
         "name": "myObj",
+        "type": ParseNode {
+          "baseType": "obj",
+          "kind": "type",
+          "origin": "builtin",
+          "structure": Object {
+            "a": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+        },
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
   },
@@ -1486,6 +1687,23 @@ Array [
       "target": ParseNode {
         "kind": "identifier",
         "name": "myObj",
+        "type": ParseNode {
+          "baseType": "obj",
+          "kind": "type",
+          "origin": "builtin",
+          "structure": Object {
+            "a": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+        },
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
     "operator": "=",
@@ -1498,6 +1716,11 @@ Array [
       },
       "value": 20,
     },
+    "type": ParseNode {
+      "baseType": "int",
+      "kind": "type",
+      "origin": "builtin",
+    },
   },
   ParseNode {
     "identifier": "out2",
@@ -1509,13 +1732,234 @@ Array [
       "target": ParseNode {
         "kind": "identifier",
         "name": "myObj",
+        "type": ParseNode {
+          "baseType": "obj",
+          "kind": "type",
+          "origin": "builtin",
+          "structure": Object {
+            "a": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+        },
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
   },
 ]
 `;
 
+exports[`Builtin data structures Objects \`this\` reference [COMPL] Deferred array 1`] = `"let myObj = new KYTHERA.value((() => {let thisObj = {value: {}};thisObj.value[\\"a\\"] = new KYTHERA.value(() => {return (thisObj).value.b.value[(new KYTHERA.value(0, KYTHERA.type.PRIMITIVES[\\"int\\"])).value];}, new KYTHERA.type(\\"fn\\", { parameters: [], returns: KYTHERA.type.PRIMITIVES[\\"int\\"]}));thisObj.value[\\"b\\"] = new KYTHERA.value([new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]),new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]),new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"])], new KYTHERA.type(\\"list\\", { contains: KYTHERA.type.PRIMITIVES[\\"int\\"]}));return thisObj.value;})(), new KYTHERA.type(\\"obj\\", {\\"b\\": new KYTHERA.type(\\"list\\", { contains: KYTHERA.type.PRIMITIVES[\\"int\\"]}),\\"a\\": new KYTHERA.type(\\"fn\\", { parameters: [], returns: KYTHERA.type.PRIMITIVES[\\"int\\"]}),}));let out = myObj.value.a.value();"`;
+
+exports[`Builtin data structures Objects \`this\` reference [COMPL] Deferred object 1`] = `"let myObj = new KYTHERA.value((() => {let thisObj = {value: {}};thisObj.value[\\"a\\"] = new KYTHERA.value(() => {return (thisObj).value.b.value.c;}, new KYTHERA.type(\\"fn\\", { parameters: [], returns: KYTHERA.type.PRIMITIVES[\\"int\\"]}));thisObj.value[\\"b\\"] = new KYTHERA.value((() => {let thisObj = {value: {}};thisObj.value[\\"c\\"] = new KYTHERA.value(10, KYTHERA.type.PRIMITIVES[\\"int\\"]);return thisObj.value;})(), new KYTHERA.type(\\"obj\\", {\\"c\\": KYTHERA.type.PRIMITIVES[\\"int\\"],}));return thisObj.value;})(), new KYTHERA.type(\\"obj\\", {\\"b\\": new KYTHERA.type(\\"obj\\", {\\"c\\": KYTHERA.type.PRIMITIVES[\\"int\\"],}),\\"a\\": new KYTHERA.type(\\"fn\\", { parameters: [], returns: KYTHERA.type.PRIMITIVES[\\"int\\"]}),}));let out = myObj.value.a.value();"`;
+
+exports[`Builtin data structures Objects \`this\` reference [COMPL] Use \`this\` on entry defined after usage 1`] = `"let myObj = new KYTHERA.value((() => {let thisObj = {value: {}};thisObj.value[\\"c\\"] = new KYTHERA.value(() => {return (KYTHERA.value.add((thisObj).value.a, new KYTHERA.value(10, KYTHERA.type.PRIMITIVES[\\"int\\"])));}, new KYTHERA.type(\\"fn\\", { parameters: [], returns: KYTHERA.type.PRIMITIVES[\\"int\\"]}));thisObj.value[\\"a\\"] = new KYTHERA.value(5, KYTHERA.type.PRIMITIVES[\\"int\\"]);return thisObj.value;})(), new KYTHERA.type(\\"obj\\", {\\"a\\": KYTHERA.type.PRIMITIVES[\\"int\\"],\\"c\\": new KYTHERA.type(\\"fn\\", { parameters: [], returns: KYTHERA.type.PRIMITIVES[\\"int\\"]}),}));let out = myObj.value.c.value();"`;
+
 exports[`Builtin data structures Objects \`this\` reference [COMPL] Use in access assignment 1`] = `"let myObj = new KYTHERA.value((() => {let thisObj = {value: {}};thisObj.value[\\"a\\"] = new KYTHERA.value(10, KYTHERA.type.PRIMITIVES[\\"int\\"]);thisObj.value[\\"c\\"] = new KYTHERA.value(() => {return (KYTHERA.value.add(new KYTHERA.value(42, KYTHERA.type.PRIMITIVES[\\"int\\"]), (thisObj).value.a));}, new KYTHERA.type(\\"fn\\", { parameters: [], returns: KYTHERA.type.PRIMITIVES[\\"int\\"]}));return thisObj.value;})(), new KYTHERA.type(\\"obj\\", {\\"a\\": KYTHERA.type.PRIMITIVES[\\"int\\"],\\"c\\": new KYTHERA.type(\\"fn\\", { parameters: [], returns: KYTHERA.type.PRIMITIVES[\\"int\\"]}),}));let out1 = myObj.value.c.value();(myObj.value.c = new KYTHERA.value(() => {return (KYTHERA.value.add((KYTHERA.value.add(new KYTHERA.value(42, KYTHERA.type.PRIMITIVES[\\"int\\"]), (myObj).value.a)), new KYTHERA.value(10, KYTHERA.type.PRIMITIVES[\\"int\\"])));}, new KYTHERA.type(\\"fn\\", { parameters: [], returns: KYTHERA.type.PRIMITIVES[\\"int\\"]})));let out2 = myObj.value.c.value();"`;
+
+exports[`Builtin data structures Objects \`this\` reference [COMPL] Use returned object 1`] = `"let myObj = new KYTHERA.value((() => {let thisObj = {value: {}};thisObj.value[\\"b\\"] = new KYTHERA.value(\\"asdf\\", KYTHERA.type.PRIMITIVES[\\"str\\"]);thisObj.value[\\"c\\"] = new KYTHERA.value(() => {return (KYTHERA.value.add((KYTHERA.value.add((thisObj).value.a, new KYTHERA.value(10, KYTHERA.type.PRIMITIVES[\\"int\\"]))), (thisObj).value.d.value().value()));}, new KYTHERA.type(\\"fn\\", { parameters: [], returns: KYTHERA.type.PRIMITIVES[\\"int\\"]}));thisObj.value[\\"d\\"] = new KYTHERA.value(() => {return new KYTHERA.value(() => {return new KYTHERA.value(10, KYTHERA.type.PRIMITIVES[\\"int\\"]);}, new KYTHERA.type(\\"fn\\", { parameters: [], returns: KYTHERA.type.PRIMITIVES[\\"int\\"]}));}, new KYTHERA.type(\\"fn\\", { parameters: [], returns: new KYTHERA.type(\\"fn\\", { parameters: [], returns: KYTHERA.type.PRIMITIVES[\\"int\\"]})}));thisObj.value[\\"a\\"] = new KYTHERA.value(5, KYTHERA.type.PRIMITIVES[\\"int\\"]);return thisObj.value;})(), new KYTHERA.type(\\"obj\\", {\\"b\\": KYTHERA.type.PRIMITIVES[\\"str\\"],\\"a\\": KYTHERA.type.PRIMITIVES[\\"int\\"],\\"d\\": new KYTHERA.type(\\"fn\\", { parameters: [], returns: new KYTHERA.type(\\"fn\\", { parameters: [], returns: KYTHERA.type.PRIMITIVES[\\"int\\"]})}),\\"c\\": new KYTHERA.type(\\"fn\\", { parameters: [], returns: KYTHERA.type.PRIMITIVES[\\"int\\"]}),}));let myResult = myObj.value.c.value();(myObj.value.c = new KYTHERA.value(() => {return (KYTHERA.value.add((myObj).value.a, new KYTHERA.value(45, KYTHERA.type.PRIMITIVES[\\"int\\"])));}, new KYTHERA.type(\\"fn\\", { parameters: [], returns: KYTHERA.type.PRIMITIVES[\\"int\\"]})));let myResult2 = myObj.value.c.value();"`;
+
+exports[`Builtin data structures Objects \`this\` reference [EVALT] Deferred array 1`] = `
+Object {
+  "myObj":  {
+    "type":  {
+      "baseType": "obj",
+      "structure": Object {
+        "a":  {
+          "baseType": "fn",
+          "structure": Object {
+            "parameters": Array [],
+            "returns":  {
+              "baseType": "int",
+            },
+          },
+        },
+        "b":  {
+          "baseType": "list",
+          "structure": Object {
+            "contains":  {
+              "baseType": "int",
+            },
+          },
+        },
+      },
+    },
+    "value": Object {
+      "a":  {
+        "type":  {
+          "baseType": "fn",
+          "structure": Object {
+            "parameters": Array [],
+            "returns":  {
+              "baseType": "int",
+            },
+          },
+        },
+        "value": [Function],
+      },
+      "b":  {
+        "type":  {
+          "baseType": "list",
+          "structure": Object {
+            "contains":  {
+              "baseType": "int",
+            },
+          },
+        },
+        "value": Array [
+           {
+            "type":  {
+              "baseType": "int",
+            },
+            "value": 1,
+          },
+           {
+            "type":  {
+              "baseType": "int",
+            },
+            "value": 2,
+          },
+           {
+            "type":  {
+              "baseType": "int",
+            },
+            "value": 3,
+          },
+        ],
+      },
+    },
+  },
+  "out":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 1,
+  },
+}
+`;
+
+exports[`Builtin data structures Objects \`this\` reference [EVALT] Deferred object 1`] = `
+Object {
+  "myObj":  {
+    "type":  {
+      "baseType": "obj",
+      "structure": Object {
+        "a":  {
+          "baseType": "fn",
+          "structure": Object {
+            "parameters": Array [],
+            "returns":  {
+              "baseType": "int",
+            },
+          },
+        },
+        "b":  {
+          "baseType": "obj",
+          "structure": Object {
+            "c":  {
+              "baseType": "int",
+            },
+          },
+        },
+      },
+    },
+    "value": Object {
+      "a":  {
+        "type":  {
+          "baseType": "fn",
+          "structure": Object {
+            "parameters": Array [],
+            "returns":  {
+              "baseType": "int",
+            },
+          },
+        },
+        "value": [Function],
+      },
+      "b":  {
+        "type":  {
+          "baseType": "obj",
+          "structure": Object {
+            "c":  {
+              "baseType": "int",
+            },
+          },
+        },
+        "value": Object {
+          "c":  {
+            "type":  {
+              "baseType": "int",
+            },
+            "value": 10,
+          },
+        },
+      },
+    },
+  },
+  "out":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 10,
+  },
+}
+`;
+
+exports[`Builtin data structures Objects \`this\` reference [EVALT] Use \`this\` on entry defined after usage 1`] = `
+Object {
+  "myObj":  {
+    "type":  {
+      "baseType": "obj",
+      "structure": Object {
+        "a":  {
+          "baseType": "int",
+        },
+        "c":  {
+          "baseType": "fn",
+          "structure": Object {
+            "parameters": Array [],
+            "returns":  {
+              "baseType": "int",
+            },
+          },
+        },
+      },
+    },
+    "value": Object {
+      "a":  {
+        "type":  {
+          "baseType": "int",
+        },
+        "value": 5,
+      },
+      "c":  {
+        "type":  {
+          "baseType": "fn",
+          "structure": Object {
+            "parameters": Array [],
+            "returns":  {
+              "baseType": "int",
+            },
+          },
+        },
+        "value": [Function],
+      },
+    },
+  },
+  "out":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 15,
+  },
+}
+`;
 
 exports[`Builtin data structures Objects \`this\` reference [EVALT] Use in access assignment 1`] = `
 Object {
@@ -1571,6 +2015,732 @@ Object {
     "value": 62,
   },
 }
+`;
+
+exports[`Builtin data structures Objects \`this\` reference [EVALT] Use returned object 1`] = `
+Object {
+  "myObj":  {
+    "type":  {
+      "baseType": "obj",
+      "structure": Object {
+        "a":  {
+          "baseType": "int",
+        },
+        "b":  {
+          "baseType": "str",
+        },
+        "c":  {
+          "baseType": "fn",
+          "structure": Object {
+            "parameters": Array [],
+            "returns":  {
+              "baseType": "int",
+            },
+          },
+        },
+        "d":  {
+          "baseType": "fn",
+          "structure": Object {
+            "parameters": Array [],
+            "returns":  {
+              "baseType": "fn",
+              "structure": Object {
+                "parameters": Array [],
+                "returns":  {
+                  "baseType": "int",
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+    "value": Object {
+      "a":  {
+        "type":  {
+          "baseType": "int",
+        },
+        "value": 5,
+      },
+      "b":  {
+        "type":  {
+          "baseType": "str",
+        },
+        "value": "asdf",
+      },
+      "c":  {
+        "type":  {
+          "baseType": "fn",
+          "structure": Object {
+            "parameters": Array [],
+            "returns":  {
+              "baseType": "int",
+            },
+          },
+        },
+        "value": [Function],
+      },
+      "d":  {
+        "type":  {
+          "baseType": "fn",
+          "structure": Object {
+            "parameters": Array [],
+            "returns":  {
+              "baseType": "fn",
+              "structure": Object {
+                "parameters": Array [],
+                "returns":  {
+                  "baseType": "int",
+                },
+              },
+            },
+          },
+        },
+        "value": [Function],
+      },
+    },
+  },
+  "myResult":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 25,
+  },
+  "myResult2":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 50,
+  },
+}
+`;
+
+exports[`Builtin data structures Objects \`this\` reference [PARSE] Deferred array 1`] = `
+Array [
+  ParseNode {
+    "identifier": "myObj",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "obj",
+        "kind": "type",
+        "origin": "builtin",
+        "structure": Object {
+          "a": ParseNode {
+            "baseType": "fn",
+            "kind": "type",
+            "origin": "builtin",
+            "parameters": Array [],
+            "returns": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          "b": ParseNode {
+            "baseType": "list",
+            "contains": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+      },
+      "value": Object {
+        "a": ParseNode {
+          "body": Array [
+            ParseNode {
+              "kind": "return",
+              "value": ParseNode {
+                "index": ParseNode {
+                  "kind": "literal",
+                  "type": ParseNode {
+                    "baseType": "int",
+                    "kind": "type",
+                    "origin": "builtin",
+                  },
+                  "value": 0,
+                },
+                "kind": "access",
+                "method": "bracket",
+                "target": ParseNode {
+                  "index": "b",
+                  "kind": "access",
+                  "method": "dot",
+                  "target": ParseNode {
+                    "kind": "this",
+                    "type": ParseNode {
+                      "baseType": "obj",
+                      "kind": "type",
+                      "origin": "builtin",
+                      "structure": Object {
+                        "a": ParseNode {
+                          "baseType": "fn",
+                          "kind": "type",
+                          "origin": "builtin",
+                          "parameters": Array [],
+                          "returns": ParseNode {
+                            "baseType": "int",
+                            "kind": "type",
+                            "origin": "builtin",
+                          },
+                        },
+                        "b": ParseNode {
+                          "baseType": "list",
+                          "contains": ParseNode {
+                            "baseType": "int",
+                            "kind": "type",
+                            "origin": "builtin",
+                          },
+                          "kind": "type",
+                          "origin": "builtin",
+                        },
+                      },
+                    },
+                  },
+                  "type": ParseNode {
+                    "deferred": true,
+                    "kind": "type",
+                    "origin": "deferred",
+                  },
+                },
+                "type": ParseNode {
+                  "baseType": "any",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+              },
+            },
+          ],
+          "kind": "literal",
+          "parameters": Array [],
+          "returns": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "type": ParseNode {
+            "baseType": "fn",
+            "kind": "type",
+            "origin": "builtin",
+            "parameters": Array [],
+            "returns": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+        },
+        "b": ParseNode {
+          "elements": Array [
+            ParseNode {
+              "kind": "literal",
+              "type": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "value": 1,
+            },
+            ParseNode {
+              "kind": "literal",
+              "type": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "value": 2,
+            },
+            ParseNode {
+              "kind": "literal",
+              "type": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "value": 3,
+            },
+          ],
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "list",
+            "contains": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "out",
+    "kind": "let",
+    "value": ParseNode {
+      "arguments": Array [],
+      "kind": "call",
+      "target": ParseNode {
+        "index": "a",
+        "kind": "access",
+        "method": "dot",
+        "target": ParseNode {
+          "kind": "identifier",
+          "name": "myObj",
+          "type": ParseNode {
+            "baseType": "obj",
+            "kind": "type",
+            "origin": "builtin",
+            "structure": Object {
+              "a": ParseNode {
+                "baseType": "fn",
+                "kind": "type",
+                "origin": "builtin",
+                "parameters": Array [],
+                "returns": ParseNode {
+                  "baseType": "int",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+              },
+              "b": ParseNode {
+                "baseType": "list",
+                "contains": ParseNode {
+                  "baseType": "int",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+                "kind": "type",
+                "origin": "builtin",
+              },
+            },
+          },
+        },
+        "type": ParseNode {
+          "baseType": "fn",
+          "kind": "type",
+          "origin": "builtin",
+          "parameters": Array [],
+          "returns": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Builtin data structures Objects \`this\` reference [PARSE] Deferred object 1`] = `
+Array [
+  ParseNode {
+    "identifier": "myObj",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "obj",
+        "kind": "type",
+        "origin": "builtin",
+        "structure": Object {
+          "a": ParseNode {
+            "baseType": "fn",
+            "kind": "type",
+            "origin": "builtin",
+            "parameters": Array [],
+            "returns": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          "b": ParseNode {
+            "baseType": "obj",
+            "kind": "type",
+            "origin": "builtin",
+            "structure": Object {
+              "c": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+            },
+          },
+        },
+      },
+      "value": Object {
+        "a": ParseNode {
+          "body": Array [
+            ParseNode {
+              "kind": "return",
+              "value": ParseNode {
+                "index": "c",
+                "kind": "access",
+                "method": "dot",
+                "target": ParseNode {
+                  "index": "b",
+                  "kind": "access",
+                  "method": "dot",
+                  "target": ParseNode {
+                    "kind": "this",
+                    "type": ParseNode {
+                      "baseType": "obj",
+                      "kind": "type",
+                      "origin": "builtin",
+                      "structure": Object {
+                        "a": ParseNode {
+                          "baseType": "fn",
+                          "kind": "type",
+                          "origin": "builtin",
+                          "parameters": Array [],
+                          "returns": ParseNode {
+                            "baseType": "int",
+                            "kind": "type",
+                            "origin": "builtin",
+                          },
+                        },
+                        "b": ParseNode {
+                          "baseType": "obj",
+                          "kind": "type",
+                          "origin": "builtin",
+                          "structure": Object {
+                            "c": ParseNode {
+                              "baseType": "int",
+                              "kind": "type",
+                              "origin": "builtin",
+                            },
+                          },
+                        },
+                      },
+                    },
+                  },
+                  "type": ParseNode {
+                    "deferred": true,
+                    "kind": "type",
+                    "origin": "deferred",
+                    "structure": Object {
+                      "c": ParseNode {
+                        "deferred": true,
+                        "kind": "type",
+                        "origin": "deferred",
+                      },
+                    },
+                  },
+                },
+                "type": ParseNode {
+                  "deferred": true,
+                  "kind": "type",
+                  "origin": "deferred",
+                },
+              },
+            },
+          ],
+          "kind": "literal",
+          "parameters": Array [],
+          "returns": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "type": ParseNode {
+            "baseType": "fn",
+            "kind": "type",
+            "origin": "builtin",
+            "parameters": Array [],
+            "returns": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+        },
+        "b": ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "obj",
+            "kind": "type",
+            "origin": "builtin",
+            "structure": Object {
+              "c": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+            },
+          },
+          "value": Object {
+            "c": ParseNode {
+              "kind": "literal",
+              "type": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "value": 10,
+            },
+          },
+        },
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "out",
+    "kind": "let",
+    "value": ParseNode {
+      "arguments": Array [],
+      "kind": "call",
+      "target": ParseNode {
+        "index": "a",
+        "kind": "access",
+        "method": "dot",
+        "target": ParseNode {
+          "kind": "identifier",
+          "name": "myObj",
+          "type": ParseNode {
+            "baseType": "obj",
+            "kind": "type",
+            "origin": "builtin",
+            "structure": Object {
+              "a": ParseNode {
+                "baseType": "fn",
+                "kind": "type",
+                "origin": "builtin",
+                "parameters": Array [],
+                "returns": ParseNode {
+                  "baseType": "int",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+              },
+              "b": ParseNode {
+                "baseType": "obj",
+                "kind": "type",
+                "origin": "builtin",
+                "structure": Object {
+                  "c": ParseNode {
+                    "baseType": "int",
+                    "kind": "type",
+                    "origin": "builtin",
+                  },
+                },
+              },
+            },
+          },
+        },
+        "type": ParseNode {
+          "baseType": "fn",
+          "kind": "type",
+          "origin": "builtin",
+          "parameters": Array [],
+          "returns": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Builtin data structures Objects \`this\` reference [PARSE] Use \`this\` on entry defined after usage 1`] = `
+Array [
+  ParseNode {
+    "identifier": "myObj",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "obj",
+        "kind": "type",
+        "origin": "builtin",
+        "structure": Object {
+          "a": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "c": ParseNode {
+            "baseType": "fn",
+            "kind": "type",
+            "origin": "builtin",
+            "parameters": Array [],
+            "returns": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+        },
+      },
+      "value": Object {
+        "a": ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "value": 5,
+        },
+        "c": ParseNode {
+          "body": Array [
+            ParseNode {
+              "kind": "return",
+              "value": ParseNode {
+                "kind": "binary",
+                "left": ParseNode {
+                  "index": "a",
+                  "kind": "access",
+                  "method": "dot",
+                  "target": ParseNode {
+                    "kind": "this",
+                    "type": ParseNode {
+                      "baseType": "obj",
+                      "kind": "type",
+                      "origin": "builtin",
+                      "structure": Object {
+                        "a": ParseNode {
+                          "baseType": "int",
+                          "kind": "type",
+                          "origin": "builtin",
+                        },
+                        "c": ParseNode {
+                          "baseType": "fn",
+                          "kind": "type",
+                          "origin": "builtin",
+                          "parameters": Array [],
+                          "returns": ParseNode {
+                            "baseType": "int",
+                            "kind": "type",
+                            "origin": "builtin",
+                          },
+                        },
+                      },
+                    },
+                  },
+                  "type": ParseNode {
+                    "deferred": true,
+                    "kind": "type",
+                    "origin": "deferred",
+                  },
+                },
+                "operator": "+",
+                "right": ParseNode {
+                  "kind": "literal",
+                  "type": ParseNode {
+                    "baseType": "int",
+                    "kind": "type",
+                    "origin": "builtin",
+                  },
+                  "value": 10,
+                },
+                "type": ParseNode {
+                  "deferred": true,
+                  "kind": "type",
+                  "origin": "deferred",
+                },
+              },
+            },
+          ],
+          "kind": "literal",
+          "parameters": Array [],
+          "returns": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "type": ParseNode {
+            "baseType": "fn",
+            "kind": "type",
+            "origin": "builtin",
+            "parameters": Array [],
+            "returns": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+        },
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "out",
+    "kind": "let",
+    "value": ParseNode {
+      "arguments": Array [],
+      "kind": "call",
+      "target": ParseNode {
+        "index": "c",
+        "kind": "access",
+        "method": "dot",
+        "target": ParseNode {
+          "kind": "identifier",
+          "name": "myObj",
+          "type": ParseNode {
+            "baseType": "obj",
+            "kind": "type",
+            "origin": "builtin",
+            "structure": Object {
+              "a": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "c": ParseNode {
+                "baseType": "fn",
+                "kind": "type",
+                "origin": "builtin",
+                "parameters": Array [],
+                "returns": ParseNode {
+                  "baseType": "int",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+              },
+            },
+          },
+        },
+        "type": ParseNode {
+          "baseType": "fn",
+          "kind": "type",
+          "origin": "builtin",
+          "parameters": Array [],
+          "returns": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
 `;
 
 exports[`Builtin data structures Objects \`this\` reference [PARSE] Use in access assignment 1`] = `
@@ -1635,7 +2805,40 @@ Array [
                   "method": "dot",
                   "target": ParseNode {
                     "kind": "this",
+                    "type": ParseNode {
+                      "baseType": "obj",
+                      "kind": "type",
+                      "origin": "builtin",
+                      "structure": Object {
+                        "a": ParseNode {
+                          "baseType": "int",
+                          "kind": "type",
+                          "origin": "builtin",
+                        },
+                        "c": ParseNode {
+                          "baseType": "fn",
+                          "kind": "type",
+                          "origin": "builtin",
+                          "parameters": Array [],
+                          "returns": ParseNode {
+                            "baseType": "int",
+                            "kind": "type",
+                            "origin": "builtin",
+                          },
+                        },
+                      },
+                    },
                   },
+                  "type": ParseNode {
+                    "baseType": "int",
+                    "kind": "type",
+                    "origin": "builtin",
+                  },
+                },
+                "type": ParseNode {
+                  "baseType": "int",
+                  "kind": "type",
+                  "origin": "builtin",
                 },
               },
             },
@@ -1675,7 +2878,46 @@ Array [
         "target": ParseNode {
           "kind": "identifier",
           "name": "myObj",
+          "type": ParseNode {
+            "baseType": "obj",
+            "kind": "type",
+            "origin": "builtin",
+            "structure": Object {
+              "a": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "c": ParseNode {
+                "baseType": "fn",
+                "kind": "type",
+                "origin": "builtin",
+                "parameters": Array [],
+                "returns": ParseNode {
+                  "baseType": "int",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+              },
+            },
+          },
         },
+        "type": ParseNode {
+          "baseType": "fn",
+          "kind": "type",
+          "origin": "builtin",
+          "parameters": Array [],
+          "returns": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
   },
@@ -1688,6 +2930,40 @@ Array [
       "target": ParseNode {
         "kind": "identifier",
         "name": "myObj",
+        "type": ParseNode {
+          "baseType": "obj",
+          "kind": "type",
+          "origin": "builtin",
+          "structure": Object {
+            "a": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "c": ParseNode {
+              "baseType": "fn",
+              "kind": "type",
+              "origin": "builtin",
+              "parameters": Array [],
+              "returns": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+            },
+          },
+        },
+      },
+      "type": ParseNode {
+        "baseType": "fn",
+        "kind": "type",
+        "origin": "builtin",
+        "parameters": Array [],
+        "returns": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
       },
     },
     "operator": "=",
@@ -1715,7 +2991,40 @@ Array [
                 "method": "dot",
                 "target": ParseNode {
                   "kind": "this",
+                  "type": ParseNode {
+                    "baseType": "obj",
+                    "kind": "type",
+                    "origin": "builtin",
+                    "structure": Object {
+                      "a": ParseNode {
+                        "baseType": "int",
+                        "kind": "type",
+                        "origin": "builtin",
+                      },
+                      "c": ParseNode {
+                        "baseType": "fn",
+                        "kind": "type",
+                        "origin": "builtin",
+                        "parameters": Array [],
+                        "returns": ParseNode {
+                          "baseType": "int",
+                          "kind": "type",
+                          "origin": "builtin",
+                        },
+                      },
+                    },
+                  },
                 },
+                "type": ParseNode {
+                  "baseType": "int",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+              },
+              "type": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
               },
             },
             "operator": "+",
@@ -1727,6 +3036,11 @@ Array [
                 "origin": "builtin",
               },
               "value": 10,
+            },
+            "type": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
             },
           },
         },
@@ -1750,6 +3064,17 @@ Array [
         },
       },
     },
+    "type": ParseNode {
+      "baseType": "fn",
+      "kind": "type",
+      "origin": "builtin",
+      "parameters": Array [],
+      "returns": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
   },
   ParseNode {
     "identifier": "out2",
@@ -1764,7 +3089,732 @@ Array [
         "target": ParseNode {
           "kind": "identifier",
           "name": "myObj",
+          "type": ParseNode {
+            "baseType": "obj",
+            "kind": "type",
+            "origin": "builtin",
+            "structure": Object {
+              "a": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "c": ParseNode {
+                "baseType": "fn",
+                "kind": "type",
+                "origin": "builtin",
+                "parameters": Array [],
+                "returns": ParseNode {
+                  "baseType": "int",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+              },
+            },
+          },
         },
+        "type": ParseNode {
+          "baseType": "fn",
+          "kind": "type",
+          "origin": "builtin",
+          "parameters": Array [],
+          "returns": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Builtin data structures Objects \`this\` reference [PARSE] Use returned object 1`] = `
+Array [
+  ParseNode {
+    "identifier": "myObj",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "obj",
+        "kind": "type",
+        "origin": "builtin",
+        "structure": Object {
+          "a": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "b": ParseNode {
+            "baseType": "str",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "c": ParseNode {
+            "baseType": "fn",
+            "kind": "type",
+            "origin": "builtin",
+            "parameters": Array [],
+            "returns": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          "d": ParseNode {
+            "baseType": "fn",
+            "kind": "type",
+            "origin": "builtin",
+            "parameters": Array [],
+            "returns": ParseNode {
+              "baseType": "fn",
+              "kind": "type",
+              "origin": "builtin",
+              "parameters": Array [],
+              "returns": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+            },
+          },
+        },
+      },
+      "value": Object {
+        "a": ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "value": 5,
+        },
+        "b": ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "str",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "value": "asdf",
+        },
+        "c": ParseNode {
+          "body": Array [
+            ParseNode {
+              "kind": "return",
+              "value": ParseNode {
+                "kind": "binary",
+                "left": ParseNode {
+                  "kind": "binary",
+                  "left": ParseNode {
+                    "index": "a",
+                    "kind": "access",
+                    "method": "dot",
+                    "target": ParseNode {
+                      "kind": "this",
+                      "type": ParseNode {
+                        "baseType": "obj",
+                        "kind": "type",
+                        "origin": "builtin",
+                        "structure": Object {
+                          "a": ParseNode {
+                            "baseType": "int",
+                            "kind": "type",
+                            "origin": "builtin",
+                          },
+                          "b": ParseNode {
+                            "baseType": "str",
+                            "kind": "type",
+                            "origin": "builtin",
+                          },
+                          "c": ParseNode {
+                            "baseType": "fn",
+                            "kind": "type",
+                            "origin": "builtin",
+                            "parameters": Array [],
+                            "returns": ParseNode {
+                              "baseType": "int",
+                              "kind": "type",
+                              "origin": "builtin",
+                            },
+                          },
+                          "d": ParseNode {
+                            "baseType": "fn",
+                            "kind": "type",
+                            "origin": "builtin",
+                            "parameters": Array [],
+                            "returns": ParseNode {
+                              "baseType": "fn",
+                              "kind": "type",
+                              "origin": "builtin",
+                              "parameters": Array [],
+                              "returns": ParseNode {
+                                "baseType": "int",
+                                "kind": "type",
+                                "origin": "builtin",
+                              },
+                            },
+                          },
+                        },
+                      },
+                    },
+                    "type": ParseNode {
+                      "deferred": true,
+                      "kind": "type",
+                      "origin": "deferred",
+                    },
+                  },
+                  "operator": "+",
+                  "right": ParseNode {
+                    "kind": "literal",
+                    "type": ParseNode {
+                      "baseType": "int",
+                      "kind": "type",
+                      "origin": "builtin",
+                    },
+                    "value": 10,
+                  },
+                  "type": ParseNode {
+                    "deferred": true,
+                    "kind": "type",
+                    "origin": "deferred",
+                  },
+                },
+                "operator": "+",
+                "right": ParseNode {
+                  "arguments": Array [],
+                  "kind": "call",
+                  "target": ParseNode {
+                    "arguments": Array [],
+                    "kind": "call",
+                    "target": ParseNode {
+                      "index": "d",
+                      "kind": "access",
+                      "method": "dot",
+                      "target": ParseNode {
+                        "kind": "this",
+                        "type": ParseNode {
+                          "baseType": "obj",
+                          "kind": "type",
+                          "origin": "builtin",
+                          "structure": Object {
+                            "a": ParseNode {
+                              "baseType": "int",
+                              "kind": "type",
+                              "origin": "builtin",
+                            },
+                            "b": ParseNode {
+                              "baseType": "str",
+                              "kind": "type",
+                              "origin": "builtin",
+                            },
+                            "c": ParseNode {
+                              "baseType": "fn",
+                              "kind": "type",
+                              "origin": "builtin",
+                              "parameters": Array [],
+                              "returns": ParseNode {
+                                "baseType": "int",
+                                "kind": "type",
+                                "origin": "builtin",
+                              },
+                            },
+                            "d": ParseNode {
+                              "baseType": "fn",
+                              "kind": "type",
+                              "origin": "builtin",
+                              "parameters": Array [],
+                              "returns": ParseNode {
+                                "baseType": "fn",
+                                "kind": "type",
+                                "origin": "builtin",
+                                "parameters": Array [],
+                                "returns": ParseNode {
+                                  "baseType": "int",
+                                  "kind": "type",
+                                  "origin": "builtin",
+                                },
+                              },
+                            },
+                          },
+                        },
+                      },
+                      "type": ParseNode {
+                        "deferred": true,
+                        "kind": "type",
+                        "origin": "deferred",
+                        "returns": ParseNode {
+                          "deferred": true,
+                          "kind": "type",
+                          "origin": "deferred",
+                          "returns": ParseNode {
+                            "deferred": true,
+                            "kind": "type",
+                            "origin": "deferred",
+                          },
+                        },
+                      },
+                    },
+                    "type": ParseNode {
+                      "deferred": true,
+                      "kind": "type",
+                      "origin": "deferred",
+                      "returns": ParseNode {
+                        "deferred": true,
+                        "kind": "type",
+                        "origin": "deferred",
+                      },
+                    },
+                  },
+                  "type": ParseNode {
+                    "deferred": true,
+                    "kind": "type",
+                    "origin": "deferred",
+                  },
+                },
+                "type": ParseNode {
+                  "deferred": true,
+                  "kind": "type",
+                  "origin": "deferred",
+                },
+              },
+            },
+          ],
+          "kind": "literal",
+          "parameters": Array [],
+          "returns": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "type": ParseNode {
+            "baseType": "fn",
+            "kind": "type",
+            "origin": "builtin",
+            "parameters": Array [],
+            "returns": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+        },
+        "d": ParseNode {
+          "body": Array [
+            ParseNode {
+              "kind": "return",
+              "value": ParseNode {
+                "body": Array [
+                  ParseNode {
+                    "kind": "return",
+                    "value": ParseNode {
+                      "kind": "literal",
+                      "type": ParseNode {
+                        "baseType": "int",
+                        "kind": "type",
+                        "origin": "builtin",
+                      },
+                      "value": 10,
+                    },
+                  },
+                ],
+                "kind": "literal",
+                "parameters": Array [],
+                "returns": ParseNode {
+                  "baseType": "int",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+                "type": ParseNode {
+                  "baseType": "fn",
+                  "kind": "type",
+                  "origin": "builtin",
+                  "parameters": Array [],
+                  "returns": ParseNode {
+                    "baseType": "int",
+                    "kind": "type",
+                    "origin": "builtin",
+                  },
+                },
+              },
+            },
+          ],
+          "kind": "literal",
+          "parameters": Array [],
+          "returns": ParseNode {
+            "baseType": "fn",
+            "kind": "type",
+            "origin": "builtin",
+            "parameters": Array [],
+            "returns": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          "type": ParseNode {
+            "baseType": "fn",
+            "kind": "type",
+            "origin": "builtin",
+            "parameters": Array [],
+            "returns": ParseNode {
+              "baseType": "fn",
+              "kind": "type",
+              "origin": "builtin",
+              "parameters": Array [],
+              "returns": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "myResult",
+    "kind": "let",
+    "value": ParseNode {
+      "arguments": Array [],
+      "kind": "call",
+      "target": ParseNode {
+        "index": "c",
+        "kind": "access",
+        "method": "dot",
+        "target": ParseNode {
+          "kind": "identifier",
+          "name": "myObj",
+          "type": ParseNode {
+            "baseType": "obj",
+            "kind": "type",
+            "origin": "builtin",
+            "structure": Object {
+              "a": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "b": ParseNode {
+                "baseType": "str",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "c": ParseNode {
+                "baseType": "fn",
+                "kind": "type",
+                "origin": "builtin",
+                "parameters": Array [],
+                "returns": ParseNode {
+                  "baseType": "int",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+              },
+              "d": ParseNode {
+                "baseType": "fn",
+                "kind": "type",
+                "origin": "builtin",
+                "parameters": Array [],
+                "returns": ParseNode {
+                  "baseType": "fn",
+                  "kind": "type",
+                  "origin": "builtin",
+                  "parameters": Array [],
+                  "returns": ParseNode {
+                    "baseType": "int",
+                    "kind": "type",
+                    "origin": "builtin",
+                  },
+                },
+              },
+            },
+          },
+        },
+        "type": ParseNode {
+          "baseType": "fn",
+          "kind": "type",
+          "origin": "builtin",
+          "parameters": Array [],
+          "returns": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+  ParseNode {
+    "kind": "assign",
+    "left": ParseNode {
+      "index": "c",
+      "kind": "access",
+      "method": "dot",
+      "target": ParseNode {
+        "kind": "identifier",
+        "name": "myObj",
+        "type": ParseNode {
+          "baseType": "obj",
+          "kind": "type",
+          "origin": "builtin",
+          "structure": Object {
+            "a": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "b": ParseNode {
+              "baseType": "str",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "c": ParseNode {
+              "baseType": "fn",
+              "kind": "type",
+              "origin": "builtin",
+              "parameters": Array [],
+              "returns": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+            },
+            "d": ParseNode {
+              "baseType": "fn",
+              "kind": "type",
+              "origin": "builtin",
+              "parameters": Array [],
+              "returns": ParseNode {
+                "baseType": "fn",
+                "kind": "type",
+                "origin": "builtin",
+                "parameters": Array [],
+                "returns": ParseNode {
+                  "baseType": "int",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+              },
+            },
+          },
+        },
+      },
+      "type": ParseNode {
+        "baseType": "fn",
+        "kind": "type",
+        "origin": "builtin",
+        "parameters": Array [],
+        "returns": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+    },
+    "operator": "=",
+    "right": ParseNode {
+      "body": Array [
+        ParseNode {
+          "kind": "return",
+          "value": ParseNode {
+            "kind": "binary",
+            "left": ParseNode {
+              "index": "a",
+              "kind": "access",
+              "method": "dot",
+              "target": ParseNode {
+                "kind": "this",
+                "type": ParseNode {
+                  "baseType": "obj",
+                  "kind": "type",
+                  "origin": "builtin",
+                  "structure": Object {
+                    "a": ParseNode {
+                      "baseType": "int",
+                      "kind": "type",
+                      "origin": "builtin",
+                    },
+                    "b": ParseNode {
+                      "baseType": "str",
+                      "kind": "type",
+                      "origin": "builtin",
+                    },
+                    "c": ParseNode {
+                      "baseType": "fn",
+                      "kind": "type",
+                      "origin": "builtin",
+                      "parameters": Array [],
+                      "returns": ParseNode {
+                        "baseType": "int",
+                        "kind": "type",
+                        "origin": "builtin",
+                      },
+                    },
+                    "d": ParseNode {
+                      "baseType": "fn",
+                      "kind": "type",
+                      "origin": "builtin",
+                      "parameters": Array [],
+                      "returns": ParseNode {
+                        "baseType": "fn",
+                        "kind": "type",
+                        "origin": "builtin",
+                        "parameters": Array [],
+                        "returns": ParseNode {
+                          "baseType": "int",
+                          "kind": "type",
+                          "origin": "builtin",
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+              "type": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+            },
+            "operator": "+",
+            "right": ParseNode {
+              "kind": "literal",
+              "type": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "value": 45,
+            },
+            "type": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+        },
+      ],
+      "kind": "literal",
+      "parameters": Array [],
+      "returns": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "fn",
+        "kind": "type",
+        "origin": "builtin",
+        "parameters": Array [],
+        "returns": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+    },
+    "type": ParseNode {
+      "baseType": "fn",
+      "kind": "type",
+      "origin": "builtin",
+      "parameters": Array [],
+      "returns": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "myResult2",
+    "kind": "let",
+    "value": ParseNode {
+      "arguments": Array [],
+      "kind": "call",
+      "target": ParseNode {
+        "index": "c",
+        "kind": "access",
+        "method": "dot",
+        "target": ParseNode {
+          "kind": "identifier",
+          "name": "myObj",
+          "type": ParseNode {
+            "baseType": "obj",
+            "kind": "type",
+            "origin": "builtin",
+            "structure": Object {
+              "a": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "b": ParseNode {
+                "baseType": "str",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "c": ParseNode {
+                "baseType": "fn",
+                "kind": "type",
+                "origin": "builtin",
+                "parameters": Array [],
+                "returns": ParseNode {
+                  "baseType": "int",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+              },
+              "d": ParseNode {
+                "baseType": "fn",
+                "kind": "type",
+                "origin": "builtin",
+                "parameters": Array [],
+                "returns": ParseNode {
+                  "baseType": "fn",
+                  "kind": "type",
+                  "origin": "builtin",
+                  "parameters": Array [],
+                  "returns": ParseNode {
+                    "baseType": "int",
+                    "kind": "type",
+                    "origin": "builtin",
+                  },
+                },
+              },
+            },
+          },
+        },
+        "type": ParseNode {
+          "baseType": "fn",
+          "kind": "type",
+          "origin": "builtin",
+          "parameters": Array [],
+          "returns": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
   },

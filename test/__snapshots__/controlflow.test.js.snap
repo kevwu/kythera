@@ -171,6 +171,11 @@ Array [
       ParseNode {
         "kind": "identifier",
         "name": "a",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
       },
     ],
     "condition": ParseNode {
@@ -178,17 +183,37 @@ Array [
       "left": ParseNode {
         "kind": "identifier",
         "name": "a",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
       },
       "operator": "==",
       "right": ParseNode {
         "kind": "identifier",
         "name": "b",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
     "else": Array [
       ParseNode {
         "kind": "identifier",
         "name": "b",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
       },
     ],
     "kind": "if",
@@ -228,6 +253,11 @@ Array [
       "left": ParseNode {
         "kind": "identifier",
         "name": "a",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
       },
       "operator": "==",
       "right": ParseNode {
@@ -238,6 +268,11 @@ Array [
           "origin": "builtin",
         },
         "value": 1,
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
     "else": Array [
@@ -258,6 +293,11 @@ Array [
           "left": ParseNode {
             "kind": "identifier",
             "name": "a",
+            "type": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
           },
           "operator": "==",
           "right": ParseNode {
@@ -268,6 +308,11 @@ Array [
               "origin": "builtin",
             },
             "value": 2,
+          },
+          "type": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
           },
         },
         "else": Array [
@@ -340,6 +385,11 @@ Array [
         "kind": "type",
         "origin": "builtin",
       },
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
   },
   ParseNode {
@@ -349,6 +399,11 @@ Array [
         "left": ParseNode {
           "kind": "identifier",
           "name": "result",
+          "type": ParseNode {
+            "baseType": "str",
+            "kind": "type",
+            "origin": "builtin",
+          },
         },
         "operator": "=",
         "right": ParseNode {
@@ -360,6 +415,11 @@ Array [
           },
           "value": "a equals b",
         },
+        "type": ParseNode {
+          "baseType": "str",
+          "kind": "type",
+          "origin": "builtin",
+        },
       },
     ],
     "condition": ParseNode {
@@ -367,11 +427,26 @@ Array [
       "left": ParseNode {
         "kind": "identifier",
         "name": "a",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
       },
       "operator": "==",
       "right": ParseNode {
         "kind": "identifier",
         "name": "b",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
     "else": Array [
@@ -382,6 +457,11 @@ Array [
             "left": ParseNode {
               "kind": "identifier",
               "name": "result",
+              "type": ParseNode {
+                "baseType": "str",
+                "kind": "type",
+                "origin": "builtin",
+              },
             },
             "operator": "=",
             "right": ParseNode {
@@ -393,6 +473,11 @@ Array [
               },
               "value": "b equals c",
             },
+            "type": ParseNode {
+              "baseType": "str",
+              "kind": "type",
+              "origin": "builtin",
+            },
           },
         ],
         "condition": ParseNode {
@@ -400,11 +485,26 @@ Array [
           "left": ParseNode {
             "kind": "identifier",
             "name": "b",
+            "type": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
           },
           "operator": "==",
           "right": ParseNode {
             "kind": "identifier",
             "name": "c",
+            "type": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          "type": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
           },
         },
         "else": Array [
@@ -413,6 +513,11 @@ Array [
             "left": ParseNode {
               "kind": "identifier",
               "name": "result",
+              "type": ParseNode {
+                "baseType": "str",
+                "kind": "type",
+                "origin": "builtin",
+              },
             },
             "operator": "=",
             "right": ParseNode {
@@ -423,6 +528,11 @@ Array [
                 "origin": "builtin",
               },
               "value": "neither",
+            },
+            "type": ParseNode {
+              "baseType": "str",
+              "kind": "type",
+              "origin": "builtin",
             },
           },
         ],
@@ -501,6 +611,11 @@ Array [
         "left": ParseNode {
           "kind": "identifier",
           "name": "a",
+          "type": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
         },
         "operator": "=",
         "right": ParseNode {
@@ -508,6 +623,11 @@ Array [
           "left": ParseNode {
             "kind": "identifier",
             "name": "a",
+            "type": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
           },
           "operator": "+",
           "right": ParseNode {
@@ -519,6 +639,16 @@ Array [
             },
             "value": 2,
           },
+          "type": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
         },
       },
     ],
@@ -527,11 +657,26 @@ Array [
       "left": ParseNode {
         "kind": "identifier",
         "name": "a",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
       },
       "operator": "==",
       "right": ParseNode {
         "kind": "identifier",
         "name": "b",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
       },
     },
     "kind": "while",
@@ -561,6 +706,11 @@ Array [
         "left": ParseNode {
           "kind": "identifier",
           "name": "x",
+          "type": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
         },
         "operator": "=",
         "right": ParseNode {
@@ -568,6 +718,11 @@ Array [
           "left": ParseNode {
             "kind": "identifier",
             "name": "x",
+            "type": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
           },
           "operator": "+",
           "right": ParseNode {
@@ -579,6 +734,16 @@ Array [
             },
             "value": 1,
           },
+          "type": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
         },
       },
     ],
@@ -587,6 +752,11 @@ Array [
       "left": ParseNode {
         "kind": "identifier",
         "name": "x",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
       },
       "operator": "<",
       "right": ParseNode {
@@ -598,12 +768,22 @@ Array [
         },
         "value": 10,
       },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
     },
     "kind": "while",
   },
   ParseNode {
     "kind": "identifier",
     "name": "x",
+    "type": ParseNode {
+      "baseType": "int",
+      "kind": "type",
+      "origin": "builtin",
+    },
   },
 ]
 `;
