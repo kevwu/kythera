@@ -1491,6 +1491,10 @@ exports[`Primitive Types typeof [COMPL] str 1`] = `"let a = new KYTHERA.value(KY
 
 exports[`Primitive Types typeof [COMPL] true 1`] = `"let a = new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"bool\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]);"`;
 
+exports[`Primitive Types typeof [COMPL] typeof comparison 1`] = `"let a = (KYTHERA.value.eq(new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"int\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]), new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"int\\"], KYTHERA.type.PRIMITIVES[\\"type\\"])));"`;
+
+exports[`Primitive Types typeof [COMPL] typeof comparison 2`] = `"let a = (KYTHERA.value.eq(new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"int\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]), new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"str\\"], KYTHERA.type.PRIMITIVES[\\"type\\"])));"`;
+
 exports[`Primitive Types typeof [EVALT] false 1`] = `
 Object {
   "a":  {
@@ -1565,6 +1569,28 @@ Object {
     "value":  {
       "baseType": "bool",
     },
+  },
+}
+`;
+
+exports[`Primitive Types typeof [EVALT] typeof comparison 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "bool",
+    },
+    "value": true,
+  },
+}
+`;
+
+exports[`Primitive Types typeof [EVALT] typeof comparison 2`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "bool",
+    },
+    "value": false,
   },
 }
 `;
@@ -1714,6 +1740,110 @@ Array [
           "origin": "builtin",
         },
         "value": true,
+      },
+      "type": ParseNode {
+        "baseType": "type",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Primitive Types typeof [PARSE] typeof comparison 1`] = `
+Array [
+  ParseNode {
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "typeof",
+        "target": ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "value": 10,
+        },
+        "type": ParseNode {
+          "baseType": "type",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "operator": "==",
+      "right": ParseNode {
+        "kind": "typeof",
+        "target": ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "value": 20,
+        },
+        "type": ParseNode {
+          "baseType": "type",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "type": ParseNode {
+        "baseType": "type",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Primitive Types typeof [PARSE] typeof comparison 2`] = `
+Array [
+  ParseNode {
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "typeof",
+        "target": ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "value": 10,
+        },
+        "type": ParseNode {
+          "baseType": "type",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "operator": "==",
+      "right": ParseNode {
+        "kind": "typeof",
+        "target": ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "str",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "value": "10",
+        },
+        "type": ParseNode {
+          "baseType": "type",
+          "kind": "type",
+          "origin": "builtin",
+        },
       },
       "type": ParseNode {
         "baseType": "type",

@@ -14,7 +14,7 @@ class ParseNode {
 				}
 				this.operator = payload.operator
 
-				if(typeof payload.target.kind !== "string") {
+				if(payload.target.constructor !== this.constructor) {
 					throw new Error("Unary target must be a Parse Node.")
 				}
 
@@ -28,12 +28,12 @@ class ParseNode {
 				}
 				this.operator = payload.operator
 
-				if(typeof payload.left.kind !== "string") {
+				if(payload.left.constructor !== this.constructor) {
 					throw new Error("Missing left-hand side value.")
 				}
 				this.left = payload.left
 
-				if(typeof payload.right.kind !== "string") {
+				if(payload.right.constructor !== this.constructor) {
 					throw new Error("Missing right-hand side value.")
 				}
 				this.right = payload.right
@@ -50,12 +50,12 @@ class ParseNode {
 				}
 				this.operator = payload.operator
 
-				if(typeof payload.left.kind !== "string") {
+				if(payload.left.constructor !== this.constructor) {
 					throw new Error("Missing left-hand side value.")
 				}
 				this.left = payload.left
 
-				if(typeof payload.right.kind !== "string") {
+				if(payload.right.constructor !== this.constructor) {
 					throw new Error("Missing right-hand side value.")
 				}
 				this.right = payload.right
@@ -243,7 +243,7 @@ class ParseNode {
 
 				break
 			case "typeof":
-				if(typeof payload.target.kind !== "string") {
+				if(payload.target.constructor !== this.constructor) {
 					throw new Error("'typeof' target must be a Parse Node.")
 				}
 				this.target = payload.target
@@ -268,7 +268,7 @@ class ParseNode {
 				}
 				this.identifier = payload.identifier
 
-				if(typeof payload.value.kind !== "string") {
+				if(payload.value.constructor !== this.constructor) {
 					throw new Error("'let' target value must be a Parse Node.")
 				}
 				this.value = payload.value
@@ -277,7 +277,7 @@ class ParseNode {
 			case "if":
 				requiresType = false
 
-				if(typeof payload.condition.kind !== "string") {
+				if(payload.condition.constructor !== this.constructor) {
 					throw new Error("'if' condition must be a Parse Node.")
 				}
 				this.condition = payload.condition
@@ -332,7 +332,7 @@ class ParseNode {
 			case "return":
 				requiresType = false
 
-				if(typeof payload.value.kind !== "string") {
+				if(payload.value.constructor !== this.constructor) {
 					throw new Error("return value must be a Parse Node.")
 				}
 
@@ -340,7 +340,7 @@ class ParseNode {
 
 				break
 			case "as":
-				if(typeof payload.from.kind !== "string") {
+				if(payload.from.constructor !== this.constructor) {
 					throw new Error("'as' left-hand side must be a Parse Node.")
 				}
 				this.from = payload.from
@@ -360,7 +360,7 @@ class ParseNode {
 				}
 				this.arguments = payload.arguments
 
-				if(typeof payload.target.kind !== "string") {
+				if(payload.target.constructor !== this.constructor) {
 					throw new Error("Function call target must be a Parse Node.")
 				}
 
