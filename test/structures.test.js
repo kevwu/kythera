@@ -2,7 +2,8 @@ const t = require("./util").test
 
 describe("Builtin data structures", () => {
 	describe("Lists", () => {
-		t("Initialization and assignment access", `
+		// TODO syntax for list types will be changed soon
+/*		t("Initialization and assignment access", `
 let myList = new int[]
 myList[0] = 10
 	`, {compile: false})
@@ -13,8 +14,8 @@ let myType = obj{
 	str b,
 }
 
-let myTypeList = new myType[]	
-`, {compile: false})
+let myTypeList = new myType[]
+`, {skip: true})
 
 		t("Initialization from object list literal", `
 let myTypeList = new obj{
@@ -30,7 +31,7 @@ let myListFn = <> int[] {
 }
 
 myListFn()[0]
-	`, {compile: false})
+	`, {compile: false})*/
 
 		describe("List literals", () => {
 			t("int", `let a = [1, 2, 3, 4]`)

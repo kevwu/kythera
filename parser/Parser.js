@@ -497,32 +497,50 @@ class Parser {
 
 	// parse a type, whether built-in (int, str etc) or user-defined (fn, rigid obj)
 	parseType() {
-		let nextToken = this.tokenizer.next()
+		let nextToken = this.tokenizer.peek()
 
 		let parseTypeAtom
 
+		let builtinType = true
+
 		if(nextToken.type === "kw") { // built-in types
+			// unfortunately there is some code duplication here with this.tokenizer.next()
+			// because fn and obj need to consume the token before they do any work
 			switch (nextToken.value) {
 				case "int":
 					parseTypeAtom = TYPES.int
+					this.tokenizer.next()
+
 					break
 				case "float":
 					parseTypeAtom = TYPES.float
+					this.tokenizer.next()
+
 					break
 				case "bool":
 					parseTypeAtom = TYPES.bool
+					this.tokenizer.next()
+
 					break
 				case "str":
 					parseTypeAtom = TYPES.str
+					this.tokenizer.next()
+
 					break
 				case "null":
 					parseTypeAtom = TYPES.null
+					this.tokenizer.next()
+
 					break
 				case "type":
 					parseTypeAtom = TYPES.type
+					this.tokenizer.next()
+
 					break
 				case "fn":
 					let parameters = []
+
+					this.tokenizer.next()
 
 					if(this.confirmToken("<>", "op")) {
 						this.consumeToken("<>", "op")
@@ -544,6 +562,8 @@ class Parser {
 				case "obj":
 					let entries = {}
 
+					this.tokenizer.next()
+
 					this.delimited('{', '}', ',', () => {
 						let entryType = this.parseType()
 						let entryName = this.tokenizer.next()
@@ -563,16 +583,18 @@ class Parser {
 
 					break
 				default:
-					this.err("Expected type or type identifier but got keyword: " + nextToken.value)
+					builtinType = false
 			}
-		} else if(nextToken.type === "var") { // user-named types
-			// TODO types can come from expressions
-			parseTypeAtom = new ParseNode("type", {
-				origin: "named",
-				name: nextToken.value,
-			})
+
 		} else {
-			this.err("Expected type or type identifier but got " + nextToken.value)
+			builtinType = false
+		}
+
+		if(!builtinType) {
+			parseTypeAtom = new ParseNode("type", {
+				origin: "derived",
+				exp: this.parseExpression()
+			})
 		}
 
 		if(this.confirmToken("[", "punc")) { // list type
@@ -604,7 +626,9 @@ class Parser {
 				this.consumeToken(delimiter)
 			}
 
-			if(this.confirmToken(stop)) break
+			if(this.confirmToken(stop)) {
+				break
+			}
 
 			resultList.push(parser())
 

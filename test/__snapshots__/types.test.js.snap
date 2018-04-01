@@ -1,0 +1,458 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Types Derived types [COMPL] Basic usage 1`] = `"let price = new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"int\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]);let a = ((price).value).makeNew();"`;
+
+exports[`Types Derived types [COMPL] Conditional type 1`] = `"let randomTF = new KYTHERA.value(() => {return new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]);}, new KYTHERA.type(\\"fn\\", { parameters: [], returns: KYTHERA.type.PRIMITIVES[\\"bool\\"]}));let myOriginType = KYTHERA.type.PRIMITIVES[\\"type\\"].makeNew();if(KYTHERA.value.eq(randomTF.value(), KYTHERA.LITERALS.true).value) {(myOriginType = new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"int\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]));} else {(myOriginType = new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"str\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]));};let myVal = ((myOriginType).value).makeNew();"`;
+
+exports[`Types Derived types [COMPL] Object type 1`] = `"let myDataType = new KYTHERA.value(new KYTHERA.type(\\"obj\\", {\\"a\\": KYTHERA.type.PRIMITIVES[\\"int\\"],\\"b\\": KYTHERA.type.PRIMITIVES[\\"str\\"],}), KYTHERA.type.PRIMITIVES[\\"type\\"]);let myVal = ((myDataType).value).makeNew();let out1 = new KYTHERA.value(((myDataType).value), KYTHERA.type.PRIMITIVES[\\"type\\"]);"`;
+
+exports[`Types Derived types [EVALT] Basic usage 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 0,
+  },
+  "price":  {
+    "type":  {
+      "baseType": "type",
+    },
+    "value":  {
+      "baseType": "int",
+    },
+  },
+}
+`;
+
+exports[`Types Derived types [EVALT] Conditional type 1`] = `
+Object {
+  "myOriginType":  {
+    "type":  {
+      "baseType": "type",
+    },
+    "value":  {
+      "baseType": "str",
+    },
+  },
+  "myVal":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "",
+  },
+  "randomTF":  {
+    "type":  {
+      "baseType": "fn",
+      "structure": Object {
+        "parameters": Array [],
+        "returns":  {
+          "baseType": "bool",
+        },
+      },
+    },
+    "value": [Function],
+  },
+}
+`;
+
+exports[`Types Derived types [EVALT] Object type 1`] = `
+Object {
+  "myDataType":  {
+    "type":  {
+      "baseType": "type",
+    },
+    "value":  {
+      "baseType": "obj",
+      "structure": Object {
+        "a":  {
+          "baseType": "int",
+        },
+        "b":  {
+          "baseType": "str",
+        },
+      },
+    },
+  },
+  "myVal":  {
+    "type":  {
+      "baseType": "obj",
+      "structure": Object {
+        "a":  {
+          "baseType": "int",
+        },
+        "b":  {
+          "baseType": "str",
+        },
+      },
+    },
+    "value": Object {
+      "a":  {
+        "type":  {
+          "baseType": "int",
+        },
+        "value": 0,
+      },
+      "b":  {
+        "type":  {
+          "baseType": "str",
+        },
+        "value": "",
+      },
+    },
+  },
+  "out1":  {
+    "type":  {
+      "baseType": "type",
+    },
+    "value":  {
+      "baseType": "obj",
+      "structure": Object {
+        "a":  {
+          "baseType": "int",
+        },
+        "b":  {
+          "baseType": "str",
+        },
+      },
+    },
+  },
+}
+`;
+
+exports[`Types Derived types [PARSE] Basic usage 1`] = `
+Array [
+  ParseNode {
+    "identifier": "price",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "type",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "new",
+      "target": ParseNode {
+        "exp": ParseNode {
+          "kind": "identifier",
+          "name": "price",
+          "type": ParseNode {
+            "baseType": "type",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+        "kind": "type",
+        "origin": "derived",
+      },
+      "type": ParseNode {
+        "exp": ParseNode {
+          "kind": "identifier",
+          "name": "price",
+          "type": ParseNode {
+            "baseType": "type",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+        "kind": "type",
+        "origin": "derived",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Derived types [PARSE] Conditional type 1`] = `
+Array [
+  ParseNode {
+    "identifier": "randomTF",
+    "kind": "let",
+    "value": ParseNode {
+      "body": Array [
+        ParseNode {
+          "kind": "return",
+          "value": ParseNode {
+            "kind": "literal",
+            "type": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "value": false,
+          },
+        },
+      ],
+      "kind": "literal",
+      "parameters": Array [],
+      "returns": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "fn",
+        "kind": "type",
+        "origin": "builtin",
+        "parameters": Array [],
+        "returns": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "myOriginType",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "new",
+      "target": ParseNode {
+        "baseType": "type",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "type",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+  ParseNode {
+    "body": Array [
+      ParseNode {
+        "kind": "assign",
+        "left": ParseNode {
+          "kind": "identifier",
+          "name": "myOriginType",
+          "type": ParseNode {
+            "baseType": "type",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+        "operator": "=",
+        "right": ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "type",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "value": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+        "type": ParseNode {
+          "baseType": "type",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+    ],
+    "condition": ParseNode {
+      "arguments": Array [],
+      "kind": "call",
+      "target": ParseNode {
+        "kind": "identifier",
+        "name": "randomTF",
+        "type": ParseNode {
+          "baseType": "fn",
+          "kind": "type",
+          "origin": "builtin",
+          "parameters": Array [],
+          "returns": ParseNode {
+            "baseType": "bool",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+      },
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+    "else": Array [
+      ParseNode {
+        "kind": "assign",
+        "left": ParseNode {
+          "kind": "identifier",
+          "name": "myOriginType",
+          "type": ParseNode {
+            "baseType": "type",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+        "operator": "=",
+        "right": ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "type",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "value": ParseNode {
+            "baseType": "str",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+        "type": ParseNode {
+          "baseType": "type",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+    ],
+    "kind": "if",
+  },
+  ParseNode {
+    "identifier": "myVal",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "new",
+      "target": ParseNode {
+        "exp": ParseNode {
+          "kind": "identifier",
+          "name": "myOriginType",
+          "type": ParseNode {
+            "baseType": "type",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+        "kind": "type",
+        "origin": "derived",
+      },
+      "type": ParseNode {
+        "exp": ParseNode {
+          "kind": "identifier",
+          "name": "myOriginType",
+          "type": ParseNode {
+            "baseType": "type",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+        "kind": "type",
+        "origin": "derived",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Derived types [PARSE] Object type 1`] = `
+Array [
+  ParseNode {
+    "identifier": "myDataType",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "type",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": ParseNode {
+        "baseType": "obj",
+        "kind": "type",
+        "origin": "builtin",
+        "structure": Object {
+          "a": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "b": ParseNode {
+            "baseType": "str",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "myVal",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "new",
+      "target": ParseNode {
+        "exp": ParseNode {
+          "kind": "identifier",
+          "name": "myDataType",
+          "type": ParseNode {
+            "baseType": "type",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+        "kind": "type",
+        "origin": "derived",
+      },
+      "type": ParseNode {
+        "exp": ParseNode {
+          "kind": "identifier",
+          "name": "myDataType",
+          "type": ParseNode {
+            "baseType": "type",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+        "kind": "type",
+        "origin": "derived",
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "out1",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "typeof",
+      "target": ParseNode {
+        "kind": "identifier",
+        "name": "myVal",
+        "type": ParseNode {
+          "exp": ParseNode {
+            "kind": "identifier",
+            "name": "myDataType",
+            "type": ParseNode {
+              "baseType": "type",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          "kind": "type",
+          "origin": "derived",
+        },
+      },
+      "type": ParseNode {
+        "baseType": "type",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;

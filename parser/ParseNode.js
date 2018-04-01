@@ -70,7 +70,6 @@ class ParseNode {
 
 				this.type = payload.type
 
-				// all literals are interpreted as builtin types. They can become named types by casting.
 				switch(payload.type.baseType) {
 					case "int":
 						if(!(typeof payload.value === "number" && isFinite(payload.value) && (payload.value % 1 === 0))) {
@@ -172,19 +171,11 @@ class ParseNode {
 
 					this.baseType = payload.baseType
 				} else {
-					if(!(payload.name)) {
-						throw new Error("A type node must have either type or name set.")
+					if(payload.origin !== "derived") {
+						throw new Error("A type node must have either baseType set or be derived.")
 					}
 
-					if(builtIns.includes(payload.name)) {
-						throw new Error(`Type: '${payload.name}' is a built-in type and is not valid as a named type.`)
-					}
-
-					if(payload.origin !== "named") {
-						throw new Error(`Type: '${payload.name}' is a named type but was not marked as named`)
-					}
-
-					this.name = payload.name
+					this.exp = payload.exp
 				}
 
 				this.origin = payload.origin

@@ -4,6 +4,22 @@ const Scope = require("./Scope")
 const KytheraValue = require("./runtime").value
 const KytheraType = require("./runtime").type
 
+/*
+DerivedType represents a KYTHERA.Type value that must be derived at runtime (i.e. from an expression).
+It is intended to be compatible with the runtime KYTHERA.Type so that it can be used as an intermediate
+value during compilation, but a DerivedType should never reach the compiled output. As such, DerivedType
+is not a part of the runtime.
+ */
+
+class DerivedType {
+	constructor(exp) {
+		this.derived = true
+
+		this.exp = exp
+		this.baseType = "any"
+	}
+}
+
 const OPFUNCTIONS = {
 	"==": "eq",
 	"!=": "ne",
@@ -127,29 +143,31 @@ class Compiler {
 				// extend scope one level
 				this.currentScope = new Scope(this.currentScope, {scopeType: "function", returns: fnType.structure.returns})
 
-				let fn = "("
+				let fnOut = "("
 
 				// build parameter list and bring parameters into scope
-				fn += node.parameters.reduce((prev, param, i) => {
+				fnOut += node.parameters.reduce((prev, param, i) => {
 					this.currentScope.create(param.name, fnType.structure.parameters[i])
 					return prev + param.name + ((i !== node.parameters.length - 1) ? "," : "")
 				}, "")
 
-				fn += ') => {\n'
+				fnOut += ') => {\n'
 
 				// TODO verify that the function returns
 				// build body statements
-				fn += node.body.reduce((prev, statement, i) => {
+				fnOut += node.body.reduce((prev, statement, i) => {
 					return prev + this.visitNode(statement) + ';\n'
 				}, "")
 
-				fn += '}'
+				fnOut += '}'
+
+				let fnTypeOut = this.makeTypeConstructor(fnType)
 
 				// return to previous scope
 				this.currentScope = this.currentScope.parent
 
 				return {
-					output: `new KYTHERA.value(${fn}, ${this.makeTypeConstructor(fnType)})`,
+					output: `new KYTHERA.value(${fnOut}, ${fnTypeOut})`,
 					type: fnType
 				}
 			case "obj":
@@ -173,7 +191,7 @@ class Compiler {
 					if(containsType === null) {
 						containsType = listExp.type
 					} else {
-						if(!KytheraType.eq(containsType, listExp.type)) {
+						if(!KytheraType.typeEq(containsType, listExp.type)) {
 							throw new Error(`List types do not match, expecting ${containsType.baseType} but got ${listExp.type.baseType}`)
 						}
 					}
@@ -194,7 +212,8 @@ class Compiler {
 	visitNew(node) {
 		let targetType = this.makeKytheraType(node.target)
 
-		// TODO support for custom named types
+		let typeExp = this.makeTypeConstructor(targetType)
+
 		return {
 			output: this.makeTypeConstructor(targetType) + ".makeNew()",
 			type: targetType
@@ -226,7 +245,7 @@ class Compiler {
 
 		let rhs = this.visitExpressionNode(node.right)
 
-		if(!KytheraType.eq(lhsType, rhs.type)) {
+		if(!KytheraType.typeEq(lhsType, rhs.type)) {
 			let nodeName;
 			if(node.left.kind === "identifier") {
 				nodeName = node.left.name
@@ -256,7 +275,7 @@ class Compiler {
 		if(this.currentScope.isInFunction()) {
 			let returnVal = this.visitExpressionNode(node.value)
 
-			if(!(KytheraType.eq(returnVal.type, this.currentScope.getReturnType()))) {
+			if(!(KytheraType.typeEq(returnVal.type, this.currentScope.getReturnType()))) {
 				throw new Error(`Expected return value of type ${this.currentScope.getReturnType().baseType} but got ${returnVal.type.baseType}`)
 			}
 
@@ -291,13 +310,13 @@ class Compiler {
 		let lhs = this.visitExpressionNode(node.left)
 		let rhs = this.visitExpressionNode(node.right)
 
-		if(!(KytheraType.eq(lhs.type, rhs.type))) {
+		if(!(KytheraType.typeEq(lhs.type, rhs.type))) {
 			throw new Error(`Incompatible types: ${lhs.type.baseType} vs ${rhs.type.baseType}`)
 		}
 
 		let outType
 		if(["&&", "||"].includes(node.operator)) {
-			if(!(KytheraType.eq(lhs.type, KytheraType.PRIMITIVES.bool))) {
+			if(!(KytheraType.typeEq(lhs.type, KytheraType.PRIMITIVES.bool))) {
 				throw new Error("Boolean operators require bool, not " + lhs.type.baseType)
 			}
 
@@ -415,7 +434,7 @@ class Compiler {
 		target.type.structure.parameters.forEach((param, i) => {
 			let arg = this.visitExpressionNode(node.arguments[i])
 
-			if(!KytheraType.eq(param, arg.type)) {
+			if(!KytheraType.typeEq(param, arg.type)) {
 				throw new Error(`Types for parameter ${i} do not match: Expected ${param.baseType}, got ${arg.type.baseType}`)
 			}
 
@@ -459,11 +478,11 @@ class Compiler {
 
 			if(target.type.baseType === "obj") {
 				if(indexExp.type.baseType !== "str") {
-					throw new Error("Bracket access to an object must use a string literal for the index, not " + indexExp.type.baseType)
+					throw new Error("Bracket access to an object must use a string for the index, not " + indexExp.type.baseType)
 				}
 
 				output += `.value[(${indexExp.output}).value]`
-				type = target.type.structure[node.index]
+				type = new KytheraType("any")
 			} else if(target.type.baseType === "list") {
 				if(indexExp.type.baseType !== "int") {
 					throw new Error("List access must use an integer, not " + indexExp.type.baseType)
@@ -500,8 +519,8 @@ class Compiler {
 			throw new Error("Parser emitted a deferred node (internal error).")
 		}
 
-		if(node.name) {
-			throw new Error("named types not yet supported")
+		if(node.origin === "derived") {
+			return new DerivedType(node.exp)
 		}
 
 		switch(node.baseType) {
@@ -573,9 +592,14 @@ class Compiler {
 
 	// make runtime-side constructor call for a KYTHERA.type, from a KYTHERA.type. This wrinkles my brain
 	makeTypeConstructor(kytheraType) {
-		if(!(kytheraType instanceof KytheraType)) {
+		if(!(kytheraType instanceof KytheraType) && !(kytheraType instanceof DerivedType)) {
 			throw new Error("Type must be a Kythera runtime type.")
 		}
+
+		if(kytheraType.derived) {
+			return `((${this.visitExpressionNode(kytheraType.exp).output}).value)`
+		}
+
 		let out = `new KYTHERA.type("${kytheraType.baseType}"`
 
 		if(kytheraType.baseType === "fn") {

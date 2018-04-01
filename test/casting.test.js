@@ -1,10 +1,14 @@
 const t = require("./util").test
 
 describe("Type casting", () => {
-	// TODO type casting is about to be completely overhauled so these tests are disabled
 	describe("Custom type assignment", () => {
-		t("primitive", `let myIntType = int`, {skip: true})
-		t("fn type", `let myFnType = fn<int, str, myIntType> str`, {skip: true})
+		t("primitive", `let myIntType = int`)
+		// parameter list is read as (int), (str), (myIntType > str) and then hits unexpected EOL
+		// TODO fix this, possibly by changing the syntax for functions
+		// in the meantime this can be fixed with a trailing comma
+		t("fn type", `
+let myIntType = int
+let myFnType = fn<int, str, myIntType,> str`)
 		t("obj type", `
 let myObjType = obj{
     int a,
@@ -13,6 +17,7 @@ let myObjType = obj{
 	`, {skip: true})
 	})
 
+	// TODO re-enable (and possibly rewrite) these tests once type casting ('as') is implemented
 	/*
 	t("Casting object", `
 let myObj = {

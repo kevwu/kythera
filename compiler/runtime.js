@@ -1,16 +1,11 @@
 // include in every compiled Kythera file
 const KYTHERA = {}
 KYTHERA.type = class {
-	constructor(type, structure = null, name = null) {
+	constructor(type, structure = null) {
 		if(typeof type !== "string") {
 			throw new Error("type parameter must be a string.")
 		}
 		this.baseType = type
-
-		// named types. TBD
-		if(name !== null) {
-			this.name = name
-		}
 
 		if(type === "fn" || type === "obj" || type === "list") {
 			if(structure === null) {
@@ -23,12 +18,12 @@ KYTHERA.type = class {
 				}
 
 				if(!structure.parameters.every((param, i) => {
-					return param.constructor === this.constructor
+					return (param.constructor === this.constructor) || param.derived
 					})) {
 					throw new Error("Every function parameter must be a type.")
 				}
 
-				if(structure.returns.constructor !== this.constructor) {
+				if((structure.returns.constructor !== this.constructor) && !(structure.returns.derived)) {
 					throw new Error("Function return value must be a type.")
 				}
 			}
@@ -81,19 +76,21 @@ KYTHERA.type = class {
 				}, {}), this)
 			case "list":
 				throw new Error("Not yet implemented")
+			case "any":
+				throw new Error("Cannot instantiate from 'any' type, cast to another type first.")
 			default:
 				throw new Error("Invalid type: " + this.baseType)
 		}
 	}
 
 	// compare the types of two values
-	static eq(a, b) {
+	static typeEq(a, b) {
 		if(a.baseType !== b.baseType) {
 			return false
 		}
 
 		if(a.baseType === "fn") {
-			if(!this.eq(a.structure.returns, b.structure.returns)) {
+			if(!this.typeEq(a.structure.returns, b.structure.returns)) {
 				return false
 			}
 
@@ -102,7 +99,7 @@ KYTHERA.type = class {
 			}
 
 			for(let i = 0; i < a.structure.parameters.length; i += 1) {
-				if(!this.eq(a.structure.parameters[i], b.structure.parameters[i])) {
+				if(!this.typeEq(a.structure.parameters[i], b.structure.parameters[i])) {
 					return false
 				}
 			}
@@ -114,14 +111,14 @@ KYTHERA.type = class {
 				return false
 			}
 
-			const aContainsAllb = Object.keys(a.structure).every((key, i) => this.eq(a.structure[key], b.structure[key]));
-			const bContainsAlla = Object.keys(b.structure).every((key, i) => this.eq(a.structure[key], b.structure[key]));
+			const aContainsAllb = Object.keys(a.structure).every((key, i) => this.typeEq(a.structure[key], b.structure[key]));
+			const bContainsAlla = Object.keys(b.structure).every((key, i) => this.typeEq(a.structure[key], b.structure[key]));
 
 			return aContainsAllb && bContainsAlla
 		}
 
 		if(a.baseType === "list") {
-			return this.eq(a.contains.eq(b.contains))
+			return this.typeEq(a.contains.typeEq(b.contains))
 		}
 
 		return true
@@ -140,7 +137,7 @@ KYTHERA.type.PRIMITIVES = {
 
 KYTHERA.value = class {
 	constructor(value, type) {
-		if(!(type instanceof KYTHERA.type)) {
+		if(!(type instanceof KYTHERA.type) && !(type.derived)) {
 			throw new Error("Value type must be a KYTHERA.type.")
 		}
 		this.type = type
@@ -207,7 +204,7 @@ KYTHERA.value = class {
 
 				break
 			case "type": // type literal node - not a type node!
-				if(!(value instanceof KYTHERA.type)) {
+				if(!(value instanceof KYTHERA.type) && !(value.derived)) {
 					throw new Error('type value must be a KYTHERA.type.')
 				}
 				this.value = value
@@ -230,7 +227,7 @@ const kytheraBool = (val) => val ? KYTHERA.LITERALS.true : KYTHERA.LITERALS.fals
 
 
 KYTHERA.value.eq = (a, b) => {
-	if(!KYTHERA.type.eq(a.type, b.type)) {
+	if(!KYTHERA.type.typeEq(a.type, b.type)) {
 		return KYTHERA.LITERALS.false
 	}
 
@@ -253,7 +250,7 @@ KYTHERA.value.eq = (a, b) => {
 	}
 
 	if(a.type.baseType === "type") {
-		return kytheraBool(KYTHERA.type.eq(a.value, b.value))
+		return kytheraBool(KYTHERA.type.typeEq(a.value, b.value))
 	}
 }
 
@@ -266,7 +263,7 @@ KYTHERA.value.lt = (a, b) => {
 		throw new Error("Comparison requires int or float (the compiler should have caught this")
 	}
 
-	if(!KYTHERA.type.eq(a.type, b.type)) {
+	if(!KYTHERA.type.typeEq(a.type, b.type)) {
 		throw new Error("Types do not match (the compiler should have caught this")
 	}
 
@@ -278,7 +275,7 @@ KYTHERA.value.gt = (a, b) => {
 		throw new Error("Comparison requires int or float (the compiler should have caught this")
 	}
 
-	if(!KYTHERA.type.eq(a.type, b.type)) {
+	if(!KYTHERA.type.typeEq(a.type, b.type)) {
 		throw new Error("Types do not match (the compiler should have caught this")
 	}
 
@@ -298,7 +295,7 @@ KYTHERA.value.add = (a, b) => {
 		throw new Error("Arithmetic requires int or float (the compiler should have caught this")
 	}
 
-	if(!KYTHERA.type.eq(a.type, b.type)) {
+	if(!KYTHERA.type.typeEq(a.type, b.type)) {
 		throw new Error("Types do not match (the compiler should have caught this")
 	}
 
@@ -310,7 +307,7 @@ KYTHERA.value.sub = (a, b) => {
 		throw new Error("Arithmetic requires int or float (the compiler should have caught this")
 	}
 
-	if(!KYTHERA.type.eq(a.type, b.type)) {
+	if(!KYTHERA.type.typeEq(a.type, b.type)) {
 		throw new Error("Types do not match (the compiler should have caught this")
 	}
 
@@ -322,7 +319,7 @@ KYTHERA.value.mul = (a, b) => {
 		throw new Error("Arithmetic requires int or float (the compiler should have caught this")
 	}
 
-	if(!KYTHERA.type.eq(a.type, b.type)) {
+	if(!KYTHERA.type.typeEq(a.type, b.type)) {
 		throw new Error("Types do not match (the compiler should have caught this")
 	}
 
@@ -334,7 +331,7 @@ KYTHERA.value.div = (a, b) => {
 		throw new Error("Arithmetic requires int or float (the compiler should have caught this")
 	}
 
-	if(!KYTHERA.type.eq(a.type, b.type)) {
+	if(!KYTHERA.type.typeEq(a.type, b.type)) {
 		throw new Error("Types do not match (the compiler should have caught this")
 	}
 
@@ -353,7 +350,7 @@ KYTHERA.value.mod = (a, b) => {
 		throw new Error("Arithmetic requires int or float (the compiler should have caught this")
 	}
 
-	if(!KYTHERA.type.eq(a.type, b.type)) {
+	if(!KYTHERA.type.typeEq(a.type, b.type)) {
 		throw new Error("Types do not match (the compiler should have caught this")
 	}
 
