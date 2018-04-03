@@ -593,7 +593,7 @@ class Parser {
 		if(!builtinType) {
 			parseTypeAtom = new ParseNode("type", {
 				origin: "derived",
-				exp: this.parseExpression()
+				exp: this.parseExpression(false) // disallow splitting so '>' isn't confused for "greater-than"
 			})
 		}
 
