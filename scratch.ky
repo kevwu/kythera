@@ -19,11 +19,11 @@ typeof "kythera"
 typeof null
 
 // casting ints and floats
-// 10 as float
-// 3.14159 as int
+10 as float
+3.14159 as int
 
 // casting number values to bool
-// 1.0 as bool // true
-// 0.0 as bool // false
-// 1 as bool // true
-// 0 as bool // false
+1.0 as bool // true
+0.0 as bool // false
+1 as bool // true
+0 as bool // false

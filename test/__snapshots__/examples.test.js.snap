@@ -1,0 +1,3077 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Examples [COMPL] binary.ky 1`] = `"(KYTHERA.value.add(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));(KYTHERA.value.sub(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));(KYTHERA.value.mul(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));(KYTHERA.value.div(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));(KYTHERA.value.mod(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));(KYTHERA.value.lt(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));(KYTHERA.value.gt(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));(KYTHERA.value.le(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));(KYTHERA.value.ge(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));(KYTHERA.value.eq(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));(KYTHERA.value.ne(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));let a = new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]);(a = KYTHERA.value.add(a, new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));(a = KYTHERA.value.sub(a, new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));(a = KYTHERA.value.mul(a, new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));(a = KYTHERA.value.div(a, new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));(a = KYTHERA.value.mod(a, new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));(KYTHERA.value.and(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"])));(KYTHERA.value.or(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"])));(KYTHERA.value.add(new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]), (KYTHERA.value.mul(new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(4, KYTHERA.type.PRIMITIVES[\\"int\\"])))));(KYTHERA.value.mul((KYTHERA.value.add(new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]))), new KYTHERA.value(4, KYTHERA.type.PRIMITIVES[\\"int\\"])));(KYTHERA.value.add(new KYTHERA.value(\\"asdf\\", KYTHERA.type.PRIMITIVES[\\"str\\"]), new KYTHERA.value(\\"zxcv\\", KYTHERA.type.PRIMITIVES[\\"str\\"])));"`;
+
+exports[`Examples [COMPL] casting.ky 1`] = `"let myIntType = new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"int\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]);let myFnType = new KYTHERA.value(new KYTHERA.type(\\"fn\\", { parameters: [KYTHERA.type.PRIMITIVES[\\"int\\"],KYTHERA.type.PRIMITIVES[\\"str\\"],((myIntType).value)], returns: KYTHERA.type.PRIMITIVES[\\"str\\"]}), KYTHERA.type.PRIMITIVES[\\"type\\"]);let myObjType = new KYTHERA.value(new KYTHERA.type(\\"obj\\", {\\"a\\": KYTHERA.type.PRIMITIVES[\\"int\\"],\\"b\\": KYTHERA.type.PRIMITIVES[\\"str\\"],}), KYTHERA.type.PRIMITIVES[\\"type\\"]);let myObj = new KYTHERA.value((() => {let thisObj = {value: {}};thisObj.value[\\"a\\"] = new KYTHERA.value(99, KYTHERA.type.PRIMITIVES[\\"int\\"]);thisObj.value[\\"b\\"] = new KYTHERA.value(\\"beep\\", KYTHERA.type.PRIMITIVES[\\"str\\"]);return thisObj.value;})(), new KYTHERA.type(\\"obj\\", {\\"a\\": KYTHERA.type.PRIMITIVES[\\"int\\"],\\"b\\": KYTHERA.type.PRIMITIVES[\\"str\\"],}));myObj.value.a;"`;
+
+exports[`Examples [COMPL] controlflow.ky 1`] = `"if(KYTHERA.value.eq(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]), KYTHERA.LITERALS.true).value) {new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]);};if(KYTHERA.value.eq(new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]), KYTHERA.LITERALS.true).value) {new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]);} else {new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]);};let a = new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]);if(KYTHERA.value.eq((KYTHERA.value.eq(a, new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]))), KYTHERA.LITERALS.true).value) {new KYTHERA.value(\\"one\\", KYTHERA.type.PRIMITIVES[\\"str\\"]);} else {if(KYTHERA.value.eq((KYTHERA.value.eq(a, new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]))), KYTHERA.LITERALS.true).value) {new KYTHERA.value(\\"two\\", KYTHERA.type.PRIMITIVES[\\"str\\"]);} else {new KYTHERA.value(\\"something else\\", KYTHERA.type.PRIMITIVES[\\"str\\"]);};};let b = new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]);if(KYTHERA.value.eq((KYTHERA.value.eq(a, b)), KYTHERA.LITERALS.true).value) {a;} else {b;};let c = new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]);if(KYTHERA.value.eq((KYTHERA.value.eq(a, b)), KYTHERA.LITERALS.true).value) {a;} else {if(KYTHERA.value.eq((KYTHERA.value.eq(b, c)), KYTHERA.LITERALS.true).value) {new KYTHERA.value(\\"two\\", KYTHERA.type.PRIMITIVES[\\"str\\"]);} else {new KYTHERA.value(\\"hello\\", KYTHERA.type.PRIMITIVES[\\"str\\"]);};};while(KYTHERA.value.eq((KYTHERA.value.eq(a, b)), KYTHERA.LITERALS.true).value) {(a = (KYTHERA.value.add(a, new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]))));};let x = new KYTHERA.value(0, KYTHERA.type.PRIMITIVES[\\"int\\"]);while(KYTHERA.value.eq((KYTHERA.value.lt(x, new KYTHERA.value(10, KYTHERA.type.PRIMITIVES[\\"int\\"]))), KYTHERA.LITERALS.true).value) {(x = (KYTHERA.value.add(x, new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]))));};x;"`;
+
+exports[`Examples [COMPL] fn.ky 1`] = `"new KYTHERA.value((a) => {let q = new KYTHERA.value(99, KYTHERA.type.PRIMITIVES[\\"int\\"]);let r = q;return q;}, new KYTHERA.type(\\"fn\\", { parameters: [KYTHERA.type.PRIMITIVES[\\"int\\"]], returns: KYTHERA.type.PRIMITIVES[\\"int\\"]})).value(new KYTHERA.value(10, KYTHERA.type.PRIMITIVES[\\"int\\"]));let fibo = new KYTHERA.type(\\"fn\\", { parameters: [KYTHERA.type.PRIMITIVES[\\"int\\"]], returns: KYTHERA.type.PRIMITIVES[\\"int\\"]}).makeNew();(fibo = new KYTHERA.value((x) => {if(KYTHERA.value.eq((KYTHERA.value.eq(x, new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]))), KYTHERA.LITERALS.true).value) {return new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]);};if(KYTHERA.value.eq((KYTHERA.value.eq(x, new KYTHERA.value(0, KYTHERA.type.PRIMITIVES[\\"int\\"]))), KYTHERA.LITERALS.true).value) {return new KYTHERA.value(0, KYTHERA.type.PRIMITIVES[\\"int\\"]);};return (KYTHERA.value.add(fibo.value((KYTHERA.value.sub(x, new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"])))), fibo.value((KYTHERA.value.sub(x, new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]))))));}, new KYTHERA.type(\\"fn\\", { parameters: [KYTHERA.type.PRIMITIVES[\\"int\\"]], returns: KYTHERA.type.PRIMITIVES[\\"int\\"]})));fibo.value(new KYTHERA.value(10, KYTHERA.type.PRIMITIVES[\\"int\\"]));new KYTHERA.value((count) => {let x = new KYTHERA.value(0, KYTHERA.type.PRIMITIVES[\\"int\\"]);while(KYTHERA.value.eq((KYTHERA.value.lt(x, count)), KYTHERA.LITERALS.true).value) {if(KYTHERA.value.eq((KYTHERA.value.and((KYTHERA.value.eq((KYTHERA.value.mod(x, new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]))), new KYTHERA.value(0, KYTHERA.type.PRIMITIVES[\\"int\\"]))), (KYTHERA.value.eq((KYTHERA.value.mod(x, new KYTHERA.value(5, KYTHERA.type.PRIMITIVES[\\"int\\"]))), new KYTHERA.value(0, KYTHERA.type.PRIMITIVES[\\"int\\"]))))), KYTHERA.LITERALS.true).value) {new KYTHERA.value(\\"fizzbuzz\\", KYTHERA.type.PRIMITIVES[\\"str\\"]);} else {if(KYTHERA.value.eq((KYTHERA.value.eq((KYTHERA.value.mod(x, new KYTHERA.value(5, KYTHERA.type.PRIMITIVES[\\"int\\"]))), new KYTHERA.value(0, KYTHERA.type.PRIMITIVES[\\"int\\"]))), KYTHERA.LITERALS.true).value) {new KYTHERA.value(\\"buzz\\", KYTHERA.type.PRIMITIVES[\\"str\\"]);} else {if(KYTHERA.value.eq((KYTHERA.value.eq((KYTHERA.value.mod(x, new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]))), new KYTHERA.value(0, KYTHERA.type.PRIMITIVES[\\"int\\"]))), KYTHERA.LITERALS.true).value) {new KYTHERA.value(\\"fizz\\", KYTHERA.type.PRIMITIVES[\\"str\\"]);} else {x;};};};(x = (KYTHERA.value.add(x, new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]))));};return new KYTHERA.value(null, KYTHERA.type.PRIMITIVES[\\"null\\"]);}, new KYTHERA.type(\\"fn\\", { parameters: [KYTHERA.type.PRIMITIVES[\\"int\\"]], returns: KYTHERA.type.PRIMITIVES[\\"null\\"]})).value(new KYTHERA.value(20, KYTHERA.type.PRIMITIVES[\\"int\\"]));new KYTHERA.value(() => {return new KYTHERA.value(null, KYTHERA.type.PRIMITIVES[\\"null\\"]);}, new KYTHERA.type(\\"fn\\", { parameters: [], returns: KYTHERA.type.PRIMITIVES[\\"null\\"]}));new KYTHERA.value(() => {return new KYTHERA.value(null, KYTHERA.type.PRIMITIVES[\\"null\\"]);}, new KYTHERA.type(\\"fn\\", { parameters: [], returns: KYTHERA.type.PRIMITIVES[\\"null\\"]}));"`;
+
+exports[`Examples [COMPL] lists.ky 1`] = `""`;
+
+exports[`Examples [COMPL] obj.ky 1`] = `""`;
+
+exports[`Examples [COMPL] primitives.ky 1`] = `"KYTHERA.value.not(new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]));KYTHERA.value.not(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]));(KYTHERA.value.and(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"])));(KYTHERA.value.and(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"])));(KYTHERA.value.and(new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"])));(KYTHERA.value.or(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"])));(KYTHERA.value.or(new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"])));(KYTHERA.value.or(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"])));new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"bool\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]);new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"bool\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]);new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"int\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]);new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"float\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]);new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"str\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]);new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"null\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]);"`;
+
+exports[`Examples [COMPL] types.ky 1`] = `"let myType = new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"int\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]);let a = ((myType).value).makeNew();let price = new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"int\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]);let count = new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"int\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]);let myFn = new KYTHERA.value((a) => {return a;}, new KYTHERA.type(\\"fn\\", { parameters: [((price).value)], returns: ((price).value)}));let b = ((count).value).makeNew();myFn.value(b);"`;
+
+exports[`Examples [EVALT] binary.ky 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 1,
+  },
+}
+`;
+
+exports[`Examples [EVALT] casting.ky 1`] = `
+Object {
+  "myFnType":  {
+    "type":  {
+      "baseType": "type",
+    },
+    "value":  {
+      "baseType": "fn",
+      "structure": Object {
+        "parameters": Array [
+           {
+            "baseType": "int",
+          },
+           {
+            "baseType": "str",
+          },
+           {
+            "baseType": "int",
+          },
+        ],
+        "returns":  {
+          "baseType": "str",
+        },
+      },
+    },
+  },
+  "myIntType":  {
+    "type":  {
+      "baseType": "type",
+    },
+    "value":  {
+      "baseType": "int",
+    },
+  },
+  "myObj":  {
+    "type":  {
+      "baseType": "obj",
+      "structure": Object {
+        "a":  {
+          "baseType": "int",
+        },
+        "b":  {
+          "baseType": "str",
+        },
+      },
+    },
+    "value": Object {
+      "a":  {
+        "type":  {
+          "baseType": "int",
+        },
+        "value": 99,
+      },
+      "b":  {
+        "type":  {
+          "baseType": "str",
+        },
+        "value": "beep",
+      },
+    },
+  },
+  "myObjType":  {
+    "type":  {
+      "baseType": "type",
+    },
+    "value":  {
+      "baseType": "obj",
+      "structure": Object {
+        "a":  {
+          "baseType": "int",
+        },
+        "b":  {
+          "baseType": "str",
+        },
+      },
+    },
+  },
+}
+`;
+
+exports[`Examples [EVALT] controlflow.ky 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 3,
+  },
+  "b":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 2,
+  },
+  "c":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 3,
+  },
+  "x":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 10,
+  },
+}
+`;
+
+exports[`Examples [EVALT] fn.ky 1`] = `
+Object {
+  "fibo":  {
+    "type":  {
+      "baseType": "fn",
+      "structure": Object {
+        "parameters": Array [
+           {
+            "baseType": "int",
+          },
+        ],
+        "returns":  {
+          "baseType": "int",
+        },
+      },
+    },
+    "value": [Function],
+  },
+}
+`;
+
+exports[`Examples [EVALT] lists.ky 1`] = `Object {}`;
+
+exports[`Examples [EVALT] obj.ky 1`] = `Object {}`;
+
+exports[`Examples [EVALT] primitives.ky 1`] = `Object {}`;
+
+exports[`Examples [EVALT] types.ky 1`] = `
+Object {
+  "a":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 0,
+  },
+  "b":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 0,
+  },
+  "count":  {
+    "type":  {
+      "baseType": "type",
+    },
+    "value":  {
+      "baseType": "int",
+    },
+  },
+  "myFn":  {
+    "type":  {
+      "baseType": "fn",
+      "structure": Object {
+        "parameters": Array [
+           {
+            "baseType": "int",
+          },
+        ],
+        "returns":  {
+          "baseType": "int",
+        },
+      },
+    },
+    "value": [Function],
+  },
+  "myType":  {
+    "type":  {
+      "baseType": "type",
+    },
+    "value":  {
+      "baseType": "int",
+    },
+  },
+  "price":  {
+    "type":  {
+      "baseType": "type",
+    },
+    "value":  {
+      "baseType": "int",
+    },
+  },
+}
+`;
+
+exports[`Examples [PARSE] binary.ky 1`] = `
+Array [
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 1,
+    },
+    "operator": "+",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 2,
+    },
+    "type": ParseNode {
+      "baseType": "int",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 1,
+    },
+    "operator": "-",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 2,
+    },
+    "type": ParseNode {
+      "baseType": "int",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 1,
+    },
+    "operator": "*",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 2,
+    },
+    "type": ParseNode {
+      "baseType": "int",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 1,
+    },
+    "operator": "/",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 2,
+    },
+    "type": ParseNode {
+      "baseType": "int",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 1,
+    },
+    "operator": "%",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 2,
+    },
+    "type": ParseNode {
+      "baseType": "int",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 1,
+    },
+    "operator": "<",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 2,
+    },
+    "type": ParseNode {
+      "baseType": "int",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 1,
+    },
+    "operator": ">",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 2,
+    },
+    "type": ParseNode {
+      "baseType": "int",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 1,
+    },
+    "operator": "<=",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 2,
+    },
+    "type": ParseNode {
+      "baseType": "int",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 1,
+    },
+    "operator": ">=",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 2,
+    },
+    "type": ParseNode {
+      "baseType": "int",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 1,
+    },
+    "operator": "==",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 2,
+    },
+    "type": ParseNode {
+      "baseType": "int",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 1,
+    },
+    "operator": "!=",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 2,
+    },
+    "type": ParseNode {
+      "baseType": "int",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+  ParseNode {
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 1,
+    },
+  },
+  ParseNode {
+    "kind": "assign",
+    "left": ParseNode {
+      "kind": "identifier",
+      "name": "a",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+    "operator": "+=",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 2,
+    },
+    "type": ParseNode {
+      "baseType": "int",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+  ParseNode {
+    "kind": "assign",
+    "left": ParseNode {
+      "kind": "identifier",
+      "name": "a",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+    "operator": "-=",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 2,
+    },
+    "type": ParseNode {
+      "baseType": "int",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+  ParseNode {
+    "kind": "assign",
+    "left": ParseNode {
+      "kind": "identifier",
+      "name": "a",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+    "operator": "*=",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 2,
+    },
+    "type": ParseNode {
+      "baseType": "int",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+  ParseNode {
+    "kind": "assign",
+    "left": ParseNode {
+      "kind": "identifier",
+      "name": "a",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+    "operator": "/=",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 2,
+    },
+    "type": ParseNode {
+      "baseType": "int",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+  ParseNode {
+    "kind": "assign",
+    "left": ParseNode {
+      "kind": "identifier",
+      "name": "a",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+    "operator": "%=",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 2,
+    },
+    "type": ParseNode {
+      "baseType": "int",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": true,
+    },
+    "operator": "&&",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": false,
+    },
+    "type": ParseNode {
+      "baseType": "bool",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": true,
+    },
+    "operator": "||",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": false,
+    },
+    "type": ParseNode {
+      "baseType": "bool",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 2,
+    },
+    "operator": "+",
+    "right": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 3,
+      },
+      "operator": "*",
+      "right": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 4,
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+    "type": ParseNode {
+      "baseType": "int",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 2,
+      },
+      "operator": "+",
+      "right": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 3,
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+    "operator": "*",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 4,
+    },
+    "type": ParseNode {
+      "baseType": "int",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": "asdf",
+    },
+    "operator": "+",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": "zxcv",
+    },
+    "type": ParseNode {
+      "baseType": "str",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+]
+`;
+
+exports[`Examples [PARSE] casting.ky 1`] = `
+Array [
+  ParseNode {
+    "identifier": "myIntType",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "type",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "myFnType",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "type",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": ParseNode {
+        "baseType": "fn",
+        "kind": "type",
+        "origin": "builtin",
+        "parameters": Array [
+          ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          ParseNode {
+            "baseType": "str",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          ParseNode {
+            "exp": ParseNode {
+              "kind": "identifier",
+              "name": "myIntType",
+              "type": ParseNode {
+                "baseType": "type",
+                "kind": "type",
+                "origin": "builtin",
+              },
+            },
+            "kind": "type",
+            "origin": "derived",
+          },
+        ],
+        "returns": ParseNode {
+          "baseType": "str",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "myObjType",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "type",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": ParseNode {
+        "baseType": "obj",
+        "kind": "type",
+        "origin": "builtin",
+        "structure": Object {
+          "a": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "b": ParseNode {
+            "baseType": "str",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "myObj",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "obj",
+        "kind": "type",
+        "origin": "builtin",
+        "structure": Object {
+          "a": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "b": ParseNode {
+            "baseType": "str",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+      },
+      "value": Object {
+        "a": ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "value": 99,
+        },
+        "b": ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "str",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "value": "beep",
+        },
+      },
+    },
+  },
+  ParseNode {
+    "index": "a",
+    "kind": "access",
+    "method": "dot",
+    "target": ParseNode {
+      "kind": "identifier",
+      "name": "myObj",
+      "type": ParseNode {
+        "baseType": "obj",
+        "kind": "type",
+        "origin": "builtin",
+        "structure": Object {
+          "a": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "b": ParseNode {
+            "baseType": "str",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+      },
+    },
+    "type": ParseNode {
+      "baseType": "int",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+]
+`;
+
+exports[`Examples [PARSE] controlflow.ky 1`] = `
+Array [
+  ParseNode {
+    "body": Array [
+      ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": true,
+      },
+    ],
+    "condition": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": true,
+    },
+    "kind": "if",
+  },
+  ParseNode {
+    "body": Array [
+      ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": false,
+      },
+    ],
+    "condition": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": false,
+    },
+    "else": Array [
+      ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": true,
+      },
+    ],
+    "kind": "if",
+  },
+  ParseNode {
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 3,
+    },
+  },
+  ParseNode {
+    "body": Array [
+      ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "str",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": "one",
+      },
+    ],
+    "condition": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "identifier",
+        "name": "a",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "operator": "==",
+      "right": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 1,
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+    "else": Array [
+      ParseNode {
+        "body": Array [
+          ParseNode {
+            "kind": "literal",
+            "type": ParseNode {
+              "baseType": "str",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "value": "two",
+          },
+        ],
+        "condition": ParseNode {
+          "kind": "binary",
+          "left": ParseNode {
+            "kind": "identifier",
+            "name": "a",
+            "type": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          "operator": "==",
+          "right": ParseNode {
+            "kind": "literal",
+            "type": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "value": 2,
+          },
+          "type": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+        "else": Array [
+          ParseNode {
+            "kind": "literal",
+            "type": ParseNode {
+              "baseType": "str",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "value": "something else",
+          },
+        ],
+        "kind": "if",
+      },
+    ],
+    "kind": "if",
+  },
+  ParseNode {
+    "identifier": "b",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 2,
+    },
+  },
+  ParseNode {
+    "body": Array [
+      ParseNode {
+        "kind": "identifier",
+        "name": "a",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+    ],
+    "condition": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "identifier",
+        "name": "a",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "operator": "==",
+      "right": ParseNode {
+        "kind": "identifier",
+        "name": "b",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+    "else": Array [
+      ParseNode {
+        "kind": "identifier",
+        "name": "b",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+    ],
+    "kind": "if",
+  },
+  ParseNode {
+    "identifier": "c",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 3,
+    },
+  },
+  ParseNode {
+    "body": Array [
+      ParseNode {
+        "kind": "identifier",
+        "name": "a",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+    ],
+    "condition": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "identifier",
+        "name": "a",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "operator": "==",
+      "right": ParseNode {
+        "kind": "identifier",
+        "name": "b",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+    "else": Array [
+      ParseNode {
+        "body": Array [
+          ParseNode {
+            "kind": "literal",
+            "type": ParseNode {
+              "baseType": "str",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "value": "two",
+          },
+        ],
+        "condition": ParseNode {
+          "kind": "binary",
+          "left": ParseNode {
+            "kind": "identifier",
+            "name": "b",
+            "type": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          "operator": "==",
+          "right": ParseNode {
+            "kind": "identifier",
+            "name": "c",
+            "type": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          "type": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+        "else": Array [
+          ParseNode {
+            "kind": "literal",
+            "type": ParseNode {
+              "baseType": "str",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "value": "hello",
+          },
+        ],
+        "kind": "if",
+      },
+    ],
+    "kind": "if",
+  },
+  ParseNode {
+    "body": Array [
+      ParseNode {
+        "kind": "assign",
+        "left": ParseNode {
+          "kind": "identifier",
+          "name": "a",
+          "type": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+        "operator": "=",
+        "right": ParseNode {
+          "kind": "binary",
+          "left": ParseNode {
+            "kind": "identifier",
+            "name": "a",
+            "type": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          "operator": "+",
+          "right": ParseNode {
+            "kind": "literal",
+            "type": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "value": 2,
+          },
+          "type": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+    ],
+    "condition": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "identifier",
+        "name": "a",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "operator": "==",
+      "right": ParseNode {
+        "kind": "identifier",
+        "name": "b",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+    "kind": "while",
+  },
+  ParseNode {
+    "identifier": "x",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 0,
+    },
+  },
+  ParseNode {
+    "body": Array [
+      ParseNode {
+        "kind": "assign",
+        "left": ParseNode {
+          "kind": "identifier",
+          "name": "x",
+          "type": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+        "operator": "=",
+        "right": ParseNode {
+          "kind": "binary",
+          "left": ParseNode {
+            "kind": "identifier",
+            "name": "x",
+            "type": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          "operator": "+",
+          "right": ParseNode {
+            "kind": "literal",
+            "type": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "value": 1,
+          },
+          "type": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+    ],
+    "condition": ParseNode {
+      "kind": "binary",
+      "left": ParseNode {
+        "kind": "identifier",
+        "name": "x",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "operator": "<",
+      "right": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 10,
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+    "kind": "while",
+  },
+  ParseNode {
+    "kind": "identifier",
+    "name": "x",
+    "type": ParseNode {
+      "baseType": "int",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+]
+`;
+
+exports[`Examples [PARSE] fn.ky 1`] = `
+Array [
+  ParseNode {
+    "arguments": Array [
+      ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 10,
+      },
+    ],
+    "kind": "call",
+    "target": ParseNode {
+      "body": Array [
+        ParseNode {
+          "identifier": "q",
+          "kind": "let",
+          "value": ParseNode {
+            "kind": "literal",
+            "type": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "value": 99,
+          },
+        },
+        ParseNode {
+          "identifier": "r",
+          "kind": "let",
+          "value": ParseNode {
+            "kind": "identifier",
+            "name": "q",
+            "type": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+        },
+        ParseNode {
+          "kind": "return",
+          "value": ParseNode {
+            "kind": "identifier",
+            "name": "q",
+            "type": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+        },
+      ],
+      "kind": "literal",
+      "parameters": Array [
+        Object {
+          "name": "a",
+          "type": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+      ],
+      "returns": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "fn",
+        "kind": "type",
+        "origin": "builtin",
+        "parameters": Array [
+          ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        ],
+        "returns": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+    },
+    "type": ParseNode {
+      "baseType": "int",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+  ParseNode {
+    "identifier": "fibo",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "new",
+      "target": ParseNode {
+        "baseType": "fn",
+        "kind": "type",
+        "origin": "builtin",
+        "parameters": Array [
+          ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        ],
+        "returns": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "type": ParseNode {
+        "baseType": "fn",
+        "kind": "type",
+        "origin": "builtin",
+        "parameters": Array [
+          ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        ],
+        "returns": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+    },
+  },
+  ParseNode {
+    "kind": "assign",
+    "left": ParseNode {
+      "kind": "identifier",
+      "name": "fibo",
+      "type": ParseNode {
+        "baseType": "fn",
+        "kind": "type",
+        "origin": "builtin",
+        "parameters": Array [
+          ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        ],
+        "returns": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+    },
+    "operator": "=",
+    "right": ParseNode {
+      "body": Array [
+        ParseNode {
+          "body": Array [
+            ParseNode {
+              "kind": "return",
+              "value": ParseNode {
+                "kind": "literal",
+                "type": ParseNode {
+                  "baseType": "int",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+                "value": 1,
+              },
+            },
+          ],
+          "condition": ParseNode {
+            "kind": "binary",
+            "left": ParseNode {
+              "kind": "identifier",
+              "name": "x",
+              "type": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+            },
+            "operator": "==",
+            "right": ParseNode {
+              "kind": "literal",
+              "type": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "value": 1,
+            },
+            "type": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          "kind": "if",
+        },
+        ParseNode {
+          "body": Array [
+            ParseNode {
+              "kind": "return",
+              "value": ParseNode {
+                "kind": "literal",
+                "type": ParseNode {
+                  "baseType": "int",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+                "value": 0,
+              },
+            },
+          ],
+          "condition": ParseNode {
+            "kind": "binary",
+            "left": ParseNode {
+              "kind": "identifier",
+              "name": "x",
+              "type": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+            },
+            "operator": "==",
+            "right": ParseNode {
+              "kind": "literal",
+              "type": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "value": 0,
+            },
+            "type": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          "kind": "if",
+        },
+        ParseNode {
+          "kind": "return",
+          "value": ParseNode {
+            "kind": "binary",
+            "left": ParseNode {
+              "arguments": Array [
+                ParseNode {
+                  "kind": "binary",
+                  "left": ParseNode {
+                    "kind": "identifier",
+                    "name": "x",
+                    "type": ParseNode {
+                      "baseType": "int",
+                      "kind": "type",
+                      "origin": "builtin",
+                    },
+                  },
+                  "operator": "-",
+                  "right": ParseNode {
+                    "kind": "literal",
+                    "type": ParseNode {
+                      "baseType": "int",
+                      "kind": "type",
+                      "origin": "builtin",
+                    },
+                    "value": 1,
+                  },
+                  "type": ParseNode {
+                    "baseType": "int",
+                    "kind": "type",
+                    "origin": "builtin",
+                  },
+                },
+              ],
+              "kind": "call",
+              "target": ParseNode {
+                "kind": "identifier",
+                "name": "fibo",
+                "type": ParseNode {
+                  "baseType": "fn",
+                  "kind": "type",
+                  "origin": "builtin",
+                  "parameters": Array [
+                    ParseNode {
+                      "baseType": "int",
+                      "kind": "type",
+                      "origin": "builtin",
+                    },
+                  ],
+                  "returns": ParseNode {
+                    "baseType": "int",
+                    "kind": "type",
+                    "origin": "builtin",
+                  },
+                },
+              },
+              "type": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+            },
+            "operator": "+",
+            "right": ParseNode {
+              "arguments": Array [
+                ParseNode {
+                  "kind": "binary",
+                  "left": ParseNode {
+                    "kind": "identifier",
+                    "name": "x",
+                    "type": ParseNode {
+                      "baseType": "int",
+                      "kind": "type",
+                      "origin": "builtin",
+                    },
+                  },
+                  "operator": "-",
+                  "right": ParseNode {
+                    "kind": "literal",
+                    "type": ParseNode {
+                      "baseType": "int",
+                      "kind": "type",
+                      "origin": "builtin",
+                    },
+                    "value": 2,
+                  },
+                  "type": ParseNode {
+                    "baseType": "int",
+                    "kind": "type",
+                    "origin": "builtin",
+                  },
+                },
+              ],
+              "kind": "call",
+              "target": ParseNode {
+                "kind": "identifier",
+                "name": "fibo",
+                "type": ParseNode {
+                  "baseType": "fn",
+                  "kind": "type",
+                  "origin": "builtin",
+                  "parameters": Array [
+                    ParseNode {
+                      "baseType": "int",
+                      "kind": "type",
+                      "origin": "builtin",
+                    },
+                  ],
+                  "returns": ParseNode {
+                    "baseType": "int",
+                    "kind": "type",
+                    "origin": "builtin",
+                  },
+                },
+              },
+              "type": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+            },
+            "type": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+        },
+      ],
+      "kind": "literal",
+      "parameters": Array [
+        Object {
+          "name": "x",
+          "type": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+      ],
+      "returns": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "fn",
+        "kind": "type",
+        "origin": "builtin",
+        "parameters": Array [
+          ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        ],
+        "returns": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+    },
+    "type": ParseNode {
+      "baseType": "fn",
+      "kind": "type",
+      "origin": "builtin",
+      "parameters": Array [
+        ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      ],
+      "returns": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+  ParseNode {
+    "arguments": Array [
+      ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 10,
+      },
+    ],
+    "kind": "call",
+    "target": ParseNode {
+      "kind": "identifier",
+      "name": "fibo",
+      "type": ParseNode {
+        "baseType": "fn",
+        "kind": "type",
+        "origin": "builtin",
+        "parameters": Array [
+          ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        ],
+        "returns": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+    },
+    "type": ParseNode {
+      "baseType": "int",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+  ParseNode {
+    "arguments": Array [
+      ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 20,
+      },
+    ],
+    "kind": "call",
+    "target": ParseNode {
+      "body": Array [
+        ParseNode {
+          "identifier": "x",
+          "kind": "let",
+          "value": ParseNode {
+            "kind": "literal",
+            "type": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "value": 0,
+          },
+        },
+        ParseNode {
+          "body": Array [
+            ParseNode {
+              "body": Array [
+                ParseNode {
+                  "kind": "literal",
+                  "type": ParseNode {
+                    "baseType": "str",
+                    "kind": "type",
+                    "origin": "builtin",
+                  },
+                  "value": "fizzbuzz",
+                },
+              ],
+              "condition": ParseNode {
+                "kind": "binary",
+                "left": ParseNode {
+                  "kind": "binary",
+                  "left": ParseNode {
+                    "kind": "binary",
+                    "left": ParseNode {
+                      "kind": "identifier",
+                      "name": "x",
+                      "type": ParseNode {
+                        "baseType": "int",
+                        "kind": "type",
+                        "origin": "builtin",
+                      },
+                    },
+                    "operator": "%",
+                    "right": ParseNode {
+                      "kind": "literal",
+                      "type": ParseNode {
+                        "baseType": "int",
+                        "kind": "type",
+                        "origin": "builtin",
+                      },
+                      "value": 3,
+                    },
+                    "type": ParseNode {
+                      "baseType": "int",
+                      "kind": "type",
+                      "origin": "builtin",
+                    },
+                  },
+                  "operator": "==",
+                  "right": ParseNode {
+                    "kind": "literal",
+                    "type": ParseNode {
+                      "baseType": "int",
+                      "kind": "type",
+                      "origin": "builtin",
+                    },
+                    "value": 0,
+                  },
+                  "type": ParseNode {
+                    "baseType": "int",
+                    "kind": "type",
+                    "origin": "builtin",
+                  },
+                },
+                "operator": "&&",
+                "right": ParseNode {
+                  "kind": "binary",
+                  "left": ParseNode {
+                    "kind": "binary",
+                    "left": ParseNode {
+                      "kind": "identifier",
+                      "name": "x",
+                      "type": ParseNode {
+                        "baseType": "int",
+                        "kind": "type",
+                        "origin": "builtin",
+                      },
+                    },
+                    "operator": "%",
+                    "right": ParseNode {
+                      "kind": "literal",
+                      "type": ParseNode {
+                        "baseType": "int",
+                        "kind": "type",
+                        "origin": "builtin",
+                      },
+                      "value": 5,
+                    },
+                    "type": ParseNode {
+                      "baseType": "int",
+                      "kind": "type",
+                      "origin": "builtin",
+                    },
+                  },
+                  "operator": "==",
+                  "right": ParseNode {
+                    "kind": "literal",
+                    "type": ParseNode {
+                      "baseType": "int",
+                      "kind": "type",
+                      "origin": "builtin",
+                    },
+                    "value": 0,
+                  },
+                  "type": ParseNode {
+                    "baseType": "int",
+                    "kind": "type",
+                    "origin": "builtin",
+                  },
+                },
+                "type": ParseNode {
+                  "baseType": "int",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+              },
+              "else": Array [
+                ParseNode {
+                  "body": Array [
+                    ParseNode {
+                      "kind": "literal",
+                      "type": ParseNode {
+                        "baseType": "str",
+                        "kind": "type",
+                        "origin": "builtin",
+                      },
+                      "value": "buzz",
+                    },
+                  ],
+                  "condition": ParseNode {
+                    "kind": "binary",
+                    "left": ParseNode {
+                      "kind": "binary",
+                      "left": ParseNode {
+                        "kind": "identifier",
+                        "name": "x",
+                        "type": ParseNode {
+                          "baseType": "int",
+                          "kind": "type",
+                          "origin": "builtin",
+                        },
+                      },
+                      "operator": "%",
+                      "right": ParseNode {
+                        "kind": "literal",
+                        "type": ParseNode {
+                          "baseType": "int",
+                          "kind": "type",
+                          "origin": "builtin",
+                        },
+                        "value": 5,
+                      },
+                      "type": ParseNode {
+                        "baseType": "int",
+                        "kind": "type",
+                        "origin": "builtin",
+                      },
+                    },
+                    "operator": "==",
+                    "right": ParseNode {
+                      "kind": "literal",
+                      "type": ParseNode {
+                        "baseType": "int",
+                        "kind": "type",
+                        "origin": "builtin",
+                      },
+                      "value": 0,
+                    },
+                    "type": ParseNode {
+                      "baseType": "int",
+                      "kind": "type",
+                      "origin": "builtin",
+                    },
+                  },
+                  "else": Array [
+                    ParseNode {
+                      "body": Array [
+                        ParseNode {
+                          "kind": "literal",
+                          "type": ParseNode {
+                            "baseType": "str",
+                            "kind": "type",
+                            "origin": "builtin",
+                          },
+                          "value": "fizz",
+                        },
+                      ],
+                      "condition": ParseNode {
+                        "kind": "binary",
+                        "left": ParseNode {
+                          "kind": "binary",
+                          "left": ParseNode {
+                            "kind": "identifier",
+                            "name": "x",
+                            "type": ParseNode {
+                              "baseType": "int",
+                              "kind": "type",
+                              "origin": "builtin",
+                            },
+                          },
+                          "operator": "%",
+                          "right": ParseNode {
+                            "kind": "literal",
+                            "type": ParseNode {
+                              "baseType": "int",
+                              "kind": "type",
+                              "origin": "builtin",
+                            },
+                            "value": 3,
+                          },
+                          "type": ParseNode {
+                            "baseType": "int",
+                            "kind": "type",
+                            "origin": "builtin",
+                          },
+                        },
+                        "operator": "==",
+                        "right": ParseNode {
+                          "kind": "literal",
+                          "type": ParseNode {
+                            "baseType": "int",
+                            "kind": "type",
+                            "origin": "builtin",
+                          },
+                          "value": 0,
+                        },
+                        "type": ParseNode {
+                          "baseType": "int",
+                          "kind": "type",
+                          "origin": "builtin",
+                        },
+                      },
+                      "else": Array [
+                        ParseNode {
+                          "kind": "identifier",
+                          "name": "x",
+                          "type": ParseNode {
+                            "baseType": "int",
+                            "kind": "type",
+                            "origin": "builtin",
+                          },
+                        },
+                      ],
+                      "kind": "if",
+                    },
+                  ],
+                  "kind": "if",
+                },
+              ],
+              "kind": "if",
+            },
+            ParseNode {
+              "kind": "assign",
+              "left": ParseNode {
+                "kind": "identifier",
+                "name": "x",
+                "type": ParseNode {
+                  "baseType": "int",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+              },
+              "operator": "=",
+              "right": ParseNode {
+                "kind": "binary",
+                "left": ParseNode {
+                  "kind": "identifier",
+                  "name": "x",
+                  "type": ParseNode {
+                    "baseType": "int",
+                    "kind": "type",
+                    "origin": "builtin",
+                  },
+                },
+                "operator": "+",
+                "right": ParseNode {
+                  "kind": "literal",
+                  "type": ParseNode {
+                    "baseType": "int",
+                    "kind": "type",
+                    "origin": "builtin",
+                  },
+                  "value": 1,
+                },
+                "type": ParseNode {
+                  "baseType": "int",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+              },
+              "type": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+            },
+          ],
+          "condition": ParseNode {
+            "kind": "binary",
+            "left": ParseNode {
+              "kind": "identifier",
+              "name": "x",
+              "type": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+            },
+            "operator": "<",
+            "right": ParseNode {
+              "kind": "identifier",
+              "name": "count",
+              "type": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+            },
+            "type": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          "kind": "while",
+        },
+        ParseNode {
+          "kind": "return",
+          "value": ParseNode {
+            "kind": "literal",
+            "type": ParseNode {
+              "baseType": "null",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "value": null,
+          },
+        },
+      ],
+      "kind": "literal",
+      "parameters": Array [
+        Object {
+          "name": "count",
+          "type": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+      ],
+      "returns": ParseNode {
+        "baseType": "null",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "fn",
+        "kind": "type",
+        "origin": "builtin",
+        "parameters": Array [
+          ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        ],
+        "returns": ParseNode {
+          "baseType": "null",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+    },
+    "type": ParseNode {
+      "baseType": "null",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+  ParseNode {
+    "body": Array [
+      ParseNode {
+        "kind": "return",
+        "value": ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "null",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "value": null,
+        },
+      },
+    ],
+    "kind": "literal",
+    "parameters": Array [],
+    "returns": ParseNode {
+      "baseType": "null",
+      "kind": "type",
+      "origin": "builtin",
+    },
+    "type": ParseNode {
+      "baseType": "fn",
+      "kind": "type",
+      "origin": "builtin",
+      "parameters": Array [],
+      "returns": ParseNode {
+        "baseType": "null",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+  ParseNode {
+    "body": Array [
+      ParseNode {
+        "kind": "return",
+        "value": ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "null",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "value": null,
+        },
+      },
+    ],
+    "kind": "literal",
+    "parameters": Array [],
+    "returns": ParseNode {
+      "baseType": "null",
+      "kind": "type",
+      "origin": "builtin",
+    },
+    "type": ParseNode {
+      "baseType": "fn",
+      "kind": "type",
+      "origin": "builtin",
+      "parameters": Array [],
+      "returns": ParseNode {
+        "baseType": "null",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Examples [PARSE] lists.ky 1`] = `Array []`;
+
+exports[`Examples [PARSE] obj.ky 1`] = `Array []`;
+
+exports[`Examples [PARSE] primitives.ky 1`] = `
+Array [
+  ParseNode {
+    "kind": "unary",
+    "operator": "!",
+    "target": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": false,
+    },
+    "type": ParseNode {
+      "baseType": "bool",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+  ParseNode {
+    "kind": "unary",
+    "operator": "!",
+    "target": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": true,
+    },
+    "type": ParseNode {
+      "baseType": "bool",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": true,
+    },
+    "operator": "&&",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": true,
+    },
+    "type": ParseNode {
+      "baseType": "bool",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": true,
+    },
+    "operator": "&&",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": false,
+    },
+    "type": ParseNode {
+      "baseType": "bool",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": false,
+    },
+    "operator": "&&",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": true,
+    },
+    "type": ParseNode {
+      "baseType": "bool",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": true,
+    },
+    "operator": "||",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": true,
+    },
+    "type": ParseNode {
+      "baseType": "bool",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": false,
+    },
+    "operator": "||",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": true,
+    },
+    "type": ParseNode {
+      "baseType": "bool",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+  ParseNode {
+    "kind": "binary",
+    "left": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": true,
+    },
+    "operator": "||",
+    "right": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": false,
+    },
+    "type": ParseNode {
+      "baseType": "bool",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+  ParseNode {
+    "kind": "typeof",
+    "target": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": true,
+    },
+    "type": ParseNode {
+      "baseType": "type",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+  ParseNode {
+    "kind": "typeof",
+    "target": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": false,
+    },
+    "type": ParseNode {
+      "baseType": "type",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+  ParseNode {
+    "kind": "typeof",
+    "target": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 10,
+    },
+    "type": ParseNode {
+      "baseType": "type",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+  ParseNode {
+    "kind": "typeof",
+    "target": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "float",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": 3.14159,
+    },
+    "type": ParseNode {
+      "baseType": "type",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+  ParseNode {
+    "kind": "typeof",
+    "target": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": "kythera",
+    },
+    "type": ParseNode {
+      "baseType": "type",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+  ParseNode {
+    "kind": "typeof",
+    "target": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "null",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": null,
+    },
+    "type": ParseNode {
+      "baseType": "type",
+      "kind": "type",
+      "origin": "builtin",
+    },
+  },
+]
+`;
+
+exports[`Examples [PARSE] types.ky 1`] = `
+Array [
+  ParseNode {
+    "identifier": "myType",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "type",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "a",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "new",
+      "target": ParseNode {
+        "exp": ParseNode {
+          "kind": "identifier",
+          "name": "myType",
+          "type": ParseNode {
+            "baseType": "type",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+        "kind": "type",
+        "origin": "derived",
+      },
+      "type": ParseNode {
+        "exp": ParseNode {
+          "kind": "identifier",
+          "name": "myType",
+          "type": ParseNode {
+            "baseType": "type",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+        "kind": "type",
+        "origin": "derived",
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "price",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "type",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "count",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "type",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "myFn",
+    "kind": "let",
+    "value": ParseNode {
+      "body": Array [
+        ParseNode {
+          "kind": "return",
+          "value": ParseNode {
+            "kind": "identifier",
+            "name": "a",
+            "type": ParseNode {
+              "exp": ParseNode {
+                "kind": "identifier",
+                "name": "price",
+                "type": ParseNode {
+                  "baseType": "type",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+              },
+              "kind": "type",
+              "origin": "derived",
+            },
+          },
+        },
+      ],
+      "kind": "literal",
+      "parameters": Array [
+        Object {
+          "name": "a",
+          "type": ParseNode {
+            "exp": ParseNode {
+              "kind": "identifier",
+              "name": "price",
+              "type": ParseNode {
+                "baseType": "type",
+                "kind": "type",
+                "origin": "builtin",
+              },
+            },
+            "kind": "type",
+            "origin": "derived",
+          },
+        },
+      ],
+      "returns": ParseNode {
+        "exp": ParseNode {
+          "kind": "identifier",
+          "name": "price",
+          "type": ParseNode {
+            "baseType": "type",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+        "kind": "type",
+        "origin": "derived",
+      },
+      "type": ParseNode {
+        "baseType": "fn",
+        "kind": "type",
+        "origin": "builtin",
+        "parameters": Array [
+          ParseNode {
+            "exp": ParseNode {
+              "kind": "identifier",
+              "name": "price",
+              "type": ParseNode {
+                "baseType": "type",
+                "kind": "type",
+                "origin": "builtin",
+              },
+            },
+            "kind": "type",
+            "origin": "derived",
+          },
+        ],
+        "returns": ParseNode {
+          "exp": ParseNode {
+            "kind": "identifier",
+            "name": "price",
+            "type": ParseNode {
+              "baseType": "type",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          "kind": "type",
+          "origin": "derived",
+        },
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "b",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "new",
+      "target": ParseNode {
+        "exp": ParseNode {
+          "kind": "identifier",
+          "name": "count",
+          "type": ParseNode {
+            "baseType": "type",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+        "kind": "type",
+        "origin": "derived",
+      },
+      "type": ParseNode {
+        "exp": ParseNode {
+          "kind": "identifier",
+          "name": "count",
+          "type": ParseNode {
+            "baseType": "type",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+        "kind": "type",
+        "origin": "derived",
+      },
+    },
+  },
+  ParseNode {
+    "arguments": Array [
+      ParseNode {
+        "kind": "identifier",
+        "name": "b",
+        "type": ParseNode {
+          "exp": ParseNode {
+            "kind": "identifier",
+            "name": "count",
+            "type": ParseNode {
+              "baseType": "type",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          "kind": "type",
+          "origin": "derived",
+        },
+      },
+    ],
+    "kind": "call",
+    "target": ParseNode {
+      "kind": "identifier",
+      "name": "myFn",
+      "type": ParseNode {
+        "baseType": "fn",
+        "kind": "type",
+        "origin": "builtin",
+        "parameters": Array [
+          ParseNode {
+            "exp": ParseNode {
+              "kind": "identifier",
+              "name": "price",
+              "type": ParseNode {
+                "baseType": "type",
+                "kind": "type",
+                "origin": "builtin",
+              },
+            },
+            "kind": "type",
+            "origin": "derived",
+          },
+        ],
+        "returns": ParseNode {
+          "exp": ParseNode {
+            "kind": "identifier",
+            "name": "price",
+            "type": ParseNode {
+              "baseType": "type",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          "kind": "type",
+          "origin": "derived",
+        },
+      },
+    },
+    "type": ParseNode {
+      "exp": ParseNode {
+        "kind": "identifier",
+        "name": "price",
+        "type": ParseNode {
+          "baseType": "type",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "kind": "type",
+      "origin": "derived",
+    },
+  },
+]
+`;

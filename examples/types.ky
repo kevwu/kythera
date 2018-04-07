@@ -1,0 +1,24 @@
+// Since types are values in Kythera, they can be assigned to values, passed as parameters, and so on.
+
+let myType = int
+let a = new myType
+
+// The "any" type can also result from a string-access to an object member, but that isn't discussed here.
+
+/*
+Any type derived from an expression (instead coming directly from a type literal)
+is cast to "any" at compile time. As a result, derived types (as with any occurrence
+of the "any" type)
+*/
+
+
+let price = int
+
+let count = int
+
+let myFn = <price a> price {
+	return a
+}
+
+let b = new count
+myFn(b) // legal usage, will compile and execute

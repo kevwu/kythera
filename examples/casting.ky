@@ -16,6 +16,7 @@ let myObj = {
 
 myObj.a
 
+/*
 (myObj as myObjType).a
 
 myObj.a + 10
@@ -35,3 +36,4 @@ let mySpecificFn = <myObjType object> null {
 
 mySpecificFn(myObj as myObjType)
 mySpecificFn(myCastedObj)
+*/

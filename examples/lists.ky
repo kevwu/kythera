@@ -1,3 +1,6 @@
+// List syntax is going to be revised, so this example is out of date.
+
+/*
 let myList = new int[]
 
 myList[2]
@@ -30,3 +33,4 @@ myListFn()[10]
 [int, float, fn<int> null]
 [<int a> null {return null}, <int b> null { return null }]
 [{a = 0, b = "asdf",}, {a = 3, b = "qwerty",}]
+*/
