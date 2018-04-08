@@ -1,14 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Operations Arithmetic [COMPL] Addition 1`] = `"let a = (KYTHERA.value.add(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Operations Arithmetic [COMPL] Addition 1`] = `"let a = (KYTHERA.value.add(new KYTHERA.value(1, (KYTHERA.type.PRIMITIVES.int)), new KYTHERA.value(2, (KYTHERA.type.PRIMITIVES.int))));"`;
 
-exports[`Operations Arithmetic [COMPL] Division 1`] = `"let a = (KYTHERA.value.div(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Operations Arithmetic [COMPL] Division 1`] = `"let a = (KYTHERA.value.div(new KYTHERA.value(1, (KYTHERA.type.PRIMITIVES.int)), new KYTHERA.value(2, (KYTHERA.type.PRIMITIVES.int))));"`;
 
-exports[`Operations Arithmetic [COMPL] Modulo 1`] = `"let a = (KYTHERA.value.mod(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Operations Arithmetic [COMPL] Modulo 1`] = `"let a = (KYTHERA.value.mod(new KYTHERA.value(1, (KYTHERA.type.PRIMITIVES.int)), new KYTHERA.value(2, (KYTHERA.type.PRIMITIVES.int))));"`;
 
-exports[`Operations Arithmetic [COMPL] Multiplication 1`] = `"let a = (KYTHERA.value.mul(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Operations Arithmetic [COMPL] Multiplication 1`] = `"let a = (KYTHERA.value.mul(new KYTHERA.value(1, (KYTHERA.type.PRIMITIVES.int)), new KYTHERA.value(2, (KYTHERA.type.PRIMITIVES.int))));"`;
 
-exports[`Operations Arithmetic [COMPL] Subtraction 1`] = `"let a = (KYTHERA.value.sub(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Operations Arithmetic [COMPL] Subtraction 1`] = `"let a = (KYTHERA.value.sub(new KYTHERA.value(1, (KYTHERA.type.PRIMITIVES.int)), new KYTHERA.value(2, (KYTHERA.type.PRIMITIVES.int))));"`;
 
 exports[`Operations Arithmetic [EVALT] Addition 1`] = `
 Object {
@@ -245,15 +245,15 @@ Array [
 ]
 `;
 
-exports[`Operations Assignment [COMPL] Addition assignment 1`] = `"let a = new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]);(a = KYTHERA.value.add(a, new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Operations Assignment [COMPL] Addition assignment 1`] = `"let a = new KYTHERA.value(1, (KYTHERA.type.PRIMITIVES.int));(a = KYTHERA.value.add(a, new KYTHERA.value(2, (KYTHERA.type.PRIMITIVES.int))));"`;
 
-exports[`Operations Assignment [COMPL] Division assignment 1`] = `"let a = new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]);(a = KYTHERA.value.div(a, new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Operations Assignment [COMPL] Division assignment 1`] = `"let a = new KYTHERA.value(1, (KYTHERA.type.PRIMITIVES.int));(a = KYTHERA.value.div(a, new KYTHERA.value(2, (KYTHERA.type.PRIMITIVES.int))));"`;
 
-exports[`Operations Assignment [COMPL] Modulo assignment 1`] = `"let a = new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]);(a = KYTHERA.value.mod(a, new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Operations Assignment [COMPL] Modulo assignment 1`] = `"let a = new KYTHERA.value(1, (KYTHERA.type.PRIMITIVES.int));(a = KYTHERA.value.mod(a, new KYTHERA.value(2, (KYTHERA.type.PRIMITIVES.int))));"`;
 
-exports[`Operations Assignment [COMPL] Multiplication assignment 1`] = `"let a = new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]);(a = KYTHERA.value.mul(a, new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Operations Assignment [COMPL] Multiplication assignment 1`] = `"let a = new KYTHERA.value(1, (KYTHERA.type.PRIMITIVES.int));(a = KYTHERA.value.mul(a, new KYTHERA.value(2, (KYTHERA.type.PRIMITIVES.int))));"`;
 
-exports[`Operations Assignment [COMPL] Subtraction assignment 1`] = `"let a = new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]);(a = KYTHERA.value.sub(a, new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Operations Assignment [COMPL] Subtraction assignment 1`] = `"let a = new KYTHERA.value(1, (KYTHERA.type.PRIMITIVES.int));(a = KYTHERA.value.sub(a, new KYTHERA.value(2, (KYTHERA.type.PRIMITIVES.int))));"`;
 
 exports[`Operations Assignment [EVALT] Addition assignment 1`] = `
 Object {
@@ -535,9 +535,9 @@ Array [
 ]
 `;
 
-exports[`Operations Boolean [COMPL] And 1`] = `"let a = (KYTHERA.value.and(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"])));"`;
+exports[`Operations Boolean [COMPL] And 1`] = `"let a = (KYTHERA.value.and(new KYTHERA.value(true, (KYTHERA.type.PRIMITIVES.bool)), new KYTHERA.value(false, (KYTHERA.type.PRIMITIVES.bool))));"`;
 
-exports[`Operations Boolean [COMPL] Or 1`] = `"let a = (KYTHERA.value.or(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"])));"`;
+exports[`Operations Boolean [COMPL] Or 1`] = `"let a = (KYTHERA.value.or(new KYTHERA.value(true, (KYTHERA.type.PRIMITIVES.bool)), new KYTHERA.value(false, (KYTHERA.type.PRIMITIVES.bool))));"`;
 
 exports[`Operations Boolean [EVALT] And 1`] = `
 Object {
@@ -633,17 +633,17 @@ Array [
 ]
 `;
 
-exports[`Operations Comparison [COMPL] Equals 1`] = `"let a = (KYTHERA.value.eq(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Operations Comparison [COMPL] Equals 1`] = `"let a = (KYTHERA.value.eq(new KYTHERA.value(1, (KYTHERA.type.PRIMITIVES.int)), new KYTHERA.value(2, (KYTHERA.type.PRIMITIVES.int))));"`;
 
-exports[`Operations Comparison [COMPL] Greater than 1`] = `"let a = (KYTHERA.value.gt(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Operations Comparison [COMPL] Greater than 1`] = `"let a = (KYTHERA.value.gt(new KYTHERA.value(1, (KYTHERA.type.PRIMITIVES.int)), new KYTHERA.value(2, (KYTHERA.type.PRIMITIVES.int))));"`;
 
-exports[`Operations Comparison [COMPL] Greater than or equal to 1`] = `"let a = (KYTHERA.value.ge(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Operations Comparison [COMPL] Greater than or equal to 1`] = `"let a = (KYTHERA.value.ge(new KYTHERA.value(1, (KYTHERA.type.PRIMITIVES.int)), new KYTHERA.value(2, (KYTHERA.type.PRIMITIVES.int))));"`;
 
-exports[`Operations Comparison [COMPL] Less than 1`] = `"let a = (KYTHERA.value.lt(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Operations Comparison [COMPL] Less than 1`] = `"let a = (KYTHERA.value.lt(new KYTHERA.value(1, (KYTHERA.type.PRIMITIVES.int)), new KYTHERA.value(2, (KYTHERA.type.PRIMITIVES.int))));"`;
 
-exports[`Operations Comparison [COMPL] Less than or equal to 1`] = `"let a = (KYTHERA.value.le(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Operations Comparison [COMPL] Less than or equal to 1`] = `"let a = (KYTHERA.value.le(new KYTHERA.value(1, (KYTHERA.type.PRIMITIVES.int)), new KYTHERA.value(2, (KYTHERA.type.PRIMITIVES.int))));"`;
 
-exports[`Operations Comparison [COMPL] Not equals 1`] = `"let a = (KYTHERA.value.ne(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Operations Comparison [COMPL] Not equals 1`] = `"let a = (KYTHERA.value.ne(new KYTHERA.value(1, (KYTHERA.type.PRIMITIVES.int)), new KYTHERA.value(2, (KYTHERA.type.PRIMITIVES.int))));"`;
 
 exports[`Operations Comparison [EVALT] Equals 1`] = `
 Object {
@@ -927,13 +927,13 @@ Array [
 ]
 `;
 
-exports[`Operations DeMorgan's laws [COMPL] A'B 1`] = `"let A = new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]);let B = new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]);let r1 = (KYTHERA.value.eq(KYTHERA.value.not((KYTHERA.value.or(A, B))), (KYTHERA.value.and(KYTHERA.value.not(A), KYTHERA.value.not(B)))));let r2 = (KYTHERA.value.eq(KYTHERA.value.not((KYTHERA.value.and(A, B))), (KYTHERA.value.or(KYTHERA.value.not(A), KYTHERA.value.not(B)))));"`;
+exports[`Operations DeMorgan's laws [COMPL] A'B 1`] = `"let A = new KYTHERA.value(false, (KYTHERA.type.PRIMITIVES.bool));let B = new KYTHERA.value(true, (KYTHERA.type.PRIMITIVES.bool));let r1 = (KYTHERA.value.eq(KYTHERA.value.not((KYTHERA.value.or(A, B))), (KYTHERA.value.and(KYTHERA.value.not(A), KYTHERA.value.not(B)))));let r2 = (KYTHERA.value.eq(KYTHERA.value.not((KYTHERA.value.and(A, B))), (KYTHERA.value.or(KYTHERA.value.not(A), KYTHERA.value.not(B)))));"`;
 
-exports[`Operations DeMorgan's laws [COMPL] A'B' 1`] = `"let A = new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]);let B = new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]);let r1 = (KYTHERA.value.eq(KYTHERA.value.not((KYTHERA.value.or(A, B))), (KYTHERA.value.and(KYTHERA.value.not(A), KYTHERA.value.not(B)))));let r2 = (KYTHERA.value.eq(KYTHERA.value.not((KYTHERA.value.and(A, B))), (KYTHERA.value.or(KYTHERA.value.not(A), KYTHERA.value.not(B)))));"`;
+exports[`Operations DeMorgan's laws [COMPL] A'B' 1`] = `"let A = new KYTHERA.value(false, (KYTHERA.type.PRIMITIVES.bool));let B = new KYTHERA.value(false, (KYTHERA.type.PRIMITIVES.bool));let r1 = (KYTHERA.value.eq(KYTHERA.value.not((KYTHERA.value.or(A, B))), (KYTHERA.value.and(KYTHERA.value.not(A), KYTHERA.value.not(B)))));let r2 = (KYTHERA.value.eq(KYTHERA.value.not((KYTHERA.value.and(A, B))), (KYTHERA.value.or(KYTHERA.value.not(A), KYTHERA.value.not(B)))));"`;
 
-exports[`Operations DeMorgan's laws [COMPL] AB 1`] = `"let A = new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]);let B = new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]);let r1 = (KYTHERA.value.eq(KYTHERA.value.not((KYTHERA.value.or(A, B))), (KYTHERA.value.and(KYTHERA.value.not(A), KYTHERA.value.not(B)))));let r2 = (KYTHERA.value.eq(KYTHERA.value.not((KYTHERA.value.and(A, B))), (KYTHERA.value.or(KYTHERA.value.not(A), KYTHERA.value.not(B)))));"`;
+exports[`Operations DeMorgan's laws [COMPL] AB 1`] = `"let A = new KYTHERA.value(true, (KYTHERA.type.PRIMITIVES.bool));let B = new KYTHERA.value(true, (KYTHERA.type.PRIMITIVES.bool));let r1 = (KYTHERA.value.eq(KYTHERA.value.not((KYTHERA.value.or(A, B))), (KYTHERA.value.and(KYTHERA.value.not(A), KYTHERA.value.not(B)))));let r2 = (KYTHERA.value.eq(KYTHERA.value.not((KYTHERA.value.and(A, B))), (KYTHERA.value.or(KYTHERA.value.not(A), KYTHERA.value.not(B)))));"`;
 
-exports[`Operations DeMorgan's laws [COMPL] AB' 1`] = `"let A = new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]);let B = new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]);let r1 = (KYTHERA.value.eq(KYTHERA.value.not((KYTHERA.value.or(A, B))), (KYTHERA.value.and(KYTHERA.value.not(A), KYTHERA.value.not(B)))));let r2 = (KYTHERA.value.eq(KYTHERA.value.not((KYTHERA.value.and(A, B))), (KYTHERA.value.or(KYTHERA.value.not(A), KYTHERA.value.not(B)))));"`;
+exports[`Operations DeMorgan's laws [COMPL] AB' 1`] = `"let A = new KYTHERA.value(true, (KYTHERA.type.PRIMITIVES.bool));let B = new KYTHERA.value(false, (KYTHERA.type.PRIMITIVES.bool));let r1 = (KYTHERA.value.eq(KYTHERA.value.not((KYTHERA.value.or(A, B))), (KYTHERA.value.and(KYTHERA.value.not(A), KYTHERA.value.not(B)))));let r2 = (KYTHERA.value.eq(KYTHERA.value.not((KYTHERA.value.and(A, B))), (KYTHERA.value.or(KYTHERA.value.not(A), KYTHERA.value.not(B)))));"`;
 
 exports[`Operations DeMorgan's laws [EVALT] A'B 1`] = `
 Object {
@@ -1927,9 +1927,9 @@ Array [
 ]
 `;
 
-exports[`Operations Negation [COMPL] not false 1`] = `"let a = KYTHERA.value.not(new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]));"`;
+exports[`Operations Negation [COMPL] not false 1`] = `"let a = KYTHERA.value.not(new KYTHERA.value(false, (KYTHERA.type.PRIMITIVES.bool)));"`;
 
-exports[`Operations Negation [COMPL] not true 1`] = `"let a = KYTHERA.value.not(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]));"`;
+exports[`Operations Negation [COMPL] not true 1`] = `"let a = KYTHERA.value.not(new KYTHERA.value(true, (KYTHERA.type.PRIMITIVES.bool)));"`;
 
 exports[`Operations Negation [EVALT] not false 1`] = `
 Object {
@@ -2007,9 +2007,9 @@ Array [
 ]
 `;
 
-exports[`Operations Operator precedence [COMPL] multiply before addition 1`] = `"let a = (KYTHERA.value.add(new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]), (KYTHERA.value.mul(new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(4, KYTHERA.type.PRIMITIVES[\\"int\\"])))));"`;
+exports[`Operations Operator precedence [COMPL] multiply before addition 1`] = `"let a = (KYTHERA.value.add(new KYTHERA.value(2, (KYTHERA.type.PRIMITIVES.int)), (KYTHERA.value.mul(new KYTHERA.value(3, (KYTHERA.type.PRIMITIVES.int)), new KYTHERA.value(4, (KYTHERA.type.PRIMITIVES.int))))));"`;
 
-exports[`Operations Operator precedence [COMPL] parentheses 1`] = `"let a = (KYTHERA.value.mul((KYTHERA.value.add(new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]))), new KYTHERA.value(4, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Operations Operator precedence [COMPL] parentheses 1`] = `"let a = (KYTHERA.value.mul((KYTHERA.value.add(new KYTHERA.value(2, (KYTHERA.type.PRIMITIVES.int)), new KYTHERA.value(3, (KYTHERA.type.PRIMITIVES.int)))), new KYTHERA.value(4, (KYTHERA.type.PRIMITIVES.int))));"`;
 
 exports[`Operations Operator precedence [EVALT] multiply before addition 1`] = `
 Object {
@@ -2141,7 +2141,7 @@ Array [
 ]
 `;
 
-exports[`Operations String concatenation [COMPL] Concatenate 1`] = `"let a = (KYTHERA.value.add(new KYTHERA.value(\\"asdf\\", KYTHERA.type.PRIMITIVES[\\"str\\"]), new KYTHERA.value(\\"zxcv\\", KYTHERA.type.PRIMITIVES[\\"str\\"])));"`;
+exports[`Operations String concatenation [COMPL] Concatenate 1`] = `"let a = (KYTHERA.value.add(new KYTHERA.value(\\"asdf\\", (KYTHERA.type.PRIMITIVES.str)), new KYTHERA.value(\\"zxcv\\", (KYTHERA.type.PRIMITIVES.str))));"`;
 
 exports[`Operations String concatenation [EVALT] Concatenate 1`] = `
 Object {

@@ -1,14 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Control flow if [COMPL] if 1`] = `"if(KYTHERA.value.eq(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]), KYTHERA.LITERALS.true).value) {new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]);};"`;
+exports[`Control flow if [COMPL] if 1`] = `"if(KYTHERA.value.eq(new KYTHERA.value(true, (KYTHERA.type.PRIMITIVES.bool)), KYTHERA.LITERALS.true).value) {new KYTHERA.value(true, (KYTHERA.type.PRIMITIVES.bool));};"`;
 
-exports[`Control flow if [COMPL] if-else 1`] = `"if(KYTHERA.value.eq(new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]), KYTHERA.LITERALS.true).value) {new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]);} else {new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]);};"`;
+exports[`Control flow if [COMPL] if-else 1`] = `"if(KYTHERA.value.eq(new KYTHERA.value(false, (KYTHERA.type.PRIMITIVES.bool)), KYTHERA.LITERALS.true).value) {new KYTHERA.value(false, (KYTHERA.type.PRIMITIVES.bool));} else {new KYTHERA.value(true, (KYTHERA.type.PRIMITIVES.bool));};"`;
 
-exports[`Control flow if [COMPL] if-else with boolean 1`] = `"let a = new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]);let b = new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]);if(KYTHERA.value.eq((KYTHERA.value.eq(a, b)), KYTHERA.LITERALS.true).value) {a;} else {b;};"`;
+exports[`Control flow if [COMPL] if-else with boolean 1`] = `"let a = new KYTHERA.value(1, (KYTHERA.type.PRIMITIVES.int));let b = new KYTHERA.value(2, (KYTHERA.type.PRIMITIVES.int));if(KYTHERA.value.eq((KYTHERA.value.eq(a, b)), KYTHERA.LITERALS.true).value) {a;} else {b;};"`;
 
-exports[`Control flow if [COMPL] if-else-if 1`] = `"let a = new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]);if(KYTHERA.value.eq((KYTHERA.value.eq(a, new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]))), KYTHERA.LITERALS.true).value) {new KYTHERA.value(\\"one\\", KYTHERA.type.PRIMITIVES[\\"str\\"]);} else {if(KYTHERA.value.eq((KYTHERA.value.eq(a, new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]))), KYTHERA.LITERALS.true).value) {new KYTHERA.value(\\"two\\", KYTHERA.type.PRIMITIVES[\\"str\\"]);} else {new KYTHERA.value(\\"something else\\", KYTHERA.type.PRIMITIVES[\\"str\\"]);};};"`;
+exports[`Control flow if [COMPL] if-else-if 1`] = `"let a = new KYTHERA.value(3, (KYTHERA.type.PRIMITIVES.int));if(KYTHERA.value.eq((KYTHERA.value.eq(a, new KYTHERA.value(1, (KYTHERA.type.PRIMITIVES.int)))), KYTHERA.LITERALS.true).value) {new KYTHERA.value(\\"one\\", (KYTHERA.type.PRIMITIVES.str));} else {if(KYTHERA.value.eq((KYTHERA.value.eq(a, new KYTHERA.value(2, (KYTHERA.type.PRIMITIVES.int)))), KYTHERA.LITERALS.true).value) {new KYTHERA.value(\\"two\\", (KYTHERA.type.PRIMITIVES.str));} else {new KYTHERA.value(\\"something else\\", (KYTHERA.type.PRIMITIVES.str));};};"`;
 
-exports[`Control flow if [COMPL] if-else-if with boolean 1`] = `"let a = new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]);let b = new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]);let c = new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]);let result = KYTHERA.type.PRIMITIVES[\\"str\\"].makeNew();if(KYTHERA.value.eq((KYTHERA.value.eq(a, b)), KYTHERA.LITERALS.true).value) {(result = new KYTHERA.value(\\"a equals b\\", KYTHERA.type.PRIMITIVES[\\"str\\"]));} else {if(KYTHERA.value.eq((KYTHERA.value.eq(b, c)), KYTHERA.LITERALS.true).value) {(result = new KYTHERA.value(\\"b equals c\\", KYTHERA.type.PRIMITIVES[\\"str\\"]));} else {(result = new KYTHERA.value(\\"neither\\", KYTHERA.type.PRIMITIVES[\\"str\\"]));};};"`;
+exports[`Control flow if [COMPL] if-else-if with boolean 1`] = `"let a = new KYTHERA.value(1, (KYTHERA.type.PRIMITIVES.int));let b = new KYTHERA.value(2, (KYTHERA.type.PRIMITIVES.int));let c = new KYTHERA.value(3, (KYTHERA.type.PRIMITIVES.int));let result = (KYTHERA.type.PRIMITIVES.str).makeNew();if(KYTHERA.value.eq((KYTHERA.value.eq(a, b)), KYTHERA.LITERALS.true).value) {(result = new KYTHERA.value(\\"a equals b\\", (KYTHERA.type.PRIMITIVES.str)));} else {if(KYTHERA.value.eq((KYTHERA.value.eq(b, c)), KYTHERA.LITERALS.true).value) {(result = new KYTHERA.value(\\"b equals c\\", (KYTHERA.type.PRIMITIVES.str)));} else {(result = new KYTHERA.value(\\"neither\\", (KYTHERA.type.PRIMITIVES.str)));};};"`;
 
 exports[`Control flow if [EVALT] if 1`] = `Object {}`;
 
@@ -544,9 +544,9 @@ Array [
 ]
 `;
 
-exports[`Control flow while [COMPL] while 1`] = `"let a = new KYTHERA.value(0, KYTHERA.type.PRIMITIVES[\\"int\\"]);let b = new KYTHERA.value(0, KYTHERA.type.PRIMITIVES[\\"int\\"]);while(KYTHERA.value.eq((KYTHERA.value.eq(a, b)), KYTHERA.LITERALS.true).value) {(a = (KYTHERA.value.add(a, new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]))));};"`;
+exports[`Control flow while [COMPL] while 1`] = `"let a = new KYTHERA.value(0, (KYTHERA.type.PRIMITIVES.int));let b = new KYTHERA.value(0, (KYTHERA.type.PRIMITIVES.int));while(KYTHERA.value.eq((KYTHERA.value.eq(a, b)), KYTHERA.LITERALS.true).value) {(a = (KYTHERA.value.add(a, new KYTHERA.value(2, (KYTHERA.type.PRIMITIVES.int)))));};"`;
 
-exports[`Control flow while [COMPL] while 2`] = `"let x = new KYTHERA.value(0, KYTHERA.type.PRIMITIVES[\\"int\\"]);while(KYTHERA.value.eq((KYTHERA.value.lt(x, new KYTHERA.value(10, KYTHERA.type.PRIMITIVES[\\"int\\"]))), KYTHERA.LITERALS.true).value) {(x = (KYTHERA.value.add(x, new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]))));};x;"`;
+exports[`Control flow while [COMPL] while 2`] = `"let x = new KYTHERA.value(0, (KYTHERA.type.PRIMITIVES.int));while(KYTHERA.value.eq((KYTHERA.value.lt(x, new KYTHERA.value(10, (KYTHERA.type.PRIMITIVES.int)))), KYTHERA.LITERALS.true).value) {(x = (KYTHERA.value.add(x, new KYTHERA.value(1, (KYTHERA.type.PRIMITIVES.int)))));};x;"`;
 
 exports[`Control flow while [EVALT] while 1`] = `
 Object {

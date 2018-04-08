@@ -1,16 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Primitive Types Arithmetic [COMPL] division 1`] = `"let a = (KYTHERA.value.div(new KYTHERA.value(6, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Primitive Types Arithmetic [COMPL] division 1`] = `"let a = (KYTHERA.value.div(new KYTHERA.value(6, (KYTHERA.type.PRIMITIVES.int)), new KYTHERA.value(3, (KYTHERA.type.PRIMITIVES.int))));"`;
 
-exports[`Primitive Types Arithmetic [COMPL] float addition 1`] = `"let a = (KYTHERA.value.add(new KYTHERA.value(3.14159, KYTHERA.type.PRIMITIVES[\\"float\\"]), new KYTHERA.value(2.71828, KYTHERA.type.PRIMITIVES[\\"float\\"])));"`;
+exports[`Primitive Types Arithmetic [COMPL] float addition 1`] = `"let a = (KYTHERA.value.add(new KYTHERA.value(3.14159, (KYTHERA.type.PRIMITIVES.float)), new KYTHERA.value(2.71828, (KYTHERA.type.PRIMITIVES.float))));"`;
 
-exports[`Primitive Types Arithmetic [COMPL] int Addition 1`] = `"let a = (KYTHERA.value.add(new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Primitive Types Arithmetic [COMPL] int Addition 1`] = `"let a = (KYTHERA.value.add(new KYTHERA.value(2, (KYTHERA.type.PRIMITIVES.int)), new KYTHERA.value(2, (KYTHERA.type.PRIMITIVES.int))));"`;
 
-exports[`Primitive Types Arithmetic [COMPL] modulo 1`] = `"let a = (KYTHERA.value.mod(new KYTHERA.value(18, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Primitive Types Arithmetic [COMPL] modulo 1`] = `"let a = (KYTHERA.value.mod(new KYTHERA.value(18, (KYTHERA.type.PRIMITIVES.int)), new KYTHERA.value(3, (KYTHERA.type.PRIMITIVES.int))));"`;
 
-exports[`Primitive Types Arithmetic [COMPL] multiplication 1`] = `"let a = (KYTHERA.value.mul(new KYTHERA.value(4, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(2, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Primitive Types Arithmetic [COMPL] multiplication 1`] = `"let a = (KYTHERA.value.mul(new KYTHERA.value(4, (KYTHERA.type.PRIMITIVES.int)), new KYTHERA.value(2, (KYTHERA.type.PRIMITIVES.int))));"`;
 
-exports[`Primitive Types Arithmetic [COMPL] subtraction 1`] = `"let a = (KYTHERA.value.sub(new KYTHERA.value(9, KYTHERA.type.PRIMITIVES[\\"int\\"]), new KYTHERA.value(5, KYTHERA.type.PRIMITIVES[\\"int\\"])));"`;
+exports[`Primitive Types Arithmetic [COMPL] subtraction 1`] = `"let a = (KYTHERA.value.sub(new KYTHERA.value(9, (KYTHERA.type.PRIMITIVES.int)), new KYTHERA.value(5, (KYTHERA.type.PRIMITIVES.int))));"`;
 
 exports[`Primitive Types Arithmetic [EVALT] division 1`] = `
 Object {
@@ -294,17 +294,17 @@ Array [
 ]
 `;
 
-exports[`Primitive Types Boolean operations [COMPL] and 1`] = `"let a = (KYTHERA.value.and(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"])));"`;
+exports[`Primitive Types Boolean operations [COMPL] and 1`] = `"let a = (KYTHERA.value.and(new KYTHERA.value(true, (KYTHERA.type.PRIMITIVES.bool)), new KYTHERA.value(true, (KYTHERA.type.PRIMITIVES.bool))));"`;
 
-exports[`Primitive Types Boolean operations [COMPL] and 2`] = `"let a = (KYTHERA.value.and(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"])));"`;
+exports[`Primitive Types Boolean operations [COMPL] and 2`] = `"let a = (KYTHERA.value.and(new KYTHERA.value(true, (KYTHERA.type.PRIMITIVES.bool)), new KYTHERA.value(false, (KYTHERA.type.PRIMITIVES.bool))));"`;
 
-exports[`Primitive Types Boolean operations [COMPL] or 1`] = `"let a = (KYTHERA.value.or(new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"])));"`;
+exports[`Primitive Types Boolean operations [COMPL] or 1`] = `"let a = (KYTHERA.value.or(new KYTHERA.value(false, (KYTHERA.type.PRIMITIVES.bool)), new KYTHERA.value(false, (KYTHERA.type.PRIMITIVES.bool))));"`;
 
-exports[`Primitive Types Boolean operations [COMPL] or 2`] = `"let a = (KYTHERA.value.or(new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"])));"`;
+exports[`Primitive Types Boolean operations [COMPL] or 2`] = `"let a = (KYTHERA.value.or(new KYTHERA.value(false, (KYTHERA.type.PRIMITIVES.bool)), new KYTHERA.value(true, (KYTHERA.type.PRIMITIVES.bool))));"`;
 
-exports[`Primitive Types Boolean operations [COMPL] short-circuit and 1`] = `"let a = (KYTHERA.value.and(new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"])));"`;
+exports[`Primitive Types Boolean operations [COMPL] short-circuit and 1`] = `"let a = (KYTHERA.value.and(new KYTHERA.value(false, (KYTHERA.type.PRIMITIVES.bool)), new KYTHERA.value(true, (KYTHERA.type.PRIMITIVES.bool))));"`;
 
-exports[`Primitive Types Boolean operations [COMPL] short-circuit or 1`] = `"let a = (KYTHERA.value.or(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]), new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"])));"`;
+exports[`Primitive Types Boolean operations [COMPL] short-circuit or 1`] = `"let a = (KYTHERA.value.or(new KYTHERA.value(true, (KYTHERA.type.PRIMITIVES.bool)), new KYTHERA.value(false, (KYTHERA.type.PRIMITIVES.bool))));"`;
 
 exports[`Primitive Types Boolean operations [EVALT] and 1`] = `
 Object {
@@ -828,15 +828,15 @@ Array [
 ]
 `;
 
-exports[`Primitive Types Declaration and assignment [COMPL] bool 1`] = `"let myBool = new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]);(myBool = new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]));"`;
+exports[`Primitive Types Declaration and assignment [COMPL] bool 1`] = `"let myBool = new KYTHERA.value(false, (KYTHERA.type.PRIMITIVES.bool));(myBool = new KYTHERA.value(true, (KYTHERA.type.PRIMITIVES.bool)));"`;
 
-exports[`Primitive Types Declaration and assignment [COMPL] float 1`] = `"let myFloat = new KYTHERA.value(3.14159, KYTHERA.type.PRIMITIVES[\\"float\\"]);(myFloat = new KYTHERA.value(2.71828183, KYTHERA.type.PRIMITIVES[\\"float\\"]));"`;
+exports[`Primitive Types Declaration and assignment [COMPL] float 1`] = `"let myFloat = new KYTHERA.value(3.14159, (KYTHERA.type.PRIMITIVES.float));(myFloat = new KYTHERA.value(2.71828183, (KYTHERA.type.PRIMITIVES.float)));"`;
 
-exports[`Primitive Types Declaration and assignment [COMPL] int 1`] = `"let myInt = new KYTHERA.value(99, KYTHERA.type.PRIMITIVES[\\"int\\"]);(myInt = new KYTHERA.value(3, KYTHERA.type.PRIMITIVES[\\"int\\"]));"`;
+exports[`Primitive Types Declaration and assignment [COMPL] int 1`] = `"let myInt = new KYTHERA.value(99, (KYTHERA.type.PRIMITIVES.int));(myInt = new KYTHERA.value(3, (KYTHERA.type.PRIMITIVES.int)));"`;
 
-exports[`Primitive Types Declaration and assignment [COMPL] null 1`] = `"let myNull = new KYTHERA.value(null, KYTHERA.type.PRIMITIVES[\\"null\\"]);(myNull = new KYTHERA.value(null, KYTHERA.type.PRIMITIVES[\\"null\\"]));"`;
+exports[`Primitive Types Declaration and assignment [COMPL] null 1`] = `"let myNull = new KYTHERA.value(null, (KYTHERA.type.PRIMITIVES.null));(myNull = new KYTHERA.value(null, (KYTHERA.type.PRIMITIVES.null)));"`;
 
-exports[`Primitive Types Declaration and assignment [COMPL] str 1`] = `"let myStr = new KYTHERA.value(\\"hello\\", KYTHERA.type.PRIMITIVES[\\"str\\"]);(myStr = new KYTHERA.value(\\"world\\", KYTHERA.type.PRIMITIVES[\\"str\\"]));"`;
+exports[`Primitive Types Declaration and assignment [COMPL] str 1`] = `"let myStr = new KYTHERA.value(\\"hello\\", (KYTHERA.type.PRIMITIVES.str));(myStr = new KYTHERA.value(\\"world\\", (KYTHERA.type.PRIMITIVES.str)));"`;
 
 exports[`Primitive Types Declaration and assignment [EVALT] bool 1`] = `
 Object {
@@ -1118,15 +1118,15 @@ Array [
 ]
 `;
 
-exports[`Primitive Types Initialization with 'new' [COMPL] bool 1`] = `"let a = KYTHERA.type.PRIMITIVES[\\"bool\\"].makeNew();"`;
+exports[`Primitive Types Initialization with 'new' [COMPL] bool 1`] = `"let a = (KYTHERA.type.PRIMITIVES.bool).makeNew();"`;
 
-exports[`Primitive Types Initialization with 'new' [COMPL] float 1`] = `"let a = KYTHERA.type.PRIMITIVES[\\"float\\"].makeNew();"`;
+exports[`Primitive Types Initialization with 'new' [COMPL] float 1`] = `"let a = (KYTHERA.type.PRIMITIVES.float).makeNew();"`;
 
-exports[`Primitive Types Initialization with 'new' [COMPL] int 1`] = `"let a = KYTHERA.type.PRIMITIVES[\\"int\\"].makeNew();"`;
+exports[`Primitive Types Initialization with 'new' [COMPL] int 1`] = `"let a = (KYTHERA.type.PRIMITIVES.int).makeNew();"`;
 
-exports[`Primitive Types Initialization with 'new' [COMPL] null 1`] = `"let a = KYTHERA.type.PRIMITIVES[\\"null\\"].makeNew();"`;
+exports[`Primitive Types Initialization with 'new' [COMPL] null 1`] = `"let a = (KYTHERA.type.PRIMITIVES.null).makeNew();"`;
 
-exports[`Primitive Types Initialization with 'new' [COMPL] str 1`] = `"let a = KYTHERA.type.PRIMITIVES[\\"str\\"].makeNew();"`;
+exports[`Primitive Types Initialization with 'new' [COMPL] str 1`] = `"let a = (KYTHERA.type.PRIMITIVES.str).makeNew();"`;
 
 exports[`Primitive Types Initialization with 'new' [EVALT] bool 1`] = `
 Object {
@@ -1293,17 +1293,17 @@ Array [
 ]
 `;
 
-exports[`Primitive Types Literals [COMPL] false 1`] = `"let a = new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]);"`;
+exports[`Primitive Types Literals [COMPL] false 1`] = `"let a = new KYTHERA.value(false, (KYTHERA.type.PRIMITIVES.bool));"`;
 
-exports[`Primitive Types Literals [COMPL] float 1`] = `"let a = new KYTHERA.value(3.14159, KYTHERA.type.PRIMITIVES[\\"float\\"]);"`;
+exports[`Primitive Types Literals [COMPL] float 1`] = `"let a = new KYTHERA.value(3.14159, (KYTHERA.type.PRIMITIVES.float));"`;
 
-exports[`Primitive Types Literals [COMPL] int 1`] = `"let a = new KYTHERA.value(10, KYTHERA.type.PRIMITIVES[\\"int\\"]);"`;
+exports[`Primitive Types Literals [COMPL] int 1`] = `"let a = new KYTHERA.value(10, (KYTHERA.type.PRIMITIVES.int));"`;
 
-exports[`Primitive Types Literals [COMPL] null 1`] = `"let a = new KYTHERA.value(null, KYTHERA.type.PRIMITIVES[\\"null\\"]);"`;
+exports[`Primitive Types Literals [COMPL] null 1`] = `"let a = new KYTHERA.value(null, (KYTHERA.type.PRIMITIVES.null));"`;
 
-exports[`Primitive Types Literals [COMPL] str 1`] = `"let a = new KYTHERA.value(\\"kythera\\", KYTHERA.type.PRIMITIVES[\\"str\\"]);"`;
+exports[`Primitive Types Literals [COMPL] str 1`] = `"let a = new KYTHERA.value(\\"kythera\\", (KYTHERA.type.PRIMITIVES.str));"`;
 
-exports[`Primitive Types Literals [COMPL] true 1`] = `"let a = new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]);"`;
+exports[`Primitive Types Literals [COMPL] true 1`] = `"let a = new KYTHERA.value(true, (KYTHERA.type.PRIMITIVES.bool));"`;
 
 exports[`Primitive Types Literals [EVALT] false 1`] = `
 Object {
@@ -1479,21 +1479,21 @@ Array [
 ]
 `;
 
-exports[`Primitive Types typeof [COMPL] false 1`] = `"let a = new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"bool\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]);"`;
+exports[`Primitive Types typeof [COMPL] false 1`] = `"let a = new KYTHERA.value((KYTHERA.type.PRIMITIVES.bool), (KYTHERA.type.PRIMITIVES.type));"`;
 
-exports[`Primitive Types typeof [COMPL] float 1`] = `"let a = new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"float\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]);"`;
+exports[`Primitive Types typeof [COMPL] float 1`] = `"let a = new KYTHERA.value((KYTHERA.type.PRIMITIVES.float), (KYTHERA.type.PRIMITIVES.type));"`;
 
-exports[`Primitive Types typeof [COMPL] int 1`] = `"let a = new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"int\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]);"`;
+exports[`Primitive Types typeof [COMPL] int 1`] = `"let a = new KYTHERA.value((KYTHERA.type.PRIMITIVES.int), (KYTHERA.type.PRIMITIVES.type));"`;
 
-exports[`Primitive Types typeof [COMPL] null 1`] = `"let a = new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"null\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]);"`;
+exports[`Primitive Types typeof [COMPL] null 1`] = `"let a = new KYTHERA.value((KYTHERA.type.PRIMITIVES.null), (KYTHERA.type.PRIMITIVES.type));"`;
 
-exports[`Primitive Types typeof [COMPL] str 1`] = `"let a = new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"str\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]);"`;
+exports[`Primitive Types typeof [COMPL] str 1`] = `"let a = new KYTHERA.value((KYTHERA.type.PRIMITIVES.str), (KYTHERA.type.PRIMITIVES.type));"`;
 
-exports[`Primitive Types typeof [COMPL] true 1`] = `"let a = new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"bool\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]);"`;
+exports[`Primitive Types typeof [COMPL] true 1`] = `"let a = new KYTHERA.value((KYTHERA.type.PRIMITIVES.bool), (KYTHERA.type.PRIMITIVES.type));"`;
 
-exports[`Primitive Types typeof [COMPL] typeof comparison 1`] = `"let a = (KYTHERA.value.eq(new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"int\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]), new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"int\\"], KYTHERA.type.PRIMITIVES[\\"type\\"])));"`;
+exports[`Primitive Types typeof [COMPL] typeof comparison 1`] = `"let a = (KYTHERA.value.eq(new KYTHERA.value((KYTHERA.type.PRIMITIVES.int), (KYTHERA.type.PRIMITIVES.type)), new KYTHERA.value((KYTHERA.type.PRIMITIVES.int), (KYTHERA.type.PRIMITIVES.type))));"`;
 
-exports[`Primitive Types typeof [COMPL] typeof comparison 2`] = `"let a = (KYTHERA.value.eq(new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"int\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]), new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"str\\"], KYTHERA.type.PRIMITIVES[\\"type\\"])));"`;
+exports[`Primitive Types typeof [COMPL] typeof comparison 2`] = `"let a = (KYTHERA.value.eq(new KYTHERA.value((KYTHERA.type.PRIMITIVES.int), (KYTHERA.type.PRIMITIVES.type)), new KYTHERA.value((KYTHERA.type.PRIMITIVES.str), (KYTHERA.type.PRIMITIVES.type))));"`;
 
 exports[`Primitive Types typeof [EVALT] false 1`] = `
 Object {
