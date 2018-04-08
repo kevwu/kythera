@@ -1,5 +1,150 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Types Custom type assignment [COMPL] fn type 1`] = `"let myIntType = new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"int\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]);let myFnType = new KYTHERA.value(new KYTHERA.type(\\"fn\\", { parameters: [KYTHERA.type.PRIMITIVES[\\"int\\"],KYTHERA.type.PRIMITIVES[\\"str\\"],((myIntType).value)], returns: KYTHERA.type.PRIMITIVES[\\"str\\"]}), KYTHERA.type.PRIMITIVES[\\"type\\"]);"`;
+
+exports[`Types Custom type assignment [COMPL] primitive 1`] = `"let myIntType = new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"int\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]);"`;
+
+exports[`Types Custom type assignment [EVALT] fn type 1`] = `
+Object {
+  "myFnType":  {
+    "type":  {
+      "baseType": "type",
+    },
+    "value":  {
+      "baseType": "fn",
+      "structure": Object {
+        "parameters": Array [
+           {
+            "baseType": "int",
+          },
+           {
+            "baseType": "str",
+          },
+           {
+            "baseType": "int",
+          },
+        ],
+        "returns":  {
+          "baseType": "str",
+        },
+      },
+    },
+  },
+  "myIntType":  {
+    "type":  {
+      "baseType": "type",
+    },
+    "value":  {
+      "baseType": "int",
+    },
+  },
+}
+`;
+
+exports[`Types Custom type assignment [EVALT] primitive 1`] = `
+Object {
+  "myIntType":  {
+    "type":  {
+      "baseType": "type",
+    },
+    "value":  {
+      "baseType": "int",
+    },
+  },
+}
+`;
+
+exports[`Types Custom type assignment [PARSE] fn type 1`] = `
+Array [
+  ParseNode {
+    "identifier": "myIntType",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "type",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "myFnType",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "type",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": ParseNode {
+        "baseType": "fn",
+        "kind": "type",
+        "origin": "builtin",
+        "parameters": Array [
+          ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          ParseNode {
+            "baseType": "str",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          ParseNode {
+            "exp": ParseNode {
+              "kind": "identifier",
+              "name": "myIntType",
+              "type": ParseNode {
+                "baseType": "type",
+                "kind": "type",
+                "origin": "builtin",
+              },
+            },
+            "kind": "type",
+            "origin": "derived",
+          },
+        ],
+        "returns": ParseNode {
+          "baseType": "str",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Custom type assignment [PARSE] primitive 1`] = `
+Array [
+  ParseNode {
+    "identifier": "myIntType",
+    "kind": "let",
+    "value": ParseNode {
+      "kind": "literal",
+      "type": ParseNode {
+        "baseType": "type",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "value": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
 exports[`Types Derived types [COMPL] Basic usage 1`] = `"let price = new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"int\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]);let a = ((price).value).makeNew();"`;
 
 exports[`Types Derived types [COMPL] Conditional type 1`] = `"let randomTF = new KYTHERA.value(() => {return new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]);}, new KYTHERA.type(\\"fn\\", { parameters: [], returns: KYTHERA.type.PRIMITIVES[\\"bool\\"]}));let myOriginType = KYTHERA.type.PRIMITIVES[\\"type\\"].makeNew();if(KYTHERA.value.eq(randomTF.value(), KYTHERA.LITERALS.true).value) {(myOriginType = new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"int\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]));} else {(myOriginType = new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"str\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]));};let myVal = ((myOriginType).value).makeNew();"`;
@@ -449,6 +594,2953 @@ Array [
       },
       "type": ParseNode {
         "baseType": "type",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Type casting Primitives bool [COMPL] false to float 1`] = `"let out = KYTHERA.value.as(new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]), KYTHERA.type.PRIMITIVES[\\"float\\"]);"`;
+
+exports[`Types Type casting Primitives bool [COMPL] false to int 1`] = `"let out = KYTHERA.value.as(new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]), KYTHERA.type.PRIMITIVES[\\"int\\"]);"`;
+
+exports[`Types Type casting Primitives bool [COMPL] false to str 1`] = `"let out = KYTHERA.value.as(new KYTHERA.value(false, KYTHERA.type.PRIMITIVES[\\"bool\\"]), KYTHERA.type.PRIMITIVES[\\"str\\"]);"`;
+
+exports[`Types Type casting Primitives bool [COMPL] true to float 1`] = `"let out = KYTHERA.value.as(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]), KYTHERA.type.PRIMITIVES[\\"float\\"]);"`;
+
+exports[`Types Type casting Primitives bool [COMPL] true to int 1`] = `"let out = KYTHERA.value.as(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]), KYTHERA.type.PRIMITIVES[\\"int\\"]);"`;
+
+exports[`Types Type casting Primitives bool [COMPL] true to str 1`] = `"let out = KYTHERA.value.as(new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]), KYTHERA.type.PRIMITIVES[\\"str\\"]);"`;
+
+exports[`Types Type casting Primitives bool [EVALT] false to float 1`] = `
+Object {
+  "out":  {
+    "type":  {
+      "baseType": "float",
+    },
+    "value": 0,
+  },
+}
+`;
+
+exports[`Types Type casting Primitives bool [EVALT] false to int 1`] = `
+Object {
+  "out":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 0,
+  },
+}
+`;
+
+exports[`Types Type casting Primitives bool [EVALT] false to str 1`] = `
+Object {
+  "out":  {
+    "type":  {
+      "baseType": "bool",
+    },
+    "value": false,
+  },
+}
+`;
+
+exports[`Types Type casting Primitives bool [EVALT] true to float 1`] = `
+Object {
+  "out":  {
+    "type":  {
+      "baseType": "float",
+    },
+    "value": 1,
+  },
+}
+`;
+
+exports[`Types Type casting Primitives bool [EVALT] true to int 1`] = `
+Object {
+  "out":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 1,
+  },
+}
+`;
+
+exports[`Types Type casting Primitives bool [EVALT] true to str 1`] = `
+Object {
+  "out":  {
+    "type":  {
+      "baseType": "bool",
+    },
+    "value": true,
+  },
+}
+`;
+
+exports[`Types Type casting Primitives bool [PARSE] false to float 1`] = `
+Array [
+  ParseNode {
+    "identifier": "out",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": false,
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "float",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "float",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Type casting Primitives bool [PARSE] false to int 1`] = `
+Array [
+  ParseNode {
+    "identifier": "out",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": false,
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Type casting Primitives bool [PARSE] false to str 1`] = `
+Array [
+  ParseNode {
+    "identifier": "out",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": false,
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Type casting Primitives bool [PARSE] true to float 1`] = `
+Array [
+  ParseNode {
+    "identifier": "out",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": true,
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "float",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "float",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Type casting Primitives bool [PARSE] true to int 1`] = `
+Array [
+  ParseNode {
+    "identifier": "out",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": true,
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Type casting Primitives bool [PARSE] true to str 1`] = `
+Array [
+  ParseNode {
+    "identifier": "out",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": true,
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Type casting Primitives float [COMPL] 0.0 to bool 1`] = `"let out = KYTHERA.value.as(new KYTHERA.value(0, KYTHERA.type.PRIMITIVES[\\"int\\"]), KYTHERA.type.PRIMITIVES[\\"bool\\"]);"`;
+
+exports[`Types Type casting Primitives float [COMPL] 1.0 to bool 1`] = `"let out = KYTHERA.value.as(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), KYTHERA.type.PRIMITIVES[\\"bool\\"]);"`;
+
+exports[`Types Type casting Primitives float [COMPL] 1.1 to bool 1`] = `"let out = KYTHERA.value.as(new KYTHERA.value(1.1, KYTHERA.type.PRIMITIVES[\\"float\\"]), KYTHERA.type.PRIMITIVES[\\"bool\\"]);"`;
+
+exports[`Types Type casting Primitives float [COMPL] float (truncate) to int 1`] = `"let out = KYTHERA.value.as(new KYTHERA.value(1.9, KYTHERA.type.PRIMITIVES[\\"float\\"]), KYTHERA.type.PRIMITIVES[\\"int\\"]);"`;
+
+exports[`Types Type casting Primitives float [COMPL] float to int 1`] = `"let out = KYTHERA.value.as(new KYTHERA.value(1.1, KYTHERA.type.PRIMITIVES[\\"float\\"]), KYTHERA.type.PRIMITIVES[\\"int\\"]);"`;
+
+exports[`Types Type casting Primitives float [COMPL] float to str 1`] = `"let out = KYTHERA.value.as(new KYTHERA.value(3.14159, KYTHERA.type.PRIMITIVES[\\"float\\"]), KYTHERA.type.PRIMITIVES[\\"str\\"]);"`;
+
+exports[`Types Type casting Primitives float [EVALT] 0.0 to bool 1`] = `
+Object {
+  "out":  {
+    "type":  {
+      "baseType": "bool",
+    },
+    "value": true,
+  },
+}
+`;
+
+exports[`Types Type casting Primitives float [EVALT] 1.0 to bool 1`] = `
+Object {
+  "out":  {
+    "type":  {
+      "baseType": "bool",
+    },
+    "value": true,
+  },
+}
+`;
+
+exports[`Types Type casting Primitives float [EVALT] 1.1 to bool 1`] = `
+Object {
+  "out":  {
+    "type":  {
+      "baseType": "bool",
+    },
+    "value": true,
+  },
+}
+`;
+
+exports[`Types Type casting Primitives float [EVALT] float (truncate) to int 1`] = `
+Object {
+  "out":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 1,
+  },
+}
+`;
+
+exports[`Types Type casting Primitives float [EVALT] float to int 1`] = `
+Object {
+  "out":  {
+    "type":  {
+      "baseType": "int",
+    },
+    "value": 1,
+  },
+}
+`;
+
+exports[`Types Type casting Primitives float [EVALT] float to str 1`] = `
+Object {
+  "out":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "3.14159",
+  },
+}
+`;
+
+exports[`Types Type casting Primitives float [PARSE] 0.0 to bool 1`] = `
+Array [
+  ParseNode {
+    "identifier": "out",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 0,
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Type casting Primitives float [PARSE] 1.0 to bool 1`] = `
+Array [
+  ParseNode {
+    "identifier": "out",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 1,
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Type casting Primitives float [PARSE] 1.1 to bool 1`] = `
+Array [
+  ParseNode {
+    "identifier": "out",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "float",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 1.1,
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Type casting Primitives float [PARSE] float (truncate) to int 1`] = `
+Array [
+  ParseNode {
+    "identifier": "out",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "float",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 1.9,
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Type casting Primitives float [PARSE] float to int 1`] = `
+Array [
+  ParseNode {
+    "identifier": "out",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "float",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 1.1,
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "int",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Type casting Primitives float [PARSE] float to str 1`] = `
+Array [
+  ParseNode {
+    "identifier": "out",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "float",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 3.14159,
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Type casting Primitives fn [COMPL] empty fn to str 1`] = `"let out = KYTHERA.value.as(new KYTHERA.value(() => {return new KYTHERA.value(null, KYTHERA.type.PRIMITIVES[\\"null\\"]);}, new KYTHERA.type(\\"fn\\", { parameters: [], returns: KYTHERA.type.PRIMITIVES[\\"null\\"]})), KYTHERA.type.PRIMITIVES[\\"str\\"]);"`;
+
+exports[`Types Type casting Primitives fn [COMPL] fn with multiple params to str 1`] = `"let out = KYTHERA.value.as(new KYTHERA.value((a,b,c) => {return new KYTHERA.value(null, KYTHERA.type.PRIMITIVES[\\"null\\"]);}, new KYTHERA.type(\\"fn\\", { parameters: [KYTHERA.type.PRIMITIVES[\\"int\\"],KYTHERA.type.PRIMITIVES[\\"str\\"],KYTHERA.type.PRIMITIVES[\\"bool\\"]], returns: KYTHERA.type.PRIMITIVES[\\"null\\"]})), KYTHERA.type.PRIMITIVES[\\"str\\"]);"`;
+
+exports[`Types Type casting Primitives fn [COMPL] fn with one param to str 1`] = `"let out = KYTHERA.value.as(new KYTHERA.value((a) => {return new KYTHERA.value(null, KYTHERA.type.PRIMITIVES[\\"null\\"]);}, new KYTHERA.type(\\"fn\\", { parameters: [KYTHERA.type.PRIMITIVES[\\"int\\"]], returns: KYTHERA.type.PRIMITIVES[\\"null\\"]})), KYTHERA.type.PRIMITIVES[\\"str\\"]);"`;
+
+exports[`Types Type casting Primitives fn [EVALT] empty fn to str 1`] = `
+Object {
+  "out":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "<> null",
+  },
+}
+`;
+
+exports[`Types Type casting Primitives fn [EVALT] fn with multiple params to str 1`] = `
+Object {
+  "out":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "<int,str,bool,> null",
+  },
+}
+`;
+
+exports[`Types Type casting Primitives fn [EVALT] fn with one param to str 1`] = `
+Object {
+  "out":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "<int,> null",
+  },
+}
+`;
+
+exports[`Types Type casting Primitives fn [PARSE] empty fn to str 1`] = `
+Array [
+  ParseNode {
+    "identifier": "out",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "body": Array [
+          ParseNode {
+            "kind": "return",
+            "value": ParseNode {
+              "kind": "literal",
+              "type": ParseNode {
+                "baseType": "null",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "value": null,
+            },
+          },
+        ],
+        "kind": "literal",
+        "parameters": Array [],
+        "returns": ParseNode {
+          "baseType": "null",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "type": ParseNode {
+          "baseType": "fn",
+          "kind": "type",
+          "origin": "builtin",
+          "parameters": Array [],
+          "returns": ParseNode {
+            "baseType": "null",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Type casting Primitives fn [PARSE] fn with multiple params to str 1`] = `
+Array [
+  ParseNode {
+    "identifier": "out",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "body": Array [
+          ParseNode {
+            "kind": "return",
+            "value": ParseNode {
+              "kind": "literal",
+              "type": ParseNode {
+                "baseType": "null",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "value": null,
+            },
+          },
+        ],
+        "kind": "literal",
+        "parameters": Array [
+          Object {
+            "name": "a",
+            "type": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          Object {
+            "name": "b",
+            "type": ParseNode {
+              "baseType": "str",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          Object {
+            "name": "c",
+            "type": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+        ],
+        "returns": ParseNode {
+          "baseType": "null",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "type": ParseNode {
+          "baseType": "fn",
+          "kind": "type",
+          "origin": "builtin",
+          "parameters": Array [
+            ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            ParseNode {
+              "baseType": "str",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          ],
+          "returns": ParseNode {
+            "baseType": "null",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Type casting Primitives fn [PARSE] fn with one param to str 1`] = `
+Array [
+  ParseNode {
+    "identifier": "out",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "body": Array [
+          ParseNode {
+            "kind": "return",
+            "value": ParseNode {
+              "kind": "literal",
+              "type": ParseNode {
+                "baseType": "null",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "value": null,
+            },
+          },
+        ],
+        "kind": "literal",
+        "parameters": Array [
+          Object {
+            "name": "a",
+            "type": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+        ],
+        "returns": ParseNode {
+          "baseType": "null",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "type": ParseNode {
+          "baseType": "fn",
+          "kind": "type",
+          "origin": "builtin",
+          "parameters": Array [
+            ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          ],
+          "returns": ParseNode {
+            "baseType": "null",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Type casting Primitives int [COMPL] 0 to bool 1`] = `"let out = KYTHERA.value.as(new KYTHERA.value(0, KYTHERA.type.PRIMITIVES[\\"int\\"]), KYTHERA.type.PRIMITIVES[\\"bool\\"]);"`;
+
+exports[`Types Type casting Primitives int [COMPL] 1 to bool 1`] = `"let out = KYTHERA.value.as(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), KYTHERA.type.PRIMITIVES[\\"bool\\"]);"`;
+
+exports[`Types Type casting Primitives int [COMPL] int to float 1`] = `"let out = KYTHERA.value.as(new KYTHERA.value(1, KYTHERA.type.PRIMITIVES[\\"int\\"]), KYTHERA.type.PRIMITIVES[\\"float\\"]);"`;
+
+exports[`Types Type casting Primitives int [COMPL] int to str 1`] = `"let out = KYTHERA.value.as(new KYTHERA.value(0, KYTHERA.type.PRIMITIVES[\\"int\\"]), KYTHERA.type.PRIMITIVES[\\"str\\"]);"`;
+
+exports[`Types Type casting Primitives int [COMPL] other int to bool 1`] = `"let out = KYTHERA.value.as(new KYTHERA.value(99, KYTHERA.type.PRIMITIVES[\\"int\\"]), KYTHERA.type.PRIMITIVES[\\"bool\\"]);"`;
+
+exports[`Types Type casting Primitives int [EVALT] 0 to bool 1`] = `
+Object {
+  "out":  {
+    "type":  {
+      "baseType": "bool",
+    },
+    "value": true,
+  },
+}
+`;
+
+exports[`Types Type casting Primitives int [EVALT] 1 to bool 1`] = `
+Object {
+  "out":  {
+    "type":  {
+      "baseType": "bool",
+    },
+    "value": true,
+  },
+}
+`;
+
+exports[`Types Type casting Primitives int [EVALT] int to float 1`] = `
+Object {
+  "out":  {
+    "type":  {
+      "baseType": "float",
+    },
+    "value": 1,
+  },
+}
+`;
+
+exports[`Types Type casting Primitives int [EVALT] int to str 1`] = `
+Object {
+  "out":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "0",
+  },
+}
+`;
+
+exports[`Types Type casting Primitives int [EVALT] other int to bool 1`] = `
+Object {
+  "out":  {
+    "type":  {
+      "baseType": "bool",
+    },
+    "value": true,
+  },
+}
+`;
+
+exports[`Types Type casting Primitives int [PARSE] 0 to bool 1`] = `
+Array [
+  ParseNode {
+    "identifier": "out",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 0,
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Type casting Primitives int [PARSE] 1 to bool 1`] = `
+Array [
+  ParseNode {
+    "identifier": "out",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 1,
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Type casting Primitives int [PARSE] int to float 1`] = `
+Array [
+  ParseNode {
+    "identifier": "out",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 1,
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "float",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "float",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Type casting Primitives int [PARSE] int to str 1`] = `
+Array [
+  ParseNode {
+    "identifier": "out",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 0,
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Type casting Primitives int [PARSE] other int to bool 1`] = `
+Array [
+  ParseNode {
+    "identifier": "out",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": 99,
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "bool",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Type casting Primitives null [COMPL] null to str 1`] = `"let out = KYTHERA.value.as(new KYTHERA.value(null, KYTHERA.type.PRIMITIVES[\\"null\\"]), KYTHERA.type.PRIMITIVES[\\"str\\"]);"`;
+
+exports[`Types Type casting Primitives null [EVALT] null to str 1`] = `
+Object {
+  "out":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "null",
+  },
+}
+`;
+
+exports[`Types Type casting Primitives null [PARSE] null to str 1`] = `
+Array [
+  ParseNode {
+    "identifier": "out",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "null",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": null,
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Type casting Primitives obj [COMPL] empty object to str 1`] = `"let out = KYTHERA.value.as(new KYTHERA.value((() => {let thisObj = {value: {}};return thisObj.value;})(), new KYTHERA.type(\\"obj\\", {})), KYTHERA.type.PRIMITIVES[\\"str\\"]);"`;
+
+exports[`Types Type casting Primitives obj [COMPL] object with multiple members to str 1`] = `"let out = KYTHERA.value.as(new KYTHERA.value((() => {let thisObj = {value: {}};thisObj.value[\\"a\\"] = new KYTHERA.value(true, KYTHERA.type.PRIMITIVES[\\"bool\\"]);thisObj.value[\\"b\\"] = new KYTHERA.value(0, KYTHERA.type.PRIMITIVES[\\"int\\"]);thisObj.value[\\"c\\"] = new KYTHERA.value(3.14159, KYTHERA.type.PRIMITIVES[\\"float\\"]);thisObj.value[\\"d\\"] = new KYTHERA.value(\\"asdf\\", KYTHERA.type.PRIMITIVES[\\"str\\"]);thisObj.value[\\"e\\"] = new KYTHERA.value(null, KYTHERA.type.PRIMITIVES[\\"null\\"]);thisObj.value[\\"f\\"] = new KYTHERA.value((a,b,c) => {return new KYTHERA.value(null, KYTHERA.type.PRIMITIVES[\\"null\\"]);}, new KYTHERA.type(\\"fn\\", { parameters: [KYTHERA.type.PRIMITIVES[\\"int\\"],KYTHERA.type.PRIMITIVES[\\"str\\"],KYTHERA.type.PRIMITIVES[\\"bool\\"]], returns: KYTHERA.type.PRIMITIVES[\\"null\\"]}));thisObj.value[\\"g\\"] = new KYTHERA.value((() => {let thisObj = {value: {}};thisObj.value[\\"a\\"] = new KYTHERA.value(0, KYTHERA.type.PRIMITIVES[\\"int\\"]);thisObj.value[\\"b\\"] = new KYTHERA.value(\\"asdf\\", KYTHERA.type.PRIMITIVES[\\"str\\"]);return thisObj.value;})(), new KYTHERA.type(\\"obj\\", {\\"a\\": KYTHERA.type.PRIMITIVES[\\"int\\"],\\"b\\": KYTHERA.type.PRIMITIVES[\\"str\\"],}));return thisObj.value;})(), new KYTHERA.type(\\"obj\\", {\\"a\\": KYTHERA.type.PRIMITIVES[\\"bool\\"],\\"b\\": KYTHERA.type.PRIMITIVES[\\"int\\"],\\"c\\": KYTHERA.type.PRIMITIVES[\\"float\\"],\\"d\\": KYTHERA.type.PRIMITIVES[\\"str\\"],\\"e\\": KYTHERA.type.PRIMITIVES[\\"null\\"],\\"f\\": new KYTHERA.type(\\"fn\\", { parameters: [KYTHERA.type.PRIMITIVES[\\"int\\"],KYTHERA.type.PRIMITIVES[\\"str\\"],KYTHERA.type.PRIMITIVES[\\"bool\\"]], returns: KYTHERA.type.PRIMITIVES[\\"null\\"]}),\\"g\\": new KYTHERA.type(\\"obj\\", {\\"a\\": KYTHERA.type.PRIMITIVES[\\"int\\"],\\"b\\": KYTHERA.type.PRIMITIVES[\\"str\\"],}),})), KYTHERA.type.PRIMITIVES[\\"str\\"]);"`;
+
+exports[`Types Type casting Primitives obj [COMPL] object with one member to str 1`] = `"let out = KYTHERA.value.as(new KYTHERA.value((() => {let thisObj = {value: {}};thisObj.value[\\"a\\"] = new KYTHERA.value(10, KYTHERA.type.PRIMITIVES[\\"int\\"]);return thisObj.value;})(), new KYTHERA.type(\\"obj\\", {\\"a\\": KYTHERA.type.PRIMITIVES[\\"int\\"],})), KYTHERA.type.PRIMITIVES[\\"str\\"]);"`;
+
+exports[`Types Type casting Primitives obj [EVALT] empty object to str 1`] = `
+Object {
+  "out":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "{
+}",
+  },
+}
+`;
+
+exports[`Types Type casting Primitives obj [EVALT] object with multiple members to str 1`] = `
+Object {
+  "out":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "{
+a = true,
+b = 0,
+c = 3.14159,
+d = asdf,
+e = null,
+f = <int,str,bool,> null,
+g = {
+a = 0,
+b = asdf,
+},
+}",
+  },
+}
+`;
+
+exports[`Types Type casting Primitives obj [EVALT] object with one member to str 1`] = `
+Object {
+  "out":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "{
+a = 10,
+}",
+  },
+}
+`;
+
+exports[`Types Type casting Primitives obj [PARSE] empty object to str 1`] = `
+Array [
+  ParseNode {
+    "identifier": "out",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "obj",
+          "kind": "type",
+          "origin": "builtin",
+          "structure": Object {},
+        },
+        "value": Object {},
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Type casting Primitives obj [PARSE] object with multiple members to str 1`] = `
+Array [
+  ParseNode {
+    "identifier": "out",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "obj",
+          "kind": "type",
+          "origin": "builtin",
+          "structure": Object {
+            "a": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "b": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "c": ParseNode {
+              "baseType": "float",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "d": ParseNode {
+              "baseType": "str",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "e": ParseNode {
+              "baseType": "null",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "f": ParseNode {
+              "baseType": "fn",
+              "kind": "type",
+              "origin": "builtin",
+              "parameters": Array [
+                ParseNode {
+                  "baseType": "int",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+                ParseNode {
+                  "baseType": "str",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+                ParseNode {
+                  "baseType": "bool",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+              ],
+              "returns": ParseNode {
+                "baseType": "null",
+                "kind": "type",
+                "origin": "builtin",
+              },
+            },
+            "g": ParseNode {
+              "baseType": "obj",
+              "kind": "type",
+              "origin": "builtin",
+              "structure": Object {
+                "a": ParseNode {
+                  "baseType": "int",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+                "b": ParseNode {
+                  "baseType": "str",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+              },
+            },
+          },
+        },
+        "value": Object {
+          "a": ParseNode {
+            "kind": "literal",
+            "type": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "value": true,
+          },
+          "b": ParseNode {
+            "kind": "literal",
+            "type": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "value": 0,
+          },
+          "c": ParseNode {
+            "kind": "literal",
+            "type": ParseNode {
+              "baseType": "float",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "value": 3.14159,
+          },
+          "d": ParseNode {
+            "kind": "literal",
+            "type": ParseNode {
+              "baseType": "str",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "value": "asdf",
+          },
+          "e": ParseNode {
+            "kind": "literal",
+            "type": ParseNode {
+              "baseType": "null",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "value": null,
+          },
+          "f": ParseNode {
+            "body": Array [
+              ParseNode {
+                "kind": "return",
+                "value": ParseNode {
+                  "kind": "literal",
+                  "type": ParseNode {
+                    "baseType": "null",
+                    "kind": "type",
+                    "origin": "builtin",
+                  },
+                  "value": null,
+                },
+              },
+            ],
+            "kind": "literal",
+            "parameters": Array [
+              Object {
+                "name": "a",
+                "type": ParseNode {
+                  "baseType": "int",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+              },
+              Object {
+                "name": "b",
+                "type": ParseNode {
+                  "baseType": "str",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+              },
+              Object {
+                "name": "c",
+                "type": ParseNode {
+                  "baseType": "bool",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+              },
+            ],
+            "returns": ParseNode {
+              "baseType": "null",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "type": ParseNode {
+              "baseType": "fn",
+              "kind": "type",
+              "origin": "builtin",
+              "parameters": Array [
+                ParseNode {
+                  "baseType": "int",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+                ParseNode {
+                  "baseType": "str",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+                ParseNode {
+                  "baseType": "bool",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+              ],
+              "returns": ParseNode {
+                "baseType": "null",
+                "kind": "type",
+                "origin": "builtin",
+              },
+            },
+          },
+          "g": ParseNode {
+            "kind": "literal",
+            "type": ParseNode {
+              "baseType": "obj",
+              "kind": "type",
+              "origin": "builtin",
+              "structure": Object {
+                "a": ParseNode {
+                  "baseType": "int",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+                "b": ParseNode {
+                  "baseType": "str",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+              },
+            },
+            "value": Object {
+              "a": ParseNode {
+                "kind": "literal",
+                "type": ParseNode {
+                  "baseType": "int",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+                "value": 0,
+              },
+              "b": ParseNode {
+                "kind": "literal",
+                "type": ParseNode {
+                  "baseType": "str",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+                "value": "asdf",
+              },
+            },
+          },
+        },
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Type casting Primitives obj [PARSE] object with one member to str 1`] = `
+Array [
+  ParseNode {
+    "identifier": "out",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "obj",
+          "kind": "type",
+          "origin": "builtin",
+          "structure": Object {
+            "a": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+        },
+        "value": Object {
+          "a": ParseNode {
+            "kind": "literal",
+            "type": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "value": 10,
+          },
+        },
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Type casting Primitives str [COMPL] str to str 1`] = `"let out = KYTHERA.value.as(new KYTHERA.value(\\"asdf\\", KYTHERA.type.PRIMITIVES[\\"str\\"]), KYTHERA.type.PRIMITIVES[\\"str\\"]);"`;
+
+exports[`Types Type casting Primitives str [EVALT] str to str 1`] = `
+Object {
+  "out":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "asdf",
+  },
+}
+`;
+
+exports[`Types Type casting Primitives str [PARSE] str to str 1`] = `
+Array [
+  ParseNode {
+    "identifier": "out",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "str",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": "asdf",
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Type casting Primitives type [COMPL] bool type to str 1`] = `"let out1 = KYTHERA.value.as(new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"bool\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]), KYTHERA.type.PRIMITIVES[\\"str\\"]);let out2 = KYTHERA.value.as(new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"bool\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]), KYTHERA.type.PRIMITIVES[\\"str\\"]);"`;
+
+exports[`Types Type casting Primitives type [COMPL] empty fn type to str 1`] = `"let out1 = KYTHERA.value.as(new KYTHERA.value(new KYTHERA.type(\\"fn\\", { parameters: [], returns: KYTHERA.type.PRIMITIVES[\\"null\\"]}), KYTHERA.type.PRIMITIVES[\\"type\\"]), KYTHERA.type.PRIMITIVES[\\"str\\"]);let out2 = KYTHERA.value.as(new KYTHERA.value(new KYTHERA.type(\\"fn\\", { parameters: [], returns: KYTHERA.type.PRIMITIVES[\\"null\\"]}), KYTHERA.type.PRIMITIVES[\\"type\\"]), KYTHERA.type.PRIMITIVES[\\"str\\"]);"`;
+
+exports[`Types Type casting Primitives type [COMPL] empty object type to str 1`] = `"let out1 = KYTHERA.value.as(new KYTHERA.value(new KYTHERA.type(\\"obj\\", {}), KYTHERA.type.PRIMITIVES[\\"type\\"]), KYTHERA.type.PRIMITIVES[\\"str\\"]);let out2 = KYTHERA.value.as(new KYTHERA.value(new KYTHERA.type(\\"obj\\", {}), KYTHERA.type.PRIMITIVES[\\"type\\"]), KYTHERA.type.PRIMITIVES[\\"str\\"]);"`;
+
+exports[`Types Type casting Primitives type [COMPL] float type to str 1`] = `"let out1 = KYTHERA.value.as(new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"float\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]), KYTHERA.type.PRIMITIVES[\\"str\\"]);let out2 = KYTHERA.value.as(new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"float\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]), KYTHERA.type.PRIMITIVES[\\"str\\"]);"`;
+
+exports[`Types Type casting Primitives type [COMPL] fn type with multiple params to str 1`] = `"let out1 = KYTHERA.value.as(new KYTHERA.value(new KYTHERA.type(\\"fn\\", { parameters: [KYTHERA.type.PRIMITIVES[\\"int\\"],KYTHERA.type.PRIMITIVES[\\"str\\"],KYTHERA.type.PRIMITIVES[\\"bool\\"]], returns: KYTHERA.type.PRIMITIVES[\\"null\\"]}), KYTHERA.type.PRIMITIVES[\\"type\\"]), KYTHERA.type.PRIMITIVES[\\"str\\"]);let out2 = KYTHERA.value.as(new KYTHERA.value((a,b,c) => {return new KYTHERA.value(null, KYTHERA.type.PRIMITIVES[\\"null\\"]);}, new KYTHERA.type(\\"fn\\", { parameters: [KYTHERA.type.PRIMITIVES[\\"int\\"],KYTHERA.type.PRIMITIVES[\\"str\\"],KYTHERA.type.PRIMITIVES[\\"bool\\"]], returns: KYTHERA.type.PRIMITIVES[\\"null\\"]})), KYTHERA.type.PRIMITIVES[\\"str\\"]);"`;
+
+exports[`Types Type casting Primitives type [COMPL] fn type with one param to str 1`] = `"let out1 = KYTHERA.value.as(new KYTHERA.value(new KYTHERA.type(\\"fn\\", { parameters: [KYTHERA.type.PRIMITIVES[\\"int\\"]], returns: KYTHERA.type.PRIMITIVES[\\"null\\"]}), KYTHERA.type.PRIMITIVES[\\"type\\"]), KYTHERA.type.PRIMITIVES[\\"str\\"]);let out2 = KYTHERA.value.as(new KYTHERA.value(new KYTHERA.type(\\"fn\\", { parameters: [KYTHERA.type.PRIMITIVES[\\"int\\"]], returns: KYTHERA.type.PRIMITIVES[\\"null\\"]}), KYTHERA.type.PRIMITIVES[\\"type\\"]), KYTHERA.type.PRIMITIVES[\\"str\\"]);"`;
+
+exports[`Types Type casting Primitives type [COMPL] int type to str 1`] = `"let out1 = KYTHERA.value.as(new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"int\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]), KYTHERA.type.PRIMITIVES[\\"str\\"]);let out2 = KYTHERA.value.as(new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"int\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]), KYTHERA.type.PRIMITIVES[\\"str\\"]);"`;
+
+exports[`Types Type casting Primitives type [COMPL] null type as str 1`] = `"let out = KYTHERA.value.as(new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"null\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]), KYTHERA.type.PRIMITIVES[\\"str\\"]);"`;
+
+exports[`Types Type casting Primitives type [COMPL] object type with multiple members to str 1`] = `"let out1 = KYTHERA.value.as(new KYTHERA.value(new KYTHERA.type(\\"obj\\", {\\"a\\": KYTHERA.type.PRIMITIVES[\\"bool\\"],\\"b\\": KYTHERA.type.PRIMITIVES[\\"int\\"],\\"c\\": KYTHERA.type.PRIMITIVES[\\"float\\"],\\"d\\": KYTHERA.type.PRIMITIVES[\\"str\\"],\\"e\\": KYTHERA.type.PRIMITIVES[\\"null\\"],\\"f\\": new KYTHERA.type(\\"fn\\", { parameters: [KYTHERA.type.PRIMITIVES[\\"int\\"],KYTHERA.type.PRIMITIVES[\\"str\\"],KYTHERA.type.PRIMITIVES[\\"bool\\"]], returns: KYTHERA.type.PRIMITIVES[\\"null\\"]}),\\"g\\": new KYTHERA.type(\\"obj\\", {\\"a\\": KYTHERA.type.PRIMITIVES[\\"int\\"],\\"b\\": KYTHERA.type.PRIMITIVES[\\"str\\"],}),}), KYTHERA.type.PRIMITIVES[\\"type\\"]), KYTHERA.type.PRIMITIVES[\\"str\\"]);let out2 = KYTHERA.value.as(new KYTHERA.value(new KYTHERA.type(\\"obj\\", {\\"a\\": KYTHERA.type.PRIMITIVES[\\"bool\\"],\\"b\\": KYTHERA.type.PRIMITIVES[\\"int\\"],\\"c\\": KYTHERA.type.PRIMITIVES[\\"float\\"],\\"d\\": KYTHERA.type.PRIMITIVES[\\"str\\"],\\"e\\": KYTHERA.type.PRIMITIVES[\\"null\\"],\\"f\\": new KYTHERA.type(\\"fn\\", { parameters: [KYTHERA.type.PRIMITIVES[\\"int\\"],KYTHERA.type.PRIMITIVES[\\"str\\"],KYTHERA.type.PRIMITIVES[\\"bool\\"]], returns: KYTHERA.type.PRIMITIVES[\\"null\\"]}),\\"g\\": new KYTHERA.type(\\"obj\\", {\\"a\\": KYTHERA.type.PRIMITIVES[\\"int\\"],\\"b\\": KYTHERA.type.PRIMITIVES[\\"str\\"],}),}), KYTHERA.type.PRIMITIVES[\\"type\\"]), KYTHERA.type.PRIMITIVES[\\"str\\"]);"`;
+
+exports[`Types Type casting Primitives type [COMPL] object type with one member to str 1`] = `"let out1 = KYTHERA.value.as(new KYTHERA.value(new KYTHERA.type(\\"obj\\", {\\"a\\": KYTHERA.type.PRIMITIVES[\\"int\\"],}), KYTHERA.type.PRIMITIVES[\\"type\\"]), KYTHERA.type.PRIMITIVES[\\"str\\"]);let out2 = KYTHERA.value.as(new KYTHERA.value(new KYTHERA.type(\\"obj\\", {\\"a\\": KYTHERA.type.PRIMITIVES[\\"int\\"],}), KYTHERA.type.PRIMITIVES[\\"type\\"]), KYTHERA.type.PRIMITIVES[\\"str\\"]);"`;
+
+exports[`Types Type casting Primitives type [COMPL] str type as str 1`] = `"let out1 = KYTHERA.value.as(new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"str\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]), KYTHERA.type.PRIMITIVES[\\"str\\"]);let out2 = KYTHERA.value.as(new KYTHERA.value(KYTHERA.type.PRIMITIVES[\\"str\\"], KYTHERA.type.PRIMITIVES[\\"type\\"]), KYTHERA.type.PRIMITIVES[\\"str\\"]);"`;
+
+exports[`Types Type casting Primitives type [EVALT] bool type to str 1`] = `
+Object {
+  "out1":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "bool",
+  },
+  "out2":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "bool",
+  },
+}
+`;
+
+exports[`Types Type casting Primitives type [EVALT] empty fn type to str 1`] = `
+Object {
+  "out1":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "fn<> null",
+  },
+  "out2":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "fn<> null",
+  },
+}
+`;
+
+exports[`Types Type casting Primitives type [EVALT] empty object type to str 1`] = `
+Object {
+  "out1":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "obj{
+}",
+  },
+  "out2":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "obj{
+}",
+  },
+}
+`;
+
+exports[`Types Type casting Primitives type [EVALT] float type to str 1`] = `
+Object {
+  "out1":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "float",
+  },
+  "out2":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "float",
+  },
+}
+`;
+
+exports[`Types Type casting Primitives type [EVALT] fn type with multiple params to str 1`] = `
+Object {
+  "out1":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "fn<int,str,bool,> null",
+  },
+  "out2":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "<int,str,bool,> null",
+  },
+}
+`;
+
+exports[`Types Type casting Primitives type [EVALT] fn type with one param to str 1`] = `
+Object {
+  "out1":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "fn<int,> null",
+  },
+  "out2":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "fn<int,> null",
+  },
+}
+`;
+
+exports[`Types Type casting Primitives type [EVALT] int type to str 1`] = `
+Object {
+  "out1":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "int",
+  },
+  "out2":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "int",
+  },
+}
+`;
+
+exports[`Types Type casting Primitives type [EVALT] null type as str 1`] = `
+Object {
+  "out":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "null",
+  },
+}
+`;
+
+exports[`Types Type casting Primitives type [EVALT] object type with multiple members to str 1`] = `
+Object {
+  "out1":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "obj{
+bool a,
+int b,
+float c,
+str d,
+null e,
+fn<int,str,bool,> null f,
+obj{
+int a,
+str b,
+} g,
+}",
+  },
+  "out2":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "obj{
+bool a,
+int b,
+float c,
+str d,
+null e,
+fn<int,str,bool,> null f,
+obj{
+int a,
+str b,
+} g,
+}",
+  },
+}
+`;
+
+exports[`Types Type casting Primitives type [EVALT] object type with one member to str 1`] = `
+Object {
+  "out1":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "obj{
+int a,
+}",
+  },
+  "out2":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "obj{
+int a,
+}",
+  },
+}
+`;
+
+exports[`Types Type casting Primitives type [EVALT] str type as str 1`] = `
+Object {
+  "out1":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "str",
+  },
+  "out2":  {
+    "type":  {
+      "baseType": "str",
+    },
+    "value": "str",
+  },
+}
+`;
+
+exports[`Types Type casting Primitives type [PARSE] bool type to str 1`] = `
+Array [
+  ParseNode {
+    "identifier": "out1",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "type",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": ParseNode {
+          "baseType": "bool",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "out2",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "typeof",
+        "target": ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "bool",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "value": true,
+        },
+        "type": ParseNode {
+          "baseType": "type",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Type casting Primitives type [PARSE] empty fn type to str 1`] = `
+Array [
+  ParseNode {
+    "identifier": "out1",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "type",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": ParseNode {
+          "baseType": "fn",
+          "kind": "type",
+          "origin": "builtin",
+          "parameters": Array [],
+          "returns": ParseNode {
+            "baseType": "null",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "out2",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "typeof",
+        "target": ParseNode {
+          "body": Array [
+            ParseNode {
+              "kind": "return",
+              "value": ParseNode {
+                "kind": "literal",
+                "type": ParseNode {
+                  "baseType": "null",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+                "value": null,
+              },
+            },
+          ],
+          "kind": "literal",
+          "parameters": Array [],
+          "returns": ParseNode {
+            "baseType": "null",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "type": ParseNode {
+            "baseType": "fn",
+            "kind": "type",
+            "origin": "builtin",
+            "parameters": Array [],
+            "returns": ParseNode {
+              "baseType": "null",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+        },
+        "type": ParseNode {
+          "baseType": "type",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Type casting Primitives type [PARSE] empty object type to str 1`] = `
+Array [
+  ParseNode {
+    "identifier": "out1",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "type",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": ParseNode {
+          "baseType": "obj",
+          "kind": "type",
+          "origin": "builtin",
+          "structure": Object {},
+        },
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "out2",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "typeof",
+        "target": ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "obj",
+            "kind": "type",
+            "origin": "builtin",
+            "structure": Object {},
+          },
+          "value": Object {},
+        },
+        "type": ParseNode {
+          "baseType": "type",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Type casting Primitives type [PARSE] float type to str 1`] = `
+Array [
+  ParseNode {
+    "identifier": "out1",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "type",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": ParseNode {
+          "baseType": "float",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "out2",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "typeof",
+        "target": ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "float",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "value": 3.14159,
+        },
+        "type": ParseNode {
+          "baseType": "type",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Type casting Primitives type [PARSE] fn type with multiple params to str 1`] = `
+Array [
+  ParseNode {
+    "identifier": "out1",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "type",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": ParseNode {
+          "baseType": "fn",
+          "kind": "type",
+          "origin": "builtin",
+          "parameters": Array [
+            ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            ParseNode {
+              "baseType": "str",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          ],
+          "returns": ParseNode {
+            "baseType": "null",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "out2",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "body": Array [
+          ParseNode {
+            "kind": "return",
+            "value": ParseNode {
+              "kind": "literal",
+              "type": ParseNode {
+                "baseType": "null",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "value": null,
+            },
+          },
+        ],
+        "kind": "literal",
+        "parameters": Array [
+          Object {
+            "name": "a",
+            "type": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          Object {
+            "name": "b",
+            "type": ParseNode {
+              "baseType": "str",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+          Object {
+            "name": "c",
+            "type": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+        ],
+        "returns": ParseNode {
+          "baseType": "null",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "type": ParseNode {
+          "baseType": "fn",
+          "kind": "type",
+          "origin": "builtin",
+          "parameters": Array [
+            ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            ParseNode {
+              "baseType": "str",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          ],
+          "returns": ParseNode {
+            "baseType": "null",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Type casting Primitives type [PARSE] fn type with one param to str 1`] = `
+Array [
+  ParseNode {
+    "identifier": "out1",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "type",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": ParseNode {
+          "baseType": "fn",
+          "kind": "type",
+          "origin": "builtin",
+          "parameters": Array [
+            ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          ],
+          "returns": ParseNode {
+            "baseType": "null",
+            "kind": "type",
+            "origin": "builtin",
+          },
+        },
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "out2",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "typeof",
+        "target": ParseNode {
+          "body": Array [
+            ParseNode {
+              "kind": "return",
+              "value": ParseNode {
+                "kind": "literal",
+                "type": ParseNode {
+                  "baseType": "null",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+                "value": null,
+              },
+            },
+          ],
+          "kind": "literal",
+          "parameters": Array [
+            Object {
+              "name": "a",
+              "type": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+            },
+          ],
+          "returns": ParseNode {
+            "baseType": "null",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "type": ParseNode {
+            "baseType": "fn",
+            "kind": "type",
+            "origin": "builtin",
+            "parameters": Array [
+              ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+            ],
+            "returns": ParseNode {
+              "baseType": "null",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+        },
+        "type": ParseNode {
+          "baseType": "type",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Type casting Primitives type [PARSE] int type to str 1`] = `
+Array [
+  ParseNode {
+    "identifier": "out1",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "type",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": ParseNode {
+          "baseType": "int",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "out2",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "typeof",
+        "target": ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "int",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "value": 0,
+        },
+        "type": ParseNode {
+          "baseType": "type",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Type casting Primitives type [PARSE] null type as str 1`] = `
+Array [
+  ParseNode {
+    "identifier": "out",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "typeof",
+        "target": ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "null",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "value": null,
+        },
+        "type": ParseNode {
+          "baseType": "type",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Type casting Primitives type [PARSE] object type with multiple members to str 1`] = `
+Array [
+  ParseNode {
+    "identifier": "out1",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "type",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": ParseNode {
+          "baseType": "obj",
+          "kind": "type",
+          "origin": "builtin",
+          "structure": Object {
+            "a": ParseNode {
+              "baseType": "bool",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "b": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "c": ParseNode {
+              "baseType": "float",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "d": ParseNode {
+              "baseType": "str",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "e": ParseNode {
+              "baseType": "null",
+              "kind": "type",
+              "origin": "builtin",
+            },
+            "f": ParseNode {
+              "baseType": "fn",
+              "kind": "type",
+              "origin": "builtin",
+              "parameters": Array [
+                ParseNode {
+                  "baseType": "int",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+                ParseNode {
+                  "baseType": "str",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+                ParseNode {
+                  "baseType": "bool",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+              ],
+              "returns": ParseNode {
+                "baseType": "null",
+                "kind": "type",
+                "origin": "builtin",
+              },
+            },
+            "g": ParseNode {
+              "baseType": "obj",
+              "kind": "type",
+              "origin": "builtin",
+              "structure": Object {
+                "a": ParseNode {
+                  "baseType": "int",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+                "b": ParseNode {
+                  "baseType": "str",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+              },
+            },
+          },
+        },
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "out2",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "typeof",
+        "target": ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "obj",
+            "kind": "type",
+            "origin": "builtin",
+            "structure": Object {
+              "a": ParseNode {
+                "baseType": "bool",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "b": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "c": ParseNode {
+                "baseType": "float",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "d": ParseNode {
+                "baseType": "str",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "e": ParseNode {
+                "baseType": "null",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "f": ParseNode {
+                "baseType": "fn",
+                "kind": "type",
+                "origin": "builtin",
+                "parameters": Array [
+                  ParseNode {
+                    "baseType": "int",
+                    "kind": "type",
+                    "origin": "builtin",
+                  },
+                  ParseNode {
+                    "baseType": "str",
+                    "kind": "type",
+                    "origin": "builtin",
+                  },
+                  ParseNode {
+                    "baseType": "bool",
+                    "kind": "type",
+                    "origin": "builtin",
+                  },
+                ],
+                "returns": ParseNode {
+                  "baseType": "null",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+              },
+              "g": ParseNode {
+                "baseType": "obj",
+                "kind": "type",
+                "origin": "builtin",
+                "structure": Object {
+                  "a": ParseNode {
+                    "baseType": "int",
+                    "kind": "type",
+                    "origin": "builtin",
+                  },
+                  "b": ParseNode {
+                    "baseType": "str",
+                    "kind": "type",
+                    "origin": "builtin",
+                  },
+                },
+              },
+            },
+          },
+          "value": Object {
+            "a": ParseNode {
+              "kind": "literal",
+              "type": ParseNode {
+                "baseType": "bool",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "value": true,
+            },
+            "b": ParseNode {
+              "kind": "literal",
+              "type": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "value": 0,
+            },
+            "c": ParseNode {
+              "kind": "literal",
+              "type": ParseNode {
+                "baseType": "float",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "value": 3.14159,
+            },
+            "d": ParseNode {
+              "kind": "literal",
+              "type": ParseNode {
+                "baseType": "str",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "value": "asdf",
+            },
+            "e": ParseNode {
+              "kind": "literal",
+              "type": ParseNode {
+                "baseType": "null",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "value": null,
+            },
+            "f": ParseNode {
+              "body": Array [
+                ParseNode {
+                  "kind": "return",
+                  "value": ParseNode {
+                    "kind": "literal",
+                    "type": ParseNode {
+                      "baseType": "null",
+                      "kind": "type",
+                      "origin": "builtin",
+                    },
+                    "value": null,
+                  },
+                },
+              ],
+              "kind": "literal",
+              "parameters": Array [
+                Object {
+                  "name": "a",
+                  "type": ParseNode {
+                    "baseType": "int",
+                    "kind": "type",
+                    "origin": "builtin",
+                  },
+                },
+                Object {
+                  "name": "b",
+                  "type": ParseNode {
+                    "baseType": "str",
+                    "kind": "type",
+                    "origin": "builtin",
+                  },
+                },
+                Object {
+                  "name": "c",
+                  "type": ParseNode {
+                    "baseType": "bool",
+                    "kind": "type",
+                    "origin": "builtin",
+                  },
+                },
+              ],
+              "returns": ParseNode {
+                "baseType": "null",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "type": ParseNode {
+                "baseType": "fn",
+                "kind": "type",
+                "origin": "builtin",
+                "parameters": Array [
+                  ParseNode {
+                    "baseType": "int",
+                    "kind": "type",
+                    "origin": "builtin",
+                  },
+                  ParseNode {
+                    "baseType": "str",
+                    "kind": "type",
+                    "origin": "builtin",
+                  },
+                  ParseNode {
+                    "baseType": "bool",
+                    "kind": "type",
+                    "origin": "builtin",
+                  },
+                ],
+                "returns": ParseNode {
+                  "baseType": "null",
+                  "kind": "type",
+                  "origin": "builtin",
+                },
+              },
+            },
+            "g": ParseNode {
+              "kind": "literal",
+              "type": ParseNode {
+                "baseType": "obj",
+                "kind": "type",
+                "origin": "builtin",
+                "structure": Object {
+                  "a": ParseNode {
+                    "baseType": "int",
+                    "kind": "type",
+                    "origin": "builtin",
+                  },
+                  "b": ParseNode {
+                    "baseType": "str",
+                    "kind": "type",
+                    "origin": "builtin",
+                  },
+                },
+              },
+              "value": Object {
+                "a": ParseNode {
+                  "kind": "literal",
+                  "type": ParseNode {
+                    "baseType": "int",
+                    "kind": "type",
+                    "origin": "builtin",
+                  },
+                  "value": 0,
+                },
+                "b": ParseNode {
+                  "kind": "literal",
+                  "type": ParseNode {
+                    "baseType": "str",
+                    "kind": "type",
+                    "origin": "builtin",
+                  },
+                  "value": "asdf",
+                },
+              },
+            },
+          },
+        },
+        "type": ParseNode {
+          "baseType": "type",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Type casting Primitives type [PARSE] object type with one member to str 1`] = `
+Array [
+  ParseNode {
+    "identifier": "out1",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "type",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": ParseNode {
+          "baseType": "obj",
+          "kind": "type",
+          "origin": "builtin",
+          "structure": Object {
+            "a": ParseNode {
+              "baseType": "int",
+              "kind": "type",
+              "origin": "builtin",
+            },
+          },
+        },
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "out2",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "typeof",
+        "target": ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "obj",
+            "kind": "type",
+            "origin": "builtin",
+            "structure": Object {
+              "a": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+            },
+          },
+          "value": Object {
+            "a": ParseNode {
+              "kind": "literal",
+              "type": ParseNode {
+                "baseType": "int",
+                "kind": "type",
+                "origin": "builtin",
+              },
+              "value": 10,
+            },
+          },
+        },
+        "type": ParseNode {
+          "baseType": "type",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+]
+`;
+
+exports[`Types Type casting Primitives type [PARSE] str type as str 1`] = `
+Array [
+  ParseNode {
+    "identifier": "out1",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "literal",
+        "type": ParseNode {
+          "baseType": "type",
+          "kind": "type",
+          "origin": "builtin",
+        },
+        "value": ParseNode {
+          "baseType": "str",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+    },
+  },
+  ParseNode {
+    "identifier": "out2",
+    "kind": "let",
+    "value": ParseNode {
+      "from": ParseNode {
+        "kind": "typeof",
+        "target": ParseNode {
+          "kind": "literal",
+          "type": ParseNode {
+            "baseType": "str",
+            "kind": "type",
+            "origin": "builtin",
+          },
+          "value": "asdf",
+        },
+        "type": ParseNode {
+          "baseType": "type",
+          "kind": "type",
+          "origin": "builtin",
+        },
+      },
+      "kind": "as",
+      "to": ParseNode {
+        "baseType": "str",
+        "kind": "type",
+        "origin": "builtin",
+      },
+      "type": ParseNode {
+        "baseType": "str",
         "kind": "type",
         "origin": "builtin",
       },

@@ -1,29 +1,24 @@
-// boolean operations
-!false
-!true
-
-true && true
-true && false
-false && true
-
-true || true
-false || true
-true || false
-
-// typeofs
-typeof true
-typeof false
-typeof 10
-typeof 3.14159
-typeof "kythera"
-typeof null
-
-// casting ints and floats
-10 as float
-3.14159 as int
-
-// casting number values to bool
-1.0 as bool // true
-0.0 as bool // false
-1 as bool // true
-0 as bool // false
+let out1 = obj{
+	bool a,
+	int b,
+	float c,
+	str d,
+	null e,
+	fn<int, str, bool> null f,
+	obj{
+		int a,
+		str b,
+	} g,
+} as str
+let	out2 = (typeof {
+	a = true,
+	b = 0,
+	c = 3.14159,
+	d = "asdf",
+	e = null,
+	f = <int a, str b, bool c > null { return null },
+	g = {
+		a = 0,
+		b = "asdf",
+	},
+}) as str

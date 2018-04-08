@@ -381,4 +381,158 @@ KYTHERA.value.not = (a) => {
 	return kytheraBool(!a.value)
 }
 
+KYTHERA.value.as = (srcVal, destType) => {
+	if(!KYTHERA.value.castable(srcVal.type, destType)) {
+		throw new Error(`Cannot cast ${srcVal.type.baseType} to ${destType.baseType}`)
+	}
+
+	switch(srcVal.type.baseType) {
+		case "bool":
+			switch(destType.baseType) {
+				case "int":
+					if(srcVal.value) {
+						return new KYTHERA.value(1, KYTHERA.type.PRIMITIVES.int)
+					} else {
+						return new KYTHERA.value(0, KYTHERA.type.PRIMITIVES.int)
+					}
+				case "float":
+					if(srcVal.value) {
+						return new KYTHERA.value(1.0, KYTHERA.type.PRIMITIVES.float)
+					} else {
+						return new KYTHERA.value(0.0, KYTHERA.type.PRIMITIVES.float)
+					}
+				case "str":
+					return new KYTHERA.value(srcVal.value, KYTHERA.type.PRIMITIVES.bool)
+				default:
+					throw new Error("Cannot cast bool to " + destType.baseType)
+			}
+		case "int":
+			switch(destType.baseType) {
+				case "bool":
+					return new KYTHERA.value((srcVal !== 0), KYTHERA.type.PRIMITIVES.bool)
+				case "float":
+					return new KYTHERA.value(srcVal.value, KYTHERA.type.PRIMITIVES.float)
+				case "str":
+					return new KYTHERA.value(`${srcVal.value}`, KYTHERA.type.PRIMITIVES.str)
+				default:
+					throw new Error("Cannot cast int to " + destType.baseType)
+			}
+		case "float":
+			switch(destType.baseType) {
+				case "bool":
+					return new KYTHERA.value((srcVal.value !== 0.0), KYTHERA.type.PRIMITIVES.bool)
+				case "int":
+					return new KYTHERA.value(parseInt(srcVal.value), KYTHERA.type.PRIMITIVES.int)
+				case "str":
+					return new KYTHERA.value(`${srcVal.value}`, KYTHERA.type.PRIMITIVES.str)
+				default:
+					throw new Error("Cannot cast float to " + destType.baseType)
+			}
+		case "str":
+			switch(destType.baseType) {
+				case "str":
+					return new KYTHERA.value(srcVal.value, KYTHERA.type.PRIMITIVES.str)
+				default:
+					throw new Error("Cannot cast str to " + destType.baseType)
+			}
+		case "null":
+			switch(destType.baseType) {
+				case "str":
+					return new KYTHERA.value("null", KYTHERA.type.PRIMITIVES.str)
+				default:
+					throw new Error("Cannot cast null to " + destType.baseType)
+			}
+		case "fn":
+			switch(destType.baseType) {
+				case "str":
+					const paramTypeString = srcVal.type.structure.parameters.map((paramType, i) => {
+						const paramVal = new KYTHERA.value(paramType, KYTHERA.type.PRIMITIVES.type)
+						return KYTHERA.value.as(paramVal, KYTHERA.type.PRIMITIVES.str).value
+					}).reduce((prev, curr) => {
+						return prev + curr + ","
+					}, "")
+
+					const returnTypeString = KYTHERA.value.as(new KYTHERA.value(srcVal.type.structure.returns, KYTHERA.type.PRIMITIVES.type), KYTHERA.type.PRIMITIVES.str)
+					return new KYTHERA.value(`<${paramTypeString}> ${returnTypeString.value}`, KYTHERA.type.PRIMITIVES.str)
+				default:
+					throw new Error("Cannot cast fn to " + destType.baseType)
+			}
+		case "type":
+			switch(destType.baseType) {
+				case "str":
+					let out = srcVal.value.baseType
+
+					if(out === "fn") {
+						out += '<'
+
+						out += srcVal.value.structure.parameters.map((paramType, i) => {
+							const paramVal = new KYTHERA.value(paramType, KYTHERA.type.PRIMITIVES.type)
+							return KYTHERA.value.as(paramVal, KYTHERA.type.PRIMITIVES.str).value
+						}).reduce((prev, curr) => {
+							return prev + curr + ","
+						}, "")
+
+						out += `> ${KYTHERA.value.as(new KYTHERA.value(srcVal.value.structure.returns, KYTHERA.type.PRIMITIVES.type), KYTHERA.type.PRIMITIVES.str).value}`
+					} else if(out === "obj") {
+						out += '{\n'
+
+						out += Object.entries(srcVal.value.structure).map(([key, type]) => {
+							const entryTypeVal = new KYTHERA.value(type, KYTHERA.type.PRIMITIVES.type)
+
+							return `${KYTHERA.value.as(entryTypeVal, KYTHERA.type.PRIMITIVES.str).value} ${key}`
+						}).reduce((prev, curr) => {
+							return prev + curr + ',\n'
+						}, "")
+
+						out += '}'
+
+					} else if(out === "list") {
+						// TODO list syntax subject to change
+						out += `[${srcVal.value.structure.contains}]`
+					}
+
+					return new KYTHERA.value(out, KYTHERA.type.PRIMITIVES.str)
+				default:
+					throw new Error("Cannot cast type to: " + destType.baseType)
+			}
+		case "obj":
+			switch(destType.baseType) {
+				case "obj":
+					throw new Error("Object casting not yet implemented")
+				case "str":
+					let out = '{\n'
+
+					out += Object.entries(srcVal.value).map(([key, val]) => {
+						return `${key} = ${KYTHERA.value.as(val, KYTHERA.type.PRIMITIVES.str).value}`
+					}).reduce((prev, curr) => {
+						return prev + curr + ",\n"
+					}, "")
+
+					out += '}'
+
+					return new KYTHERA.value(out, KYTHERA.type.PRIMITIVES.str)
+				default:
+					throw new Error("Cannot cast obj to " + destType.baseType)
+			}
+		case "list":
+			throw new Error("List casting not yet implemented")
+		default:
+			throw new Error("Invalid input type: " + srcVal.type.baseType)
+	}
+}
+
+// TODO make this accessible as a language feature as well
+KYTHERA.value.castable = (srcType, destType) => ({
+		"bool": ["int", "float", "str"],
+		"int": ["bool", "float", "str"],
+		"float": ["bool", "int", "str"],
+		// "str": ["list[str]"]
+		"str": ["str"],
+		"null": ["str"],
+		"fn": ["str"],
+		"obj": ["obj", "str"],
+		"list": ["str"],
+		"type": ["str"]
+	}[srcType.baseType].includes(destType.baseType))
+
 module.exports = KYTHERA

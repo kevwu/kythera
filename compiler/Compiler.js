@@ -114,6 +114,8 @@ class Compiler {
 				return this.visitAccess(node)
 			case "this":
 				return this.visitThis(node)
+			case "as":
+				return this.visitAs(node)
 			default:
 				throw new Error("Unhandled node kind: " + node.kind)
 		}
@@ -506,6 +508,14 @@ class Compiler {
 		return {
 			output: `(${this.currentScope.getThisId()})`,
 			type: this.currentScope.getThisType()
+		}
+	}
+
+	visitAs(node) {
+		const destKytheraType = this.makeKytheraType(node.to)
+		return {
+			output: `KYTHERA.value.as(${this.visitExpressionNode(node.from).output}, ${this.makeTypeConstructor(destKytheraType)})`,
+			type: destKytheraType
 		}
 	}
 
