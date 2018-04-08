@@ -194,7 +194,7 @@ class Compiler {
 						containsType = listExp.type
 					} else {
 						if(!KytheraType.typeEq(containsType, listExp.type)) {
-							throw new Error(`List types do not match, expecting ${containsType.baseType} but got ${listExp.type.baseType}`)
+							throw new Error(`List types do not match, expecting ${Compiler.typeAsString(containsType)} but got ${Compiler.typeAsString(listExp.type)}`)
 						}
 					}
 					return prev + listExp.output + ((i !== node.elements.length - 1) ? "," : "")
@@ -255,7 +255,7 @@ class Compiler {
 				nodeName = "member " + node.left.index
 			}
 
-			throw new Error(`Cannot assign ${rhs.type.baseType} value to ${nodeName}, which has type ${lhsType.baseType}`)
+			throw new Error(`Cannot assign ${Compiler.typeAsString(rhs.type)} value to ${nodeName}, which has type ${Compiler.typeAsString(lhsType)}`)
 		}
 
 		let rhsOut = rhs.output
@@ -278,7 +278,7 @@ class Compiler {
 			let returnVal = this.visitExpressionNode(node.value)
 
 			if(!(KytheraType.typeEq(returnVal.type, this.currentScope.getReturnType()))) {
-				throw new Error(`Expected return value of type ${this.currentScope.getReturnType().baseType} but got ${returnVal.type.baseType}`)
+				throw new Error(`Expected return value of type ${Compiler.typeAsString(this.currentScope.getReturnType())} but got ${Compiler.typeAsString(returnVal.type)}`)
 			}
 
 			return `return ${returnVal.output}`
@@ -298,8 +298,8 @@ class Compiler {
 		let target = this.visitExpressionNode(node.target)
 
 		// right now, the only unary operator is !
-		if(target.type.baseType !== "bool") {
-			throw new Error("Not operator requires bool, not " + target.type.baseType)
+		if(!(KytheraType.typeEq(target.type, KytheraType.PRIMITIVES.bool))) {
+			throw new Error("Not operator requires bool, not " + Compiler.typeAsString(target.type))
 		}
 
 		return {
@@ -313,13 +313,13 @@ class Compiler {
 		let rhs = this.visitExpressionNode(node.right)
 
 		if(!(KytheraType.typeEq(lhs.type, rhs.type))) {
-			throw new Error(`Incompatible types: ${lhs.type.baseType} vs ${rhs.type.baseType}`)
+			throw new Error(`Incompatible types: ${Compiler.typeAsString(lhs.type)} vs ${Compiler.typeAsString(rhs.type)}`)
 		}
 
 		let outType
 		if(["&&", "||"].includes(node.operator)) {
 			if(!(KytheraType.typeEq(lhs.type, KytheraType.PRIMITIVES.bool))) {
-				throw new Error("Boolean operators require bool, not " + lhs.type.baseType)
+				throw new Error("Boolean operators require bool, not " + Compiler.typeAsString(lhs.type))
 			}
 
 			outType = KytheraType.PRIMITIVES.bool
@@ -328,18 +328,18 @@ class Compiler {
 		} else if(["<", ">", "<=", ">="].includes(node.operator)) {
 			// TODO set comparison with objects?
 			if(!["int", "float"].includes(lhs.type.baseType)) {
-				throw new Error("Comparison operators require int or float, not " + lhs.type.baseType)
+				throw new Error("Comparison operators require int or float, not " + Compiler.typeAsString(lhs.type))
 			}
 
 			outType = KytheraType.PRIMITIVES.bool
 		} else if(["+", "-", "*", "/", "%"].includes(node.operator)) {
-			if(lhs.type.baseType === "str") {
+			if(KytheraType.typeEq(lhs.type, KytheraType.PRIMITIVES.str)) {
 				if(node.operator !== "+") {
 					throw new Error("Invalid operation on string: " + node.operator)
 				}
 			} else {
 				if(!["int", "float"].includes(lhs.type.baseType)) {
-					throw new Error("Arithmetic operators require int or float, not " + lhs.type.baseType)
+					throw new Error("Arithmetic operators require int or float, not " + Compiler.typeAsString(lhs.type))
 				}
 			}
 
@@ -361,8 +361,8 @@ class Compiler {
 		let out = "if(KYTHERA.value.eq("
 
 		let condition = this.visitExpressionNode(node.condition)
-		if(condition.type.baseType !== "bool") {
-			throw new Error("Condition for if statement must evaluate to bool, not " + condition.type.baseType)
+		if(!(KytheraType.typeEq(condition.type, KytheraType.PRIMITIVES.bool))) {
+			throw new Error("Condition for if statement must evaluate to bool, not " + Compiler.typeAsString(condition.type))
 		}
 
 		out += condition.output
@@ -399,8 +399,8 @@ class Compiler {
 
 		let condition = this.visitExpressionNode(node.condition)
 
-		if(condition.type.baseType !== "bool") {
-			throw new Error("Condition for while statement must evaluate to bool, not " + condition.type.baseType)
+		if(!(KytheraType.typeEq(condition.type, KytheraType.PRIMITIVES.bool))) {
+			throw new Error("Condition for while statement must evaluate to bool, not " + Compiler.typeAsString(condition.type))
 		}
 
 		out += condition.output
@@ -424,7 +424,7 @@ class Compiler {
 		let target = this.visitExpressionNode(node.target)
 
 		if(target.type.baseType !== "fn") {
-			throw new Error("Cannot perform function call on non-function type: " + target.type.baseType)
+			throw new Error("Cannot perform function call on non-function type: " + Compiler.typeAsString(target.type))
 		}
 
 		if(target.type.structure.parameters.length !== node.arguments.length) {
@@ -437,7 +437,7 @@ class Compiler {
 			let arg = this.visitExpressionNode(node.arguments[i])
 
 			if(!KytheraType.typeEq(param, arg.type)) {
-				throw new Error(`Types for parameter ${i} do not match: Expected ${param.baseType}, got ${arg.type.baseType}`)
+				throw new Error(`Types for parameter ${i} do not match: Expected ${Compiler.typeAsString(param)}, got ${Compiler.typeAsString(arg.type)}`)
 			}
 
 			output += arg.output
@@ -463,7 +463,7 @@ class Compiler {
 
 		if(node.method === "dot") {
 			if(target.type.baseType !== "obj") {
-				throw new Error("Dot access target must be an object, not " + target.type.baseType)
+				throw new Error("Dot access target must be an object, not " + Compiler.typeAsString(target.type))
 			}
 
 			if(typeof target.type.structure[node.index] !== "object") {
@@ -480,14 +480,14 @@ class Compiler {
 
 			if(target.type.baseType === "obj") {
 				if(indexExp.type.baseType !== "str") {
-					throw new Error("Bracket access to an object must use a string for the index, not " + indexExp.type.baseType)
+					throw new Error("Bracket access to an object must use a string for the index, not " + Compiler.typeAsString(indexExp.type))
 				}
 
 				output += `.value[(${indexExp.output}).value]`
 				type = new KytheraType("any")
 			} else if(target.type.baseType === "list") {
 				if(indexExp.type.baseType !== "int") {
-					throw new Error("List access must use an integer, not " + indexExp.type.baseType)
+					throw new Error("List access must use an integer, not " + Compiler.typeAsString(indexExp.type))
 				}
 
 				output += `.value[(${indexExp.output}).value]`
@@ -573,9 +573,9 @@ class Compiler {
 		let kytheraType = kytheraValue.type
 
 		let out = `new KYTHERA.value(`
-		if(kytheraType.baseType === "str") {
+		if(KytheraType.typeEq(kytheraType, KytheraType.PRIMITIVES.str)) {
 			out += `"${kytheraValue.value}"`
-		} else if(kytheraType.baseType=== "fn") {
+		} else if(kytheraType.baseType === "fn") {
 			// see visitLiteral()
 			throw new Error("Functions cannot be constructed from existing runtime values at compile time.")
 		} else if(kytheraType.baseType === "obj") {
@@ -589,7 +589,7 @@ class Compiler {
 
 			out += "\nreturn thisObj.value;\n})()"
 			this.currentScope = this.currentScope.parent
-		} else if(kytheraType.baseType === "type") {
+		} else if(KytheraType.typeEq(kytheraType, KytheraType.PRIMITIVES.type)) {
 			out += this.makeTypeConstructor(kytheraValue.value)
 		} else {
 			out += kytheraValue.value
@@ -639,6 +639,11 @@ class Compiler {
 		}
 		out += ")"
 		return out
+	}
+
+	// convenience function to convert a kytheraType to its str-casted representation, e.g. for better error output
+	static typeAsString(kytheraType) {
+		return KytheraValue.as((new KytheraValue(kytheraType, KytheraType.PRIMITIVES.type)), KytheraType.PRIMITIVES.str).value
 	}
 }
 
