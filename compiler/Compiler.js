@@ -610,6 +610,10 @@ class Compiler {
 			return `((${this.visitExpressionNode(kytheraType.exp).output}).value)`
 		}
 
+		if(Object.keys(KytheraType.PRIMITIVES).includes(kytheraType.baseType)) {
+			return `(KYTHERA.type.PRIMITIVES.${kytheraType.baseType})`
+		}
+
 		let out = `new KYTHERA.type("${kytheraType.baseType}"`
 
 		if(kytheraType.baseType === "fn") {
