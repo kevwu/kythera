@@ -307,7 +307,7 @@ class Parser {
 			}) : expression
 		}
 
-		let makeObjAccess = (exp) => {
+		let makeDotAccess = (exp) => {
 			if(this.confirmToken('.', "punc")) {
 				this.consumeToken('.', "punc")
 
@@ -324,7 +324,7 @@ class Parser {
 		}
 
 		// ambiguous access - could be list or object, impossible to tell until the index is evaluated
-		let makeAccess = (exp) => {
+		let makeBracketAccess = (exp) => {
 			this.consumeToken("[", "punc")
 
 			let indexExp = this.parseExpression()
@@ -342,13 +342,13 @@ class Parser {
 		let canStartBinary = () => canSplit && this.confirmToken(undefined, "op")
 		let canStartCall = () => this.confirmToken("(", "punc")
 		let canMakeAs = () => this.confirmToken("as", "kw")
-		let canMakeObjAccess = () => this.confirmToken('.', "punc")
-		let canMakeList = () => canSplit && this.confirmToken("[", "punc")
+		let canMakeDotAccess = () => this.confirmToken('.', "punc")
+		let canMakeBracketAccess = () => canSplit && this.confirmToken("[", "punc")
 
 		let exp = parseExpressionAtom()
 
 		// continuously build any post- or in-fix operator until no longer possible
-		while ((canStartBinary() || canStartCall() || canMakeAs() || canMakeObjAccess() || canMakeList()) && !this.confirmToken(";", "punc")) {
+		while ((canStartBinary() || canStartCall() || canMakeAs() || canMakeDotAccess() || canMakeBracketAccess()) && !this.confirmToken(";", "punc")) {
 			if(canStartBinary()) {
 				exp = makeBinary(exp, 0)
 			}
@@ -362,12 +362,12 @@ class Parser {
 				exp = makeCall(exp)
 			}
 
-			if(canMakeObjAccess()) {
-				exp = makeObjAccess(exp)
+			if(canMakeDotAccess()) {
+				exp = makeDotAccess(exp)
 			}
 
-			if(canMakeList()) {
-				exp = makeAccess(exp)
+			if(canMakeBracketAccess()) {
+				exp = makeBracketAccess(exp)
 			}
 		}
 
@@ -495,7 +495,6 @@ class Parser {
 		})
 	}
 
-	// parse a type, whether built-in (int, str etc) or user-defined (fn, rigid obj)
 	parseType() {
 		let nextToken = this.tokenizer.peek()
 
@@ -504,8 +503,9 @@ class Parser {
 		let builtinType = true
 
 		if(nextToken.type === "kw") { // built-in types
-			// unfortunately there is some code duplication here with this.tokenizer.next()
-			// because fn and obj need to consume the token before they do any work
+			// Unfortunately there is some code duplication here with this.tokenizer.next()
+			// because fn and obj need to consume the token before they do any work.
+			// However, if it is a derived type we must *not* consume the token.
 			switch (nextToken.value) {
 				case "int":
 					parseTypeAtom = TYPES.int
@@ -535,6 +535,20 @@ class Parser {
 				case "type":
 					parseTypeAtom = TYPES.type
 					this.tokenizer.next()
+
+					break
+				case "list":
+					this.tokenizer.next()
+
+					this.consumeToken('[', "punc")
+					const containedType = this.parseType()
+					this.consumeToken(']', "punc")
+
+					parseTypeAtom = new ParseNode("type", {
+						baseType: "list",
+						origin: "builtin",
+						contains: containedType,
+					})
 
 					break
 				case "fn":
@@ -597,18 +611,7 @@ class Parser {
 			})
 		}
 
-		if(this.confirmToken("[", "punc")) { // list type
-			this.consumeToken("[", "punc")
-			this.consumeToken("]", "punc")
-
-			return new ParseNode("type", {
-				baseType: "list",
-				origin: "builtin",
-				contains: parseTypeAtom,
-			})
-		} else {
-			return parseTypeAtom
-		}
+		return parseTypeAtom
 	}
 
 	// utility function, parses anything between start, stop, and delimiters using the given parser

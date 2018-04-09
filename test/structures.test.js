@@ -3,35 +3,36 @@ const t = require("./util").test
 describe("Builtin data structures", () => {
 	describe("Lists", () => {
 		// TODO syntax for list types will be changed soon
-/*		t("Initialization and assignment access", `
-let myList = new int[]
+		t("Initialization and assignment access", `
+let myList = new list[int]
 myList[0] = 10
 	`, {compile: false})
-
-		t("Initialization with custom type", `
+/*		t("Initialization with custom type", `
 let myType = obj{
 	int a,
 	str b,
 }
 
-let myTypeList = new myType[]
-`, {skip: true})
+let myTypeList = new list[myType]
+`, {skip: true})*/
 
 		t("Initialization from object list literal", `
-let myTypeList = new obj{
+let myTypeList = new list[obj{
 	int a,
 	str b,
-}[]
-`, {exec: false})
+}]
+`, {compile: false})
 
 		t("Access function returning list", `
-let myListFn = <> int[] {
-	let result = new int[]
+let myListFn = <> list[int] {
+	let result = new list[int]
 	result[0] = 10
+	
+	return result
 }
 
 myListFn()[0]
-	`, {compile: false})*/
+	`, {compile: false})
 
 		describe("List literals", () => {
 			t("int", `let a = [1, 2, 3, 4]`)
@@ -42,6 +43,8 @@ myListFn()[0]
 			t("type", `let a = [int, float, fn<int> null]`)
 			t("fn", `let a = [<int a> null {return null}, <int b> null { return null }]`)
 			t("obj", `let a = [{a = 0, b = "asdf",}, {a = 3, b = "qwerty",}]`)
+
+			// TODO: error cases where members differ, function params differ, object structures differ
 		})
 	})
 

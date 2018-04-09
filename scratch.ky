@@ -1,1 +1,7 @@
-!false
+let myListFn = <> list[int] {
+	let result = new list[int]
+	result[0] = 10
+	return result
+}
+
+myListFn()[0]
