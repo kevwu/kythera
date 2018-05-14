@@ -10,6 +10,6 @@
 	"license": "ISC",
 	"dependencies": {},
 	"devDependencies": {
-		"jest": "^21.1.0"
+		"jest": "^22.4.3"
 	}
 }
